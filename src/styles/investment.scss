@@ -1,0 +1,56 @@
+$primary: #0d5661;
+$secondary: #243a6e;
+$accent: #d44f44;
+$white: #ffffff;
+$font-black: #323232;
+$font-gray: #787878;
+$bg-gray: #cdcdcd;
+$bg-light: #f0f0f0;
+
+@import '~bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
+
+.btn {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 1 rem;
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 1.2px;
+  width: 196px;
+  height: 60px;
+  border-radius: 3px;
+}
+
+h2 {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 1.6 rem;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 1.2px;
+  color: $font-black;
+}
+
+h4 {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 1 rem;
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 1.2px;
+  color: $font-gray;
+}
+
+.bannerSec {
+  background-image: url('./../img/investment/inverstment_banner.png');
+  height: calc(100vh-80px);
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  h2 {
+    color: $white;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+  .btn {
+    margin: 0 auto;
+  }
+}
