@@ -1,0 +1,89 @@
+$primary: #0d5661;
+$secondary: #243a6e;
+$accent: #d44f44;
+$white: #ffffff;
+$font-black: #323232;
+$font-gray: #787878;
+$bg-gray: #cdcdcd;
+$bg-light: #f0f0f0;
+
+@import '~bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
+
+.btn {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 1 rem;
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 1.2px;
+  width: 196px;
+  height: 60px;
+  border-radius: 15px;
+}
+
+h2,
+h4,
+h5,
+h6,
+p,
+span {
+  font-family: 'Noto Sans TC', sans-serif;
+  line-height: 1.75;
+  letter-spacing: 1.2px;
+}
+
+//區域
+
+.secTitle {
+  margin-top: 80px;
+  margin-bottom: 60px;
+  text-align: center;
+  h4 {
+    font-size: 1.5 rem;
+    font-weight: 500;
+    color: $font-black;
+  }
+  span {
+    font-size: 1 rem;
+    font-weight: 300;
+    color: $font-gray;
+    margin-top: 13px;
+  }
+}
+
+.bannerSec {
+  min-height: calc(100vh - 80px);
+  width: 100%;
+  background: center center no-repeat;
+  background-image: url('../../img/investment/1_inverstment_banner.png');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h2 {
+    color: $white;
+    font-size: 2.5rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+}
+
+a .carousel-control-prev-icon,
+a .carousel-control-next-icon {
+  width: 40px;
+  height: 40px;
+  background-size: 20px;
+  border-radius: 100%;
+  background-color: #787878;
+}
+
+.templateSilder .carousel-indicators li {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: $font-black;
+  margin: 0 10px;
+}
