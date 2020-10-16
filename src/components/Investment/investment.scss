@@ -55,7 +55,7 @@ span {
   min-height: calc(100vh - 80px);
   width: 100%;
   background: center center no-repeat;
-  background-image: url('../../img/investment/1_inverstment_banner.png');
+  background-image: url('../../img/investment/1_inverstment_banner.jpg');
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -63,7 +63,7 @@ span {
   align-items: center;
   h2 {
     color: $white;
-    font-size: 2.5rem;
+    font-size: 1.75 rem;
     font-weight: 500;
     letter-spacing: 3px;
     text-align: center;
