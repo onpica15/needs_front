@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
-import '../styles/investmentAdvantage.scss'
+// import './investment/investmentAdvantage.scss'
 
 const InvestmentAdvantage = () => {
   return (

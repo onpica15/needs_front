@@ -1,15 +1,11 @@
 import React from 'react'
 import { Container, Row, Col, Button, Carousel } from 'react-bootstrap'
-// import $ from 'jquery'
 import './investment.scss'
-
-import Navbar from '../Navbar'
 import InvestmentAdvantage from '../InvestmentAdvantage'
 
-const Investment = () => {
+const InvestmentMain = () => {
   return (
     <>
-      <Navbar />
       <Container className="investment">
         <div className="bannerSec">
           <h2 className="">Build Your Online Business with NEEDS</h2>
@@ -63,4 +59,4 @@ const Investment = () => {
   )
 }
 
-export default Investment
+export default InvestmentMain
