@@ -18,7 +18,7 @@ $bg-light: #f0f0f0;
   letter-spacing: 1.2px;
   width: 196px;
   height: 60px;
-  border-radius: 15px;
+  border-radius: 3px;
 }
 
 h2,
@@ -55,7 +55,7 @@ span {
   min-height: calc(100vh - 80px);
   width: 100%;
   background: center center no-repeat;
-  background-image: url('../../img/investment/1_inverstment_banner.jpg');
+  background-image: url('../../assets/img/investment/1_inverstment_banner.jpg');
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -86,4 +86,50 @@ a .carousel-control-next-icon {
   border-radius: 50%;
   background-color: $font-black;
   margin: 0 10px;
+}
+
+.brandListSec {
+  margin-bottom: 80px;
+  .brandContent {
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 25px;
+    .brandInfo {
+      text-align: center;
+      flex: 1 1 200px;
+      img {
+        height: 200px;
+      }
+      p {
+        font-size: 1.25rem;
+        color: $font-black;
+        margin-top: 16px;
+        margin-bottom: 55px;
+      }
+    }
+    i {
+      flex: 1 1 200px;
+      height: 200;
+    }
+  }
+}
+
+.storePromSec {
+  background-color: $secondary;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 0;
+  h4,
+  span {
+    color: $white;
+    padding: 0 50px;
+  }
+  .btn {
+    margin-top: 60px;
+    // background-color: #fff;
+    color: $secondary;
+  }
 }
