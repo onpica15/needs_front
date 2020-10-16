@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Row, Col, Button, Carousel } from 'react-bootstrap'
 import './investment.scss'
 import InvestmentAdvantage from '../../components/InvestmentAdvantage'
-import brandData from '../../assets/data/brands.json'
+import brandData from '@assets/data/brands.json'
 
 const Investment = () => {
   return (
@@ -21,28 +21,28 @@ const Investment = () => {
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src={require('../../assets/img/investment/2_template1.jpg')}
+                src={require('@assets/img/investment/2_template1.jpg')}
                 alt="First slide"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src={require('../../assets/img/investment/2_template2.jpg')}
+                src={require('@assets/img/investment/2_template2.jpg')}
                 alt="Second slide"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src={require('../../assets/img/investment/2_template3.jpg')}
+                src={require('@assets/img/investment/2_template3.jpg')}
                 alt="Third slide"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src={require('../../assets/img/investment/2_template4.jpg')}
+                src={require('@assets/img/investment/2_template4.jpg')}
                 alt="Forth slide"
               />
             </Carousel.Item>
@@ -65,7 +65,7 @@ const Investment = () => {
               return (
                 <div key={item.id} className="brandInfo">
                   <img
-                    src={require(`../../assets/img/investment/${item.imgName}`)}
+                    src={require(`@assets/img/investment/${item.imgName}`)}
                     alt={item.brandName}
                     className="brandLogo"
                   />
