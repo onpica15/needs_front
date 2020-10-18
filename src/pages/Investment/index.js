@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Container, Row, Col, Button, Carousel } from 'react-bootstrap'
 import './investment.scss'
 import InvestmentAdvantage from '../../components/InvestmentAdvantage'
-import BrandList from './BrandList'
-import CollapseList from './CollapseList'
+import BrandList from './modules/BrandList'
+import CollapseList from './modules/CollapseList'
 import CollapseData from '@assets/data/investment_q&a.json'
 
 const Investment = () => {
@@ -57,6 +57,46 @@ const Investment = () => {
           </div>
           <InvestmentAdvantage />
         </div>
+        <div class="feeSec">
+          <div class="secTitle">
+            <h4>平台費用</h4>
+          </div>
+          <div className="feeContent">
+            <div className="standardPlan">
+              <img
+                src={require(`@assets/img/investment/6_winner.png`)}
+                alt=""
+                class="planIcon"
+              />
+              <h4>標準方案 Standard</h4>
+              <div className="plan">
+                <ul>
+                  <li>保證金 $10,000</li>
+                  <li>月租費 $1,500</li>
+                  <li>免成交手續費</li>
+                  <li>免訂單處理費</li>
+                </ul>
+              </div>
+            </div>
+            <div className="premiumPlan">
+              <img
+                src={require(`@assets/img/investment/6_diamond.png`)}
+                alt=""
+                class="planIcon"
+              />
+              <h4>進階方案 Premium</h4>
+              <div className="plan">
+                <ul>
+                  <li>保證金 $10,000</li>
+                  <li>月租費 $2,000</li>
+                  <li>免成交手續費</li>
+                  <li>免訂單處理費</li>
+                </ul>
+              </div>
+            </div>
+            <Button variant="light">方案詳情 →</Button>
+          </div>
+        </div>
         <div className="brandListSec">
           <div className="secTitle">
             <h4>已加入NEEDS品牌</h4>
@@ -80,6 +120,9 @@ const Investment = () => {
           </div>
           <div class="questionContent">
             <CollapseList CollapseData={CollapseData} />
+            <div>
+              <Button>查看更多問與答 →</Button>
+            </div>
           </div>
         </div>
       </Container>
