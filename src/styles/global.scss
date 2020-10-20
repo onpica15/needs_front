@@ -31,13 +31,35 @@ span {
 }
 
 .footerSec {
+  padding: 50px 5%;
+  background-color: $bg-light;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   .subSection {
+    font-size: 0.875rem;
     width: 20%;
+    margin-bottom: 80px;
+    .title {
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
     ul {
       list-style-type: none;
+      li {
+        margin-bottom: 5px;
+      }
     }
+    .socialMediaIcon {
+      margin-right: 9px;
+      .path {
+        width: 20px;
+      }
+    }
+  }
+  .copyRight {
+    font-weight: 300;
+    font-size: 0.875rem;
+    margin-bottom: 0px;
   }
 }

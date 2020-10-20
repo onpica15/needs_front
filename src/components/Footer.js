@@ -1,11 +1,12 @@
 import React from 'react'
-import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
+import { SiLine, SiFacebook, SiInstagram, SiYoutube } from 'react-icons/si'
+
 const Footer = () => {
   return (
     <>
       <div className="footerSec">
         <div className="subSection">
-          <h6 className="title">購買</h6>
+          <div className="title">購買</div>
           <ul>
             <li>所有商品分類</li>
             <li>找靈感</li>
@@ -44,7 +45,22 @@ const Footer = () => {
         </div>
         <div className="subSection">
           <div className="title">追蹤</div>
+          <span className="socialMediaIcon">
+            <SiLine size="18px" />
+          </span>
+          <span className="socialMediaIcon">
+            <SiInstagram size="18px" />
+          </span>
+          <span className="socialMediaIcon">
+            <SiFacebook size="18px" />
+          </span>
+          <span className="socialMediaIcon">
+            <SiYoutube size="18px" />
+          </span>
         </div>
+        <p className="copyRight">
+          Copyright © 2020 NEEDS.Inc All rights reserved.
+        </p>
       </div>
     </>
   )
