@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
-import { Container, Row, Col, Button, Carousel } from 'react-bootstrap'
+import React, { useEffect } from 'react'
+import { Container, Button, Carousel } from 'react-bootstrap'
 import './investment.scss'
 import InvestmentAdvantage from '../../components/InvestmentAdvantage'
+import Join from './modules/Join'
 import BrandList from './modules/BrandList'
 import CollapseList from './modules/CollapseList'
 import CollapseData from '@assets/data/investment_q&a.json'
 
 const Investment = () => {
+  // useEffect(() => {
+
+  // }, [])
   return (
     <>
       <Container fluid>
@@ -59,8 +63,8 @@ const Investment = () => {
           </div>
           <InvestmentAdvantage />
         </div>
-        <div class="feeSec">
-          <div class="secTitle">
+        <div className="feeSec">
+          <div className="secTitle">
             <h4>平台費用</h4>
           </div>
           <div className="feeContent">
@@ -110,14 +114,7 @@ const Investment = () => {
         </div>
       </Container>
       <Container fluid>
-        <div className="storePromSec">
-          <span>立即申請加入 NEEDS！</span>
-          <span>
-            馬上開始填寫申請表，加入這些優秀設計品牌的行列，和
-            NEEDS一起為你的品牌開啓新的歷程吧！
-          </span>
-          <Button variant="light">立即開店 →</Button>
-        </div>
+        <Join />
       </Container>
       <Container className="investment">
         <div class="questionSec">

@@ -32,11 +32,6 @@ span {
   letter-spacing: 1.2px;
 }
 
-.container-fluid {
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
 //區域
 
 .secTitle {
@@ -57,7 +52,8 @@ span {
 }
 
 .bannerSec {
-  min-height: calc(100vh - 0px);
+  min-height: calc(100vh - 80px);
+  width: 100%;
   background: center center no-repeat;
   background-image: url('../../assets/img/investment/1_inverstment_banner.jpg');
   background-size: cover;
@@ -169,23 +165,25 @@ a .carousel-control-next-icon {
   }
 }
 
-.storePromSec {
+.joinSec {
   margin-bottom: 80px;
   background-color: $secondary;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 80px 0;
-  h4,
-  span {
-    color: $white;
-    padding: 0 50px;
-  }
-  .btn {
-    margin-top: 60px;
-    color: $secondary;
+  .joinContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 0;
+    h4,
+    span {
+      color: $white;
+      padding: 0 50px;
+    }
+    .btn {
+      margin-top: 60px;
+      color: $secondary;
+    }
   }
 }
 
