@@ -8,6 +8,7 @@ const BrandList = () => {
       <Trail
         items={BrandData}
         keys={(item) => item.id}
+        config={{ duration: 1500 }}
         from={{ opacity: 0 }}
         to={{ opacity: 1 }}
       >
