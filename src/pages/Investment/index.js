@@ -9,11 +9,13 @@ import CollapseData from '@assets/data/investment_q&a.json'
 const Investment = () => {
   return (
     <>
-      <Container className="investment">
+      <Container fluid>
         <div className="bannerSec">
           <h2 className="">Build Your Online Business with NEEDS</h2>
           <Button>立即開店 →</Button>
         </div>
+      </Container>
+      <Container className="investment">
         <div className="silderSec">
           <div className="secTitle">
             <h4>設計品牌風格</h4>
@@ -106,6 +108,8 @@ const Investment = () => {
             <BrandList />
           </div>
         </div>
+      </Container>
+      <Container fluid>
         <div className="storePromSec">
           <span>立即申請加入 NEEDS！</span>
           <span>
@@ -114,6 +118,8 @@ const Investment = () => {
           </span>
           <Button variant="light">立即開店 →</Button>
         </div>
+      </Container>
+      <Container className="investment">
         <div class="questionSec">
           <div class="secTitle">
             <h4>常見問題</h4>

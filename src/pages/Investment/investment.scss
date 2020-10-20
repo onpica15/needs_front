@@ -32,6 +32,11 @@ span {
   letter-spacing: 1.2px;
 }
 
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 //區域
 
 .secTitle {
@@ -52,8 +57,7 @@ span {
 }
 
 .bannerSec {
-  min-height: calc(100vh - 80px);
-  width: 100%;
+  min-height: calc(100vh - 0px);
   background: center center no-repeat;
   background-image: url('../../assets/img/investment/1_inverstment_banner.jpg');
   background-size: cover;
