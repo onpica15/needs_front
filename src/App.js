@@ -7,18 +7,17 @@ import Home from './pages/Home'
 import Investment from './pages/Investment'
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false)
   return (
     <Router>
       <>
-        <Navbar isAuth={isAuth} setIsAuth={setIsAuth} />
+        <Navbar />
 
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
           <Route path="/investment">
-            <Investment isAuth={isAuth} />
+            <Investment />
           </Route>
         </Switch>
         <Footer />
