@@ -9337,11 +9337,7 @@ prop-types-extra@^1.1.0:
     react-is "^16.3.2"
     warning "^4.0.0"
 
-<<<<<<< HEAD
-prop-types@15.7.2, prop-types@^15.6.2, prop-types@^15.7.2:
-=======
-prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2:
->>>>>>> master
+prop-types@15.7.2, prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -9724,7 +9720,6 @@ react-scripts@3.4.3:
   optionalDependencies:
     fsevents "2.1.2"
 
-<<<<<<< HEAD
 react-scroll-to-bottom@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-scroll-to-bottom/-/react-scroll-to-bottom-4.0.0.tgz#427cc054a3011269538cf89db5fb6348018f313c"
@@ -9735,7 +9730,7 @@ react-scroll-to-bottom@^4.0.0:
     math-random "2.0.1"
     prop-types "15.7.2"
     simple-update-in "2.2.0"
-=======
+
 react-spring@^8.0.27:
   version "8.0.27"
   resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-8.0.27.tgz#97d4dee677f41e0b2adcb696f3839680a3aa356a"
@@ -9743,7 +9738,6 @@ react-spring@^8.0.27:
   dependencies:
     "@babel/runtime" "^7.3.1"
     prop-types "^15.5.8"
->>>>>>> master
 
 react-transition-group@^4.4.1:
   version "4.4.1"
