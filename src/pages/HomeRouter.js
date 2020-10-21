@@ -1,20 +1,25 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import HomeRouter from './pages/HomeRouter'
-import BackEndApp from './pages/backend/BackEndApp'
+import '../styles/global.scss'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import Home from './Home'
+import Investment from './Investment'
 
 function App() {
   return (
     <Router>
       <>
+        <Navbar />
         <Switch>
           <Route exact path="/">
-            <HomeRouter />
+            <Home />
           </Route>
-          <Route path="/customer-backend">
-            <BackEndApp />
+          <Route path="/investment">
+            <Investment />
           </Route>
         </Switch>
+        <Footer />
       </>
     </Router>
   )
