@@ -1,21 +1,28 @@
 import React from 'react'
 import BrandData from '@assets/data/brands.json'
+import { Trail, animated } from 'react-spring/renderprops'
 
 const BrandList = () => {
   return (
     <>
-      {BrandData.map((item, index) => {
-        return (
-          <div key={item.id} className="brandInfo">
+      <Trail
+        items={BrandData}
+        keys={(item) => item.id}
+        config={{ duration: 1500 }}
+        from={{ opacity: 0 }}
+        to={{ opacity: 1 }}
+      >
+        {(item) => ({ opacity }) => (
+          <animated.div style={{ opacity }} className="brandInfo">
             <img
               src={require(`@assets/img/investment/${item.imgName}`)}
               alt={item.brandName}
               className="brandLogo"
             />
             <p className="brandName">{item.brandName}</p>
-          </div>
-        )
-      })}
+          </animated.div>
+        )}
+      </Trail>
       <i aria-hidden="true" />
       <i aria-hidden="true" />
       <i aria-hidden="true" />

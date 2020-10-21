@@ -13,18 +13,17 @@ import Article from './components/Article/Article'
 import CreateArticle from './components/Article/CreateArticle'
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false)
   return (
     <Router>
       <>
-        <Navbar isAuth={isAuth} setIsAuth={setIsAuth} />
+        <Navbar />
 
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
           <Route path="/investment">
-            <Investment isAuth={isAuth} />
+            <Investment />
           </Route>
           {/* Deri area */}
           {/* <Route path="/chat" exact component={Chat} /> */}
