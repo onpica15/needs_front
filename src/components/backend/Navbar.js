@@ -135,13 +135,20 @@ function Navbar() {
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="dropdown-staff dropdown-menu-right">
                   <Dropdown.Item>
+                    <Link to="/">
+                      <i class="fas fa-home pr-2"></i>
+                      回到首頁
+                    </Link>
+                    <div className="dropdown-divider"></div>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
                     <i className="fas fa-user pr-2" />
-                    Profile
+                    個人資料
                     <div className="dropdown-divider"></div>
                   </Dropdown.Item>
                   <Dropdown.Item>
                     <i className="fas fa-sign-out-alt pr-2" />
-                    Logout
+                    登出
                     {/* <div className="dropdown-divider"></div> */}
                   </Dropdown.Item>
                 </Dropdown.Menu>

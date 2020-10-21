@@ -11,7 +11,7 @@ function App() {
           <Route exact path="/">
             <HomeRouter />
           </Route>
-          <Route path="/customer-backend">
+          <Route exact path="/customer-backend">
             <BackEndApp />
           </Route>
         </Switch>
