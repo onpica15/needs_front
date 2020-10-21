@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Home from './Home'
 import Investment from './Investment'
+import ProductDetail from './ProductDetail'
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
           </Route>
           <Route path="/investment">
             <Investment />
+          </Route>
+          <Route path="/products">
+            <ProductDetail />
           </Route>
         </Switch>
         <Footer />
