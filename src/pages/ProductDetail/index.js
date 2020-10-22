@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom'
 import './productPage.scss'
 // import DetailNav from './DetailNav'
 // import ProductDetailContent from './ProductDetailContent'
-// import DeliveryPaymentInfo from './DeliveryPaymentInfo'
+import DeliveryPaymentInfo from './DeliveryPaymentInfo'
 
 function ProductDetail(props) {
 
@@ -61,9 +61,9 @@ function ProductDetail(props) {
                 </div>
                 <span className="stock">庫存：還剩10件</span>
               </Form.Group>
-              <button className="btn btn-primary mt-3" type="submit"><i className="far fa-heart mr-3"></i>放入購物車</button>
+              <button className="btn btn-primary mt-3 w-100" type="submit"><i className="far fa-heart mr-3"></i>放入購物車</button>
             </Form>
-            <button className="btn btn-primary mt-3"><i className="far fa-heart mr-3"></i>收藏商品</button>
+            <button className="btn btn-outline-primary mt-3 w-100"><i className="far fa-heart mr-3"></i>收藏商品</button>
           </Col>
         </Row>
       </Container>
@@ -75,8 +75,8 @@ function ProductDetail(props) {
             </Col>
             <Col md={3}>
               <h5 className="mb-3">Meow Illustration</h5>
-              {/* <button className="btn btn-sm merchant-follow-btn mr-2"><i class="fal fa-plus mr-2"></i>加入關注</button>
-              <button className="btn btn-sm merchant-shop-btn"><i class="fal fa-store mr-2"></i>逛逛店家</button> */}
+              <button className="btn btn-sm btn-primary mr-2"><i class="fal fa-plus mr-2"></i>加入關注</button>
+              <button className="btn btn-sm btn-secondary"><i class="fal fa-store mr-2"></i>逛逛店家</button>
             </Col>
             <Col md={3}>
               <p>評價：<span className="text-point">4.8 (3,680個評價)</span></p>
@@ -99,7 +99,7 @@ function ProductDetail(props) {
         {/* <ProductDetailContent /> */}
         <h5 className="mt-5">運費與其他資訊</h5>
         <hr />
-        {/* <DeliveryPaymentInfo /> */}
+        <DeliveryPaymentInfo />
         <h5 className="mt-5">購買評價</h5>
         <hr />
         <div className="review">

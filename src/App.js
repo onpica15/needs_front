@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import './styles/global.scss'
-
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import Investment from './pages/Investment'
+import ProductDetail from './pages/ProductDetail'
 
 import BackEndSidebar from './components/backend/Sidebar'
 import BackEndNavbar from './components/backend/Navbar'
@@ -65,7 +64,11 @@ function App() {
             component={Investment}
             layout="FRONT_END_NAV"
           />
-
+          <DynamicLayoutRoute
+            path="/products"
+            component={ProductDetail}
+            layout="FRONT_END_NAV"
+          />
           <DynamicLayoutRoute
             path="/customer-backend"
             component={BackEndDashboard}
