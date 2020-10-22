@@ -1,0 +1,10 @@
+@import '~bootstrap/scss/bootstrap.scss';
+@import 'variable';
+@import 'sidebar';
+@import 'navbar';
+@import 'dashboard';
+@import 'calendar';
+
+body{
+    background-color: #f5f5f5;
+}
