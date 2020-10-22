@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import Investment from './pages/Investment'
+import MerchantHome from './pages/MerchantHome/MerchantHome'
 
 function App() {
   return (
@@ -19,8 +20,11 @@ function App() {
           <Route path="/investment">
             <Investment />
           </Route>
+          <Route path="/homepage">
+            <MerchantHome />
+          </Route>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </>
     </Router>
   )
