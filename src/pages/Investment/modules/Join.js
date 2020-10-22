@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap'
 import { useTransition, animated } from 'react-spring'
 
-const Join = () => {
-  const [show, setShow] = useState(true)
+const Join = ({ show }) => {
+  useEffect(() => {}, [show])
   const transitions = useTransition(show, null, {
     config: { duration: 1000 },
     from: { transform: 'translateY(100px)', opacity: 0 },
@@ -12,7 +12,7 @@ const Join = () => {
   return transitions.map(
     ({ item, key, props }) =>
       item && (
-        <div className="joinSec">
+        <div className="joinSec" key={key}>
           <animated.div key={key} style={props} className="joinContent">
             <span>立即申請加入 NEEDS！</span>
             <span>
