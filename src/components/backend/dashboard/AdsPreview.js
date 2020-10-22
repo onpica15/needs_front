@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
-import ads1 from '../../../images/backend/dashboard/ads1.jpg'
+import ads1 from '../../../pages/BackEnd/Dashboard/images/ads1.jpg'
 
 function AdsPreview() {
   return (

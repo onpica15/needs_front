@@ -112,6 +112,20 @@ i {
     background-color: #fff;
 }
 
+.dropdown-staff{
+    a{
+        color: inherit;
+        &:hover{
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: inherit;
+}
+
 .notification-dropdown {
     width: 25rem;
     padding: 0;
@@ -193,3 +207,4 @@ i {
         padding: 0;
     }
 }
+

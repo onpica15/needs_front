@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import '../../styles/backend/backend-index.scss'
 import BackEndSidebar from '../../components/backend/Sidebar'
 import BackEndNavbar from '../../components/backend/Navbar'
-import BackEndDashboard from '../../pages/backend/Dashboard'
+import BackEndDashboard from './Dashboard'
 function BackEndApp() {
   return (
     <Router>

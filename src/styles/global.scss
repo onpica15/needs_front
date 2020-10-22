@@ -36,6 +36,15 @@ span {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  &:before {
+    content: "";
+    background-color: #f0f0f0;
+    position: absolute;
+    margin-top: -50px;
+    height: 376px;
+    width: 100%;
+    z-index: -1;
+}
   .subSection {
     font-size: 0.875rem;
     width: 20%;

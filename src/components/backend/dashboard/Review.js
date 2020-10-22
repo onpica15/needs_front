@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Rater from 'react-rater'
 import ReviewPieChart from './charts/ReviewPieChart'
 import 'react-rater/lib/react-rater.css'
-import '../../../styles/backend/_review_star.scss'
+import '../../../pages/BackEnd/Dashboard/styles/_review_star.scss'
 
 class Review extends Component {
   render() {

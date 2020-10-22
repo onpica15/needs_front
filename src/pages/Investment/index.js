@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Container, Button, Carousel } from 'react-bootstrap'
+// import { useSpring, animated, interpolate } from 'react-spring'
 import './investment.scss'
 import InvestmentAdvantage from '../../components/InvestmentAdvantage'
 import Join from './modules/Join'
@@ -8,9 +9,23 @@ import CollapseList from './modules/CollapseList'
 import CollapseData from '@assets/data/investment_q&a.json'
 
 const Investment = () => {
-  // useEffect(() => {
+  const [joinShow, setjoinShow] = useState(false)
+  const [brandListShow, setBrandListShow] = useState(false)
+  const joinRef = useRef()
+  const brandListRef = useRef()
 
-  // }, [])
+  const windowHeight = window.innerHeight
+
+  const handleScroll = () => {
+    const posY = (ref) => ref.current.getBoundingClientRect().top
+    if (posY(joinRef) <= windowHeight) setjoinShow(true)
+    if (posY(brandListRef) <= windowHeight) setBrandListShow(true)
+  }
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <>
       <Container fluid>
@@ -72,7 +87,7 @@ const Investment = () => {
               <img
                 src={require(`@assets/img/investment/6_winner.png`)}
                 alt=""
-                class="planIcon"
+                className="planIcon"
               />
               <h4>標準方案 Standard</h4>
               <div className="plan">
@@ -88,7 +103,7 @@ const Investment = () => {
               <img
                 src={require(`@assets/img/investment/6_diamond.png`)}
                 alt=""
-                class="planIcon"
+                className="planIcon"
               />
               <h4>進階方案 Premium</h4>
               <div className="plan">
@@ -103,25 +118,25 @@ const Investment = () => {
             <Button variant="light">方案詳情 →</Button>
           </div>
         </div>
-        <div className="brandListSec">
+        <div className="brandListSec" ref={brandListRef}>
           <div className="secTitle">
             <h4>已加入NEEDS品牌</h4>
             <span>超過100個優秀設計品牌已加入NEEDS</span>
           </div>
           <div className="brandContent">
-            <BrandList />
+            <BrandList show={brandListShow} />
           </div>
         </div>
       </Container>
-      <Container fluid>
-        <Join />
+      <Container fluid ref={joinRef}>
+        <Join show={joinShow} />
       </Container>
       <Container className="investment">
-        <div class="questionSec">
-          <div class="secTitle">
+        <div className="questionSec">
+          <div className="secTitle">
             <h4>常見問題</h4>
           </div>
-          <div class="questionContent">
+          <div className="questionContent">
             <CollapseList CollapseData={CollapseData} />
             <div>
               <Button>查看更多問與答 →</Button>
