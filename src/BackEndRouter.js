@@ -7,15 +7,7 @@ function BackEndApp() {
   return (
     <Router>
       <>
-        <BackEndSidebar>
-          <Switch>
-            <Route
-              exact
-              path="/customer-backend"
-              component={BackEndDashboard}
-            />
-          </Switch>
-        </BackEndSidebar>
+        <BackEndSidebar />
         <BackEndNavbar />
         <BackEndDashboard />
       </>
