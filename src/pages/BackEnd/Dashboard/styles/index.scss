@@ -1,10 +1,6 @@
 //大家都要用的scss
-@import '../../../styles/Backend/backend';
+@import '../../../../styles/Backend/backend';
 
 // import自己的scss
 @import 'dashboard';
 @import 'calendar';
-
-body{
-    background-color: #f5f5f5;
-}
