@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import '../styles/global.scss'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import Home from './Home'
-import Investment from './Investment'
+import { Container } from 'react-bootstrap'
+import './styles/global.scss'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import Home from './pages/Home'
+import Investment from './pages/Investment'
 
 function App() {
   return (
-    <Router>
-      <>
+    <>
+      <Router>
         <Navbar />
         <Switch>
           <Route exact path="/">
@@ -20,8 +21,8 @@ function App() {
           </Route>
         </Switch>
         <Footer />
-      </>
-    </Router>
+      </Router>
+    </>
   )
 }
 

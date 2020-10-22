@@ -9,8 +9,8 @@ import {
   NavItem,
   NavLink,
 } from 'react-bootstrap'
-import avatar from '../../images/backend/book.jpg'
-import customer from '../../images/backend/dashboard/australia-customer.jpg'
+import avatar from '../../pages/BackEnd/Dashboard/images/book.jpg'
+import customer from '../../pages/BackEnd/Dashboard/images/australia-customer.jpg'
 
 function Navbar() {
   const openFullscreen = () => {

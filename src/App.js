@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import HomeRouter from './pages/HomeRouter'
-import BackEndApp from './pages/backend/BackEndApp'
+import HomeRouter from './FrontEndRouter'
+import BackEndApp from './BackEndRouter'
 
 function App() {
   return (
