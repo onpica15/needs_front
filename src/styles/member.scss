@@ -1,0 +1,75 @@
+
+
+
+@import './global.scss';
+@import '~bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
+
+*{
+    margin:0;
+    padding: 0;
+}
+//membersidebar
+.sticker{
+    width: 130px;
+    height: 130px;
+    background-color: #ccc;
+    border-radius: 10px;
+}
+.sidebar{
+    width: 155px;
+    height: 550px;
+
+
+
+.wrapper{
+    width: 155 px;
+    height: 40px;
+
+    .icons{
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+    }
+ 
+        
+    h6{
+        margin: 0px;
+        padding: 0px;
+        
+        width: 50%;
+    }
+   
+   }
+}
+
+
+.sidebar a:hover{
+    
+color: $accent;
+
+}
+
+.sidebar a:active{
+    
+    color: $accent;
+    
+    }
+
+//memcard
+
+.card{
+    margin: 30px;
+    width: 90px;
+    height: 750px;
+    border-radius: 10px;
+    border: solid 2px $font-black;
+    box-shadow: 6px 5px $shadow;
+}
+
+
+
+
+// a.demo-item:hover {
+//     box-shadow: 0 -3px #00cc99 inset; 
+//   }
