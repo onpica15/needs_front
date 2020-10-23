@@ -67,3 +67,13 @@
     background-color: #43aa8b;
   }
 }
+
+.starSelect {
+  input[type='radio'] {
+    display: none;
+  }
+  .star {
+    cursor: pointer;
+    transition: color 200ms;
+  }
+}
