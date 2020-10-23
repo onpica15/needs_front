@@ -5,9 +5,7 @@ function DispatchStatus() {
   return (
     <>
       <Card className="delivery-data revenue">
-        <Card.Header>
           <div className="revenue-title">待處理訂單</div>
-        </Card.Header>
         <Table hover borderless className="">
           <thead>
             <tr>
