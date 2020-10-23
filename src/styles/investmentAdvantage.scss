@@ -9,22 +9,29 @@ $bg-gray: #cdcdcd;
 $bg-light: #f0f0f0;
 
 .advantageSec {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  div.advantageContent:nth-child(even) {
+    background-color: $bg-light;
+  }
   .advantageContent {
     color: $primary;
     display: flex;
     justify-content: center;
+    align-items: center;
     height: 300px;
-    .advText {
-      p {
-        margin-bottom: 1.2px;
-      }
+    p {
+      margin-bottom: 8px;
     }
-    .advNum {
+    .textodd {
+      margin-left: 80px;
+      margin-right: 70px;
+    }
+    .texteven {
+      margin-left: 80px;
+      margin-right: 70px;
+      text-align: right;
+    }
+    .order {
       font-size: 150px;
-      margin-left: 70px;
     }
   }
 }
