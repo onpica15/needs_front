@@ -1,26 +1,17 @@
 import React, { useState } from 'react'
-
-import MemberSidebar from './components/MemberSidebar'
-import Memcard from './pages/Memcard'
-import Investment from './pages/Investment'
+import MemSidebar from '../../components/MemSidebar'
+// import MemCard from '../../components/MemCard'
+import MemShop from '../../components/MemShop'
 
 function App() {
   return (
-    <Router>
-      <>
-        <Navbar />
-
-        <Switch>
-          <Route exact path="/">
-            <Member/>
-          </Route>
-          <Route path="/investment">
-            <Investment />
-          </Route>
-        </Switch>
-        <Footer />
-      </>
-    </Router>
+    <>
+      <div className="container-fluid row">
+        <MemSidebar />
+        {/* <MemCard /> */}
+        <MemShop />
+      </div>
+    </>
   )
 }
 

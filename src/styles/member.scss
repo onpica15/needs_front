@@ -1,75 +1,299 @@
-
-
-
 @import './global.scss';
 @import '~bootstrap/scss/bootstrap.scss';
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
 
-*{
-    margin:0;
-    padding: 0;
+* {
+    .font-s{
+        font-size: 1rem;
+    }
+
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+
+    /* HTML5 display-role reset for older browsers */
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+        display: block;
+    }
+
+    body {
+        line-height: 1;
+    }
+
+    ol,
+    ul {
+        list-style: none;
+    }
+
+    blockquote,
+    q {
+        quotes: none;
+    }
+
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+        content: '';
+        content: none;
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin: 0;
+    }
 }
-//membersidebar
-.sticker{
-    width: 130px;
-    height: 130px;
-    background-color: #ccc;
-    border-radius: 10px;
-}
-.sidebar{
+
+//memsidebar
+.memsidebar {
     width: 155px;
     height: 550px;
 
+    .sticker {
 
-
-.wrapper{
-    width: 155 px;
-    height: 40px;
-
-    .icons{
-        width: 24px;
-        height: 24px;
-        margin-right: 10px;
+        width: 130px;
+        height: 130px;
+        background-color: #ccc;
+        border-radius: 10px;
     }
- 
-        
-    h6{
-        margin: 0px;
-        padding: 0px;
-        
-        width: 50%;
+
+    .wrapper {
+        width: 155 px;
+        height: 40px;
+
+        .icons {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+
+        h6 {
+            margin: 0px;
+            padding: 0px;
+            width: 50%;
+        }
+
     }
-   
-   }
 }
 
 
-.sidebar a:hover{
-    
-color: $accent;
+.sidebar a:hover {
 
-}
-
-.sidebar a:active{
-    
     color: $accent;
-    
-    }
+
+}
+
+.sidebar a:active {
+
+    color: $accent;
+
+}
+
 
 //memcard
 
-.card{
-    margin: 30px;
-    width: 90px;
-    height: 750px;
-    border-radius: 10px;
-    border: solid 2px $font-black;
-    box-shadow: 6px 5px $shadow;
+.memcard {
+    .card {
+        margin-bottom: 30px;
+        padding: 20px;
+        width: 950px;
+        height: 600px;
+        border-radius: 10px;
+        border: solid 2px $accent;
+        box-shadow: 6px 5px $shadow;
+    }
+
+    .wrapper {
+        .icons {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        a {
+
+            color: $font-black;
+
+            .icons {
+                margin-top: -2px;
+                margin-left: 10px;
+
+            }
+        }
+    }
+
+    .container {
+        li {
+            margin-top: 30px;
+        }
+    }
 }
 
+//memshop
+.memshop {
+    .card {
+        margin-bottom: 30px;
+        padding: 20px;
+        width: 950px;
+        height: 600px;
+        border-radius: 10px;
+        border: solid 2px $accent;
+        box-shadow: 6px 5px $shadow;
+    }
+
+    .wrapper {
+        .icons {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        a {
+
+            color: $font-black;
+
+            .icons {
+                margin-top: -2px;
+                margin-left: 10px;
+
+            }
+        }
+    }
+
+    //---memshop topbar
+    //-->參考：https://wcc723.github.io/css/2020/02/21/css-border/#
+    .topsidebar {
+       
+        
+        .topbox {
+            
+            
+
+            
+        }
 
 
+        a.topbox:hover {
+            box-shadow: 0 -3px $accent inset;
+        }
+    
+    }
+    //---memshop shoppinglist
+    .shoppinglist{
 
-// a.demo-item:hover {
-//     box-shadow: 0 -3px #00cc99 inset; 
-//   }
+    .listhead{
+       width: 850px;
+       height: 50px;
+       background-color: $bg-gray; 
+       margin-top: 20px;
+    }
+
+    .box{
+        width: 90px;
+        height: 90px;
+        background-color: blue;
+        border-radius: 10px;
+        margin-right: 5px;
+    }
+}
+
+}
