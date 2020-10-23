@@ -23,7 +23,7 @@ function HomeNavbar() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="#home">所有分類</Nav.Link>
-              <Nav.Link href="#link">文章列表</Nav.Link>
+              <Nav.Link href="/article">文章列表</Nav.Link>
               <Nav.Link href="#link">成為商家</Nav.Link>
               {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

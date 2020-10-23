@@ -74,21 +74,21 @@ function App() {
             component={BackEndDashboard}
             layout="BACK_END_NAV"
           />
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/investment">
-            <Investment />
-          </Route>
-          <Route path="/article">
-            <Article />
-          </Route>
-          <Route path="/createArticle">
-            <CreateArticle />
-          </Route>
-          <Route path="/productlist">
-            <ProductList />
-          </Route>
+          <DynamicLayoutRoute
+            path="/article"
+            component={Article}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/createArticle"
+            component={CreateArticle}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/productlist"
+            component={ProductList}
+            layout="FRONT_END_NAV"
+          />
         </Switch>
       </>
     </Router>
