@@ -14,6 +14,12 @@ import BackEndDashboard from './pages/BackEnd/Dashboard/Dashboard'
 import CreateArticle from './pages/Article/CreateArticle'
 import Article from './pages/Article/Article'
 import ProductList from './pages/ProductList/ProductList'
+import MerchantHome from './pages/MerchantHome'
+import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEditedPage'
+import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
+import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
+import HomeRouter from './FrontEndRouter'
+import BackEndApp from './BackEndRouter'
 
 const DynamicLayoutRoute = (props) => {
   const { component: RoutedComponent, layout, ...rest } = props
@@ -52,13 +58,6 @@ const DynamicLayoutRoute = (props) => {
     }
   }
 }
-import MerchantHome from './pages/MerchantHome'
-import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEditedPage'
-import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
-import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
-import HomeRouter from './FrontEndRouter'
-import BackEndApp from './BackEndRouter'
-
 
 function App() {
   return (
@@ -123,7 +122,6 @@ function App() {
             layout="BACK_END_NAV"
           />
         </Switch>
-
       </>
     </Router>
   )

@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { Container, Button, Carousel } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Breadcrumb } from 'react-bootstrap'
+
+import image from '../../assets/img/products/1-paper/PT01_300x0.jpg'
+import './ProductList.scss'
 
 import ProductSideBar from './ProductSidebar'
 import Filter from './Filter/Filter'
@@ -8,6 +12,7 @@ import SideFilter from './Filter/SideFilter'
 
 const ProductList = (props) => {
   const [sort, setSort] = useState()
+  const [count, setCount] = useState(0)
 
   const [ProductList, setProductList] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
@@ -56,15 +61,18 @@ const ProductList = (props) => {
   )
 
   const display = (
-    <div className="productItems d-flex flex-wrap justify-content-around">
+    <div className="productItems d-flex flex-wrap">
       {ProductList.map((value, index) => (
-        <div key={value.id} className="productItem col-3">
+        <div key={value.id} className="productItem col-md-4">
           <div className="productPic">
-            <img src={value.image} alt=""></img>
+            <img src={image} alt=""></img>
           </div>
           <div className="textArea">
             <div className="title">{value.title}</div>
-            <div className="ctx">{value.outline}</div>
+            <div className="price">NT$999</div>
+            <div className="d-flex justify-content-center">
+              <Button variant="danger">加入購物車</Button>
+            </div>
           </div>
         </div>
       ))}
@@ -109,7 +117,7 @@ const ProductList = (props) => {
           <SideFilter />
         </div>
         <div className="col-10">
-          <Filter />
+          <Filter setCount={setCount} count={count} />
           {dataLoading ? loading : display}
         </div>
       </div>

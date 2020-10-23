@@ -45,8 +45,24 @@ const SideFilter = (props) => {
         </div>
         <div className="filterItem">
           <h6 className="title">顏色分類</h6>
-          <div className="d-flex">
-            <input className="" type="radio" value="red" />
+          <div className="d-flex colorSelect">
+            <div className="color red" onClick={(e) => console.log('1')}></div>
+            <div
+              className="color orange"
+              onClick={(e) => console.log('2')}
+            ></div>
+            <div
+              className="color yellow"
+              onClick={(e) => console.log('3')}
+            ></div>
+            <div
+              className="color Indigo"
+              onClick={(e) => console.log('4')}
+            ></div>
+            <div
+              className="color green"
+              onClick={(e) => console.log('5')}
+            ></div>
           </div>
         </div>
         <div className="filterItem">
