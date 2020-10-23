@@ -33,7 +33,7 @@ const Investment = () => {
       <Container fluid className="investment">
         <div className="bannerSec">
           <h2 className="">Build Your Online Business with NEEDS</h2>
-          <Button variant="secondary">立即開店 →</Button>
+          <Button>立即開店 →</Button>
         </div>
       </Container>
       <Container className="investment">
@@ -74,6 +74,10 @@ const Investment = () => {
           </Carousel>
         </div>
         <div className="advantageSec">
+          <div className="secTitle">
+            <h4>5大優勢</h4>
+            <span>加入NEEDS行銷加倍成長</span>
+          </div>
           <InvestmentAdvantage />
         </div>
         <div className="feeSec">
@@ -137,7 +141,7 @@ const Investment = () => {
           <div className="questionContent">
             <CollapseList CollapseData={CollapseData} />
             <div>
-              <Button variant="secondary">查看更多問與答 →</Button>
+              <Button>查看更多問與答 →</Button>
             </div>
           </div>
         </div>
