@@ -17,6 +17,7 @@
     box-shadow: inset 0 0 0 10px;
   }
   
+.backend-sidebar-wrapper{
   .dropdown-toggle::after {
     display: none;
   }
@@ -190,3 +191,4 @@
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
   }
+}
