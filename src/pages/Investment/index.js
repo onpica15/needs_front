@@ -6,6 +6,7 @@ import InvestmentAdvantage from '../../components/InvestmentAdvantage'
 import Join from './modules/Join'
 import BrandList from './modules/BrandList'
 import CollapseList from './modules/CollapseList'
+import CreateStoreStep from './modules/CreateStoreStep'
 import CollapseData from '@assets/data/investment_q&a.json'
 
 const Investment = () => {
@@ -76,12 +77,42 @@ const Investment = () => {
 
         <InvestmentAdvantage />
 
+        <div className="createStoreSec">
+          <div className="secTitle">
+            <h4>開店流程</h4>
+          </div>
+          <CreateStoreStep />
+          <Button variant="secondary">立即開店 →</Button>
+        </div>
+
+        <div className="partnershipSec row mx-0 col-12">
+          <div className="secTitle col-lg-6 col-sm-12">
+            <h4>合作方式</h4>
+          </div>
+          <div className="partnershipContent col-lg-6 col-sm-12">
+            <ul>
+              <h4>NEEDS提供</h4>
+              <li>免收開館費，免收上架費</li>
+              <li>各式行銷媒體資源</li>
+              <li>營收報表供隨時登入查詢</li>
+              <li>每月安排營收匯款至指定帳戶</li>
+            </ul>
+            <ul>
+              <h4>品牌提供</h4>
+              <li>提交申請，簽立電子合約</li>
+              <li>自行架設設計館，上架商品</li>
+              <li>自行出貨，管理庫存</li>
+              <li>依規範處理客服及退換貨</li>
+            </ul>
+          </div>
+        </div>
+
         <div className="feeSec">
           <div className="secTitle">
             <h4>平台費用</h4>
           </div>
-          <div className="feeContent">
-            <div className="standardPlan">
+          <div className="feeContent row mx-0">
+            <div className="standardPlan col-lg-6 col-sm-12">
               <img
                 src={require(`@assets/img/investment/6_winner.png`)}
                 alt=""
@@ -97,7 +128,7 @@ const Investment = () => {
                 </ul>
               </div>
             </div>
-            <div className="premiumPlan">
+            <div className="premiumPlan col-lg-6 col-sm-12">
               <img
                 src={require(`@assets/img/investment/6_diamond.png`)}
                 alt=""

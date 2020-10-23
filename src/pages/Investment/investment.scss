@@ -28,10 +28,17 @@ $bg-light: #f0f0f0;
   h5,
   h6,
   p,
-  span {
+  span,
+  li {
     font-family: 'Noto Sans TC', sans-serif;
     line-height: 1.75;
     letter-spacing: 1.2px;
+  }
+
+  .col-lg-6,
+  .col-sm-12,
+  .col-12 {
+    padding: 0;
   }
 
   //區域
@@ -90,6 +97,82 @@ $bg-light: #f0f0f0;
     margin: 0 10px;
   }
 
+  .createStoreSec {
+    text-align: center;
+    .stepCard {
+      display: flex;
+      margin-bottom: 60px;
+      .circle {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: $secondary;
+        color: $white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        h4 {
+          margin-bottom: 0;
+        }
+      }
+      .stepTitle h4 {
+        color: $font-black;
+        font-weight: 400;
+        font-size: 1.25rem;
+        margin-top: 30px;
+        margin-bottom: 0;
+      }
+      .arrowRight {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 12px 50px 12px;
+      }
+    }
+  }
+
+  .partnershipSec {
+    margin-top: 80px;
+    height: 680px;
+    background-image: url('../../assets/img/investment/5_background.png');
+    background-size: cover;
+    .secTitle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 0;
+      padding-bottom: 0;
+      h4 {
+        color: $white;
+      }
+    }
+
+    .partnershipContent {
+      background-image: url('../../assets/img/investment/5_subbackground.png');
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      h4 {
+        color: $danger;
+        font-weight: 400;
+        margin-bottom: 30px;
+        text-decoration: underline;
+      }
+      ul {
+        margin-left: 45%;
+        color: $white;
+        list-style-type: square;
+        list-style-position: inside;
+        li {
+          margin-bottom: 1rem;
+          font-family: 'Noto Sans TC', sans-serif;
+          font-weight: 300;
+        }
+      }
+    }
+  }
   .feeSec {
     .secTitle {
       padding-top: 60px;
@@ -97,12 +180,9 @@ $bg-light: #f0f0f0;
     }
     .feeContent {
       position: relative;
-      display: flex;
-      flex-wrap: wrap;
       color: $white;
       .standardPlan {
         background-color: $secondary;
-        flex: 0 1 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -110,7 +190,6 @@ $bg-light: #f0f0f0;
       }
       .premiumPlan {
         background-color: $primary;
-        flex: 0 1 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
