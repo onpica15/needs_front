@@ -73,9 +73,9 @@ const Investment = () => {
             </Carousel.Item>
           </Carousel>
         </div>
-        <div className="advantageSec">
-          <InvestmentAdvantage />
-        </div>
+
+        <InvestmentAdvantage />
+
         <div className="feeSec">
           <div className="secTitle">
             <h4>平台費用</h4>

@@ -1,14 +1,14 @@
-$primary: #243a6e;
-$secondary: #0d5661;
-$danger: #d44f44;
-$dark: #6c757d;
+$primary: #0d5661;
+$secondary: #243a6e;
+$accent: #d44f44;
 $white: #ffffff;
 $font-black: #323232;
 $font-gray: #787878;
 $bg-gray: #cdcdcd;
 $bg-light: #f0f0f0;
 
-// @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
+// @import '~bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
 
 .investment {
   .btn {
@@ -101,7 +101,7 @@ $bg-light: #f0f0f0;
       flex-wrap: wrap;
       color: $white;
       .standardPlan {
-        background-color: $primary;
+        background-color: $secondary;
         flex: 0 1 50%;
         display: flex;
         flex-direction: column;
@@ -109,7 +109,7 @@ $bg-light: #f0f0f0;
         padding: 60px 0px 120px 0px;
       }
       .premiumPlan {
-        background-color: $secondary;
+        background-color: $primary;
         flex: 0 1 50%;
         display: flex;
         flex-direction: column;
@@ -169,7 +169,7 @@ $bg-light: #f0f0f0;
 
   .joinSec {
     margin-bottom: 80px;
-    background-color: $primary;
+    background-color: $secondary;
     text-align: center;
     .joinContent {
       display: flex;
@@ -184,7 +184,7 @@ $bg-light: #f0f0f0;
       }
       .btn {
         margin-top: 60px;
-        color: $primary;
+        color: $secondary;
       }
     }
   }
