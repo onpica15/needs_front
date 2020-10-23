@@ -9,6 +9,7 @@ import CollapseList from './modules/CollapseList'
 import CollapseData from '@assets/data/investment_q&a.json'
 
 const Investment = () => {
+  //Animation set Show
   const [joinShow, setjoinShow] = useState(false)
   const [brandListShow, setBrandListShow] = useState(false)
   const joinRef = useRef()
@@ -16,6 +17,7 @@ const Investment = () => {
 
   const windowHeight = window.innerHeight
 
+  //Scroll hadler for animation
   const handleScroll = () => {
     const posY = (ref) => ref.current.getBoundingClientRect().top
     if (posY(joinRef) <= windowHeight) setjoinShow(true)
@@ -28,7 +30,7 @@ const Investment = () => {
 
   return (
     <>
-      <Container fluid>
+      <Container fluid className="investment">
         <div className="bannerSec">
           <h2 className="">Build Your Online Business with NEEDS</h2>
           <Button>立即開店 →</Button>
@@ -128,7 +130,7 @@ const Investment = () => {
           </div>
         </div>
       </Container>
-      <Container fluid ref={joinRef}>
+      <Container fluid ref={joinRef} className="investment">
         <Join show={joinShow} />
       </Container>
       <Container className="investment">
