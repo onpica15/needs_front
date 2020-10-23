@@ -1,7 +1,7 @@
-$primary: #0d5661;
-$secondary: #243a6e;
-$accent: #d44f44;
-$white: #ffffff;
+$primary: #243a6e;
+$secondary: #0d5661;
+$danger: #d44f44;
+$dark: #6c757d;
 $font-black: #323232;
 $font-gray: #787878;
 $bg-gray: #cdcdcd;
@@ -11,32 +11,21 @@ $shadow:#E7E7E7;
 @import '~bootstrap/scss/bootstrap.scss';
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
 
-.btn {
-  font-family: 'Noto Sans TC', sans-serif;
-  font-size: 1 rem;
-  font-weight: 300;
-  line-height: 1.75;
-  letter-spacing: 1.2px;
-  width: 196px;
-  height: 60px;
-  border-radius: 15px;
-}
-
-h2,
-h4,
-p,
-span {
-  font-family: 'Noto Sans TC', sans-serif;
-  line-height: 1.75;
-  letter-spacing: 1.2px;
-}
-
 .footerSec {
   padding: 50px 5%;
   background-color: $bg-light;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  &:before {
+    content: '';
+    background-color: #f0f0f0;
+    position: absolute;
+    margin-top: -50px;
+    height: 376px;
+    width: 100%;
+    z-index: -1;
+  }
   .subSection {
     font-size: 0.875rem;
     width: 20%;
