@@ -5,26 +5,41 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import Investment from './pages/Investment'
-import MerchantHome from './pages/MerchantHome/MerchantHome'
+import MerchantHome from './pages/MerchantHome'
+import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEditedPage'
+import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
+import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
+import HomeRouter from './FrontEndRouter'
+import BackEndApp from './BackEndRouter'
+
 
 function App() {
   return (
     <Router>
       <>
-        <Navbar />
-
         <Switch>
           <Route exact path="/">
-            <Home />
+            <HomeRouter />
           </Route>
-          <Route path="/investment">
-            <Investment />
+          <Route exact path="/customer-backend">
+            <BackEndApp />
           </Route>
           <Route path="/homepage">
             <MerchantHome />
           </Route>
+          <Route path="/template-home">
+            <TemplateHome/>
+          </Route>
+          <Route path="/template-edit">
+            <TemplateEditedPage />
+          </Route>
+          <Route path="/template-list">
+            <TemplateList />
+          </Route>
         </Switch>
+        
         {/* <Footer /> */}
+
       </>
     </Router>
   )
