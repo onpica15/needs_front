@@ -6,10 +6,13 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import Investment from './pages/Investment'
-
 import BackEndSidebar from './components/backend/Sidebar'
 import BackEndNavbar from './components/backend/Navbar'
 import BackEndDashboard from './pages/BackEnd/Dashboard/Dashboard'
+
+import CreateArticle from './pages/Article/CreateArticle'
+import Article from './pages/Article/Article'
+import ProductList from './pages/ProductList/ProductList'
 
 const DynamicLayoutRoute = (props) => {
   const { component: RoutedComponent, layout, ...rest } = props
@@ -71,6 +74,21 @@ function App() {
             component={BackEndDashboard}
             layout="BACK_END_NAV"
           />
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/investment">
+            <Investment />
+          </Route>
+          <Route path="/article">
+            <Article />
+          </Route>
+          <Route path="/createArticle">
+            <CreateArticle />
+          </Route>
+          <Route path="/productlist">
+            <ProductList />
+          </Route>
         </Switch>
       </>
     </Router>
