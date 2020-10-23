@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import MemSidebar from '../../components/MemSidebar'
 // import MemCard from '../../components/MemCard'
 import MemShop from '../../components/MemShop'
-import './styles/member.scss'
+import '../../styles/member.scss'
 
 function App() {
   return (

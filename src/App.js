@@ -4,6 +4,7 @@ import './styles/global.scss'
 
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import Home from './pages/Home'
 import Member from './pages/Member/Member'
 import Investment from './pages/Investment'
 import BackEndSidebar from './components/backend/Sidebar'
@@ -87,6 +88,11 @@ function App() {
           <DynamicLayoutRoute
             path="/productlist"
             component={ProductList}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/member"
+            component={Member}
             layout="FRONT_END_NAV"
           />
         </Switch>

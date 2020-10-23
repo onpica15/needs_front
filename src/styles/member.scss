@@ -1,9 +1,17 @@
-@import './global.scss';
-@import '~bootstrap/scss/bootstrap.scss';
+$primary: #243a6e;
+$secondary: #0d5661;
+$danger: #d44f44;
+$dark: #6c757d;
+$font-black: #323232;
+$font-gray: #787878;
+$bg-gray: #cdcdcd;
+$bg-light: #f0f0f0;
+$shadow:#E7E7E7;
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
 
 * {
-    .font-s{
+    .font-s {
         font-size: 1rem;
     }
 
@@ -176,13 +184,13 @@
 
 .sidebar a:hover {
 
-    color: $accent;
+    color: $danger;
 
 }
 
 .sidebar a:active {
 
-    color: $accent;
+    color: $danger;
 
 }
 
@@ -196,7 +204,7 @@
         width: 950px;
         height: 600px;
         border-radius: 10px;
-        border: solid 2px $accent;
+        border: solid 2px $danger;
         box-shadow: 6px 5px $shadow;
     }
 
@@ -235,7 +243,7 @@
         width: 950px;
         height: 600px;
         border-radius: 10px;
-        border: solid 2px $accent;
+        border: solid 2px $danger;
         box-shadow: 6px 5px $shadow;
     }
 
@@ -262,38 +270,34 @@
     //---memshop topbar
     //-->參考：https://wcc723.github.io/css/2020/02/21/css-border/#
     .topsidebar {
-       
-        
-        .topbox {
-            
-            
 
-            
-        }
+
+        .topbox {}
 
 
         a.topbox:hover {
-            box-shadow: 0 -3px $accent inset;
+            box-shadow: 0 -3px $danger inset;
         }
-    
+
     }
+
     //---memshop shoppinglist
-    .shoppinglist{
+    .shoppinglist {
 
-    .listhead{
-       width: 850px;
-       height: 50px;
-       background-color: $bg-gray; 
-       margin-top: 20px;
-    }
+        .listhead {
+            width: 850px;
+            height: 50px;
+            background-color: $bg-gray;
+            margin-top: 20px;
+        }
 
-    .box{
-        width: 90px;
-        height: 90px;
-        background-color: blue;
-        border-radius: 10px;
-        margin-right: 5px;
+        .box {
+            width: 90px;
+            height: 90px;
+            background-color: blue;
+            border-radius: 10px;
+            margin-right: 5px;
+        }
     }
-}
 
 }
