@@ -15,9 +15,12 @@ import { Col, Container, Row } from 'react-bootstrap'
 function Dashboard() {
   return (
     <>
+
+
+
       <Col className="main offset-2" xs={10}>
         <Container fluid className="main-bg">
-          <Row className="my-3">
+         
             {' '}
             <Col xs={3}>
               <SocialMediaChart />
@@ -31,7 +34,7 @@ function Dashboard() {
             <Col xs={3}>
               <TurnoverChart />
             </Col>
-          </Row>
+            
           <Row className="my-3">
             <Col xs={8}>
               <RevenueChart />
