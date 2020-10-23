@@ -52,6 +52,13 @@ const DynamicLayoutRoute = (props) => {
     }
   }
 }
+import MerchantHome from './pages/MerchantHome'
+import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEditedPage'
+import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
+import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
+import HomeRouter from './FrontEndRouter'
+import BackEndApp from './BackEndRouter'
+
 
 function App() {
   return (
@@ -95,7 +102,28 @@ function App() {
             component={Member}
             layout="FRONT_END_NAV"
           />
+          <DynamicLayoutRoute
+            path="/homepage"
+            component={MerchantHome}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/template-home"
+            component={TemplateHome}
+            layout="BACK_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/template-edit"
+            component={TemplateEditedPage}
+            layout="BACK_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/template-list"
+            component={TemplateList}
+            layout="BACK_END_NAV"
+          />
         </Switch>
+
       </>
     </Router>
   )
