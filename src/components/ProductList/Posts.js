@@ -10,7 +10,7 @@ const Posts = (props) => {
   const { posts, dataLoading } = props
   const [favore, setFavore] = useState(false)
 
-  const changeFavoreIcon = (id) => {
+  const changeFavoreIcon = () => {
     setFavore((value) => !value)
   }
 
