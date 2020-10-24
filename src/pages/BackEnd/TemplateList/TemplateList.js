@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import BackEndSidebar from '../../../components/backend/Sidebar'
-import BackEndNavbar from '../../../components/backend/Navbar'
+
 import Templatepic1 from './images/Atlanta_pro.png'
 import TemplatepicBig from './images/minimal_pro.png'
 import './Styles/TemplateList.scss'
@@ -16,21 +15,27 @@ function TemplateList(props) {
   
   return (
     <>
-        <BackEndSidebar />
-        <BackEndNavbar />
 
       <div className="template">
         <Col className="main offset-2" xs={10}>
             <Container fluid className="main-bg">
-              <div className="recommend-main rounded mh-100 pb-2">
-                  <img src={TemplatepicBig} alt=""></img>
+              <div className="recommend-main rounded mh-100 pb-2 d-flex align-items-center ">
+                <div className="pt-5 pb-2 d-flex fa-align-center align-item">
+                  <img src={TemplatepicBig} class="img-fluid" alt="Responsive image"></img>
+                  <div className="d-flex flex-column align-items-center justify-content-between"> 
+                    <h4>Narrative</h4>
+                    <h6>方案：FREE</h6>
+                    <button className="btn-gray">加入願望清單</button>
+                    <button className="btn-purple">立即套用</button>
+                  </div>
+                </div>
               </div>
             </Container>
             </Col>
       </div>
         {/* ############### */}
 
-        <div className="template">
+        <div className="template mt-3">
           <Col className="main offset-2" xs={10}>
             <Container fluid className="main-bg">
               <CardDeck>
@@ -51,28 +56,30 @@ function TemplateList(props) {
      
               <Card className="rounded">
                 <Card.Img className="p-3" variant="top" src={Templatepic1}/>
-                <Card.Body>
+                <div className="align-items:center">
                   <Card.Title className="text-center">Narrative</Card.Title>
                   <Card.Text className="text-center">
                     FREE
                   </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                  <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
+                  <Container fluid className="d-flex mw-100">
+                  <button className="btn btn-secondary float-left">加入收藏</button>
+                  <button className="btn btn-primary">立即套用</button>
+                  </Container>
+                </div>
               </Card>
 
               <Card className="rounded">
                 <Card.Img className="p-3" variant="top" src={Templatepic1}/>
-                <Card.Body>
+                <div className="align-items:center">
                   <Card.Title className="text-center">Narrative</Card.Title>
-                  <Card.Text>
+                  <Card.Text className="text-center">
                     FREE
                   </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                  <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
+                  <Container fluid className="d-flex mw-100">
+                  <button className="btn btn-secondary float-left">加入收藏</button>
+                  <button className="btn btn-primary">立即套用</button>
+                  </Container>
+                </div>
               </Card>
 
             </CardDeck>

@@ -11,6 +11,13 @@ import BackEndSidebar from './components/backend/Sidebar'
 import BackEndNavbar from './components/backend/Navbar'
 import BackEndDashboard from './pages/BackEnd/Dashboard/Dashboard'
 
+import MerchantHome from './pages/MerchantHome'
+import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEditedPage'
+import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
+import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
+
+
+
 import CreateArticle from './pages/Article/CreateArticle'
 import Article from './pages/Article/Article'
 import ProductList from './pages/ProductList/ProductList'
@@ -52,12 +59,6 @@ const DynamicLayoutRoute = (props) => {
     }
   }
 }
-import MerchantHome from './pages/MerchantHome'
-import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEditedPage'
-import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
-import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
-import HomeRouter from './FrontEndRouter'
-import BackEndApp from './BackEndRouter'
 
 
 function App() {
