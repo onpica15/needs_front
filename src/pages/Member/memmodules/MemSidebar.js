@@ -10,7 +10,7 @@ import { MdAddAPhoto } from 'react-icons/md'
 const MemSidebar = () => {
   return (
     <>
-      <div className="col-md-2 d-flex flex-column memsidebar">
+      <div className="d-flex flex-column memsidebar">
         <div className="sticker"></div>
 
         <h6>
