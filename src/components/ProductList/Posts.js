@@ -26,7 +26,7 @@ const Posts = (props) => {
   return (
     <div className="productItems d-flex flex-wrap">
       {posts.map((posts) => (
-        <div key={posts.id} className="productItem col-md-4">
+        <div key={posts.id} className="productItem col-lg-4 col-md-6 col-sm-12">
           <div className="productPic">
             <img src={image} alt=""></img>
           </div>
