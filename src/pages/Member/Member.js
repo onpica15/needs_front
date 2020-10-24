@@ -1,16 +1,20 @@
 import React, { useState } from 'react'
-import MemSidebar from '../../components/MemSidebar'
-// import MemCard from '../../components/MemCard'
-import MemShop from '../../components/MemShop'
-import '../../styles/member.scss'
+import MemSidebar from './memmodules/MemSidebar'
+// import MemCard from './memmodules/Memcard'
+import MemShop from './memmodules/MemShop'
+import './member.scss'
 
 function App() {
   return (
     <>
-      <div className="container-fluid row">
-        <MemSidebar />
-        {/* <MemCard /> */}
-        <MemShop />
+      <div className="container-fluid">
+        <div className="row">
+          <MemSidebar />
+
+          {/* <MemCard /> */}
+
+          <MemShop />
+        </div>
       </div>
     </>
   )
