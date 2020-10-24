@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 
 import './ProductSideBar.scss'
 
@@ -15,6 +15,23 @@ const ProductSideBar = (props) => {
     { name: '創意小物' },
     { name: '手作體驗' },
   ])
+
+  // const category = ({ to, text, exact }) => {
+  //   return (
+  //     <Route
+  //       path={to}
+  //       exact={exact}
+  //       children={({ match }) => {
+  //         console.log('match', match)
+  //         return (
+  //           <Link to={to}>
+  //             <li style={match ? Styles.li1 : Styles.li1}>{text}</li>
+  //           </Link>
+  //         )
+  //       }}
+  //     />
+  //   )
+  // }
 
   const display = Categories.map((value, index) => (
     <div className="classItem" key={index}>

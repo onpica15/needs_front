@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Breadcrumb } from 'react-bootstrap'
+import Breadcrumb from '../../components/Breadcrumb'
 
 // import picture from '../../img/1579141548450.jpg'
 
@@ -73,10 +73,7 @@ const Article = (props) => {
   return (
     <>
       <div className="wrap">
-        <Breadcrumb>
-          <Breadcrumb.Item href="#">首頁</Breadcrumb.Item>
-          <Breadcrumb.Item active>文章列表</Breadcrumb.Item>
-        </Breadcrumb>
+        {/* <Breadcrumb /> */}
 
         <div className="topic d-flex">
           <div className="col-6">
