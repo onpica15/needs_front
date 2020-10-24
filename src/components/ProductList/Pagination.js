@@ -11,17 +11,16 @@ const Pagination = (props) => {
   return (
     <>
       <nav>
-        <ul className="pagination">
+        <ul className="pagination d-flex justify-content-center">
           {pageNumbers.map((number) => (
             <li key={number} className="page-item">
-              <a
-                href="/productlist/"
-                number
+              <Link
+                to={'/productlist/page' + number}
                 className="page-link"
                 onClick={() => paginate(number)}
               >
                 {number}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

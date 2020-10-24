@@ -14,12 +14,9 @@ const ProductList = (props) => {
   const [posts, setPosts] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const [postsPerPage] = useState(10)
-
-  const [error, setError] = useState(null)
+  const [postsPerPage] = useState(12)
 
   const [sort, setSort] = useState()
-  const [count, setCount] = useState(0)
 
   // axios get data
   useEffect(() => {
@@ -30,6 +27,7 @@ const ProductList = (props) => {
       setPosts(res.data)
       setDataLoading(false)
     }
+    // window.scrollTo(0, 0)
     fetchPosts()
   }, [])
 
@@ -39,8 +37,10 @@ const ProductList = (props) => {
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
 
   // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber)
-
+  const paginate = (pageNumber) => {
+    window.scrollTo(0, 0)
+    setCurrentPage(pageNumber)
+  }
   //   ListProducts(){
 
   //     if(xxx.sort !==''){
