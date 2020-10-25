@@ -7,6 +7,23 @@ $font-gray: #787878;
 $bg-gray: #cdcdcd;
 $bg-light: #f0f0f0;
 
+<<<<<<< HEAD
+=======
+// @import '~bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
+
+@keyframes MOVE-BG {
+  from {
+    opacity: 0;
+    background-position-x: 1000px;
+  }
+  to {
+    opacity: 1;
+    background-position-x: left;
+  }
+}
+
+>>>>>>> elivia
 .investment {
   .btn {
     font-family: 'Noto Sans TC', sans-serif;
@@ -109,11 +126,8 @@ $bg-light: #f0f0f0;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        h4 {
-          margin-bottom: 0;
-        }
       }
-      .stepTitle h4 {
+      .stepTitle h5 {
         color: $font-black;
         font-weight: 400;
         font-size: 1.25rem;
@@ -131,7 +145,7 @@ $bg-light: #f0f0f0;
 
   .partnershipSec {
     margin-top: 80px;
-    height: 680px;
+    height: 600px;
     background-image: url('../../assets/img/investment/5_background.png');
     background-size: cover;
     .secTitle {
@@ -142,12 +156,11 @@ $bg-light: #f0f0f0;
       padding-bottom: 0;
       h4 {
         color: $white;
+        margin: 30px auto;
       }
     }
 
     .partnershipContent {
-      background-image: url('../../assets/img/investment/5_subbackground.png');
-      background-size: cover;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -163,10 +176,18 @@ $bg-light: #f0f0f0;
         list-style-type: square;
         list-style-position: inside;
         li {
-          margin-bottom: 1rem;
+          margin-bottom: 8px;
           font-family: 'Noto Sans TC', sans-serif;
           font-weight: 300;
         }
+      }
+      &.bgImg {
+        background-image: url('../../assets/img/investment/5_subbackground.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        animation-name: MOVE-BG;
+        animation-timing-function: linear;
+        animation-duration: 1500ms;
       }
     }
   }

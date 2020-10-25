@@ -9,29 +9,38 @@ $bg-gray: #cdcdcd;
 $bg-light: #f0f0f0;
 
 .advantageSec {
-  div.advantageContent:nth-child(even) {
-    background-color: $bg-light;
-  }
-  .advantageContent {
+  div.advantageContent {
     color: $primary;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 300px;
-    p {
-      margin-bottom: 8px;
+    .advImg {
+      width: 35%;
+      img {
+        width: 100%;
+      }
     }
-    .textodd {
+    .text {
       margin-left: 5%;
       margin-right: 5%;
-    }
-    .texteven {
-      margin-left: 5%;
-      margin-right: 5%;
-      text-align: right;
+      p {
+        color: $font-gray;
+        margin-bottom: 3px;
+      }
     }
     .order {
       font-size: 150px;
+    }
+
+    &:nth-child(even) {
+      background-color: $bg-light;
+    }
+    &:nth-child(odd) {
+      flex-direction: row-reverse;
+      .text {
+        text-align: right;
+      }
     }
   }
 }
