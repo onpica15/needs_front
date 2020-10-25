@@ -12,11 +12,13 @@ import axios from 'axios'
 
 const ProductList = (props) => {
   const [posts, setPosts] = useState([])
+  const [filterPosts, setFilterPosts] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(12)
 
   const [sort, setSort] = useState()
+  const [productView, setProductView] = useState('bigPic')
 
   // axios get data
   useEffect(() => {
@@ -25,9 +27,9 @@ const ProductList = (props) => {
       const url = 'http://localhost:5000/try-db'
       const res = await axios.get(url)
       setPosts(res.data)
+      setFilterPosts(res.data)
       setDataLoading(false)
     }
-    // window.scrollTo(0, 0)
     fetchPosts()
   }, [])
 
@@ -41,35 +43,17 @@ const ProductList = (props) => {
     window.scrollTo(0, 0)
     setCurrentPage(pageNumber)
   }
-  //   ListProducts(){
 
-  //     if(xxx.sort !==''){
-  //         xxx.propducts.sort((a,b) =>(xxx.sort === 'lowest')
-  //         ? (a.price > b.price? 1: -1)
-  //         : (a.price < b.price? 1:-1))
-  //     } else {
-  //         xxx.propducts.sort((a,b) => (a.id<b.id ? 1: -1))
-  //     }
-  //     return {filteredProducts: xxx.propducts}
-  //   }
-
-  //   useEffect(() => {
-  //     fetch('http://localhost:5000')
-  //       .then((res) => res.json())
-  //       .then((data) => [(propducts = data), (filteredProducts = data)])
-  //   })
-
-  //   const handleChangeSort = (event) => {
-  //     const handleChangeSort = event.target.value
-  //     const handleChangeRes = setSort.sort((a, b) => {
-  //       if (handleChangeSort === '請選擇') a.id > b.id ? 1 : -1
-  //       if (handleChangeSort === '價格由低到高') a.price > b.price ? 1 : -1
-
-  //       if (handleChangeSort === '價格由高到低') {
-  //         a.price < b.price ? 1 : -1
-  //       }
-  //     })
-  //   }
+  // TopFilter handle
+  const handleSort = (event) => {
+    console.log(event.target.value)
+    setSort(event.target.value)
+    filterPosts.sort((a, b) => {
+      if (sort === 'choiceId') return a.id > b.id ? 1 : -1
+      if (sort === 'lowest') return a.price < b.price ? 1 : -1
+      if (sort === 'highest') return a.price > b.price ? 1 : -1
+    })
+  }
 
   return (
     <>
@@ -83,8 +67,16 @@ const ProductList = (props) => {
           <SideFilter />
         </div>
         <div className="col-10">
-          <Filter totalPosts={posts.length} />
-          <Posts posts={currentPosts} dataLoading={dataLoading} />
+          <Filter
+            totalPosts={posts.length}
+            handleSort={handleSort}
+            setProductView={setProductView}
+          />
+          <Posts
+            posts={currentPosts}
+            dataLoading={dataLoading}
+            productView={productView}
+          />
           <Pagination
             postsPerPage={postsPerPage}
             totalPosts={posts.length}

@@ -35,7 +35,9 @@ const ProductSideBar = (props) => {
 
   const display = Categories.map((value, index) => (
     <div className="classItem" key={index}>
-      <Link to={'/productlist/' + index}>{value.name}</Link>
+      <Link className="classLink" to={'/productlist/' + index}>
+        {value.name}
+      </Link>
     </div>
   ))
 
