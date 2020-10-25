@@ -1,0 +1,14 @@
+.filter {
+  background-color: #f0f0f0;
+  align-items: center;
+
+  .filterRight {
+    align-items: flex-end;
+    label {
+      width: 90px;
+    }
+    select {
+      width: 170px;
+    }
+  }
+}

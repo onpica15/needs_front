@@ -1,0 +1,37 @@
+$primary: #243a6e;
+$secondary: #0d5661;
+$danger: #d44f44;
+$dark: #6c757d;
+$white: #ffffff;
+$font-black: #323232;
+$font-gray: #787878;
+$bg-gray: #cdcdcd;
+$bg-light: #f0f0f0;
+
+.advantageSec {
+  div.advantageContent:nth-child(even) {
+    background-color: $bg-light;
+  }
+  .advantageContent {
+    color: $primary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    p {
+      margin-bottom: 8px;
+    }
+    .textodd {
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+    .texteven {
+      margin-left: 5%;
+      margin-right: 5%;
+      text-align: right;
+    }
+    .order {
+      font-size: 150px;
+    }
+  }
+}

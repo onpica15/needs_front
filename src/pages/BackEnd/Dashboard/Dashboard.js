@@ -14,49 +14,51 @@ import { Col, Container, Row } from 'react-bootstrap'
 function Dashboard() {
   return (
     <>
-      <Col className="main offset-2" xs={10}>
-        <Container fluid className="main-bg">
-          <Row className="my-3">
-            {' '}
-            <Col xs={3}>
-              <SocialMediaChart />
-            </Col>
-            <Col xs={3}>
-              <BrowseChart />
-            </Col>
-            <Col xs={3}>
-              <SalesChart />
-            </Col>
-            <Col xs={3}>
-              <TurnoverChart />
-            </Col>
-          </Row>
-          <Row className="my-3">
-            <Col xs={8}>
-              <RevenueChart />
-            </Col>{' '}
-            <Col xs={4}>
-              <Review />
-            </Col>
-          </Row>
-          <Row className="my-3 dispatch-status">
-            <Col xs={3}>
-              <DispatchStatus />
-            </Col>
-            <Col xs={9}>
-              <DispatchContent />
-            </Col>
-          </Row>
-          <Row className="my-3 dispatch-status">
-            <Col xs={6}>
-              <AdsCalendar />
-            </Col>
-            <Col xs={6}>
-              <AdsPreview />
-            </Col>
-          </Row>
-        </Container>
-      </Col>
+      <div className="dashboard-wrapper">
+        <Col className="main offset-2" xs={10}>
+          <Container fluid className="main-bg">
+            <Row className="my-3">
+              {' '}
+              <Col xs={3}>
+                <SocialMediaChart />
+              </Col>
+              <Col xs={3}>
+                <BrowseChart />
+              </Col>
+              <Col xs={3}>
+                <SalesChart />
+              </Col>
+              <Col xs={3}>
+                <TurnoverChart />
+              </Col>
+            </Row>
+            <Row className="my-3">
+              <Col xs={8}>
+                <RevenueChart />
+              </Col>{' '}
+              <Col xs={4}>
+                <Review />
+              </Col>
+            </Row>
+            <Row className="my-3 dispatch-status">
+              <Col xs={3}>
+                <DispatchStatus />
+              </Col>
+              <Col xs={9}>
+                <DispatchContent />
+              </Col>
+            </Row>
+            <Row className="my-3 dispatch-status">
+              <Col xs={6}>
+                <AdsCalendar />
+              </Col>
+              <Col xs={6}>
+                <AdsPreview />
+              </Col>
+            </Row>
+          </Container>
+        </Col>
+      </div>
     </>
   )
 }

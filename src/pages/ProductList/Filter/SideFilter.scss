@@ -1,0 +1,69 @@
+.sideFilter {
+  .filterItem {
+    margin-bottom: 30px;
+    margin-top: 90px;
+    .title {
+      padding-left: 10px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+  }
+}
+
+.priceRange {
+  .showPrice {
+    label {
+      width: 50px;
+      text-align: center;
+    }
+  }
+  .rc-slider-mark {
+    padding-top: 7px;
+    .rc-slider-mark-text {
+      font-size: 16px;
+    }
+  }
+  .rc-slider-step {
+    span {
+      background-color: #6d7275;
+      border: none;
+    }
+  }
+  .rc-slider-handle {
+    background-color: #6d7275;
+    border: none;
+    &:focus {
+      border-color: #6d7275;
+    }
+  }
+  .rc-slider-handle-dragging {
+    border-color: #6d7275 !important;
+    box-shadow: none !important;
+  }
+  .rc-slider-track {
+    background-color: #6d7275;
+  }
+}
+
+.colorSelect {
+  .color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 0 5px;
+  }
+  .red {
+    background-color: #f94144;
+  }
+  .orange {
+    background-color: #f3722c;
+  }
+  .yellow {
+    background-color: #f0c808;
+  }
+  .Indigo {
+    background-color: #7161ef;
+  }
+  .green {
+    background-color: #43aa8b;
+  }
+}
