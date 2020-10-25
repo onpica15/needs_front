@@ -4,7 +4,10 @@ import { Transition } from 'react-spring/renderprops'
 const Partnership = ({ show, aniRef }) => {
   return (
     <>
-      <div className="partnershipSec row mx-0 col-12" ref={aniRef}>
+      <div
+        className="container-fluid row mx-0 col-12 partnershipSec"
+        ref={aniRef}
+      >
         <Transition
           items={show}
           from={{ transform: 'translateY(-100px)', opacity: 0 }}

@@ -12,7 +12,7 @@ const CollapseList = (props) => {
   }
   return (
     <>
-      <div className="questionSec">
+      <div className="container questionSec">
         <div className="secTitle">
           <h4>常見問題</h4>
         </div>

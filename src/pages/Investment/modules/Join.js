@@ -10,7 +10,7 @@ const Join = ({ show, aniRef }) => {
     enter: { transform: 'translateY(0px)', opacity: 1 },
   })
   return (
-    <div className="joinSec" ref={aniRef}>
+    <div className="container-fluid joinSec" ref={aniRef}>
       {transitions.map(
         ({ item, key, props }) =>
           item && (

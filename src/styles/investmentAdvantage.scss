@@ -9,6 +9,29 @@ $bg-gray: #cdcdcd;
 $bg-light: #f0f0f0;
 
 .advantageSec {
+  h4,
+  span {
+    font-family: 'Noto Sans TC', sans-serif;
+    line-height: 1.75;
+    letter-spacing: 1.2px;
+  }
+  .secTitle {
+    padding-top: 80px;
+    padding-bottom: 60px;
+    text-align: center;
+    h4 {
+      font-size: 1.5 rem;
+      font-weight: 500;
+      color: $font-black;
+    }
+    span {
+      font-size: 1 rem;
+      font-weight: 300;
+      color: $font-gray;
+      margin-top: 13px;
+    }
+  }
+
   div.advantageContent {
     color: $primary;
     display: flex;

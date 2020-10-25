@@ -10,7 +10,7 @@ const BrandList = ({ show, BrandData, aniRef }) => {
 
   return (
     <>
-      <div className="brandListSec" ref={aniRef}>
+      <div className="container brandListSec" ref={aniRef}>
         <div className="secTitle">
           <h4>已加入NEEDS品牌</h4>
           <span>超過100個優秀設計品牌已加入NEEDS</span>

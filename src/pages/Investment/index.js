@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Container } from 'react-bootstrap'
 import './investment.scss'
 import Banner from './modules/Banner'
 import Silder from './modules/Silder'
@@ -46,36 +45,21 @@ const Investment = () => {
 
   return (
     <>
-      <Container fluid className="investment">
+      <div className="investment">
         <Banner />
-      </Container>
-
-      <Container className="investment">
         <Silder />
         <InvestmentAdvantage show={advantageShow} aniRef={advantageRef} />
         <CreateStoreStep />
-      </Container>
-
-      <Container fluid className="investment">
         <Partnership show={partnershipShow} aniRef={partnershipRef} />
         <Fee />
-      </Container>
-
-      <Container className="investment">
         <BrandList
           show={brandListShow}
           BrandData={BrandData}
           aniRef={brandListRef}
         />
-      </Container>
-
-      <Container fluid className="investment">
         <Join show={joinShow} aniRef={joinRef} />
-      </Container>
-
-      <Container className="investment">
         <CollapseList CollapseData={CollapseData} />
-      </Container>
+      </div>
     </>
   )
 }

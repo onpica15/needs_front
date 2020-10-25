@@ -19,7 +19,7 @@ const CreateStoreStep = () => {
   ]
   return (
     <>
-      <div className="createStoreSec">
+      <div className="container createStoreSec">
         <div className="secTitle">
           <h4>開店流程</h4>
         </div>

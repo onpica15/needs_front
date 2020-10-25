@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap'
 const Fee = () => {
   return (
     <>
-      <div className="feeSec">
+      <div className="container-fluid feeSec">
         <div className="secTitle">
           <h4>平台費用</h4>
         </div>

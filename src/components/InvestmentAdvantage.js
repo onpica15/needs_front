@@ -1,9 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTransition, animated } from 'react-spring'
-
-// import AdvantageData from '@assets/data/advantage.json'
 import '@/styles/investmentAdvantage.scss'
-import '../../node_modules/animate.css'
 
 const AdvantageData = [
   {
@@ -44,12 +41,8 @@ const AdvantageData = [
 const InvestmentAdvantage = ({ aniRef, show }) => {
   const [items, setItems] = useState([])
 
-  const onStart = useCallback(() => {
-    show && setItems(AdvantageData)
-  }, [show])
-
   useEffect(() => {
-    onStart()
+    show && setItems(AdvantageData)
   }, [show])
 
   const transitions = useTransition(items, (item) => item.id, {
@@ -68,18 +61,21 @@ const InvestmentAdvantage = ({ aniRef, show }) => {
       }
     },
   })
-  console.log('transitions', transitions)
 
   return (
     <>
-      <div className="advantageSec" ref={aniRef}>
+      <div className="advantageSec container" ref={aniRef}>
         <div className="secTitle">
           <h4>5大優勢</h4>
           <span>加入NEEDS行銷加倍成長</span>
         </div>
-        {transitions.map(({ item, key, props }) => {
+        {transitions.map(({ item, key, props }, index) => {
           return (
-            <animated.div className="advantageContent" key={key} style={props}>
+            <animated.div
+              className="advantageContent"
+              key={index}
+              style={props}
+            >
               <div className="advImg">
                 <img
                   src={require(`@assets/img/investment/${item.imgName}`)}
@@ -90,7 +86,7 @@ const InvestmentAdvantage = ({ aniRef, show }) => {
                 <h5>{item.title}</h5>
                 <div dangerouslySetInnerHTML={{ __html: item.text }}></div>
               </div>
-              <div className="order">{key - 1}</div>
+              <div className="order">{index + 1}</div>
             </animated.div>
           )
         })}

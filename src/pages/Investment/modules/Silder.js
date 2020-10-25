@@ -4,7 +4,7 @@ import { Carousel } from 'react-bootstrap'
 const Silder = () => {
   return (
     <>
-      <div className="silderSec">
+      <div className="container silderSec">
         <div className="secTitle">
           <h4>設計品牌風格</h4>
           <span>不懂團像處理、程式編輯也能輕鬆操作</span>
