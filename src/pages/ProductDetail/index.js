@@ -1,15 +1,23 @@
 import React, { useState } from 'react'
-import { Container, Row, Col, Button, Form, ButtonGroup } from 'react-bootstrap'
+import { Container, Row, Col, Form } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 import './productPage.scss'
-// import DetailNav from './DetailNav'
-// import ProductDetailContent from './ProductDetailContent'
+
+import DetailNav from './DetailNav'
+import ProductDetailContent from './ProductDetailContent'
 import DeliveryPaymentInfo from './DeliveryPaymentInfo'
+import MerchantOtherProducts from './MerchantOtherProducts'
+import History from './History'
+
+import { RiShoppingCart2Line } from 'react-icons/ri';
+import { AiOutlineShop } from 'react-icons/ai';
+import { FiChevronDown } from 'react-icons/fi';
 
 function ProductDetail(props) {
 
   return (
     <div className="product-detail">
+      <DetailNav />
       <Container className="product-main-info">
         <Row>
           <Col md={7} className="photos-content">
@@ -61,9 +69,9 @@ function ProductDetail(props) {
                 </div>
                 <span className="stock">庫存：還剩10件</span>
               </Form.Group>
-              <button className="btn btn-primary mt-3 w-100" type="submit"><i className="far fa-heart mr-3"></i>放入購物車</button>
+              <button className="btn btn-danger mt-3 w-100" type="submit"><RiShoppingCart2Line className="cart-icon"/>放入購物車</button>
             </Form>
-            <button className="btn btn-outline-primary mt-3 w-100"><i className="far fa-heart mr-3"></i>收藏商品</button>
+            <button className="btn btn-outline-danger mt-3 w-100"><i className="far fa-heart mr-3"></i>收藏商品</button>
           </Col>
         </Row>
       </Container>
@@ -75,8 +83,8 @@ function ProductDetail(props) {
             </Col>
             <Col md={3}>
               <h5 className="mb-3">Meow Illustration</h5>
-              <button className="btn btn-sm btn-primary mr-2"><i class="fal fa-plus mr-2"></i>加入關注</button>
-              <button className="btn btn-sm btn-secondary"><i class="fal fa-store mr-2"></i>逛逛店家</button>
+              <button className="btn btn-sm btn-danger mr-2">+ 加入關注</button>
+              <button className="btn btn-sm btn-secondary"><AiOutlineShop /> 逛逛店家</button>
             </Col>
             <Col md={3}>
               <p>評價：<span className="text-point">4.8 (3,680個評價)</span></p>
@@ -119,10 +127,20 @@ function ProductDetail(props) {
               <p className="reply-desc m-0">親愛的顧客您好！感謝您購買本次商品，您的評價是對我們的肯定；您的支持與愛護，是我們的動力來源！期待您的下次光臨，非常感謝您的評價！謝謝！</p>
             </div>
             <div>
-              <img  className="avatar rounded mr-3" src={require('../../assets/img/brands/pommedepin111_300x300.jpg')} />
+              <img className="avatar rounded mr-3" src={require('../../assets/img/brands/pommedepin111_300x300.jpg')} />
             </div>
           </div>
         </div>
+        <div className="text-center mt-3">
+          <button className="btn btn-sm btn-outline-secondary">閱讀更多<FiChevronDown/></button>
+        </div>
+        <h5 className="mt-5">店家其他商品</h5>
+        <hr />
+        <MerchantOtherProducts />
+        <h5 className="mt-5">最近預覽</h5>
+        <hr />
+        <History />
+        <div className="mb-5"></div>
       </Container>
     </div>
   )
