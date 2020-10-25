@@ -2,25 +2,22 @@ import React, { useState } from 'react'
 import MemSidebar from './memmodules/MemSidebar'
 // import MemCard from '../../components/MemCard'
 import MemShop from './memmodules/MemShop'
+import MemLike from './memmodules/MemLike'
+import MemuInform from './memmodules/MemInform'
 import './member.scss'
 
-function App() {
+function Member() {
   return (
     <>
       <div className="container-fluid row member">
-        <div className="row">
-          <div className="col-md-2 offset-2">
-            <MemSidebar />
-          </div>
-        </div>
-
+        <MemSidebar />
         {/* <MemCard /> */}
-        <div className="col-md-8">
-          <MemShop />
-        </div>
+        {/* <MemShop /> */}
+        {/* <MemLike /> */}
+        <MemuInform/>
       </div>
     </>
   )
 }
 
-export default App
+export default Member

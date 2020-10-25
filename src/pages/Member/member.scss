@@ -267,12 +267,23 @@ $shadow:#E7E7E7;
         }
     }
 
+    .box {
+        width: 150px;
+        height: 50px;
+        background-color: green;
+    }
+
     //---memshop topbar
     //-->參考：https://wcc723.github.io/css/2020/02/21/css-border/#
     .topsidebar {
 
 
-        .topbox {}
+        .topbox {
+            width: 150px;
+            height: 50px;
+            background-color: green;
+
+        }
 
 
         a.topbox:hover {
@@ -298,6 +309,52 @@ $shadow:#E7E7E7;
             border-radius: 10px;
             margin-right: 5px;
         }
+    }
+
+}
+
+//memlike
+.memlike {
+    .likecard {
+        width: 150px;
+        height: 200px;
+        border: solid 1px black;
+        border-radius: 10px;
+        text-align: center;
+
+        .mark {
+            width: 100px;
+            height: 100px;
+            border: solid 1px black;
+            border-radius: 10px;
+            margin: 10px auto;
+
+        }
+    }
+}
+
+//meminform
+.meminform {
+    .informbar {
+        width: 850px;
+        height: 60px;
+        border: solid 1px black;
+        border-radius: 10px;
+
+        .sign {
+            width: 40px;
+            height: 40px;
+            border: solid 1px black;
+            border-radius: 10px;
+            margin: auto 5px;
+
+        }
+        .textbox{
+            width: 750px;
+            height: 40px;
+            margin-left:20px ;
+        }
+
     }
 
 }

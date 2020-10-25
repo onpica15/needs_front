@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaShoppingBag } from 'react-icons/fa'
-const MemShop = () => {
+function MemShop() {
   return (
     <>
       <div className="memshop">
@@ -18,8 +18,15 @@ const MemShop = () => {
             <div className="row justify-content-center">
               <div className="col-2 d-flex">
                 <div className="align-self-center m-auto">
+                  <a href="#" className="box">
+                    <span className="topbox">歷史清單</span>
+                  </a>
+                </div>
+              </div>
+              <div className="col-2 d-flex">
+                <div className="align-self-center m-auto">
                   <a href="#" className="topbox">
-                    歷史清單
+                    待付款
                   </a>
                 </div>
               </div>
@@ -27,13 +34,6 @@ const MemShop = () => {
                 <div className="align-self-center m-auto">
                   <a href="#" className="topbox">
                     待出貨
-                  </a>
-                </div>
-              </div>
-              <div className="col-2 d-flex">
-                <div className="align-self-center m-auto">
-                  <a href="#" className="topbox">
-                    待收貨
                   </a>
                 </div>
               </div>
