@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import './styles/global.scss'
 
 //平台
 import Navbar from './components/Navbar'
@@ -11,6 +10,7 @@ import Investment from './pages/Investment'
 import Article from './pages/Article/Article'
 import ProductList from './pages/ProductList/ProductList'
 import MerchantHome from './pages/MerchantHome'
+import ProductDetail from './pages/ProductDetail'
 
 //商家後台
 import BackEndSidebar from './components/backend/Sidebar'
@@ -77,6 +77,11 @@ function App() {
           <DynamicLayoutRoute
             path="/Investment"
             component={Investment}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/products"
+            component={ProductDetail}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
