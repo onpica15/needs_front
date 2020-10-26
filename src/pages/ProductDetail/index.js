@@ -63,9 +63,9 @@ function ProductDetail(props) {
               </Form.Group>
               <Form.Group>
                 <div className="btn-group border rounded" role="group" aria-label="Basic example">
-                  <button type="button" className="btn btn-sm border-right">+</button>
+                  <button type="button" className="btn btn-sm border-right">-</button>
                   <Form.Control type="number" placeholder="1" className="quantity border-0 rounded-0" />
-                  <button type="button" className="btn btn-sm border-left">-</button>
+                  <button type="button" className="btn btn-sm border-left">+</button>
                 </div>
                 <span className="stock">庫存：還剩10件</span>
               </Form.Group>

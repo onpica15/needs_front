@@ -11,6 +11,7 @@ import Article from './pages/Article/Article'
 import ProductList from './pages/ProductList/ProductList'
 import MerchantHome from './pages/MerchantHome'
 import ProductDetail from './pages/ProductDetail'
+import Cart from './pages/Cart'
 
 //商家後台
 import BackEndSidebar from './components/backend/Sidebar'
@@ -82,6 +83,11 @@ function App() {
           <DynamicLayoutRoute
             path="/products"
             component={ProductDetail}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/cart"
+            component={Cart}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
