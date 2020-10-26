@@ -1,14 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import Axios from 'axios'
+import React from 'react'
 import { Container, Col, Row, Button } from 'react-bootstrap'
 
 function Coupon() {
-  const [productList, setProductList] = useState([])
-  useEffect(() => {
-    Axios.get('http://localhost:5000/try-db').then((response) => {
-      setProductList(response.data)
-    })
-  }, [])
   return (
     <>
       <Container>
@@ -41,12 +34,7 @@ function Coupon() {
             </div>
             <div className="promo-info">
               <div className="promo-title">
-                {/* 【EL COMMUN】2021橫式週記事手帳B6 ‧白海藍鯨 */}
-                {/* {productList.map((val) => {
-                  return console.log(val)
-                })} */}
-                {}
-                {console.log('陣列：', productList[0])}
+                【EL COMMUN】2021橫式週記事手帳B6 ‧白海藍鯨
               </div>
               <div className="promo-brand">EL COMMUN</div>
               <span className="promo-price">NT$684</span>

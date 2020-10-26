@@ -22,7 +22,7 @@ function Sidebar() {
             </div>
             <Card>
               <Card.Header>
-                <Link to="">
+                <Link to="/customer-backend">
                   {' '}
                   <Accordion.Toggle
                     className="btn-toggle btn-active"
@@ -110,36 +110,37 @@ function Sidebar() {
             </Card>
             <Card>
               <Card.Header>
-                <Link to="">
-                  {' '}
-                  <Accordion.Toggle
-                    className="btn-toggle"
-                    as={Button}
-                    onClick={(e) => {
-                      e.target.classList.toggle('btn-toggleClass')
-                      e.target.querySelector('.arrow').classList.toggle('down')
-                    }}
-                    variant="link"
-                    eventKey="6"
-                  >
-                    <span className="font-wrapper">
-                      <i className="fas fa-ad icon-pr"></i>廣告數據
-                    </span>
-                    <div className="badge-wrapper">
-                      <i
-                        className="arrow left"
-                        style={{ textAlign: 'center' }}
-                      ></i>
-                    </div>
-                  </Accordion.Toggle>
-                </Link>
+                <Accordion.Toggle
+                  className="btn-toggle"
+                  as={Button}
+                  onClick={(e) => {
+                    e.target.classList.toggle('btn-toggleClass')
+                    e.target.querySelector('.arrow').classList.toggle('down')
+                  }}
+                  variant="link"
+                  eventKey="6"
+                >
+                  <span className="font-wrapper">
+                    <i className="fas fa-ad icon-pr"></i>廣告數據
+                  </span>
+                  <div className="badge-wrapper">
+                    <i
+                      className="arrow left"
+                      style={{ textAlign: 'center' }}
+                    ></i>
+                  </div>
+                </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey="6">
                 <Card.Body>
                   {' '}
                   <ul className="nav nav-pills flex-column">
                     <li className="nav-item-disc">
-                      <Link to="" className="nav-link active" href="">
+                      <Link
+                        to="/customer-backend/sales-index"
+                        className="nav-link active"
+                        href=""
+                      >
                         銷售指標
                       </Link>
                     </li>

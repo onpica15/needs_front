@@ -15,7 +15,8 @@ import MerchantHome from './pages/MerchantHome'
 //商家後台
 import BackEndSidebar from './components/backend/Sidebar'
 import BackEndNavbar from './components/backend/Navbar'
-import BackEndDashboard from './pages/BackEnd/Dashboard/Dashboard'
+import BackEndDashboard from './pages/BackEnd/Dashboard'
+import Sales from './pages/BackEnd/Sales'
 import CreateArticle from './pages/Article/CreateArticle'
 import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEditedPage'
 import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
@@ -104,9 +105,9 @@ function App() {
             component={MerchantHome}
             layout="FRONT_END_NAV"
           />
-
           {/* 商家後台 */}
           <DynamicLayoutRoute
+            exact
             path="/customer-backend"
             component={BackEndDashboard}
             layout="BACK_END_NAV"
@@ -124,6 +125,11 @@ function App() {
           <DynamicLayoutRoute
             path="/template-list"
             component={TemplateList}
+            layout="BACK_END_NAV"
+          />{' '}
+          <DynamicLayoutRoute
+            path="/customer-backend/sales-index"
+            component={Sales}
             layout="BACK_END_NAV"
           />
         </Switch>
