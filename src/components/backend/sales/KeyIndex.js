@@ -6,11 +6,11 @@ import KeyIndexChart from '../../../components/backend/sales/charts/KeyIndexChar
 function KeyIndex() {
   const [series, setSeries] = useState([])
   const sessionDuration = {
-    name: 'Session Duration',
+    name: '銷售額',
     data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10],
   }
   const pageViews = {
-    name: 'Page Views',
+    name: '訂單數',
     data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35],
   }
   return (
@@ -23,16 +23,25 @@ function KeyIndex() {
               <div
                 className="key-card"
                 onClick={(e) => {
+                  setSeries([...series, sessionDuration])
                   if (e.target.classList[0] !== 'key-card') {
                     e.target.parentNode.classList.toggle('primary-top')
                   } else {
                     e.target.classList.toggle('primary-top')
                   }
-                  const newSeries = series.filter(
-                    (item) => item.name !== sessionDuration.name
-                  )
-                  console.log(newSeries)
-                  setSeries([...newSeries, sessionDuration])
+                  series.forEach((item) => {
+                    if (item.name === sessionDuration.name) {
+                      console.log('1')
+                      const checkRepeat = (item) =>
+                        item.name !== sessionDuration.name
+                      const newSeries = series.filter(checkRepeat)
+                      setSeries([...newSeries])
+                    } else if (series.indexOf(item) === -1) {
+                      console.log('2')
+                      setSeries([...series, sessionDuration])
+                    }
+                    console.log(series)
+                  })
                 }}
               >
                 <div className="key-title">銷售額</div>
@@ -44,12 +53,24 @@ function KeyIndex() {
               <div
                 className="key-card"
                 onClick={(e) => {
+                  setSeries([...series, pageViews])
                   if (e.target.classList[0] !== 'key-card') {
                     e.target.parentNode.classList.toggle('success-top')
                   } else {
                     e.target.classList.toggle('success-top')
                   }
-                  setSeries([...series, pageViews])
+                  series.forEach((item) => {
+                    if (item.name === pageViews.name) {
+                      console.log('3')
+                      const checkRepeat = (item) => item.name !== pageViews.name
+                      const newSeries = series.filter(checkRepeat)
+                      setSeries([...newSeries])
+                    } else if (series.indexOf(item) === -1) {
+                      console.log('4')
+                      setSeries([...series, pageViews])
+                    }
+                    console.log(series)
+                  })
                 }}
               >
                 <div className="key-title">訂單</div>
