@@ -5,6 +5,14 @@ import KeyIndexChart from '../../../components/backend/sales/charts/KeyIndexChar
 
 function KeyIndex() {
   const [series, setSeries] = useState([])
+  const sessionDuration = {
+    name: 'Session Duration',
+    data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10],
+  }
+  const pageViews = {
+    name: 'Page Views',
+    data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35],
+  }
   return (
     <>
       <Card>
@@ -20,14 +28,11 @@ function KeyIndex() {
                   } else {
                     e.target.classList.toggle('primary-top')
                   }
-                  setSeries([
-                    ...series,
-                    {
-                      name: 'Session Duration',
-                      data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10],
-                    },
-                  ])
-                  console.log(series)
+                  const newSeries = series.filter(
+                    (item) => item.name !== sessionDuration.name
+                  )
+                  console.log(newSeries)
+                  setSeries([...newSeries, sessionDuration])
                 }}
               >
                 <div className="key-title">銷售額</div>
@@ -44,13 +49,7 @@ function KeyIndex() {
                   } else {
                     e.target.classList.toggle('success-top')
                   }
-                  setSeries([
-                    ...series,
-                    {
-                      name: 'Page Views',
-                      data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35],
-                    },
-                  ])
+                  setSeries([...series, pageViews])
                 }}
               >
                 <div className="key-title">訂單</div>
