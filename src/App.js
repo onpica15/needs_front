@@ -109,17 +109,17 @@ function App() {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/template-home"
+            path="/customer-backend/template-home"
             component={TemplateHome}
             layout="BACK_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/template-edit"
+            path="/customer-backend/template-edit"
             component={TemplateEditedPage}
             layout="BACK_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/template-list"
+            path="/customer-backend/template-list"
             component={TemplateList}
             layout="BACK_END_NAV"
           />
