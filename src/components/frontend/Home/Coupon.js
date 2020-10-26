@@ -9,6 +9,9 @@ function Coupon() {
       setProductList(response.data)
     })
   }, [])
+  if (productList.length == 0) {
+    return ''
+  }
   return (
     <>
       <Container>
@@ -42,11 +45,7 @@ function Coupon() {
             <div className="promo-info">
               <div className="promo-title">
                 {/* 【EL COMMUN】2021橫式週記事手帳B6 ‧白海藍鯨 */}
-                {/* {productList.map((val) => {
-                  return console.log(val)
-                })} */}
-                {}
-                {console.log('陣列：', productList[0])}
+                {productList[0].title}
               </div>
               <div className="promo-brand">EL COMMUN</div>
               <span className="promo-price">NT$684</span>
