@@ -9,7 +9,7 @@ import Member from './pages/Member/Member'
 import Investment from './pages/Investment'
 import Article from './pages/Article/Article'
 import ProductList from './pages/ProductList/ProductList'
-import MerchantHome from './pages/MerchantHome'
+import MerchantHome from './pages/MerchantHome/merchantHome'
 import ProductDetail from './pages/ProductDetail'
 import MerchantLogin from './pages/Login/MerchantLogin'
 
@@ -17,6 +17,7 @@ import MerchantLogin from './pages/Login/MerchantLogin'
 import BackEndSidebar from './components/backend/Sidebar'
 import BackEndNavbar from './components/backend/Navbar'
 import BackEndDashboard from './pages/BackEnd/Dashboard/Dashboard'
+
 import CreateArticle from './pages/Article/CreateArticle'
 import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEditedPage'
 import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
@@ -61,6 +62,7 @@ const DynamicLayoutRoute = (props) => {
     }
   }
 }
+
 
 //Route設置
 function App() {
@@ -123,17 +125,17 @@ function App() {
             layout="BACK_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/template-home"
+            path="/customer-backen/template-home"
             component={TemplateHome}
             layout="BACK_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/template-edit"
+            path="/customer-backen/template-edit"
             component={TemplateEditedPage}
             layout="BACK_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/template-list"
+            path="/customer-backen/template-list"
             component={TemplateList}
             layout="BACK_END_NAV"
           />
