@@ -55,14 +55,14 @@ function KeyIndex() {
     data: [170, 250, 300, 420, 288, 388, 217],
   }
   const pageViewsOfMerchants = {
-    name: '平均訂單金額',
-    data: [35, 41, 62, 42, 13, 18, 29],
+    name: '頁面瀏覽數',
+    data: [436, 674, 700, 891, 603, 788, 567],
   }
   return (
     <>
       <Card>
         <Card.Body>
-          <Card.Title className="mb-0">關鍵指標</Card.Title>
+          <Card.Title className="mb-1">關鍵指標</Card.Title>
           <Row>
             <Col xs={2}>
               <div
@@ -157,7 +157,11 @@ function KeyIndex() {
                 }}
               >
                 <div className="key-title">下單轉換率</div>
-                <span className="key-number"></span>
+                <span className="key-number">
+                  {turnOverPercentage.data.reduce((a, b) => {
+                    return a + b
+                  }, 0) / 7}
+                </span>
                 <span className="percentage-sign">%</span>
               </div>
             </Col>
@@ -254,7 +258,11 @@ function KeyIndex() {
                 }}
               >
                 <div className="key-title">商品頁面瀏覽數</div>
-                <span className="key-number"></span>
+                <span className="key-number">
+                  {pageViewsOfMerchants.data.reduce((a, b) => {
+                    return a + b
+                  }, 0)}
+                </span>
               </div>
             </Col>
           </Row>
