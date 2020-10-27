@@ -5,6 +5,8 @@ import MemCard from './memmodules/Memcard'
 import MemShop from './memmodules/MemShop'
 import MemLike from './memmodules/MemLike'
 import MemuInform from './memmodules/MemInform'
+import MemEcoin from './memmodules/MemEcoin'
+import MemComment from './memmodules/MemComment'
 import './member.scss'
 
 function Member() {
@@ -16,8 +18,10 @@ function Member() {
           {/* <MemCard /> */}
           {/* <MemShop /> */}
           {/* <MemLike /> */}
-          <MemuInform />
-        </div>
+          {/* <MemEcoin />
+          <MemuInform /> */}
+          <MemComment /> 
+      </div>
       </div>
     </>
   )

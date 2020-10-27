@@ -12,89 +12,88 @@ const MemSidebar = () => {
   return (
     <>
       <div className="d-flex flex-column memsidebar">
-        <div className="sticker"> </div>
+        <div className="sticker mx-auto"> </div>
         <p className="font-ss">
           <Link to="#">
-            <div className="d-flex wrapper">
+            <div className="d-flex justify-content-end wrapper">
               <div className="icons">
                 <MdAddAPhoto />
               </div>
-              更換大頭貼{' '}
+              <p className="whiteSpacePre">更換大頭貼 </p>
             </div>
           </Link>
-          <Link to="#"></Link>{' '}
         </p>
         <p className="font-s">
           <Link to="#">
-            <div className="d-flex wrapper">
+            <div className="d-flex justify-content-center wrapper ">
               <div className="icons">
                 <BsPersonFill />
               </div>
-              我的帳號{' '}
-            </div>{' '}
-          </Link>{' '}
+              我的帳號
+            </div>
+          </Link>
         </p>
         <p className="font-s">
           <Link to="#">
-            <div className="d-flex wrapper">
+            <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <FaShoppingBag />
               </div>
-              購買清單{' '}
-            </div>{' '}
-          </Link>{' '}
+              購買清單
+            </div>
+          </Link>
         </p>
         <p className="font-s">
           <Link to="#">
-            <div className="d-flex wrapper">
+            <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <FaStore />
               </div>
-              我的關注{' '}
-            </div>{' '}
-          </Link>{' '}
+              我的關注
+            </div>
+          </Link>
         </p>
         <p className="font-s">
           <Link to="#">
-            <div className="d-flex wrapper">
+            <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <BsFillBellFill />
               </div>
-              通知中心{' '}
-            </div>{' '}
-          </Link>{' '}
+              通知中心
+            </div>
+          </Link>
         </p>
         <p className="font-s">
           <Link to="#">
-            <div className="d-flex wrapper">
+            <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <FaCoins />
               </div>
-              Ｅcoin{' '}
-            </div>{' '}
-          </Link>{' '}
+              <p class="whiteSpacePre"> Ｅcoin </p>
+            </div>
+          </Link>
         </p>
         <p className="font-s">
           <Link to="#">
-            <div className="d-flex wrapper">
+            <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <RiMessage2Fill />
               </div>
-              我的評論{' '}
-            </div>{' '}
-          </Link>{' '}
+              我的評論
+            </div>
+          </Link>
         </p>
         <p className="font-s">
           <Link to="#">
-            <div className="d-flex wrapper">
+            <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <BsQuestionSquareFill />
               </div>
-              常見問題{' '}
-            </div>{' '}
-          </Link>{' '}
-        </p>{' '}
-      </div>{' '}
+              常見問題
+            </div>
+          </Link>
+        </p>
+      </div>
     </>
   )
 }
