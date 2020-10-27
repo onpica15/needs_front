@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import MemSidebar from './memmodules/MemSidebar'
 import MemCard from './memmodules/Memcard'
 import MemShop from './memmodules/MemShop'
-// import MemLike from './memmodules/MemLike'
+import MemLike from './memmodules/MemLike'
 import MemuInform from './memmodules/MemInform'
 import './member.scss'
 
@@ -14,9 +14,9 @@ function Member() {
         <div className="row my-5">
           <MemSidebar />
           {/* <MemCard /> */}
-          <MemShop />
+          {/* <MemShop /> */}
           {/* <MemLike /> */}
-          {/* <MemuInform /> */}
+          <MemuInform />
         </div>
       </div>
     </>

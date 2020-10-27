@@ -285,9 +285,18 @@ $shadow: #e7e7e7;
 //memshop 以上購物清單
 //memlike
 .memlike {
+    .wrapper {
+        .icons {
+          width: 24px;
+          height: 24px;
+          margin-right: 10px;
+          margin-left: 10px;
+        }
+    }    
   .likecard {
     width: 150px;
     height: 200px;
+    margin: 10px;
     border: solid 1px black;
     border-radius: 10px;
     text-align: center;
@@ -305,11 +314,20 @@ $shadow: #e7e7e7;
 //memlike 以上我的關注
 //meminform
 .meminform {
+    .wrapper {
+        .icons {
+          width: 24px;
+          height: 24px;
+          margin-right: 10px;
+          margin-left: 10px;
+        }
+    }   
   .informbar {
     width: 850px;
     height: 60px;
     border: solid 1px black;
     border-radius: 10px;
+    margin: 10px;
 
     .sign {
       width: 40px;

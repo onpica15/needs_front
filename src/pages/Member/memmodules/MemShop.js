@@ -16,7 +16,7 @@ function MemShop() {
           </p>
 
           <div className="container">
-            <div className="row justify-content-center align-self-center topside">
+            <div className="row justify-content-around align-self-center topside">
               <Link href="#" className="col-2 d-flex topsidebox">
                 <div className="m-auto">
                   <p className="font-s">歷史清單</p>
@@ -39,7 +39,7 @@ function MemShop() {
                   <p className="font-s">待收貨</p>
                 </div>
               </Link>
-              
+
               <Link href="#" className="col-2 d-flex topsidebox">
                 <div className="m-auto">
                   <p className="font-s">取消</p>
@@ -68,7 +68,9 @@ function MemShop() {
                       <td className="d-flex">
                         <div className="box"></div>
                         <div>
-                          <p className="font-s">南國的孩子 手寫數字章 (22個入)</p>
+                          <p className="font-s">
+                            南國的孩子 手寫數字章 (22個入)
+                          </p>
                           <p className="font-s">規格：單一規格</p>
                         </div>
                       </td>
@@ -84,7 +86,9 @@ function MemShop() {
                       <td className="d-flex">
                         <div className="box"></div>
                         <div>
-                          <p className="font-s">南國的孩子 手寫數字章 (22個入)</p>
+                          <p className="font-s">
+                            南國的孩子 手寫數字章 (22個入)
+                          </p>
                           <p className="font-s">規格：單一規格</p>
                         </div>
                       </td>
