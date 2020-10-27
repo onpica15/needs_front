@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { FaShoppingBag } from 'react-icons/fa'
 function MemShop() {
   return (
@@ -18,37 +19,37 @@ function MemShop() {
             <div className="row justify-content-center">
               <div className="col-2 d-flex">
                 <div className="align-self-center m-auto">
-                  <a href="#" className="box">
+                  <Link href="#" className="box">
                     <span className="topbox">歷史清單</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="col-2 d-flex">
                 <div className="align-self-center m-auto">
-                  <a href="#" className="topbox">
+                  <Link href="#" className="topbox">
                     待付款
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="col-2 d-flex">
                 <div className="align-self-center m-auto">
-                  <a href="#" className="topbox">
+                  <Link href="#" className="topbox">
                     待出貨
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="col-2 d-flex">
                 <div className="align-self-center m-auto">
-                  <a href="#" className="topbox">
+                  <Link href="#" className="topbox">
                     待收貨
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="col-2 d-flex">
                 <div className="align-self-center m-auto">
-                  <a href="#" className="topbox">
+                  <Link href="#" className="topbox">
                     取消
-                  </a>
+                  </Link>
                 </div>
               </div>
 

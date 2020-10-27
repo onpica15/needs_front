@@ -216,7 +216,7 @@ $shadow:#E7E7E7;
             margin-left: 10px;
         }
 
-        a {
+        Link{
 
             color: $font-black;
 
@@ -255,7 +255,7 @@ $shadow:#E7E7E7;
             margin-left: 10px;
         }
 
-        a {
+        Link{
 
             color: $font-black;
 
@@ -270,7 +270,8 @@ $shadow:#E7E7E7;
     .box {
         width: 150px;
         height: 50px;
-        background-color: green;
+        background-color: yellow;
+        
     }
 
     //---memshop topbar
@@ -281,15 +282,13 @@ $shadow:#E7E7E7;
         .topbox {
             width: 150px;
             height: 50px;
-            background-color: green;
+            background-color: pink;
+            
 
         }
 
 
-        a.topbox:hover {
-            box-shadow: 0 -3px $danger inset;
-        }
-
+        Link:hover {color:#BB00FF; font-size:22px;} 
     }
 
     //---memshop shoppinglist
@@ -349,10 +348,11 @@ $shadow:#E7E7E7;
             margin: auto 5px;
 
         }
-        .textbox{
+
+        .textbox {
             width: 750px;
             height: 40px;
-            margin-left:20px ;
+            margin-left: 20px;
         }
 
     }

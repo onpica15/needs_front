@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { BsPersonFill } from 'react-icons/bs'
 import { FaEdit } from 'react-icons/fa'
 const MemCard = () => {
@@ -12,11 +13,11 @@ const MemCard = () => {
                 <BsPersonFill />
               </div>
               會員資料
-              <a href="#">
+              <Link to="#">
                 <div className="icons">
                   <FaEdit />
                 </div>
-              </a>
+              </Link>
             </div>
           </h4>
           <div className="container">

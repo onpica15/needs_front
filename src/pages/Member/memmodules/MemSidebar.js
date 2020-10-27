@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import {
   BsPersonFill,
   BsFillBellFill,
@@ -11,96 +12,89 @@ const MemSidebar = () => {
   return (
     <>
       <div className="d-flex flex-column memsidebar">
-        <div className="sticker"></div>
-
+        <div className="sticker"> </div>
         <h6>
-          <a href="#">
+          <Link to="#">
             <div className="d-flex wrapper">
               <div className="icons">
                 <MdAddAPhoto />
               </div>
-              更換大頭貼
+              更換大頭貼{' '}
             </div>
-          </a>
+          </Link>
+          <Link to="#"></Link>{' '}
         </h6>
-
         <h4>
-          <a href="#">
+          <Link to="#">
             <div className="d-flex wrapper">
               <div className="icons">
                 <BsPersonFill />
               </div>
-              我的帳號
-            </div>
-          </a>
+              我的帳號{' '}
+            </div>{' '}
+          </Link>{' '}
         </h4>
-
         <h4>
-          <a href="#">
+          <Link to="#">
             <div className="d-flex wrapper">
               <div className="icons">
                 <FaShoppingBag />
               </div>
-              購買清單
-            </div>
-          </a>
+              購買清單{' '}
+            </div>{' '}
+          </Link>{' '}
         </h4>
-
         <h4>
-          <a href="#">
+          <Link to="#">
             <div className="d-flex wrapper">
               <div className="icons">
                 <FaStore />
               </div>
-              我的關注
-            </div>
-          </a>
+              我的關注{' '}
+            </div>{' '}
+          </Link>{' '}
         </h4>
-
         <h4>
-          <a href="#">
+          <Link to="#">
             <div className="d-flex wrapper">
               <div className="icons">
                 <BsFillBellFill />
               </div>
-              通知中心
-            </div>
-          </a>
+              通知中心{' '}
+            </div>{' '}
+          </Link>{' '}
         </h4>
-
         <h4>
-          <a href="#">
+          <Link to="#">
             <div className="d-flex wrapper">
               <div className="icons">
                 <FaCoins />
               </div>
-              Ｅcoin
-            </div>
-          </a>
+              Ｅcoin{' '}
+            </div>{' '}
+          </Link>{' '}
         </h4>
-
         <h4>
-          <a href="#">
+          <Link to="#">
             <div className="d-flex wrapper">
               <div className="icons">
                 <RiMessage2Fill />
               </div>
-              我的評論
-            </div>
-          </a>
+              我的評論{' '}
+            </div>{' '}
+          </Link>{' '}
         </h4>
-
         <h4>
-          <a href="#">
+          <Link to="#">
             <div className="d-flex wrapper">
               <div className="icons">
                 <BsQuestionSquareFill />
               </div>
-              常見問題
-            </div>
-          </a>
-        </h4>
-      </div>
+              常見問題{' '}
+            </div>{' '}
+          </Link>{' '}
+        </h4>{' '}
+      </div>{' '}
     </>
   )
 }

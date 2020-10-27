@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import MemSidebar from './memmodules/MemSidebar'
 // import MemCard from '../../components/MemCard'
 import MemShop from './memmodules/MemShop'
@@ -12,9 +13,9 @@ function Member() {
       <div className="container-fluid row member">
         <MemSidebar />
         {/* <MemCard /> */}
-        {/* <MemShop /> */}
+        <MemShop />
         {/* <MemLike /> */}
-        <MemuInform/>
+        {/* <MemuInform/> */}
       </div>
     </>
   )

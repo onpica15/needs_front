@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { FaShoppingBag } from 'react-icons/fa'
 const MemShoptwo = () => {
   return (
@@ -20,39 +21,39 @@ const MemShoptwo = () => {
                 <div className="card-header">
                   <ul className="nav nav-tabs card-header-tabs">
                     <li className="nav-item">
-                      <a className="nav-link box align-self-center" href="#">
+                      <Link className="nav-link box align-self-center" href="#">
                         <span>購買清單</span>
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#">
+                      <Link className="nav-link" href="#">
                         歷史清單
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#">
+                      <Link className="nav-link" href="#">
                         待付款
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#">
+                      <Link className="nav-link" href="#">
                         待出貨
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#">
+                      <Link className="nav-link" href="#">
                         待收貨
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
-                      <a
+                      <Link
                         className="nav-link disabled"
                         href="#"
                         tabindex="-1"
                         aria-disabled="true"
                       >
                         取消
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -111,9 +112,9 @@ const MemShoptwo = () => {
                       </table>
                     </div>
                   </p>
-                  <a href="#" className="btn btn-primary">
+                  <Link href="#" className="btn btn-primary">
                     詳細清單
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
