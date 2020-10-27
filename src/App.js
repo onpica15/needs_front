@@ -125,17 +125,17 @@ function App() {
             layout="BACK_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/customer-backen/template-home"
+            path="/customer-backend/template-home"
             component={TemplateHome}
             layout="BACK_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/customer-backen/template-edit"
+            path="/customer-backend/template-edit"
             component={TemplateEditedPage}
             layout="BACK_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/customer-backen/template-list"
+            path="/customer-backend/template-list"
             component={TemplateList}
             layout="BACK_END_NAV"
           />
