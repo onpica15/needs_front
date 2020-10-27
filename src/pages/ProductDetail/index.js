@@ -56,9 +56,9 @@ function ProductDetail(props) {
             <Carousel className="w-88">
               {productImage.map((value) => {
                 return (
-                  <div>
+                  <div className="h-100">
                     <img
-                      className="w-100"
+                      className="w-100 h-100 cover"
                       src={require(`../../assets/img/products/${value}`)}
                       alt=""
                     />
