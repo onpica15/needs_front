@@ -5,53 +5,46 @@ function MemShop() {
   return (
     <>
       <div className="memshop">
-        <div className="card">
-          <h4>
+        <div className="maincard">
+          <p className="font-m">
             <div className="d-flex wrapper">
-              <div className="icons">
+              <p className="icons">
                 <FaShoppingBag />
-              </div>
-              購買清單
+              </p>
+              <p>購買清單</p>
             </div>
-          </h4>
+          </p>
 
           <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-2 d-flex">
-                <div className="align-self-center m-auto">
-                  <Link href="#" className="box">
-                    <span className="topbox">歷史清單</span>
-                  </Link>
+            <div className="row justify-content-center align-self-center topside">
+              <Link href="#" className="col-2 d-flex topsidebox">
+                <div className="m-auto">
+                  <p className="font-s">歷史清單</p>
                 </div>
-              </div>
-              <div className="col-2 d-flex">
-                <div className="align-self-center m-auto">
-                  <Link href="#" className="topbox">
-                    待付款
-                  </Link>
+              </Link>
+              <Link href="#" className="col-2 d-flex topsidebox">
+                <div className="m-auto">
+                  <p className="font-s">待付款</p>
                 </div>
-              </div>
-              <div className="col-2 d-flex">
-                <div className="align-self-center m-auto">
-                  <Link href="#" className="topbox">
-                    待出貨
-                  </Link>
+              </Link>
+
+              <Link href="#" className="col-2 d-flex topsidebox">
+                <div className="m-auto">
+                  <p className="font-s">待出貨</p>
                 </div>
-              </div>
-              <div className="col-2 d-flex">
-                <div className="align-self-center m-auto">
-                  <Link href="#" className="topbox">
-                    待收貨
-                  </Link>
+              </Link>
+
+              <Link href="#" className="col-2 d-flex topsidebox">
+                <div className="m-auto">
+                  <p className="font-s">待收貨</p>
                 </div>
-              </div>
-              <div className="col-2 d-flex">
-                <div className="align-self-center m-auto">
-                  <Link href="#" className="topbox">
-                    取消
-                  </Link>
+              </Link>
+              
+              <Link href="#" className="col-2 d-flex topsidebox">
+                <div className="m-auto">
+                  <p className="font-s">取消</p>
                 </div>
-              </div>
+              </Link>
 
               <div className="shoppinglist">
                 <div className="d-flex fo">
@@ -75,8 +68,8 @@ function MemShop() {
                       <td className="d-flex">
                         <div className="box"></div>
                         <div>
-                          <div>南國的孩子 手寫數字章 (22個入)</div>
-                          <div>規格：單一規格</div>
+                          <p className="font-s">南國的孩子 手寫數字章 (22個入)</p>
+                          <p className="font-s">規格：單一規格</p>
                         </div>
                       </td>
                       <td>2020/10/06</td>
@@ -91,8 +84,8 @@ function MemShop() {
                       <td className="d-flex">
                         <div className="box"></div>
                         <div>
-                          <div>南國的孩子 手寫數字章 (22個入)</div>
-                          <div>規格：單一規格</div>
+                          <p className="font-s">南國的孩子 手寫數字章 (22個入)</p>
+                          <p className="font-s">規格：單一規格</p>
                         </div>
                       </td>
                       <td>2020/10/06</td>

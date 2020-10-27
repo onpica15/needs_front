@@ -9,10 +9,10 @@ function MemInform() {
             <div className="sign"></div>
             <div className="textbox">
               <div>
-                <span>一分之一工作室</span>
+                <p>一分之一工作室</p>
               </div>
               <div>
-                <span>*****</span>
+                <p>*****</p>
               </div>
             </div>
           </div>

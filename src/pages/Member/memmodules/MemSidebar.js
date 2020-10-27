@@ -13,7 +13,7 @@ const MemSidebar = () => {
     <>
       <div className="d-flex flex-column memsidebar">
         <div className="sticker"> </div>
-        <h6>
+        <p className="font-ss">
           <Link to="#">
             <div className="d-flex wrapper">
               <div className="icons">
@@ -23,8 +23,8 @@ const MemSidebar = () => {
             </div>
           </Link>
           <Link to="#"></Link>{' '}
-        </h6>
-        <h4>
+        </p>
+        <p className="font-s">
           <Link to="#">
             <div className="d-flex wrapper">
               <div className="icons">
@@ -33,8 +33,8 @@ const MemSidebar = () => {
               我的帳號{' '}
             </div>{' '}
           </Link>{' '}
-        </h4>
-        <h4>
+        </p>
+        <p className="font-s">
           <Link to="#">
             <div className="d-flex wrapper">
               <div className="icons">
@@ -43,8 +43,8 @@ const MemSidebar = () => {
               購買清單{' '}
             </div>{' '}
           </Link>{' '}
-        </h4>
-        <h4>
+        </p>
+        <p className="font-s">
           <Link to="#">
             <div className="d-flex wrapper">
               <div className="icons">
@@ -53,8 +53,8 @@ const MemSidebar = () => {
               我的關注{' '}
             </div>{' '}
           </Link>{' '}
-        </h4>
-        <h4>
+        </p>
+        <p className="font-s">
           <Link to="#">
             <div className="d-flex wrapper">
               <div className="icons">
@@ -63,8 +63,8 @@ const MemSidebar = () => {
               通知中心{' '}
             </div>{' '}
           </Link>{' '}
-        </h4>
-        <h4>
+        </p>
+        <p className="font-s">
           <Link to="#">
             <div className="d-flex wrapper">
               <div className="icons">
@@ -73,8 +73,8 @@ const MemSidebar = () => {
               Ｅcoin{' '}
             </div>{' '}
           </Link>{' '}
-        </h4>
-        <h4>
+        </p>
+        <p className="font-s">
           <Link to="#">
             <div className="d-flex wrapper">
               <div className="icons">
@@ -83,8 +83,8 @@ const MemSidebar = () => {
               我的評論{' '}
             </div>{' '}
           </Link>{' '}
-        </h4>
-        <h4>
+        </p>
+        <p className="font-s">
           <Link to="#">
             <div className="d-flex wrapper">
               <div className="icons">
@@ -93,7 +93,7 @@ const MemSidebar = () => {
               常見問題{' '}
             </div>{' '}
           </Link>{' '}
-        </h4>{' '}
+        </p>{' '}
       </div>{' '}
     </>
   )

@@ -6,12 +6,12 @@ const MemCard = () => {
   return (
     <>
       <div className="memcard">
-        <div className="card">
-          <h4>
+        <div className="maincard">
+          <p className="font-m">
             <div className="d-flex wrapper">
-              <div className="icons">
+              <p className="icons">
                 <BsPersonFill />
-              </div>
+              </p>
               會員資料
               <Link to="#">
                 <div className="icons">
@@ -19,7 +19,7 @@ const MemCard = () => {
                 </div>
               </Link>
             </div>
-          </h4>
+          </p>
           <div className="container">
             <div className="row">
               <div className="col-md-5">
