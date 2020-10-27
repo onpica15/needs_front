@@ -11,10 +11,11 @@
     letter-spacing: 1.2px;
   }
     .background{
-        min-height: calc(100vh - 120px);
-        width: 100%;
-        background-image: url('../MerchantHome/images/background_2.jpg');
+        // min-height: calc(100vh - 120px);
+        // width: 100%;
+        height: 100px;
+        background-image: url('../images/background_2.jpg');
         background: center center no-repeat;
-        background-size: cover;  
+        background-size: cover;
     }
 }

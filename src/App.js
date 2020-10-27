@@ -120,7 +120,8 @@ function App() {
 
           {/* 商家後台 */}
           <DynamicLayoutRoute
-            path="/customer-backend"
+            exact
+            path="/customer-backend/"
             component={BackEndDashboard}
             layout="BACK_END_NAV"
           />
