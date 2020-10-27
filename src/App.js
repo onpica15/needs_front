@@ -11,7 +11,8 @@ import Article from './pages/Article/Article'
 import ProductList from './pages/ProductList/ProductList'
 import MerchantHome from './pages/MerchantHome'
 import ProductDetail from './pages/ProductDetail'
-import MerchantLogin from './pages/Login/MerchantLogin'
+import Login from './pages/Login/Login'
+import SignUp from './pages/Login/SignUp'
 
 //商家後台
 import BackEndSidebar from './components/backend/Sidebar'
@@ -112,7 +113,12 @@ function App() {
           />
           <DynamicLayoutRoute
             path="/login/:role?"
-            component={MerchantLogin}
+            component={Login}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/signup"
+            component={SignUp}
             layout="FRONT_END_NAV"
           />
 

@@ -1,5 +1,7 @@
 $primary: #0d5661;
+$primary-focus: rgba(13, 86, 97, 0.6);
 $secondary: #243a6e;
+$secondary-focus: rgba(36, 58, 110, 0.6);
 $danger: #d44f44;
 $white: #ffffff;
 $font-black: #323232;
@@ -7,7 +9,7 @@ $font-gray: #787878;
 $bg-gray: #cdcdcd;
 $bg-light: #f0f0f0;
 
-.loginSec {
+.merchantLogin {
   .btn {
     font-family: 'Noto Sans TC', sans-serif;
     font-size: 1 rem;
@@ -35,7 +37,7 @@ $bg-light: #f0f0f0;
   min-height: calc(100vh - 80px);
   width: 100%;
   background: center center no-repeat;
-  background-image: url('../../assets/img/login/loginbg.png');
+  background-image: url('../../../assets/img/login/loginbg.png');
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -62,9 +64,12 @@ $bg-light: #f0f0f0;
         margin-bottom: 3px;
       }
     }
-    .btn-link {
+    a {
       color: $white;
       text-decoration: underline;
+      &:hover {
+        color: $danger;
+      }
     }
   }
 
@@ -75,9 +80,7 @@ $bg-light: #f0f0f0;
     border-radius: 0 20px 20px 0;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     text-align: center;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
+
     .loginRole {
       display: flex;
       flex-direction: row;
@@ -99,6 +102,10 @@ $bg-light: #f0f0f0;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      h4 {
+        color: $secondary;
+        margin-bottom: 16px;
+      }
       .socialMedia {
         margin-bottom: 1rem;
         a {
@@ -106,19 +113,43 @@ $bg-light: #f0f0f0;
           margin-right: 4px;
         }
       }
-      h4 {
-        color: $secondary;
-        margin-bottom: 16px;
+      .loginForm {
+        input {
+          width: 300px;
+        }
+        .forgetPassword {
+          margin-bottom: 1rem;
+          :last-child {
+            display: none;
+          }
+          a {
+            color: $font-gray;
+            margin-bottom: 1rem;
+            &:hover,
+            &:focus {
+              color: $danger;
+            }
+          }
+        }
+        .form-text {
+          color: red;
+        }
       }
-      input {
-        width: 300px;
-      }
-      a {
-        color: $font-gray;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .merchantLogin {
+    .side {
+      display: none;
+    }
+    .main {
+      border-radius: 20px;
+      .loginInput .loginForm .forgetPassword {
         margin-bottom: 1rem;
-        &:hover,
-        &:focus {
-          color: $danger;
+        :last-child {
+          display: initial;
         }
       }
     }

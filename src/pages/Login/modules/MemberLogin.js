@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Form, InputGroup } from 'react-bootstrap'
 import { FaUserCircle, FaLock, FaFacebook } from 'react-icons/fa'
 import { AiFillGooglePlusCircle, AiFillTwitterCircle } from 'react-icons/ai'
-import './Login.scss'
+import './MemberLogin.scss'
 
-const MerchantLogin = () => {
+const MemberLogin = (props) => {
+  const { role, setRole, handleRole } = props
+
   return (
     <>
-      <div className="loginSec container-fluid">
+      <div className="memberLogin container-fluid">
+        <div className="mask"></div>
         <div className="side">
           <div className="logo">
             <img
@@ -17,18 +20,24 @@ const MerchantLogin = () => {
             />
           </div>
           <div className="text">
-            <p>想創立自有品牌嗎？</p>
-            <p>手刀註冊加入NEEDS</p>
+            <p>第一次來NEEDS嗎？</p>
+            <p>手刀註冊加入會員</p>
           </div>
-          <Button variant="link">SIGN UP</Button>
+          <Link to="/signup">SIGN UP</Link>
         </div>
+
         <div className="main">
           <div className="loginRole">
-            <a href="#member">會員</a>
-            <span className="mx-1"> | </span> <a href="#merchant">商家</a>
+            <Link to="#member" onClick={(e) => handleRole('member')}>
+              會員
+            </Link>
+            <span className="mx-1"> | </span>
+            <Link to="#merchant" onClick={(e) => handleRole('merchant')}>
+              商家
+            </Link>
           </div>
           <div className="loginInput">
-            <h4>商家登入</h4>
+            <h4>會員登入</h4>
             <div className="socialMedia">
               <a href="">
                 <FaFacebook size="44px" color="#3b5998" />
@@ -48,15 +57,18 @@ const MerchantLogin = () => {
                       <FaUserCircle />
                     </InputGroup.Text>
                   </InputGroup.Prepend> */}
-                  <Form.Control type="email" placeholder="信箱" />
+                  <Form.Control type="email" placeholder="手機/信箱" />
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
                   <Form.Control type="password" placeholder="密碼" />
                 </Form.Group>
-                <a href="" className="d-block">
-                  忘記密碼
-                </a>
-                <Button variant="primary" type="submit">
+                <div className="forgetPassword d-block">
+                  <Link to="">忘記密碼</Link>
+                  <Link to="/signup" className="ml-3 display-none">
+                    立即註冊
+                  </Link>
+                </div>
+                <Button variant="secondary" type="submit">
                   LOGIN
                 </Button>
               </Form>
@@ -68,4 +80,4 @@ const MerchantLogin = () => {
   )
 }
 
-export default MerchantLogin
+export default MemberLogin
