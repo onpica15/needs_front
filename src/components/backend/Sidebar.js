@@ -25,7 +25,7 @@ function Sidebar() {
                 <Link to="/customer-backend">
                   {' '}
                   <Accordion.Toggle
-                    className="btn-toggle btn-active"
+                    className="btn-toggle"
                     as={Button}
                     variant="link"
                     eventKey="0"

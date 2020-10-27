@@ -21,7 +21,7 @@ class KeyIndexChart extends React.Component {
           dashArray: [0, 8, 5],
         },
         title: {
-          text: 'Page Statistics',
+          text: '過去七天 ',
           align: 'left',
         },
         legend: {
@@ -41,34 +41,45 @@ class KeyIndexChart extends React.Component {
           },
         },
         xaxis: {
-          categories: [
-            '01 Jan',
-            '02 Jan',
-            '03 Jan',
-            '04 Jan',
-            '05 Jan',
-            '06 Jan',
-            '07 Jan',
-            '08 Jan',
-            '09 Jan',
-            '10 Jan',
-            '11 Jan',
-            '12 Jan',
-          ],
+          categories: [...props.durationDays],
+        },
+        yaxis: {
+          show: false,
         },
         tooltip: {
           y: [
             {
               title: {
                 formatter: function (val) {
-                  return val + ' (mins)'
+                  return val
                 },
               },
             },
             {
               title: {
                 formatter: function (val) {
-                  return val + ' per session'
+                  return val
+                },
+              },
+            },
+            {
+              title: {
+                formatter: function (val) {
+                  return val
+                },
+              },
+            },
+            {
+              title: {
+                formatter: function (val) {
+                  return val
+                },
+              },
+            },
+            {
+              title: {
+                formatter: function (val) {
+                  return val
                 },
               },
             },
