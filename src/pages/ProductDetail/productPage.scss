@@ -74,8 +74,27 @@ $bg-light: #f0f0f0;
   }
   .product-main-info {
     padding: 2rem 15px;
+    .w-88{
+      width: 88%;
+    }
+    .carousel .thumbs-wrapper{
+      margin: -90px 20px;
+    }
+    .carousel-root .carousel .thumb {
+      border: 3px solid transparent;
+      img{
+        width: 100% !important;
+        height: 68px !important; 
+      }
+    }
+    .carousel .thumb.selected, .carousel .thumb:hover {
+      border: 3px solid $accent;
+    }
+    .carousel .control-dots{
+      opacity: 0;
+    }
     .photos-content {
-      height: 600px;
+      // height: 600px;
       position: relative;
     }
     .main-photo {
