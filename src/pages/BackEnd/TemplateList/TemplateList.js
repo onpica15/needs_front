@@ -14,6 +14,32 @@ import {
 
 import { FiHeart } from 'react-icons/fi';
 
+import { Radio } from 'antd';
+
+// class App extends React.Component {
+//   state = {
+//     value: 1,
+//   };
+
+//   onChange = e => {
+//     console.log('radio checked', e.target.value);
+//     this.setState({
+//       value: e.target.value,
+//     });
+//   };
+
+//   render() {
+//     return (
+//       <Radio.Group onChange={this.onChange} value={this.state.value}>
+//         <Radio value={1}>free</Radio>
+//         <Radio value={2}>pro</Radio>
+//       </Radio.Group>
+//     );
+//   }
+// }
+
+// ReactDOM.render(<App />, mountNode);
+
 function TemplateList(props) {
   
   return (
@@ -23,10 +49,10 @@ function TemplateList(props) {
             <Container fluid className="">
             <div className="d-flex justify-content-end ">
                 <div className="main-div rounded mr-2">
-                  <p>熱門程度</p>
+                  <p className="f-14">熱門程度</p>
                 </div>
                 <div className="main-div rounded">
-                <p>pro/free</p>
+                <p className="f-14">主題類別：<Radio> pro </Radio> <Radio> free </Radio></p>
                 </div>
             </div>
               <hr/>
@@ -50,13 +76,13 @@ function TemplateList(props) {
                 </div>
                 <div className="col-4 mh-100 text-adjust">
                 <div className="d-flex flex-column justify-content-around ">
-                    <h1 >Narrative</h1>
-                    <h6 >方案：FREE</h6>
+                    <h1 className="h4">Narrative</h1>
+                    <p className="mt-2">方案：FREE</p>
                     <div className="pb-2">
-                    <button className="btn-bg gray"><FiHeart/>加入收藏</button>
+                    <button className="btn-bg gray mt-2"><FiHeart/> 加入收藏</button>
                     </div>
                     <div>
-                    <button className="btn-bg purple">立即套用</button>
+                    <button className="btn-bg purple mt-2">立即套用</button>
                     </div>
                 </div>
             </div>
@@ -81,8 +107,8 @@ function TemplateList(props) {
                     FREE
                   </Card.Text>
                   <Container className="d-flex p-0">
-                  <button className="btn-bg gray left"><FiHeart/>加入收藏</button>
-                  <button className="btn-bg purple right">立即套用</button>
+                  <button className="btn-sml gray left"><FiHeart/> 加入收藏</button>
+                  <button className="btn-sml purple right">立即套用</button>
                   </Container>
                 </div>
               </Card>
@@ -95,8 +121,8 @@ function TemplateList(props) {
                     FREE
                   </Card.Text>
                   <Container className="d-flex p-0">
-                  <button className="btn-bg gray left"><FiHeart/>加入收藏</button>
-                  <button className="btn-bg purple right">立即套用</button>
+                  <button className="btn-sml gray left"><FiHeart/> 加入收藏</button>
+                  <button className="btn-sml purple right">立即套用</button>
                   </Container>
                 </div>
               </Card>
@@ -109,8 +135,8 @@ function TemplateList(props) {
                     FREE
                   </Card.Text>
                   <Container className="d-flex p-0">
-                  <button className="btn-bg gray left"><FiHeart/>加入收藏</button>
-                  <button className="btn-bg purple right">立即套用</button>
+                  <button className="btn-sml gray left"><FiHeart/> 加入收藏</button>
+                  <button className="btn-sml purple right">立即套用</button>
                   </Container>
                 </div>
               </Card>
@@ -129,8 +155,8 @@ function TemplateList(props) {
                     FREE
                   </Card.Text>
                   <Container className="d-flex p-0">
-                  <button className="btn-bg gray left"><FiHeart/>加入收藏</button>
-                  <button className="btn-bg purple right">立即套用</button>
+                  <button className="btn-sml gray left"><FiHeart/> 加入收藏</button>
+                  <button className="btn-sml purple right">立即套用</button>
                   </Container>
                 </div>
               </Card>
@@ -143,8 +169,8 @@ function TemplateList(props) {
                     FREE
                   </Card.Text>
                   <Container className="d-flex p-0">
-                  <button className="btn-bg gray left"><FiHeart/>加入收藏</button>
-                  <button className="btn-bg purple right">立即套用</button>
+                  <button className="btn-sml gray left"><FiHeart/> 加入收藏</button>
+                  <button className="btn-sml purple right">立即套用</button>
                   </Container>
                 </div>
               </Card>
@@ -157,8 +183,8 @@ function TemplateList(props) {
                     FREE
                   </Card.Text>
                   <Container className="d-flex p-0">
-                  <button className="btn-bg gray left"><FiHeart/>加入收藏</button>
-                  <button className="btn-bg purple right">立即套用</button>
+                  <button className="btn-sml gray left"><FiHeart/> 加入收藏</button>
+                  <button className="btn-sml purple right">立即套用</button>
                   </Container>
                 </div>
               </Card>

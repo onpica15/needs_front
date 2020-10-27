@@ -11,11 +11,10 @@ import BackEndSidebar from './components/backend/Sidebar'
 import BackEndNavbar from './components/backend/Navbar'
 import BackEndDashboard from './pages/BackEnd/Dashboard/Dashboard'
 
-import MerchantHome from './pages/MerchantHome'
+import MerchantHome from './pages/MerchantHome/merchantHome'
 import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEditedPage'
 import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
 import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
-
 
 
 import CreateArticle from './pages/Article/CreateArticle'
@@ -109,17 +108,17 @@ function App() {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/customer-backend/template-home"
+            path="/template-home"
             component={TemplateHome}
             layout="BACK_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/customer-backend/template-edit"
+            path="/template-edit"
             component={TemplateEditedPage}
             layout="BACK_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/customer-backend/template-list"
+            path="/template-list"
             component={TemplateList}
             layout="BACK_END_NAV"
           />
