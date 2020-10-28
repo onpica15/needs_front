@@ -24,6 +24,7 @@ import CreateArticle from './pages/Article/CreateArticle'
 import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEditedPage'
 import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
 import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
+import ArticleDetial from './pages/Article/ArticleDetial'
 
 export const history = createBrowserHistory()
 
@@ -70,7 +71,6 @@ const DynamicLayoutRoute = (props) => {
   }
 }
 
-
 //Route設置
 function App() {
   return (
@@ -102,6 +102,11 @@ function App() {
           <DynamicLayoutRoute
             path="/createArticle"
             component={CreateArticle}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/articledetial"
+            component={ArticleDetial}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute

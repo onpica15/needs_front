@@ -148,43 +148,49 @@ $shadow: #e7e7e7;
 //     }
 // }
 
-//memsidebar
-.memsidebar {
-  width: 155px;
-  height: 550px;
+// //memsidebar
+// .memsidebar {
+//     width: 155px;
+//     height: 550px;
 
-  .sticker {
-    width: 130px;
-    height: 130px;
-    background-color: #ccc;
-    border-radius: 10px;
-  }
+//     .sticker {
 
-  .wrapper {
-    width: 155 px;
-    height: 40px;
+//         width: 130px;
+//         height: 130px;
+//         background-color: #ccc;
+//         border-radius: 10px;
+//     }
 
-    .icons {
-      width: 24px;
-      height: 24px;
-      margin-right: 10px;
-    }
+//     .wrapper {
+//         width: 155 px;
+//         height: 40px;
 
-    h6 {
-      margin: 0px;
-      padding: 0px;
-      width: 50%;
-    }
-  }
-}
+//         .icons {
+//             width: 24px;
+//             height: 24px;
+//             margin-right: 10px;
+//         }
 
-.sidebar a:hover {
-  color: $danger;
-}
+//         h6 {
+//             margin: 0px;
+//             padding: 0px;
+//             width: 50%;
+//         }
 
-.sidebar a:active {
-  color: $danger;
-}
+//     }
+// }
+
+// .sidebar a:hover {
+
+//     color: $danger;
+
+// }
+
+// .sidebar a:active {
+
+//     color: $danger;
+
+// }
 
 //memcard
 
@@ -259,7 +265,6 @@ $shadow: #e7e7e7;
   .topsidebar {
     .topbox {
     }
-
     a.topbox:hover {
       box-shadow: 0 -3px $danger inset;
     }
