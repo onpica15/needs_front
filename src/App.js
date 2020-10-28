@@ -10,7 +10,7 @@ import Member from './pages/Member/Member'
 import Investment from './pages/Investment'
 import Article from './pages/Article/Article'
 import ProductList from './pages/ProductList/ProductList'
-import MerchantHome from './pages/MerchantHome'
+import MerchantHome from './pages/MerchantHome/merchantHome'
 import ProductDetail from './pages/ProductDetail'
 import Login from './pages/Login/Login'
 import SignUp from './pages/Login/SignUp'
@@ -19,6 +19,7 @@ import SignUp from './pages/Login/SignUp'
 import BackEndSidebar from './components/backend/Sidebar'
 import BackEndNavbar from './components/backend/Navbar'
 import BackEndDashboard from './pages/BackEnd/Dashboard/Dashboard'
+
 import CreateArticle from './pages/Article/CreateArticle'
 import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEditedPage'
 import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
@@ -68,6 +69,7 @@ const DynamicLayoutRoute = (props) => {
     }
   }
 }
+
 
 //Route設置
 function App() {
@@ -130,22 +132,23 @@ function App() {
 
           {/* 商家後台 */}
           <DynamicLayoutRoute
-            path="/customer-backend"
+            exact
+            path="/customer-backend/"
             component={BackEndDashboard}
             layout="BACK_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/template-home"
+            path="/customer-backend/template-home"
             component={TemplateHome}
             layout="BACK_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/template-edit"
+            path="/customer-backend/template-edit"
             component={TemplateEditedPage}
             layout="BACK_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/template-list"
+            path="/customer-backend/template-list"
             component={TemplateList}
             layout="BACK_END_NAV"
           />
