@@ -25,13 +25,13 @@ function CategoriesRank() {
                   <tbody className="rank-body">
                     <tr>
                       <td>1</td>
-                      <td>【Ｍister】歐式復古羽毛筆沾水鋼筆禮盒</td>
+                      <td>橡皮擦</td>
                       <td>$825</td>
                     </tr>
                     <tr>
-                      <td>1</td>
-                      <td>【Ｍister】歐式復古羽毛筆沾水鋼筆禮盒</td>
-                      <td>$825</td>
+                      <td>2</td>
+                      <td>筆</td>
+                      <td>$575</td>
                     </tr>
                   </tbody>
                 </Table>
