@@ -4460,6 +4460,11 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
+editorjs-html@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/editorjs-html/-/editorjs-html-3.0.3.tgz#8a51dd9767b2a80290d1a3ccfd6b5e647248216e"
+  integrity sha512-/MyoSBGsEfywF+QqUd7Cf9mYcREb/Tx95FJTf9XYQecyV2N/Q1r1yaahC3HVpEZtf4wdQA/5MYhoWw9a6NnMYg==
+
 ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"

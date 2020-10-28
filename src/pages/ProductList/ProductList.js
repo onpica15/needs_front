@@ -25,7 +25,7 @@ const ProductList = (props) => {
     const fetchPosts = async () => {
       setDataLoading(true)
       const url = 'http://localhost:5000/try-db'
-      const res = await axios.get(url)
+      const res = await axios.get(url).catch((err) => console.log('Error', err))
       setPosts(res.data)
       setFilterPosts(res.data)
       setDataLoading(false)

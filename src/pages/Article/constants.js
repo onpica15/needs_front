@@ -21,13 +21,18 @@ export const EDITOR_JS_TOOLS = {
   list: List,
   warning: Warning,
   code: Code,
-  linkTool: LinkTool,
+  linkTool: {
+    class: LinkTool,
+    config: {
+      // endpoint: 'http://localhost:5000/api/articles',
+    },
+  },
   image: {
     class: Image,
     endpoints: {
-      byFile: 'http://localhost:5000/upload',
+      byFile: 'http://localhost:5000/article/upload',
       // Your backend file uploader endpoint
-      byUrl: 'http://localhost:50000/upload',
+      byUrl: 'http://localhost:5000/article/upload',
       // Your endpoint that provides uploading by Url
     },
   },
