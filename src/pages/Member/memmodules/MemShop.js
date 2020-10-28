@@ -67,7 +67,7 @@ function MemShop() {
                     <tr>
                       <td className="d-flex">
                         <div className="box"></div>
-                        <div>
+                        <div className="align-self-center">
                           <p className="font-s">
                             南國的孩子 手寫數字章 (22個入)
                           </p>
@@ -78,14 +78,14 @@ function MemShop() {
                       <td>NT$780</td>
                       <td>3</td>
                       <td>NT$2340</td>
-                      <td>完成Ｖ</td>
+                      <td>Ｖ</td>
                     </tr>
                   </tbody>
                   <tbody bgcolor="white">
                     <tr>
                       <td className="d-flex">
                         <div className="box"></div>
-                        <div>
+                        <div className="align-self-center">
                           <p className="font-s">
                             南國的孩子 手寫數字章 (22個入)
                           </p>
@@ -96,7 +96,7 @@ function MemShop() {
                       <td>NT$780</td>
                       <td>3</td>
                       <td>NT$2340</td>
-                      <td>完成Ｖ</td>
+                      <td>Ｖ</td>
                     </tr>
                   </tbody>
                 </table>

@@ -141,7 +141,6 @@ $shadow: #e7e7e7;
         border: 0;
         font-size: 100%;
         font: inherit;
-        vertical-align: baseline;
     }
 
     /* HTML5 display-role reset for older browsers */
@@ -283,6 +282,16 @@ $shadow: #e7e7e7;
             height: 50px;
             background-color: $bg-gray;
             margin-top: 20px;
+
+            th {
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            td {
+                text-align: center;
+                vertical-align: middle;
+            }
         }
 
         .box {
@@ -290,7 +299,7 @@ $shadow: #e7e7e7;
             height: 90px;
             background-color: blue;
             border-radius: 10px;
-            margin-right: 5px;
+            margin: 5px;
         }
     }
 }

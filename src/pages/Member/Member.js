@@ -16,11 +16,11 @@ function Member() {
         <div className="row my-5">
           <MemSidebar />
           {/* <MemCard /> */}
-          {/* <MemShop /> */}
+          <MemShop />
           {/* <MemLike /> */}
           {/* <MemEcoin />
           <MemuInform /> */}
-          <MemComment /> 
+          {/* <MemComment />  */}
       </div>
       </div>
     </>
