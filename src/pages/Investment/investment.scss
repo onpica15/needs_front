@@ -142,6 +142,8 @@ $bg-light: #f0f0f0;
     height: 600px;
     background-image: url('../../assets/img/investment/5_background.png');
     background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
     .secTitle {
       display: flex;
       flex-direction: column;
@@ -190,8 +192,13 @@ $bg-light: #f0f0f0;
           margin-bottom: 16px;
         }
         ul {
-          margin-left: 20%;
+          margin-left: 25%;
           font-size: 0.875rem;
+        }
+      }
+      @media (max-width: 576px) {
+        ul {
+          margin-left: 15%;
         }
       }
     }
