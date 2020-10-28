@@ -6,6 +6,7 @@ class KeyIndexChart extends React.Component {
     super(props)
 
     this.state = {
+      series: [this.props.initData],
       options: {
         chart: {
           zoom: {
@@ -16,10 +17,18 @@ class KeyIndexChart extends React.Component {
           enabled: false,
         },
         stroke: {
-          width: [5, 7, 5],
+          width: [5, 7, 5, 5, 7, 5],
           curve: 'straight',
-          dashArray: [0, 8, 5],
+          dashArray: [0, 8, 5, 0, 8, 5],
         },
+        colors: [
+          '#7367f0',
+          '#28c76f',
+          '#ea5455',
+          '#ff9f43',
+          '#00cfe8',
+          '#e8cd00',
+        ],
         title: {
           text: '過去七天 ',
           align: 'left',
@@ -43,9 +52,14 @@ class KeyIndexChart extends React.Component {
         xaxis: {
           categories: [...props.durationDays],
         },
-        yaxis: {
-          show: false,
-        },
+        yaxis: [
+          {
+            show: false, // default will be true
+          },
+          {
+            show: false,
+          },
+        ],
         tooltip: {
           y: [
             {

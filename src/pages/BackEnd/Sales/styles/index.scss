@@ -62,7 +62,73 @@
 .buyer-chart-wrapper{
 
     height: 300px;
-    border: 1px solid #787878;
+    border: 1px solid #e5e5e5;
     border-radius: 5px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    .apexcharts-legend{
+            display: flex;
+            position: absolute;
+            left: 0px;
+            top: 24px;
+            align-items: center;
+            justify-content: center;
+            .apexcharts-legend-series {
+                padding: 20px 0px;
+            }
+    }
+
 }
-                                                
+.buyers-row {
+    height: calc(150px - 2rem);
+    display: flex;
+    align-items: center;
+    .buyer-wrapper{
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+        .buyers-state {
+            font-size: 16px;
+            font-weight: 300;
+        }
+        .buyers-question {   
+            margin-left: 10px;
+        }
+    }
+    .buyers-figures{
+        font-size: 24px;
+    }
+}
+.questionMark{
+    color: #787878;
+}
+
+.rank-wrapper{
+    .rank-tabs{
+        margin: 0;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #dee2e6;
+    }
+    .rank-header{
+        width: 100%;
+        background-color: #f6f6f6;
+        th:last-child{
+            float: right;
+        }
+    }
+    .rank-body{
+        td{
+            line-height: 1.5rem;
+            &:last-child {
+                float: right;
+            }
+        }
+
+    }
+    .tab-content{
+        height: 300px;
+    }
+}
+

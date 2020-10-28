@@ -7,57 +7,53 @@ import KeyIndexChart from '../../../components/backend/sales/charts/KeyIndexChar
 
 function KeyIndex() {
   moment.locale('zh-tw')
-  const today = moment().format('MMM Do')
-  const yesterday = moment().subtract(1, 'days').format('MMM Do')
-  const twoDaysAgo = moment().subtract(2, 'days').format('MMM Do')
-  const threeDaysAgo = moment().subtract(3, 'days').format('MMM Do')
-  const fourDaysAgo = moment().subtract(4, 'days').format('MMM Do')
-  const fiveDaysAgo = moment().subtract(5, 'days').format('MMM Do')
-  const sixDaysAgo = moment().subtract(6, 'days').format('MMM Do')
 
-  const [series, setSeries] = useState([])
-  const [durationDays, setDurationDays] = useState([
-    sixDaysAgo,
-    fiveDaysAgo,
-    fourDaysAgo,
-    threeDaysAgo,
-    twoDaysAgo,
-    yesterday,
-    today,
-  ])
+  let dateArray = []
+  for (let i = 0; i < 7; i++) {
+    let date = moment().subtract(i, 'days').format('MMM Do')
+    dateArray.push(date)
+  }
+  dateArray = dateArray.reverse()
 
   const salesDigits = {
+    order: 1,
     name: '銷售額',
     data: [4500, 5200, 3800, 2400, 3300, 2600, 2100],
   }
   const amountOfOrders = {
+    order: 2,
     name: '訂單數',
     data: [35, 41, 62, 42, 13, 18, 29],
   }
   const turnOverPercentage = {
+    order: 3,
     name: '下單轉換率',
     data: [8, 4, 6, 3, 2, 5, 7],
   }
+  let averageMoneyArray = []
+  for (let i = 0; i < 7; i++) {
+    let averageMoney = Math.floor(salesDigits.data[i] / amountOfOrders.data[i])
+    averageMoneyArray.push(averageMoney)
+  }
   const averageMoneyPerOrder = {
+    order: 4,
     name: '平均訂單金額',
-    data: [
-      Math.round(salesDigits.data[0] / amountOfOrders.data[0]),
-      Math.round(salesDigits.data[1] / amountOfOrders.data[1]),
-      Math.round(salesDigits.data[2] / amountOfOrders.data[2]),
-      Math.round(salesDigits.data[3] / amountOfOrders.data[3]),
-      Math.round(salesDigits.data[4] / amountOfOrders.data[4]),
-      Math.round(salesDigits.data[5] / amountOfOrders.data[5]),
-      Math.round(salesDigits.data[6] / amountOfOrders.data[6]),
-    ],
+    data: [...averageMoneyArray],
   }
   const noneRepeatVisitors = {
+    order: 5,
     name: '不重複訪客',
     data: [170, 250, 300, 420, 288, 388, 217],
   }
   const pageViewsOfMerchants = {
+    order: 6,
     name: '頁面瀏覽數',
     data: [436, 674, 700, 891, 603, 788, 567],
   }
+
+  const [series, setSeries] = useState([salesDigits])
+  const [durationDays, setDurationDays] = useState([...dateArray])
+
   return (
     <>
       <Card>
@@ -66,8 +62,9 @@ function KeyIndex() {
           <Row>
             <Col xs={2}>
               <div
-                className="key-card"
+                className="key-card primary-top"
                 onClick={(e) => {
+                  console.log('1', series)
                   setSeries([...series, salesDigits])
                   if (e.target.classList[0] !== 'key-card') {
                     e.target.parentNode.classList.toggle('primary-top')
@@ -268,7 +265,10 @@ function KeyIndex() {
           </Row>
           <Row className="mt-3">
             <Col xs={12}>
-              <KeyIndexChart initData={series} durationDays={durationDays} />
+              <KeyIndexChart
+                initData={series.sort((a, b) => a.order - b.order)}
+                durationDays={durationDays}
+              />
             </Col>
           </Row>
         </Card.Body>
