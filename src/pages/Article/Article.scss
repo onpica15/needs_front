@@ -1,12 +1,8 @@
-.wrap {
-  max-width: 1160px;
-  margin: 0 auto;
-}
-
+.articleItems{
 .articleItem {
-  max-width: 270px;
+  margin-bottom: 30px;
   .articlePic {
-    height: 270px;
+    max-width: 270px;
     img {
       width: 100%;
       height: 100%;
@@ -19,5 +15,13 @@
       font-size: 24px;
       margin-bottom: 30px;
     }
+      .ctx{
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+      }
+    
   }
+}
 }

@@ -24,13 +24,13 @@ const Filter = (props) => {
           <label>排序方式:</label>
           <select
             className="form-control"
-            value={props.sort}
+            // value={props.sort}
             onChange={props.handleSort}
           >
-            <option value="choiceId">請選擇</option>
-            <option value="lastest">最新上架</option>
-            <option value="lowest">價格由低到高</option>
-            <option value="highest">價格由高到低</option>
+            <option value="?">請選擇</option>
+            <option value="?sort=lastest">最新上架</option>
+            <option value="?sort=-price">價格由低到高</option>
+            <option value="?sort=price">價格由高到低</option>
           </select>
         </div>
       </div>

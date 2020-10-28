@@ -12,26 +12,26 @@ import axios from 'axios'
 
 const ProductList = (props) => {
   const [posts, setPosts] = useState([])
-  const [filterPosts, setFilterPosts] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(12)
 
-  const [sort, setSort] = useState()
+  const [sort, setSort] = useState('')
   const [productView, setProductView] = useState('bigPic')
 
   // axios get data
   useEffect(() => {
     const fetchPosts = async () => {
+      console.log(sort)
       setDataLoading(true)
-      const url = 'http://localhost:5000/try-db'
+      let url = 'http://localhost:5000/productlist' + sort
+      console.log(url)
       const res = await axios.get(url).catch((err) => console.log('Error', err))
       setPosts(res.data)
-      setFilterPosts(res.data)
       setDataLoading(false)
     }
     fetchPosts()
-  }, [])
+  }, [sort])
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage
@@ -48,11 +48,6 @@ const ProductList = (props) => {
   const handleSort = (event) => {
     console.log(event.target.value)
     setSort(event.target.value)
-    filterPosts.sort((a, b) => {
-      if (sort === 'choiceId') return a.id > b.id ? 1 : -1
-      if (sort === 'lowest') return a.price < b.price ? 1 : -1
-      if (sort === 'highest') return a.price > b.price ? 1 : -1
-    })
   }
 
   return (
@@ -70,6 +65,7 @@ const ProductList = (props) => {
           <Filter
             totalPosts={posts.length}
             handleSort={handleSort}
+            setSort={setSort}
             setProductView={setProductView}
           />
           <Posts
