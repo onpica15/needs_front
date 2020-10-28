@@ -1,93 +1,56 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { FaShoppingBag } from 'react-icons/fa'
-const MemShop = () => {
+function MemShop() {
   return (
     <>
       <div className="memshop">
-        <div className="col-md-10">
-          <div className="card">
-            <h4>
-              <div className="d-flex wrapper">
-                <div className="icons">
-                  <FaShoppingBag />
-                </div>
-                購買清單
-              </div>
-            </h4>
+        <div className="maincard">
+          <p className="font-m">
+            <div className="d-flex wrapper">
+              <p className="icons">
+                <FaShoppingBag />
+              </p>
+              <p>購買清單</p>
+            </div>
+          </p>
 
-            <div className="container">
-              <div className="row justify-content-center">
-                {/* <div className="topsidebar d-flex">
-                  <div className="align-self-center">
-                    <a href="#" className="topbox">
-                      歷史清單
-                    </a>
-                  </div>
+          <div className="container">
+            <div className="row justify-content-around align-self-center topside">
+              <Link href="#" className="col-2 d-flex topsidebox">
+                <div className="m-auto">
+                  <p className="font-s">歷史清單</p>
+                </div>
+              </Link>
+              <Link href="#" className="col-2 d-flex topsidebox">
+                <div className="m-auto">
+                  <p className="font-s">待付款</p>
+                </div>
+              </Link>
 
-                  <div className="align-self-center">
-                    <a href="#" className="topbox">
-                      待付款
-                    </a>
-                  </div>
+              <Link href="#" className="col-2 d-flex topsidebox">
+                <div className="m-auto">
+                  <p className="font-s">待出貨</p>
+                </div>
+              </Link>
 
-                  <div className="align-self-center box">
-                    <a href="#" className="topbox">
-                      待出貨
-                    </a>
-                  </div>
+              <Link href="#" className="col-2 d-flex topsidebox">
+                <div className="m-auto">
+                  <p className="font-s">待收貨</p>
+                </div>
+              </Link>
 
-                  <div className="align-self-center">
-                    <a href="#" className="topbox">
-                      待收貨
-                    </a>
-                  </div> 
-                  <div className="align-self-center">
-                    <a href="#" className="topbox">
-                      取消
-                    </a>
-                  </div>
-                </div>*/}
-                <div className="col-2 d-flex">
-                  <div className="align-self-center m-auto">
-                    <a href="#" className="topbox">
-                      歷史清單
-                    </a>
-                  </div>
+              <Link href="#" className="col-2 d-flex topsidebox">
+                <div className="m-auto">
+                  <p className="font-s">取消</p>
                 </div>
-                <div className="col-2 d-flex">
-                  <div className="align-self-center m-auto">
-                    <a href="#" className="topbox">
-                      待出貨
-                    </a>
-                  </div>
-                </div>
-                <div className="col-2 d-flex">
-                  <div className="align-self-center m-auto">
-                    <a href="#" className="topbox">
-                      待收貨
-                    </a>
-                  </div>
-                </div>
-                <div className="col-2 d-flex">
-                  <div className="align-self-center m-auto">
-                    <a href="#" className="topbox">
-                      待收貨
-                    </a>
-                  </div>
-                </div>
-                <div className="col-2 d-flex">
-                  <div className="align-self-center m-auto">
-                    <a href="#" className="topbox">
-                      取消
-                    </a>
-                  </div>
-                </div>
+              </Link>
 
-                <div className="shoppinglist">
-                  <div className="d-flex fo">
-                    <div>訂購編號</div>
-                    <div>20201006_SC4_0003816</div>
-                  </div>
+              <div className="shoppinglist">
+                <div className="d-flex fo">
+                  <div>訂購編號</div>
+                  <div>20201006_SC4_0003816</div>
+                </div>
 
                 <table className="table table-striped listhead">
                   <thead>
