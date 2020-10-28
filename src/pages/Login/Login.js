@@ -1,40 +1,28 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import MerchantLogin from './modules/MerchantLogin'
 import MemberLogin from './modules/MemberLogin'
 
 const Login = () => {
-  const [role, setRole] = useState({ role: 'merchant' })
-  const [memberIsAuth, setMemberIsAuth] = useState(false)
-  const [merchantIsAuth, setMerchantIsAuth] = useState(false)
-
-  const [authUsername, setAuthUsername] = useState('')
-  const [authPassword, setAuthPassword] = useState('')
-
-  //從資料庫撈
-  const [username, setUsername] = useState('test@gmail.com')
-  const [password, setPassword] = useState('123')
-
-  const handleRole = (value) => {
-    setRole({ role: value })
-  }
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const currentRole = useSelector((state) => state.role)
 
   return (
     <>
-      {role.role === 'member' ? (
-        <MemberLogin role={role} setRole={setRole} handleRole={handleRole} />
+      {currentRole === 'member' ? (
+        <MemberLogin
+          username={username}
+          setUsername={setUsername}
+          password={password}
+          setPassword={setPassword}
+        />
       ) : (
         <MerchantLogin
-          role={role}
-          setRole={setRole}
-          handleRole={handleRole}
-          merchantIsAuth={merchantIsAuth}
-          setMerchantIsAuth={setMerchantIsAuth}
           username={username}
+          setUsername={setUsername}
           password={password}
-          authUsername={authUsername}
-          setAuthUsername={setAuthUsername}
-          authPassword={authPassword}
-          setAuthPassword={setAuthPassword}
+          setPassword={setPassword}
         />
       )}
     </>

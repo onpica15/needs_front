@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
 
 //平台
 import Navbar from './components/Navbar'
@@ -23,12 +24,17 @@ import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEdite
 import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
 import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
 
+export const history = createBrowserHistory()
+
 //設置layout props
 const DynamicLayoutRoute = (props) => {
   const { component: RoutedComponent, layout, ...rest } = props
 
   const actualRouteComponent = (
-    <Route {...rest} render={(props) => <RoutedComponent {...props} />} />
+    <Route
+      {...rest}
+      render={(props) => <RoutedComponent {...props} history={history} />}
+    />
   )
 
   //判斷layout

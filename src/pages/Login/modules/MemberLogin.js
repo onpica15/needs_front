@@ -11,7 +11,7 @@ const MemberLogin = (props) => {
   return (
     <>
       <div className="memberLogin container-fluid">
-        <div className="mask"></div>
+        {/* <div className="mask"></div> */}
         <div className="side">
           <div className="logo">
             <img
