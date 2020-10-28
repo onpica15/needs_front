@@ -5,7 +5,14 @@ import './styles/global.scss'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
-import Member from './pages/Member/Member'
+
+import MemberCard from './pages/Member/MemberCard'
+import MemberShop from './pages/Member/MemberShop'
+import MemberLike from './pages/Member/MemberLike'
+import MemberInform from './pages/Member/MemberInform'
+import MemberEcoin from './pages/Member/MemberEcoin'
+import MemberComment from './pages/Member/MemberComment'
+
 import Investment from './pages/Investment'
 import BackEndSidebar from './components/backend/Sidebar'
 import BackEndNavbar from './components/backend/Navbar'
@@ -91,8 +98,33 @@ function App() {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/member"
-            component={Member}
+            path="/member/card"
+            component={MemberCard}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/member/shop"
+            component={MemberShop}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/member/like"
+            component={MemberLike}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/member/inform"
+            component={MemberInform}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/member/ecoin"
+            component={MemberEcoin}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/member/comment"
+            component={MemberComment}
             layout="FRONT_END_NAV"
           />
         </Switch>

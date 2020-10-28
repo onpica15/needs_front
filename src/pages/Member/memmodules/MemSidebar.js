@@ -24,7 +24,7 @@ const MemSidebar = () => {
           </Link>
         </p>
         <p className="font-s">
-          <Link to="#">
+          <Link to="/member/card">
             <div className="d-flex justify-content-center wrapper ">
               <div className="icons">
                 <BsPersonFill />
@@ -34,7 +34,7 @@ const MemSidebar = () => {
           </Link>
         </p>
         <p className="font-s">
-          <Link to="#">
+          <Link to="/member/shop">
             <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <FaShoppingBag />
@@ -44,7 +44,7 @@ const MemSidebar = () => {
           </Link>
         </p>
         <p className="font-s">
-          <Link to="#">
+          <Link to="/member/like">
             <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <FaStore />
@@ -54,7 +54,7 @@ const MemSidebar = () => {
           </Link>
         </p>
         <p className="font-s">
-          <Link to="#">
+          <Link to="/member/inform">
             <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <BsFillBellFill />
@@ -64,7 +64,7 @@ const MemSidebar = () => {
           </Link>
         </p>
         <p className="font-s">
-          <Link to="#">
+          <Link to="/member/ecoin">
             <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <FaCoins />
@@ -74,7 +74,7 @@ const MemSidebar = () => {
           </Link>
         </p>
         <p className="font-s">
-          <Link to="#">
+          <Link to="/member/comment">
             <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <RiMessage2Fill />
