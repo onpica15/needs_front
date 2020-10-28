@@ -6,7 +6,7 @@ import MemberLogin from './modules/MemberLogin'
 const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const currentRole = useSelector((state) => state.role)
+  const currentRole = useSelector((state) => state.role.type)
 
   return (
     <>

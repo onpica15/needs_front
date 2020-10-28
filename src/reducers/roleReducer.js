@@ -1,14 +1,27 @@
 import { roleTypes } from '../actions/actiontypes'
 
-export function role(state = 'merchant', action) {
+const initialState = {
+  type: 'member',
+}
+
+export function role(role = initialState, action) {
   switch (action.type) {
     case roleTypes.SET_MEMBER:
-      return 'member'
+      return {
+        ...role,
+        type: 'member',
+      }
     case roleTypes.SET_MERCHANT:
-      return 'merchant'
+      return {
+        ...role,
+        type: 'merchant',
+      }
     case roleTypes.SET_NEEDS:
-      return 'needs'
+      return {
+        ...role,
+        type: 'needs',
+      }
     default:
-      return state
+      return role
   }
 }

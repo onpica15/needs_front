@@ -6,9 +6,9 @@ export const roleActions = { setMember, setMerchant, setNeeds }
 // export hadleRole
 
 // login action
-function login(username, password) {
+function login(username, password, currentRole) {
   return (dispatch) => {
-    checkAuth(username, password).then((user) => {
+    checkAuth(username, password, currentRole).then((user) => {
       if (!user.success) {
         dispatch(failure())
       } else {
@@ -25,8 +25,10 @@ function login(username, password) {
   }
 }
 
-const checkAuth = (username, password) => {
-  const url = 'http://localhost:5000/login/memberlogin'
+const checkAuth = (username, password, currentRole) => {
+  console.log(currentRole)
+  const url = `http://localhost:5000/login-api/${currentRole}login`
+  console.log(url)
   const req = new Request(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -67,28 +69,23 @@ function sessRemove() {
 
 // setRole action
 function setMember() {
-  console.log('ccc')
-
-  return (dispatch) => member()
+  return (dispatch) => dispatch(member())
 
   function member() {
-    console.log('ddd')
     return { type: roleTypes.SET_MEMBER }
   }
 }
 
 function setMerchant() {
-  console.log('aaa')
-  return (dispatch) => merchant()
+  return (dispatch) => dispatch(merchant())
 
   function merchant() {
-    console.log('bbb')
     return { type: roleTypes.SET_MERCHANT }
   }
 }
 
 function setNeeds() {
-  return (dispatch) => needs()
+  return (dispatch) => dispatch(needs())
   function needs() {
     return { type: roleTypes.SET_NEEDS }
   }

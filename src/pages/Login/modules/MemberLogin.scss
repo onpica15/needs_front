@@ -42,13 +42,7 @@ $bg-light: #f0f0f0;
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: $white;
 
-  .mask {
-    width: 300px;
-    height: 500px;
-    background-color: $primary;
-  }
   .side {
     width: 300px;
     height: 500px;
@@ -86,23 +80,23 @@ $bg-light: #f0f0f0;
     border-radius: 0 20px 20px 0;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     text-align: center;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
     .loginRole {
       display: flex;
-      flex-direction: row;
       justify-content: flex-end;
       align-items: center;
       margin-right: 30px;
       margin-top: 30px;
-      a:hover {
-        color: $danger;
+      a {
+        color: $font-gray;
       }
 
-      a:focus {
+      a.actived {
         color: $danger;
-        border-bottom-style: 1px solid $danger;
+        font-weight: 500;
+      }
+      .seperator {
+        line-height: 1.25;
+        border-left: 1px solid $font-gray;
       }
     }
     .loginInput {

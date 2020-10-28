@@ -88,15 +88,19 @@ $bg-light: #f0f0f0;
       align-items: center;
       margin-right: 30px;
       margin-top: 30px;
-      a:hover {
-        color: $danger;
+      a {
+        color: $font-gray;
       }
-
-      a:focus {
+      a.actived {
         color: $danger;
-        border-bottom-style: 1px solid $danger;
+        font-weight: 500;
+      }
+      .seperator {
+        line-height: 1.25;
+        border-left: 1px solid $font-gray;
       }
     }
+
     .loginInput {
       display: flex;
       flex-direction: column;

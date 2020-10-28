@@ -1,23 +1,35 @@
 import React, { useState } from 'react'
+import { connect, useSelector } from 'react-redux'
+import { userActions, roleActions } from '../../../actions'
 import { Link } from 'react-router-dom'
-import { Button, Form, InputGroup } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
 import { FaUserCircle, FaLock, FaFacebook } from 'react-icons/fa'
 import { AiFillGooglePlusCircle, AiFillTwitterCircle } from 'react-icons/ai'
 import './MemberLogin.scss'
 
 const MemberLogin = (props) => {
-  const { role, setRole, handleRole } = props
+  const { username, password, setUsername, setPassword } = props
+  const currentRole = useSelector((state) => state.role.type)
+  const [submitted, setSubmitted] = useState(false)
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setSubmitted(true)
+    if (username && password) {
+      props.login(username, password, currentRole)
+    }
+  }
   return (
     <>
       <div className="memberLogin container-fluid">
-        {/* <div className="mask"></div> */}
         <div className="side">
           <div className="logo">
-            <img
-              src={require('@assets/img/logo/logo_icon_whiite.png')}
-              alt=""
-            />
+            <Link to="#needs" onClick={props.setNeeds}>
+              <img
+                src={require('@assets/img/logo/logo_icon_whiite.png')}
+                alt=""
+              />
+            </Link>
           </div>
           <div className="text">
             <p>第一次來NEEDS嗎？</p>
@@ -28,11 +40,18 @@ const MemberLogin = (props) => {
 
         <div className="main">
           <div className="loginRole">
-            <Link to="#member" onClick={(e) => handleRole('member')}>
+            <Link
+              to="#member"
+              className={`pr-1 ${currentRole === 'member' ? 'actived' : ''}`}
+              onClick={props.setMember}
+            >
               會員
             </Link>
-            <span className="mx-1"> | </span>
-            <Link to="#merchant" onClick={(e) => handleRole('merchant')}>
+            <Link
+              to="#merchant"
+              className="pl-1 seperator"
+              onClick={props.setMerchant}
+            >
               商家
             </Link>
           </div>
@@ -50,17 +69,24 @@ const MemberLogin = (props) => {
               </a>
             </div>
             <div className="loginForm">
-              <Form>
-                <Form.Group controlId="formBasicEmail">
-                  {/* <InputGroup.Prepend>
-                    <InputGroup.Text>
-                      <FaUserCircle />
-                    </InputGroup.Text>
-                  </InputGroup.Prepend> */}
-                  <Form.Control type="email" placeholder="手機/信箱" />
+              <Form noValidate onSubmit={handleSubmit}>
+                <Form.Group>
+                  <Form.Control
+                    type="email"
+                    required
+                    placeholder="手機/信箱"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
                 </Form.Group>
-                <Form.Group controlId="formBasicPassword">
-                  <Form.Control type="password" placeholder="密碼" />
+                <Form.Group controlId="password">
+                  <Form.Control
+                    type="password"
+                    required
+                    placeholder="密碼"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </Form.Group>
                 <div className="forgetPassword d-block">
                   <Link to="">忘記密碼</Link>
@@ -80,4 +106,18 @@ const MemberLogin = (props) => {
   )
 }
 
-export default MemberLogin
+const mapStateToProps = (store) => {
+  const { loggingIn } = store.authentication
+  const { type } = store.role
+  return { loggingIn, type }
+}
+
+const actionCreators = {
+  login: userActions.login,
+  logout: userActions.logout,
+  setMember: roleActions.setMember,
+  setMerchant: roleActions.setMerchant,
+  setNeeds: roleActions.setNeeds,
+}
+
+export default connect(mapStateToProps, actionCreators)(MemberLogin)

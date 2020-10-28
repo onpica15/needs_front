@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import { userActions, roleActions } from '../../../actions'
 import { Link } from 'react-router-dom'
 import { Button, Form } from 'react-bootstrap'
@@ -8,15 +8,15 @@ import { AiFillGooglePlusCircle, AiFillTwitterCircle } from 'react-icons/ai'
 import './MerchantLogin.scss'
 
 const MerchantLogin = (props) => {
-  console.log(props)
   const { username, password, setUsername, setPassword } = props
   const [submitted, setSubmitted] = useState(false)
+  const currentRole = useSelector((state) => state.role.type)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setSubmitted(true)
     if (username && password) {
-      props.login(username, password)
+      props.login(username, password, currentRole)
     }
   }
 
@@ -25,10 +25,12 @@ const MerchantLogin = (props) => {
       <div className="merchantLogin container-fluid">
         <div className="side">
           <div className="logo">
-            <img
-              src={require('@assets/img/logo/logo_icon_whiite.png')}
-              alt=""
-            />
+            <Link to="#needs" onClick={props.setNeeds}>
+              <img
+                src={require('@assets/img/logo/logo_icon_whiite.png')}
+                alt=""
+              />
+            </Link>
           </div>
           <div className="text">
             <p>想創立自有品牌嗎？</p>
@@ -38,11 +40,16 @@ const MerchantLogin = (props) => {
         </div>
         <div className="main">
           <div className="loginRole">
-            <Link to="#member" onClick={() => props.setMember()}>
+            <Link to="#member" className="pr-1" onClick={props.setMember}>
               會員
             </Link>
-            <span className="mx-1"> | </span>
-            <Link to="#merchant" onClick={() => props.setMerchant()}>
+            <Link
+              to="#merchant"
+              className={`pl-1 seperator ${
+                currentRole === 'merchant' ? 'actived' : ''
+              }`}
+              onClick={props.setMerchant}
+            >
               商家
             </Link>
           </div>
@@ -89,6 +96,15 @@ const MerchantLogin = (props) => {
                   LOGIN
                 </Button>
               </Form>
+              {/* For Logout Test */}
+              {/* <Button
+                variant="primary"
+                className="mt-2"
+                type="button"
+                onClick={() => props.logout()}
+              >
+                LOGOUT
+              </Button> */}
             </div>
           </div>
         </div>
@@ -105,8 +121,10 @@ const mapStateToProps = (store) => {
 
 const actionCreators = {
   login: userActions.login,
+  logout: userActions.logout,
   setMember: roleActions.setMember,
   setMerchant: roleActions.setMerchant,
+  setNeeds: roleActions.setNeeds,
 }
 
 export default connect(mapStateToProps, actionCreators)(MerchantLogin)

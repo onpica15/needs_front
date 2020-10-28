@@ -1,7 +1,7 @@
 import { userConstants } from '../actions/actiontypes'
 
 let user = JSON.parse(sessionStorage.getItem('user'))
-const initialState = user.success ? { loggedIn: true, user } : {}
+const initialState = user ? { loggedIn: true, user } : {}
 
 export function authentication(state = initialState, action) {
   switch (action.type) {
