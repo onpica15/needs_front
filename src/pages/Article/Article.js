@@ -6,7 +6,6 @@ import axios from 'axios'
 // import picture from '../../img/1579141548450.jpg'
 
 import './Article.scss'
-import FigureImage from 'react-bootstrap/esm/FigureImage'
 
 const Article = (props) => {
   const [articles, setArticles] = useState([])

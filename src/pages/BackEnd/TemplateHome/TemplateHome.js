@@ -7,6 +7,8 @@ import {
 
 import TemplatepicBig from './images/minimal_pro.png'
 import './Styles/TemplateHome.scss'
+import '../../../styles/Backend/_backend.scss'
+
 import { MdVisibility,MdVisibilityOff,MdEdit } from "react-icons/md";
 
 function TemplateHome(props) {

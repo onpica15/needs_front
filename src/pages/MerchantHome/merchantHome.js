@@ -3,7 +3,7 @@ import {
     Col,
     Container,
   } from 'react-bootstrap'
-import background_2 from './images/background_2.jpg'
+import './styles/merchantHome.scss'
 
 function MerchantHome(){
 
@@ -11,7 +11,7 @@ function MerchantHome(){
     return(
         <>
           <div className="merchantHome">
-            <div className="background"></div>
+            <div className="background">123123123123123132</div>
             </div>
         </>
     )
