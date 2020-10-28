@@ -8,7 +8,7 @@ function MemberComment() {
   return (
     <>
       <div className="container member ">
-        <div className="row my-5">
+        <div className="row my-3">
           <MemSidebar />
           <MemComment /> 
       </div>
