@@ -11,7 +11,7 @@ function MemberInform() {
         <div className="row my-3">
           <MemSidebar />
           <MemuInform />
-      </div>
+        </div>
       </div>
     </>
   )
