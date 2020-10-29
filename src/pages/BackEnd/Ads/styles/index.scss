@@ -1,0 +1,35 @@
+.ads-wrapper{
+    .card{
+        border: none;
+    }
+    .table-container{
+        overflow: auto;
+        white-space: nowrap;
+        width: 100%;
+    }
+    .in-progress-header{
+        font-weight: 500;
+    }
+    .in-progress-table{
+
+    }
+    .goal-box {
+        margin-top: 40px;
+        padding: 1rem;
+        text-align: center;
+
+        .goal-figures {
+            font-weight: 700;
+            font-size: 1.5rem;
+            line-height: 1.5rem;
+        }
+    }
+    .goal-completed {
+        border-top: 1px solid #ededed;
+        border-right: 1px solid #ededed;
+    }
+
+    .goal-in-progress {
+        border-top: 1px solid #ededed;
+    }
+}

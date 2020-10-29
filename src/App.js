@@ -17,6 +17,7 @@ import BackEndSidebar from './components/backend/Sidebar'
 import BackEndNavbar from './components/backend/Navbar'
 import BackEndDashboard from './pages/BackEnd/Dashboard'
 import Sales from './pages/BackEnd/Sales'
+import Ads from './pages/BackEnd/Ads'
 import CreateArticle from './pages/Article/CreateArticle'
 import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEditedPage'
 import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
@@ -130,6 +131,11 @@ function App() {
           <DynamicLayoutRoute
             path="/customer-backend/sales-index"
             component={Sales}
+            layout="BACK_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/customer-backend/ads"
+            component={Ads}
             layout="BACK_END_NAV"
           />
         </Switch>

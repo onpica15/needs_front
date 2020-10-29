@@ -133,7 +133,6 @@ function Sidebar() {
               </Card.Header>
               <Accordion.Collapse eventKey="6">
                 <Card.Body>
-                  {' '}
                   <ul className="nav nav-pills flex-column">
                     <li className="nav-item-disc">
                       <Link
@@ -145,7 +144,11 @@ function Sidebar() {
                       </Link>
                     </li>
                     <li className="nav-item-disc">
-                      <Link to="" className="nav-link" href="#">
+                      <Link
+                        to="/customer-backend/ads"
+                        className="nav-link"
+                        href="#"
+                      >
                         投放概覽
                       </Link>
                     </li>

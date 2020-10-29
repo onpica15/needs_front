@@ -37,7 +37,7 @@ class KeyIndexChart extends React.Component {
           tooltipHoverFormatter: function (val, opts) {
             return (
               val +
-              ' - ' +
+              '' +
               opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] +
               ''
             )
