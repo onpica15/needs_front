@@ -9,22 +9,61 @@ $bg-gray: #cdcdcd;
 $bg-light: #f0f0f0;
 
 .advantageSec {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  .advantageContent {
+  h4,
+  span {
+    font-family: 'Noto Sans TC', sans-serif;
+    line-height: 1.75;
+    letter-spacing: 1.2px;
+  }
+  .secTitle {
+    padding-top: 80px;
+    padding-bottom: 60px;
+    text-align: center;
+    h4 {
+      font-size: 1.5 rem;
+      font-weight: 500;
+      color: $font-black;
+    }
+    span {
+      font-size: 1 rem;
+      font-weight: 300;
+      color: $font-gray;
+      margin-top: 13px;
+    }
+  }
+
+  div.advantageContent {
     color: $primary;
     display: flex;
     justify-content: center;
+    align-items: center;
     height: 300px;
-    .advText {
-      p {
-        margin-bottom: 1.2px;
+    .advImg {
+      width: 35%;
+      img {
+        width: 100%;
       }
     }
-    .advNum {
+    .text {
+      margin-left: 5%;
+      margin-right: 5%;
+      p {
+        color: $font-gray;
+        margin-bottom: 3px;
+      }
+    }
+    .order {
       font-size: 150px;
-      margin-left: 70px;
+    }
+
+    &:nth-child(even) {
+      background-color: $bg-light;
+    }
+    &:nth-child(odd) {
+      flex-direction: row-reverse;
+      .text {
+        text-align: right;
+      }
     }
   }
 }

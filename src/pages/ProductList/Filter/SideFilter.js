@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
-
 import { Range } from 'rc-slider'
-
+import { Button } from 'react-bootstrap'
+import StarRating from '../../../components/StarRating'
 import 'rc-slider/assets/index.css'
 import './SideFilter.scss'
 
 const SideFilter = (props) => {
+  // setting PriceRang
   const [price, setPrice] = useState([400, 1300])
 
+  //setting handlePrice step
   const sliderProps = {
     min: 0,
     max: 2000,
@@ -45,28 +47,48 @@ const SideFilter = (props) => {
         </div>
         <div className="filterItem">
           <h6 className="title">顏色分類</h6>
-          <div className="d-flex">
-            <input className="" type="radio" value="red" />
+          <div className="d-flex colorSelect">
+            <div className="color red" onClick={(e) => console.log('1')}></div>
+            <div
+              className="color orange"
+              onClick={(e) => console.log('2')}
+            ></div>
+            <div
+              className="color yellow"
+              onClick={(e) => console.log('3')}
+            ></div>
+            <div
+              className="color Indigo"
+              onClick={(e) => console.log('4')}
+            ></div>
+            <div
+              className="color green"
+              onClick={(e) => console.log('5')}
+            ></div>
           </div>
         </div>
-        <div className="filterItem">
+        <div className="filterItem starSelect">
           <h6 className="title">評價</h6>
-          <input />
+          <StarRating />
         </div>
         <div className="filterItem">
           <h6 className="title">其他篩選</h6>
           <div>
-            <input type="checkbox" />
-            <label>可用e幣</label>
+            <label>
+              <input type="checkbox" />
+              可用e幣
+            </label>
           </div>
           <div>
-            <input type="checkbox" />
-            <label>尚有庫存</label>
+            <label>
+              <input type="checkbox" />
+              尚有庫存
+            </label>
           </div>
         </div>
       </div>
 
-      <button>套用搜尋</button>
+      <Button variant="dark">套用搜索</Button>
     </>
   )
 }

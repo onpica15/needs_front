@@ -1,65 +1,118 @@
-import React, { Component, useState } from 'react'
+import React, { useState, useEffect } from 'react'
+
+import axios from 'axios'
 import EditorJs from 'react-editor-js'
+import editorjsHTML from 'editorjs-html'
 import { EDITOR_JS_TOOLS } from './constants'
+import TestArticleDetial from './TestArticleDetial'
 
 const CreateArticle = (props) => {
-  const editorData = {
-    time: new Date().getTime(),
-    blocks: [
-      {
-        type: 'header',
-        data: {
-          text: '',
-          level: 2,
-        },
-      },
-      {
-        type: 'paragraph',
-        data: {
-          text:
-            'Hey. Meet the new Editor. On this page you can see it in action — try to edit this text.',
-        },
-      },
-    ],
-  }
+  const [title, setTitle] = useState('')
+  const [outline, setOutline] = useState('')
+  const [image, setImage] = useState('')
+  const [contentDetial, setContentDetial] = useState({})
+  const [showHTML, setShowHTML] = useState('')
   const instanceRef = React.useRef(null)
   async function handleSave() {
     const savedData = await instanceRef.current.save()
 
     console.log('savedData', savedData)
+    setContentDetial(savedData)
+  }
 
-    // convert way of block to html
-    let html = ''
-    editorData.blocks.forEach(function (block) {
-      switch (block.type) {
-        case 'header':
-          html += `<h${block.data.level}>${block.data.text}</h${block.data.level}>`
-          break
+  let articleHTML = ''
+
+  const sendContent = async () => {
+    contentDetial.blocks.map((obj) => {
+      switch (obj.type) {
         case 'paragraph':
-          html += `<p>${block.data.text}</p>`
-          break
-        case 'delimiter':
-          html += '<hr />'
+          setOutline(obj.data.text)
+          articleHTML += `<div class="ce-block">
+        <div class="ce-block__content">
+          <div class="ce-paragraph cdx-block">
+            ${obj.data.text}
+          </div>
+        </div>
+      </div>\n`
           break
         case 'image':
-          html += `<img class="img-fluid" src="${block.data.file.url}" title="${block.data.caption}" /><br /><em>${block.data.caption}</em>`
+          setImage(obj.data.url)
+          articleHTML += `<div class="ce-block">
+        <div class="ce-block__content">
+          <div class="ce-paragraph cdx-block">
+            <img src="${obj.data.url}" alt="${obj.data.caption}" />
+            <div class="text-center">
+              <i>${obj.data.caption}</i>
+            </div>
+          </div>
+        </div>
+      </div>\n`
+          break
+        case 'header':
+          setTitle(obj.data.text)
+          articleHTML += `<div class="ce-block">
+        <div class="ce-block__content">
+          <div class="ce-paragraph cdx-block">
+            <h${obj.data.level}>${obj.data.text}</h${obj.data.level}>
+          </div>
+        </div>
+      </div>\n`
+          break
+        case 'raw':
+          articleHTML += `<div class="ce-block">
+        <div class="ce-block__content">
+          <div class="ce-rawtool">
+            <code>${obj.data.html}</code>
+          </div>
+        </div>
+      </div>\n`
           break
         case 'list':
-          html += '<ul>'
-          block.data.items.forEach(function (li) {
-            html += `<li>${li}</li>`
-          })
-          html += '</ul>'
+          if (obj.data.style === 'unordered') {
+            const list = obj.data.items.map((item) => {
+              return `<li class="cdx-list__item">${item}</li>`
+            })
+            articleHTML += `<div class="ce-block">
+          <div class="ce-block__content">
+            <div class="ce-paragraph cdx-block">
+              <ul class="cdx-list--unordered">${list}</ul>
+            </div>
+            </div>
+          </div>\n`
+          } else {
+            const list = obj.data.items.map((item) => {
+              return `<li class="cdx-list__item">${item}</li>`
+            })
+            articleHTML += `<div class="ce-block">
+          <div class="ce-block__content">
+            <div class="ce-paragraph cdx-block">
+              <ol class="cdx-list--ordered">${list}</ol>
+            </div>
+            </div>
+          </div>\n`
+          }
+          break
+        case 'delimeter':
+          articleHTML += `<div class="ce-block">
+        <div class="ce-block__content">
+          <div class="ce-delimiter cdx-block"></div>
+        </div>
+      </div>\n`
           break
         default:
-          console.log('Unknown block type', block.type)
-          console.log(block)
-          break
+          return ''
       }
-      // document.getElementById('content').innerHTML = html
-      //console.log(block);
     })
-    console.log('html: ', html)
+    const edjsParser = editorjsHTML()
+    const html = edjsParser.parse(contentDetial)
+    setShowHTML(html)
+    console.log(showHTML)
+
+    await axios
+      .post('http://localhost:5000/article', [title, image, outline, html])
+      .catch((error) => {
+        console.log('Error', error)
+      })
   }
 
   return (
@@ -68,9 +121,15 @@ const CreateArticle = (props) => {
         onChange={handleSave}
         instanceRef={(instance) => (instanceRef.current = instance)}
         tools={EDITOR_JS_TOOLS}
-        data={editorData}
+        data={contentDetial}
       />
       <button onClick={handleSave}>儲存</button>
+      <div style={{ textAlign: 'center', margin: '2rem' }}>
+        <button className="" onClick={sendContent}>
+          送出
+        </button>
+      </div>
+      <TestArticleDetial showHTML={showHTML} />
     </>
   )
 }

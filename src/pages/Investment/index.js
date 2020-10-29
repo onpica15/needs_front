@@ -1,28 +1,43 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Container, Button, Carousel } from 'react-bootstrap'
-// import { useSpring, animated, interpolate } from 'react-spring'
 import './investment.scss'
+import Banner from './modules/Banner'
+import Silder from './modules/Silder'
 import InvestmentAdvantage from '../../components/InvestmentAdvantage'
-import Join from './modules/Join'
+import CreateStoreStep from './modules/CreateStoreStep'
+import Partnership from './modules/Partnership'
+import Fee from './modules/Fee'
 import BrandList from './modules/BrandList'
+import BrandData from '@assets/data/brands.json'
+import Join from './modules/Join'
 import CollapseList from './modules/CollapseList'
 import CollapseData from '@assets/data/investment_q&a.json'
 
 const Investment = () => {
   //Animation set Show
-  const [joinShow, setjoinShow] = useState(false)
+  const [advantageShow, setAdvantage] = useState(false)
   const [brandListShow, setBrandListShow] = useState(false)
-  const joinRef = useRef()
+  const [partnershipShow, setPartnershipShow] = useState(false)
+  const [joinShow, setjoinShow] = useState(false)
+
+  const advantageRef = useRef()
   const brandListRef = useRef()
+  const partnershipRef = useRef()
+  const joinRef = useRef()
 
   const windowHeight = window.innerHeight
 
   //Scroll hadler for animation
   const handleScroll = () => {
     const posY = (ref) => ref.current.getBoundingClientRect().top
-    if (posY(joinRef) <= windowHeight) setjoinShow(true)
-    if (posY(brandListRef) <= windowHeight) setBrandListShow(true)
+    if (advantageRef.current && posY(advantageRef) <= windowHeight)
+      setAdvantage(true)
+    if (brandListRef.current && posY(brandListRef) <= windowHeight)
+      setBrandListShow(true)
+    if (partnershipRef.current && posY(partnershipRef) <= windowHeight)
+      setPartnershipShow(true)
+    if (joinRef.current && posY(joinRef) <= windowHeight) setjoinShow(true)
   }
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -30,118 +45,21 @@ const Investment = () => {
 
   return (
     <>
-      <Container fluid className="investment">
-        <div className="bannerSec">
-          <h2 className="">Build Your Online Business with NEEDS</h2>
-          <Button variant="secondary">立即開店 →</Button>
-        </div>
-      </Container>
-      <Container className="investment">
-        <div className="silderSec">
-          <div className="secTitle">
-            <h4>設計品牌風格</h4>
-            <span>不懂團像處理、程式編輯也能輕鬆操作</span>
-          </div>
-          <Carousel className="templateSilder">
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={require('@assets/img/investment/2_template1.jpg')}
-                alt="First slide"
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={require('@assets/img/investment/2_template2.jpg')}
-                alt="Second slide"
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={require('@assets/img/investment/2_template3.jpg')}
-                alt="Third slide"
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={require('@assets/img/investment/2_template4.jpg')}
-                alt="Forth slide"
-              />
-            </Carousel.Item>
-          </Carousel>
-        </div>
-        <div className="advantageSec">
-          <InvestmentAdvantage />
-        </div>
-        <div className="feeSec">
-          <div className="secTitle">
-            <h4>平台費用</h4>
-          </div>
-          <div className="feeContent">
-            <div className="standardPlan">
-              <img
-                src={require(`@assets/img/investment/6_winner.png`)}
-                alt=""
-                className="planIcon"
-              />
-              <h4>標準方案 Standard</h4>
-              <div className="plan">
-                <ul>
-                  <li>保證金 $10,000</li>
-                  <li>月租費 $1,500</li>
-                  <li>免成交手續費</li>
-                  <li>免訂單處理費</li>
-                </ul>
-              </div>
-            </div>
-            <div className="premiumPlan">
-              <img
-                src={require(`@assets/img/investment/6_diamond.png`)}
-                alt=""
-                className="planIcon"
-              />
-              <h4>進階方案 Premium</h4>
-              <div className="plan">
-                <ul>
-                  <li>保證金 $10,000</li>
-                  <li>月租費 $2,000</li>
-                  <li>免成交手續費</li>
-                  <li>免訂單處理費</li>
-                </ul>
-              </div>
-            </div>
-            <Button variant="light">方案詳情 →</Button>
-          </div>
-        </div>
-        <div className="brandListSec" ref={brandListRef}>
-          <div className="secTitle">
-            <h4>已加入NEEDS品牌</h4>
-            <span>超過100個優秀設計品牌已加入NEEDS</span>
-          </div>
-          <div className="brandContent">
-            <BrandList show={brandListShow} />
-          </div>
-        </div>
-      </Container>
-      <Container fluid ref={joinRef} className="investment">
-        <Join show={joinShow} />
-      </Container>
-      <Container className="investment">
-        <div className="questionSec">
-          <div className="secTitle">
-            <h4>常見問題</h4>
-          </div>
-          <div className="questionContent">
-            <CollapseList CollapseData={CollapseData} />
-            <div>
-              <Button variant="secondary">查看更多問與答 →</Button>
-            </div>
-          </div>
-        </div>
-      </Container>
+      <div className="investment">
+        <Banner />
+        <Silder />
+        <InvestmentAdvantage show={advantageShow} aniRef={advantageRef} />
+        <CreateStoreStep />
+        <Partnership show={partnershipShow} aniRef={partnershipRef} />
+        <Fee />
+        <BrandList
+          show={brandListShow}
+          BrandData={BrandData}
+          aniRef={brandListRef}
+        />
+        <Join show={joinShow} aniRef={joinRef} />
+        <CollapseList CollapseData={CollapseData} />
+      </div>
     </>
   )
 }
