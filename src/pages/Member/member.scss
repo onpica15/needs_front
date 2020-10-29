@@ -206,15 +206,19 @@ $shadow: #e7e7e7;
     .whiteSpacePre {
         white-space: pre;
     }
-
+.sidebar{
+    width: 100px;
+    height: 280px;
+}
     .wrapper {
-        width: 155 px;
+        width: 100px;
         height: 40px;
 
         .icons {
             margin-right: 10px;
         }
     }
+
 }
 
 .memsidebar a:hover {

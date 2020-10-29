@@ -11,7 +11,7 @@ function MemberEcoin() {
         <div className="row my-3">
           <MemSidebar />
           <MemEcoin />
-      </div>
+        </div>
       </div>
     </>
   )

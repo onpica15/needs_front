@@ -11,11 +11,12 @@ import { MdAddAPhoto } from 'react-icons/md'
 const MemSidebar = () => {
   return (
     <>
-      <div className="d-flex flex-column memsidebar">
+      <div className="d-flex flex-column memsidebar ">
         <div className="sticker mx-auto"> </div>
+
         <p className="font-ss">
           <Link to="#">
-            <div className="d-flex justify-content-end wrapper">
+            <div className="d-flex ml-5 wrapper">
               <div className="icons">
                 <MdAddAPhoto />
               </div>
@@ -23,76 +24,78 @@ const MemSidebar = () => {
             </div>
           </Link>
         </p>
-        <p className="font-s">
-          <Link to="/member/card">
-            <div className="d-flex justify-content-center wrapper ">
-              <div className="icons">
-                <BsPersonFill />
+        <div className="sidebar mx-auto">
+          <p className="font-s">
+            <Link to="/member/card">
+              <div className="d-flex  wrapper ">
+                <div className="icons">
+                  <BsPersonFill />
+                </div>
+                我的帳號
               </div>
-              我的帳號
-            </div>
-          </Link>
-        </p>
-        <p className="font-s">
-          <Link to="/member/shop">
-            <div className="d-flex justify-content-center wrapper">
-              <div className="icons">
-                <FaShoppingBag />
+            </Link>
+          </p>
+          <p className="font-s">
+            <Link to="/member/shop">
+              <div className="d-flex  wrapper">
+                <div className="icons">
+                  <FaShoppingBag />
+                </div>
+                購買清單
               </div>
-              購買清單
-            </div>
-          </Link>
-        </p>
-        <p className="font-s">
-          <Link to="/member/like">
-            <div className="d-flex justify-content-center wrapper">
-              <div className="icons">
-                <FaStore />
+            </Link>
+          </p>
+          <p className="font-s">
+            <Link to="/member/like">
+              <div className="d-flex  wrapper">
+                <div className="icons">
+                  <FaStore />
+                </div>
+                我的關注
               </div>
-              我的關注
-            </div>
-          </Link>
-        </p>
-        <p className="font-s">
-          <Link to="/member/inform">
-            <div className="d-flex justify-content-center wrapper">
-              <div className="icons">
-                <BsFillBellFill />
+            </Link>
+          </p>
+          <p className="font-s">
+            <Link to="/member/inform">
+              <div className="d-flex  wrapper">
+                <div className="icons">
+                  <BsFillBellFill />
+                </div>
+                通知中心
               </div>
-              通知中心
-            </div>
-          </Link>
-        </p>
-        <p className="font-s">
-          <Link to="/member/ecoin">
-            <div className="d-flex justify-content-center wrapper">
-              <div className="icons">
-                <FaCoins />
+            </Link>
+          </p>
+          <p className="font-s">
+            <Link to="/member/ecoin">
+              <div className="d-flex  wrapper">
+                <div className="icons">
+                  <FaCoins />
+                </div>
+                <p class="whiteSpacePre">Ｅcoin </p>
               </div>
-              <p class="whiteSpacePre"> Ｅcoin </p>
-            </div>
-          </Link>
-        </p>
-        <p className="font-s">
-          <Link to="/member/comment">
-            <div className="d-flex justify-content-center wrapper">
-              <div className="icons">
-                <RiMessage2Fill />
+            </Link>
+          </p>
+          <p className="font-s">
+            <Link to="/member/comment">
+              <div className="d-flex  wrapper">
+                <div className="icons">
+                  <RiMessage2Fill />
+                </div>
+                我的評論
               </div>
-              我的評論
-            </div>
-          </Link>
-        </p>
-        <p className="font-s">
-          <Link to="#">
-            <div className="d-flex justify-content-center wrapper">
-              <div className="icons">
-                <BsQuestionSquareFill />
+            </Link>
+          </p>
+          <p className="font-s">
+            <Link to="#">
+              <div className="d-flex  wrapper">
+                <div className="icons">
+                  <BsQuestionSquareFill />
+                </div>
+                常見問題
               </div>
-              常見問題
-            </div>
-          </Link>
-        </p>
+            </Link>
+          </p>
+        </div>
       </div>
     </>
   )
