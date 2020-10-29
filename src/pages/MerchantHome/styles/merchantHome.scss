@@ -25,11 +25,18 @@
         background-image: url('../images/background_2.jpg');
         background-size: cover;
     }
-    .sec1_avatar{
+    .background-color{
       background-color:#323232;
+      min-height: 35vh;
+      width: 58%;
+      padding-top: 35px;
+      position: absolute;
+    }
+    .sec1_avatar{
       min-height: 35vh;
       width: 60%;
       padding-top: 35px;
+      position: relative;
       h2
       ,h4{
         color: #fff;
@@ -65,9 +72,9 @@
       }
     }
     .sec1_info{
-      background-color: #fff;
+      min-height: 35vh;
       width: 40%;
-      padding:5rem 1rem 2rem 4rem;
+      padding:5rem 1rem 2rem 3rem;
       .row1{
         margin-bottom: 2rem;
       }
@@ -84,13 +91,32 @@
     width: 100%;
     display: flex;
     align-items: center;
+    text-align: center;
+    .wrapper{
+      // width: 30%;
+      align-items: between;
+      justify-content: space-between;
+      margin-left:100px;
+    }
+    .sml{
+      width: 300px;
+    }
   }
   .product-bg-pic{
     height: 72vh;
     width: 72vh;
     background-image: url('../images/product_bg_1.jpg');
     background-size: cover;
-    margin-left: 7rem;
+    margin-right: 100px;
+  }
+  .product-sml-pic{
+    height: 300px;
+    width: 300px;
+    background-image: url('../images/product_bg_1.jpg');
+    background-size: cover;
+    // margin-left: 5rem;
+    display: flex;
+    align-items: center;
   }
   .sec3{
     height: 100vh;
@@ -100,6 +126,8 @@
   .sec4{
     height: 60vh;
     width: 100%;
+    padding-top: 80px;
+    padding-left: 100px;
     background-color: #f0f0f0;
 
     .activities-wrapper{
@@ -120,7 +148,8 @@
     }
     
     .text{
-      margin: auto;
+      // margin: auto;
+      margin-left: 250px;
     }
     .activity-btn{
         margin-bottom: 1rem;
@@ -147,9 +176,11 @@
     height: 40vh;
     width: 100%;
     background-color: #fff;
+    padding-left: 100px;
   }
-  .underline_wrapper{
-    width: 5%;
+  .underline-wrapper{
+    width: 100%;
+    margin-bottom: 20px;
   }
   .brandStory_img{
     height: 30vh;
@@ -160,6 +191,33 @@
   }
   .underline{
     border-bottom:3px solid  #d44f44;
+    width: 150px;
   }
-  
+  .text-wrapper{
+    background-color: #f0f0f0 ;
+    display: flex;
+    align-items: center;
+  }
+  .adjust{
+    margin-left: 130px;
+  }
+  .btn {
+    margin-bottom: 1rem;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    line-height: 16px;
+    height: 50px;
+    background-color: #d44f44;
+    border: none;
+    &:hover {
+      background-color: #d44f44;
+    }
+    &:active {
+      background-color: #d44f44;
+    }
+    &:focus {
+      background-color: #d44f44;
+    }
+  }
 }
