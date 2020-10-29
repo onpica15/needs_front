@@ -89,12 +89,13 @@ $bg-light: #f0f0f0;
 
         p {
           font-size: 0.875rem;
-        }
-        a {
-          color: $danger;
-          &:hover,
-          &:focus {
+          margin-bottom: 0;
+          a {
             color: $danger;
+            &:hover,
+            &:focus {
+              color: $danger;
+            }
           }
         }
       }

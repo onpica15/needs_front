@@ -11,6 +11,7 @@ const MerchantLogin = (props) => {
   const { username, password, setUsername, setPassword } = props
   const [submitted, setSubmitted] = useState(false)
   const currentRole = useSelector((state) => state.role.type)
+  const alertMsg = useSelector((state) => state.alert.message)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -86,6 +87,7 @@ const MerchantLogin = (props) => {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </Form.Group>
+                <p className={alertMsg ? 'alertmsg' : ''}>{alertMsg}</p>
                 <div className="forgetPassword d-block">
                   <Link to="">忘記密碼</Link>
                   <Link to="/signup" className="ml-3 display-none">

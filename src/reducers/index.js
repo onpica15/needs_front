@@ -9,5 +9,5 @@ export const rootReducer = combineReducers({
   authentication,
   role,
   // registration,
-  // alert,
+  alert,
 })

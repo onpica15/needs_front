@@ -14,7 +14,7 @@ export const roleTypes = {
   SET_NEEDS: 'SET_NEEDS',
 }
 
-//AlertActions
+//alertActions
 export const alertConstants = {
   SUCCESS: 'ALERT_SUCCESS',
   ERROR: 'ALERT_ERROR',

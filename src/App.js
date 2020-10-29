@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { createBrowserHistory } from 'history'
+import { alertActions } from './actions'
 
 //平台
 import Navbar from './components/Navbar'
@@ -26,7 +28,7 @@ import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
 import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
 import ArticleDetial from './pages/Article/ArticleDetial'
 
-export const history = createBrowserHistory()
+const history = createBrowserHistory()
 
 //設置layout props
 const DynamicLayoutRoute = (props) => {
@@ -72,7 +74,11 @@ const DynamicLayoutRoute = (props) => {
 }
 
 //Route設置
-function App() {
+function App(props) {
+  useEffect(() => {
+    history.listen((location, action) => props.clearAlerts)
+  }, [])
+
   return (
     <Router>
       <>
@@ -163,4 +169,15 @@ function App() {
   )
 }
 
-export default App
+// export default App
+
+const mapStateToProps = (store) => {
+  const { alert } = store
+  return { alert }
+}
+
+const actionCreators = {
+  clearAlerts: alertActions.clear,
+}
+
+export default connect(mapStateToProps, actionCreators)(App)

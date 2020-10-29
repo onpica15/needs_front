@@ -121,6 +121,12 @@ $bg-light: #f0f0f0;
         input {
           width: 300px;
         }
+        .alertmsg {
+          font-size: 0.875rem;
+          color: $danger;
+          margin-top: -16px;
+          margin-bottom: 5px;
+        }
         .forgetPassword {
           margin-bottom: 1rem;
           :last-child {

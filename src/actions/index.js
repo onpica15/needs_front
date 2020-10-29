@@ -1,9 +1,10 @@
-import { userConstants, roleTypes } from './actiontypes'
+import { userConstants, roleTypes, alertConstants } from './actiontypes'
 import { createBrowserHistory } from 'history'
-export const history = createBrowserHistory()
+const history = createBrowserHistory()
+
 export const userActions = { login, logout }
 export const roleActions = { setMember, setMerchant, setNeeds }
-// export hadleRole
+export const alertActions = { success, error, clear }
 
 // login action
 function login(username, password, currentRole) {
@@ -11,6 +12,7 @@ function login(username, password, currentRole) {
     checkAuth(username, password, currentRole).then((user) => {
       if (!user.success) {
         dispatch(failure())
+        dispatch(error('帳號或密碼錯誤'))
       } else {
         dispatch(success(user))
         history.goBack()
@@ -27,7 +29,7 @@ function login(username, password, currentRole) {
 
 const checkAuth = (username, password, currentRole) => {
   console.log(currentRole)
-  const url = `http://localhost:5000/login-api/${currentRole}login`
+  const url = `http://122.116.38.12:5050/login-api/${currentRole}login`
   console.log(url)
   const req = new Request(url, {
     method: 'POST',
@@ -120,21 +122,15 @@ function setNeeds() {
 //   }
 // }
 
-//Alert
-// export const alertActions = {
-//   success,
-//   error,
-//   clear,
-// }
+// alert actions
+function success(message) {
+  return { type: alertConstants.SUCCESS, message }
+}
 
-// function success(message) {
-//   return { type: alertConstants.SUCCESS, message }
-// }
+function error(message) {
+  return { type: alertConstants.ERROR, message }
+}
 
-// function error(message) {
-//   return { type: alertConstants.ERROR, message }
-// }
-
-// function clear() {
-//   return { type: alertConstants.CLEAR }
-// }
+function clear() {
+  return { type: alertConstants.CLEAR }
+}
