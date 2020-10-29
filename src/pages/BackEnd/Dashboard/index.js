@@ -1,4 +1,5 @@
 import React from 'react'
+import './styles/index.scss'
 import SocialMediaChart from '../../../components/backend/dashboard/charts/SocialMedia'
 import BrowseChart from '../../../components/backend/dashboard/charts/Browse'
 import SalesChart from '../../../components/backend/dashboard/charts/Sales'
