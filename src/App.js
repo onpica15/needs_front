@@ -8,7 +8,14 @@ import { alertActions } from './actions'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
-import Member from './pages/Member/Member'
+
+import MemberCard from './pages/Member/MemberCard'
+import MemberShop from './pages/Member/MemberShop'
+import MemberLike from './pages/Member/MemberLike'
+import MemberInform from './pages/Member/MemberInform'
+import MemberEcoin from './pages/Member/MemberEcoin'
+import MemberComment from './pages/Member/MemberComment'
+
 import Investment from './pages/Investment'
 import Article from './pages/Article/Article'
 import ProductList from './pages/ProductList/ProductList'
@@ -20,8 +27,9 @@ import SignUp from './pages/Login/SignUp'
 //商家後台
 import BackEndSidebar from './components/backend/Sidebar'
 import BackEndNavbar from './components/backend/Navbar'
-import BackEndDashboard from './pages/BackEnd/Dashboard/Dashboard'
-
+import BackEndDashboard from './pages/BackEnd/Dashboard'
+import Sales from './pages/BackEnd/Sales'
+import Ads from './pages/BackEnd/Ads'
 import CreateArticle from './pages/Article/CreateArticle'
 import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEditedPage'
 import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
@@ -121,8 +129,33 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/member"
-            component={Member}
+            path="/member/card"
+            component={MemberCard}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/member/shop"
+            component={MemberShop}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/member/like"
+            component={MemberLike}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/member/inform"
+            component={MemberInform}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/member/ecoin"
+            component={MemberEcoin}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/member/comment"
+            component={MemberComment}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
@@ -140,7 +173,6 @@ function App(props) {
             component={SignUp}
             layout="FRONT_END_NAV"
           />
-
           {/* 商家後台 */}
           <DynamicLayoutRoute
             exact
@@ -161,6 +193,16 @@ function App(props) {
           <DynamicLayoutRoute
             path="/customer-backend/template-list"
             component={TemplateList}
+            layout="BACK_END_NAV"
+          />{' '}
+          <DynamicLayoutRoute
+            path="/customer-backend/sales-index"
+            component={Sales}
+            layout="BACK_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/customer-backend/ads"
+            component={Ads}
             layout="BACK_END_NAV"
           />
         </Switch>

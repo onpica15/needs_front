@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { BsPersonFill } from 'react-icons/bs'
 import { FaEdit } from 'react-icons/fa'
 const MemCard = () => {
@@ -6,20 +7,19 @@ const MemCard = () => {
     <>
       <div className="memcard">
         <div className="col-md-10">
-          <div className="card">
-            <h4>
+          <div className="maincard">
+            <p className="font-m">
               <div className="d-flex wrapper">
-                <div className="icons">
+                <p className="icons">
                   <BsPersonFill />
-                </div>
-                會員資料
-                <a href="#">
-                  <div className="icons">
-                    <FaEdit />
-                  </div>
-                </a>
+                </p>
+                <p>會員資料</p>
+
+                <Link to="#" className="icons">
+                  <FaEdit />
+                </Link>
               </div>
-            </h4>
+            </p>
             <div className="container">
               <div className="row">
                 <div className="col-md-5">
