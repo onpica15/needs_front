@@ -82,12 +82,12 @@ class RevenueChart extends Component {
       <>
         <div className="chart-card revenue">
           <div className="revenue-title">本週收入</div>
-          <div className=" monthly-income mr-2">
+          <div className=" monthly-income mr-5">
             <div className="month-title">本月</div>
             <sup className="font-medium-1">$</sup>
             <span className="this-month-income">86,589</span>
           </div>
-          <div className="monthly-income mr-2">
+          <div className="monthly-income mr-5">
             <div className="month-title">上個月</div>
             <sup className="font-medium-1">$</sup>
             <span className="last-month-income">73,683</span>

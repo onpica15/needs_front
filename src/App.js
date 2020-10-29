@@ -23,8 +23,9 @@ import MerchantLogin from './pages/Login/MerchantLogin'
 //商家後台
 import BackEndSidebar from './components/backend/Sidebar'
 import BackEndNavbar from './components/backend/Navbar'
-import BackEndDashboard from './pages/BackEnd/Dashboard/Dashboard'
-
+import BackEndDashboard from './pages/BackEnd/Dashboard'
+import Sales from './pages/BackEnd/Sales'
+import Ads from './pages/BackEnd/Ads'
 import CreateArticle from './pages/Article/CreateArticle'
 import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEditedPage'
 import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
@@ -154,7 +155,6 @@ function App() {
             component={MerchantLogin}
             layout="FRONT_END_NAV"
           />
-
           {/* 商家後台 */}
           <DynamicLayoutRoute
             exact
@@ -175,6 +175,16 @@ function App() {
           <DynamicLayoutRoute
             path="/customer-backend/template-list"
             component={TemplateList}
+            layout="BACK_END_NAV"
+          />{' '}
+          <DynamicLayoutRoute
+            path="/customer-backend/sales-index"
+            component={Sales}
+            layout="BACK_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/customer-backend/ads"
+            component={Ads}
             layout="BACK_END_NAV"
           />
         </Switch>
