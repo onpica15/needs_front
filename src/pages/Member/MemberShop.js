@@ -1,18 +1,15 @@
 import React, { useState } from 'react'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import MemSidebar from './memmodules/MemSidebar'
-// import MemCard from './memmodules/Memcard'
 import MemShop from './memmodules/MemShop'
 import './member.scss'
 
-function App() {
+function MemberShop() {
   return (
     <>
-      <div className="container-fluid">
-        <div className="row">
+      <div className="container member ">
+        <div className="row my-3">
           <MemSidebar />
-
-          {/* <MemCard /> */}
-
           <MemShop />
         </div>
       </div>
@@ -20,4 +17,4 @@ function App() {
   )
 }
 
-export default App
+export default MemberShop

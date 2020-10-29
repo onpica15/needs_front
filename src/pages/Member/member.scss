@@ -10,216 +10,240 @@ $shadow: #e7e7e7;
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
 
-// * {
-//     .font-s {
-//         font-size: 1rem;
-//     }
+.member {
+    .font-ss {
+        font-size: 0.87rem;
+    }
 
-//     html,
-//     body,
-//     div,
-//     span,
-//     applet,
-//     object,
-//     iframe,
-//     h1,
-//     h2,
-//     h3,
-//     h4,
-//     h5,
-//     h6,
-//     p,
-//     blockquote,
-//     pre,
-//     a,
-//     abbr,
-//     acronym,
-//     address,
-//     big,
-//     cite,
-//     code,
-//     del,
-//     dfn,
-//     em,
-//     img,
-//     ins,
-//     kbd,
-//     q,
-//     s,
-//     samp,
-//     small,
-//     strike,
-//     strong,
-//     sub,
-//     sup,
-//     tt,
-//     var,
-//     b,
-//     u,
-//     i,
-//     center,
-//     dl,
-//     dt,
-//     dd,
-//     ol,
-//     ul,
-//     li,
-//     fieldset,
-//     form,
-//     label,
-//     legend,
-//     table,
-//     caption,
-//     tbody,
-//     tfoot,
-//     thead,
-//     tr,
-//     th,
-//     td,
-//     article,
-//     aside,
-//     canvas,
-//     details,
-//     embed,
-//     figure,
-//     figcaption,
-//     footer,
-//     header,
-//     hgroup,
-//     menu,
-//     nav,
-//     output,
-//     ruby,
-//     section,
-//     summary,
-//     time,
-//     mark,
-//     audio,
-//     video {
-//         margin: 0;
-//         padding: 0;
-//         border: 0;
-//         font-size: 100%;
-//         font: inherit;
-//         vertical-align: baseline;
-//     }
+    .font-s {
+        font-size: 1rem;
+    }
 
-//     /* HTML5 display-role reset for older browsers */
-//     article,
-//     aside,
-//     details,
-//     figcaption,
-//     figure,
-//     footer,
-//     header,
-//     hgroup,
-//     menu,
-//     nav,
-//     section {
-//         display: block;
-//     }
+    .font-m {
+        font-size: 1.5rem;
+    }
 
-//     body {
-//         line-height: 1;
-//     }
+    .font-l {
+        font-size: 2rem;
+    }
 
-//     ol,
-//     ul {
-//         list-style: none;
-//     }
+    .maincard {
+        margin-bottom: 30px;
+        padding: 20px;
+        width: 950px;
+        height: 600px;
+        border-radius: 10px;
+        border: solid 2px $danger;
+        box-shadow: 6px 5px $shadow;
+    }
 
-//     blockquote,
-//     q {
-//         quotes: none;
-//     }
+    //---memshop topbar
+    //-->參考：https://wcc723.github.io/css/2020/02/21/css-border/#
+    .topside {
+        .topsidebox {
+            width: 150px;
+            height: 50px;
+        }
 
-//     blockquote:before,
-//     blockquote:after,
-//     q:before,
-//     q:after {
-//         content: '';
-//         content: none;
-//     }
+        a:hover {
+            color: $danger;
+        }
 
-//     table {
-//         border-collapse: collapse;
-//         border-spacing: 0;
-//         margin: 0;
-//     }
-// }
+        a:active {
+            color: $danger;
+            box-shadow: 0 -2px $danger inset;
+        }
+    }
 
-// //memsidebar
-// .memsidebar {
-//     width: 155px;
-//     height: 550px;
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+    }
 
-//     .sticker {
+    /* HTML5 display-role reset for older browsers */
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+        display: block;
+    }
 
-//         width: 130px;
-//         height: 130px;
-//         background-color: #ccc;
-//         border-radius: 10px;
-//     }
+    body {
+        line-height: 1;
+    }
 
-//     .wrapper {
-//         width: 155 px;
-//         height: 40px;
+    ol,
+    ul {
+        list-style: none;
+    }
 
-//         .icons {
-//             width: 24px;
-//             height: 24px;
-//             margin-right: 10px;
-//         }
+    blockquote,
+    q {
+        quotes: none;
+    }
 
-//         h6 {
-//             margin: 0px;
-//             padding: 0px;
-//             width: 50%;
-//         }
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+        content: '';
+        content: none;
+    }
 
-//     }
-// }
-
-// .sidebar a:hover {
-
-//     color: $danger;
-
-// }
-
-// .sidebar a:active {
-
-//     color: $danger;
-
-// }
-
-//memcard
-
-.memcard {
-  .card {
-    margin-bottom: 30px;
-    padding: 20px;
-    width: 950px;
-    height: 600px;
-    border-radius: 10px;
-    border: solid 2px $danger;
-    box-shadow: 6px 5px $shadow;
-  }
-
-  .wrapper {
-    .icons {
-      width: 24px;
-      height: 24px;
-      margin-right: 10px;
-      margin-left: 10px;
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin: 0;
     }
 
     a {
-      color: $font-black;
+        text-decoration: none;
+    }
+}
 
-      .icons {
-        margin-top: -2px;
-        margin-left: 10px;
-      }
+//memsidebar
+.memsidebar {
+    width: 155px;
+    height: 550px;
+
+    .sticker {
+        width: 130px;
+        height: 130px;
+        background-color: #ccc;
+        border-radius: 10px;
+    }
+
+    .whiteSpacePre {
+        white-space: pre;
+    }
+
+    .wrapper {
+        width: 155 px;
+        height: 40px;
+
+        .icons {
+            margin-right: 10px;
+        }
+    }
+}
+
+.memsidebar a:hover {
+    color: $danger;
+}
+
+.memsidebar a:active {
+    color: $danger;
+}
+
+//memcard 我的帳號
+
+.memcard {
+
+    .wrapper {
+        .icons {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        a:hover {
+            color: $danger;
+        }
+
+        a:active {
+            color: $danger;
+        }
     }
   }
 
@@ -228,64 +252,168 @@ $shadow: #e7e7e7;
       margin-top: 30px;
     }
   }
-}
 
+
+//memcard 以上我的帳號
 //memshop
 .memshop {
-  .card {
-    margin-bottom: 30px;
-    padding: 20px;
-    width: 950px;
-    height: 600px;
-    border-radius: 10px;
-    border: solid 2px $danger;
-    box-shadow: 6px 5px $shadow;
-  }
+    .wrapper {
+        .icons {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
 
-  .wrapper {
-    .icons {
-      width: 24px;
-      height: 24px;
-      margin-right: 10px;
-      margin-left: 10px;
-    }
+        a {
+            color: $danger;
 
-    a {
-      color: $font-black;
-
-      .icons {
-        margin-top: -2px;
-        margin-left: 10px;
-      }
+            .icons {
+                margin-top: -2px;
+                margin-left: 10px;
+            }
+        }
     }
   }
 
-  //---memshop topbar
-  //-->參考：https://wcc723.github.io/css/2020/02/21/css-border/#
-  .topsidebar {
-    .topbox {
+
+    //---memshop shoppinglist
+    .shoppinglist {
+        .listhead {
+            width: 850px;
+            height: 50px;
+            background-color: $bg-gray;
+            margin-top: 20px;
+
+            th {
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            td {
+                text-align: center;
+                vertical-align: middle;
+            }
+        }
+
+        .box {
+            width: 90px;
+            height: 90px;
+            background-color: blue;
+            border-radius: 10px;
+            margin: 5px;
+        }
     }
 
-    a.topbox:hover {
-      box-shadow: 0 -3px $danger inset;
-    }
-  }
 
-  //---memshop shoppinglist
-  .shoppinglist {
-    .listhead {
-      width: 850px;
-      height: 50px;
-      background-color: $bg-gray;
-      margin-top: 20px;
+//memshop 以上購物清單
+//memlike
+.memlike {
+    .wrapper {
+        .icons {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
     }
 
-    .box {
-      width: 90px;
-      height: 90px;
-      background-color: blue;
-      border-radius: 10px;
-      margin-right: 5px;
+    .likecard {
+        width: 150px;
+        height: 200px;
+        margin: 10px;
+        border: solid 1px black;
+        border-radius: 10px;
+        text-align: center;
+
+        .mark {
+            width: 100px;
+            height: 100px;
+            border: solid 1px black;
+            border-radius: 10px;
+            margin: 10px auto;
+        }
     }
-  }
 }
+
+//memlike 以上我的關注
+//meminform
+.meminform {
+    .wrapper {
+        .icons {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+    }
+
+    .informbar {
+        width: 850px;
+        height: 60px;
+        border: solid 1px black;
+        border-radius: 10px;
+        margin: 10px;
+
+        .sign {
+            width: 40px;
+            height: 40px;
+            border: solid 1px black;
+            border-radius: 10px;
+            margin: auto 5px;
+        }
+
+        .textbox {
+            width: 750px;
+            height: 40px;
+            margin-left: 20px;
+        }
+    }
+}
+
+//meminform 以上通知中心
+//memecoin
+.memecoin {
+    .wrapper {
+        .icons {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+    }
+
+    .coincard {
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        border: solid 1px black;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 4px 3px $shadow;
+
+        .one {
+            color: $secondary;
+        }
+
+        .two {
+            color: $primary;
+        }
+
+        .three {
+            color: $danger;
+        }
+    }
+
+    .explain {
+        margin-top: 30px;
+
+        p {
+            color: $font-gray;
+        }
+    }
+
+
+}
+
+//memecoin  以上為Ecoin

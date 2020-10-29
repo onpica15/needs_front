@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import {
   BsPersonFill,
   BsFillBellFill,
@@ -10,96 +11,88 @@ import { MdAddAPhoto } from 'react-icons/md'
 const MemSidebar = () => {
   return (
     <>
-      <div className="col-md-2 d-flex flex-column memsidebar">
-        <div className="sticker"></div>
-
-        <h6>
-          <a href="#">
-            <div className="d-flex wrapper">
+      <div className="d-flex flex-column memsidebar">
+        <div className="sticker mx-auto"> </div>
+        <p className="font-ss">
+          <Link to="#">
+            <div className="d-flex justify-content-end wrapper">
               <div className="icons">
                 <MdAddAPhoto />
               </div>
-              更換大頭貼
+              <p className="whiteSpacePre">更換大頭貼 </p>
             </div>
-          </a>
-        </h6>
-
-        <h4>
-          <a href="#">
-            <div className="d-flex wrapper">
+          </Link>
+        </p>
+        <p className="font-s">
+          <Link to="/member/card">
+            <div className="d-flex justify-content-center wrapper ">
               <div className="icons">
                 <BsPersonFill />
               </div>
               我的帳號
             </div>
-          </a>
-        </h4>
-
-        <h4>
-          <a href="#">
-            <div className="d-flex wrapper">
+          </Link>
+        </p>
+        <p className="font-s">
+          <Link to="/member/shop">
+            <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <FaShoppingBag />
               </div>
               購買清單
             </div>
-          </a>
-        </h4>
-
-        <h4>
-          <a href="#">
-            <div className="d-flex wrapper">
+          </Link>
+        </p>
+        <p className="font-s">
+          <Link to="/member/like">
+            <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <FaStore />
               </div>
               我的關注
             </div>
-          </a>
-        </h4>
-
-        <h4>
-          <a href="#">
-            <div className="d-flex wrapper">
+          </Link>
+        </p>
+        <p className="font-s">
+          <Link to="/member/inform">
+            <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <BsFillBellFill />
               </div>
               通知中心
             </div>
-          </a>
-        </h4>
-
-        <h4>
-          <a href="#">
-            <div className="d-flex wrapper">
+          </Link>
+        </p>
+        <p className="font-s">
+          <Link to="/member/ecoin">
+            <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <FaCoins />
               </div>
-              Ｅcoin
+              <p class="whiteSpacePre"> Ｅcoin </p>
             </div>
-          </a>
-        </h4>
-
-        <h4>
-          <a href="#">
-            <div className="d-flex wrapper">
+          </Link>
+        </p>
+        <p className="font-s">
+          <Link to="/member/comment">
+            <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <RiMessage2Fill />
               </div>
               我的評論
             </div>
-          </a>
-        </h4>
-
-        <h4>
-          <a href="#">
-            <div className="d-flex wrapper">
+          </Link>
+        </p>
+        <p className="font-s">
+          <Link to="#">
+            <div className="d-flex justify-content-center wrapper">
               <div className="icons">
                 <BsQuestionSquareFill />
               </div>
               常見問題
             </div>
-          </a>
-        </h4>
+          </Link>
+        </p>
       </div>
     </>
   )
