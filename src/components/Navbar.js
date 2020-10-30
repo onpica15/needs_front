@@ -24,7 +24,7 @@ function HomeNavbar() {
             <Nav className="mr-auto">
               <Nav.Link href="#home">所有分類</Nav.Link>
               <Nav.Link href="/article">文章列表</Nav.Link>
-              <Nav.Link href="#link">成為商家</Nav.Link>
+              <Nav.Link href="/investment">成為商家</Nav.Link>
               {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -38,7 +38,7 @@ function HomeNavbar() {
             </NavDropdown> */}
             </Nav>
             <Nav>
-              <Nav.Link href="#home">登入｜註冊</Nav.Link>
+              <Nav.Link href="/login">登入｜註冊</Nav.Link>
               <Nav.Link href="#link">
                 <AiOutlineShoppingCart />
               </Nav.Link>

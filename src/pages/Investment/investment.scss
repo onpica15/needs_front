@@ -1,14 +1,22 @@
-$primary: #243a6e;
-$secondary: #0d5661;
+$primary: #0d5661;
+$secondary: #243a6e;
 $danger: #d44f44;
-$dark: #6c757d;
 $white: #ffffff;
 $font-black: #323232;
 $font-gray: #787878;
 $bg-gray: #cdcdcd;
 $bg-light: #f0f0f0;
 
-// @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
+@keyframes MOVE-BG {
+  from {
+    opacity: 0;
+    background-position-x: 1000px;
+  }
+  to {
+    opacity: 1;
+    background-position-x: left;
+  }
+}
 
 .investment {
   .btn {
@@ -23,15 +31,22 @@ $bg-light: #f0f0f0;
     text-align: center;
   }
 
-  h2,
   h4,
+  h2,
   h5,
   h6,
   p,
-  span {
+  span,
+  li {
     font-family: 'Noto Sans TC', sans-serif;
     line-height: 1.75;
     letter-spacing: 1.2px;
+  }
+
+  .col-lg-6,
+  .col-sm-12,
+  .col-12 {
+    padding: 0;
   }
 
   //區域
@@ -90,6 +105,104 @@ $bg-light: #f0f0f0;
     margin: 0 10px;
   }
 
+  .createStoreSec {
+    text-align: center;
+    .stepCard {
+      display: flex;
+      margin-bottom: 60px;
+      .circle {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: $secondary;
+        color: $white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .stepTitle h5 {
+        color: $font-black;
+        font-weight: 400;
+        font-size: 1.25rem;
+        margin-top: 30px;
+        margin-bottom: 0;
+      }
+      .arrowRight {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 12px 50px 12px;
+      }
+    }
+  }
+
+  .partnershipSec {
+    margin-top: 80px;
+    height: 600px;
+    background-image: url('../../assets/img/investment/5_background.png');
+    background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
+    .secTitle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 0;
+      padding-bottom: 0;
+      h4 {
+        color: $white;
+        margin: 30px auto;
+      }
+    }
+
+    .partnershipContent {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      h4 {
+        color: $danger;
+        font-weight: 400;
+        margin-bottom: 30px;
+        text-decoration: underline;
+      }
+      ul {
+        margin-left: 40%;
+        color: $white;
+        list-style-type: square;
+        list-style-position: inside;
+        li {
+          margin-bottom: 8px;
+          font-family: 'Noto Sans TC', sans-serif;
+          font-weight: 300;
+        }
+      }
+      &.bgImg {
+        background-image: url('../../assets/img/investment/5_subbackground.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        animation-name: MOVE-BG;
+        animation-timing-function: linear;
+        animation-duration: 1500ms;
+      }
+
+      @media (max-width: 768px) {
+        h4 {
+          font-size: 1.25rem;
+          margin-bottom: 16px;
+        }
+        ul {
+          margin-left: 25%;
+          font-size: 0.875rem;
+        }
+      }
+      @media (max-width: 576px) {
+        ul {
+          margin-left: 15%;
+        }
+      }
+    }
+  }
   .feeSec {
     .secTitle {
       padding-top: 60px;
@@ -97,20 +210,16 @@ $bg-light: #f0f0f0;
     }
     .feeContent {
       position: relative;
-      display: flex;
-      flex-wrap: wrap;
       color: $white;
       .standardPlan {
-        background-color: $primary;
-        flex: 0 1 50%;
+        background-color: $secondary;
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 60px 0px 120px 0px;
       }
       .premiumPlan {
-        background-color: $secondary;
-        flex: 0 1 50%;
+        background-color: $primary;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -169,7 +278,7 @@ $bg-light: #f0f0f0;
 
   .joinSec {
     margin-bottom: 80px;
-    background-color: $primary;
+    background-color: $secondary;
     text-align: center;
     .joinContent {
       display: flex;
@@ -177,14 +286,24 @@ $bg-light: #f0f0f0;
       justify-content: center;
       align-items: center;
       padding: 80px 0;
-      h4,
       span {
         color: $white;
         padding: 0 50px;
       }
       .btn {
         margin-top: 60px;
-        color: $primary;
+        color: $secondary;
+      }
+    }
+    @media (max-width: 576px) {
+      .joinContent {
+        & > :first-child {
+          display: none;
+        }
+        span {
+          // font-size: 0.875rem;
+          font-weight: 300;
+        }
       }
     }
   }

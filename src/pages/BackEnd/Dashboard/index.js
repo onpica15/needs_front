@@ -1,4 +1,5 @@
 import React from 'react'
+import './styles/index.scss'
 import SocialMediaChart from '../../../components/backend/dashboard/charts/SocialMedia'
 import BrowseChart from '../../../components/backend/dashboard/charts/Browse'
 import SalesChart from '../../../components/backend/dashboard/charts/Sales'
@@ -9,7 +10,6 @@ import DispatchStatus from '../../../components/backend/dashboard/DispatchStatus
 import DispatchContent from '../../../components/backend/dashboard/DispatchContent'
 import AdsCalendar from '../../../components/backend/dashboard/AdsCalendar'
 import AdsPreview from '../../../components/backend/dashboard/AdsPreview'
-import './styles/index.scss'
 import { Col, Container, Row } from 'react-bootstrap'
 
 function Dashboard() {
