@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Col, Row, Button, Modal } from 'react-bootstrap'
+import { AiOutlinePlusCircle } from 'react-icons/ai'
 
 function AddAdsModal() {
   const [show, setShow] = useState(false)
@@ -17,7 +18,15 @@ function AddAdsModal() {
         </Modal.Header>
         <Modal.Body>
           <Row>
-            <Col xs={12}></Col>
+            <Col xs={3}></Col>
+            <Col xs={6}>
+              <div className="upload-ads-img">
+                <AiOutlinePlusCircle size={60} color="#787878" />
+              </div>
+            </Col>
+            <Col xs={3}></Col>
+          </Row>
+          <Row>
             <Col xs={12}></Col>
           </Row>
         </Modal.Body>

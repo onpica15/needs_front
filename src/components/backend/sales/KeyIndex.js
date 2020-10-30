@@ -19,16 +19,19 @@ function KeyIndex() {
     order: 1,
     name: '銷售額',
     data: [4500, 5200, 3800, 2400, 3300, 2600, 2100],
+    color: '#7367f0',
   }
   const amountOfOrders = {
     order: 2,
     name: '訂單數',
     data: [35, 41, 62, 42, 13, 18, 29],
+    color: '#28c76f',
   }
   const turnOverPercentage = {
     order: 3,
     name: '下單轉換率',
     data: [8, 4, 6, 3, 2, 5, 7],
+    color: '#ea5455',
   }
   let averageMoneyArray = []
   for (let i = 0; i < 7; i++) {
@@ -39,16 +42,19 @@ function KeyIndex() {
     order: 4,
     name: '平均訂單金額',
     data: [...averageMoneyArray],
+    color: '#ff9f43',
   }
   const noneRepeatVisitors = {
     order: 5,
     name: '不重複訪客',
     data: [170, 250, 300, 420, 288, 388, 217],
+    color: '#00cfe8',
   }
   const pageViewsOfMerchants = {
     order: 6,
     name: '頁面瀏覽數',
     data: [436, 674, 700, 891, 603, 788, 567],
+    color: '#e8cd00',
   }
 
   const [series, setSeries] = useState([salesDigits])

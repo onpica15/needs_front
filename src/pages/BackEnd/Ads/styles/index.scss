@@ -111,7 +111,7 @@
 .ads-modal-wrapper{
     @media (min-width: 576px) {
         .modal-dialog {
-            max-width: 800px;
+            max-width: 500px;
             margin: 1.75rem auto;
         }
     }
@@ -143,7 +143,16 @@
             .modal-header {
                 border-bottom: none;
             }
-
+            .modal-body{
+                .upload-ads-img{
+                    border: 2px dashed #787878;
+                    border-radius: 5px;
+                    height: 220px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
             .modal-footer {
                 border-top: none;
             }
