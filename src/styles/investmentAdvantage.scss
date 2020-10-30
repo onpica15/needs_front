@@ -35,25 +35,26 @@ $bg-light: #f0f0f0;
   div.advantageContent {
     color: $primary;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     height: 300px;
     .advImg {
-      width: 35%;
+      width: 30%;
       img {
         width: 100%;
       }
     }
     .text {
-      margin-left: 5%;
-      margin-right: 5%;
+      margin-left: 2%;
+      margin-right: 2%;
       p {
         color: $font-gray;
         margin-bottom: 3px;
       }
     }
     .order {
-      font-size: 150px;
+      font-size: 12vw;
     }
 
     &:nth-child(even) {
@@ -63,6 +64,55 @@ $bg-light: #f0f0f0;
       flex-direction: row-reverse;
       .text {
         text-align: right;
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .advantageSec div.advantageContent .text {
+    h5 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .advantageSec div.advantageContent {
+    height: 200px;
+    .advImg {
+      width: 40%;
+    }
+    .text {
+      h5 {
+        font-size: 16px;
+      }
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .advantageSec div.advantageContent {
+    height: 250px;
+    .advImg {
+      width: 50%;
+    }
+    .order {
+      font-size: 20vw;
+    }
+    .text {
+      margin-top: -30px;
+      order: 5;
+    }
+    &:nth-child(odd) {
+      .text {
+        text-align: left;
       }
     }
   }

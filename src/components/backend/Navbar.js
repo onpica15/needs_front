@@ -118,7 +118,12 @@ function Navbar() {
                   </Dropdown.Menu>
                 </Dropdown>
                 <NavItem className="staff-info">
-                  <div style={{ padding: '0 0.5rem', textAlign: 'end' }}>
+                  <div
+                    style={{
+                      padding: '0px 0.5rem 0.5rem',
+                      textAlign: 'end',
+                    }}
+                  >
                     Book33
                   </div>
                   <div
