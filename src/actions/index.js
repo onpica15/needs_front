@@ -1,6 +1,4 @@
 import { userConstants, roleTypes, alertConstants } from './actiontypes'
-import { createBrowserHistory } from 'history'
-const history = createBrowserHistory()
 
 export const userActions = { login, logout }
 export const roleActions = { setMember, setMerchant, setNeeds }
@@ -14,8 +12,9 @@ function login(username, password, currentRole) {
         dispatch(failure())
         dispatch(error('帳號或密碼錯誤'))
       } else {
+        dispatch(clear())
         dispatch(success(user))
-        history.goBack()
+        window.history.back()
       }
     })
   }
@@ -28,7 +27,6 @@ function login(username, password, currentRole) {
 }
 
 const checkAuth = (username, password, currentRole) => {
-  console.log(currentRole)
   const url = `http://122.116.38.12:5050/login-api/${currentRole}login`
   console.log(url)
   const req = new Request(url, {
@@ -49,8 +47,8 @@ function handleResponse(response) {
     if (!response.ok) {
       if (response.status === 401) {
         // auto logout if 401 response returned from api
-        // logout()
         console.log('401')
+        logout()
       }
       const error = response.statusText
       return Promise.reject(error)
@@ -61,25 +59,27 @@ function handleResponse(response) {
 
 // logout action
 function logout() {
-  sessRemove()
-  return { type: userConstants.LOGOUT }
-}
-
-function sessRemove() {
   sessionStorage.removeItem('user')
+  window.location.href = '/'
+  return { type: userConstants.LOGOUT }
 }
 
 // setRole action
 function setMember() {
-  return (dispatch) => dispatch(member())
-
+  return (dispatch) => {
+    dispatch(clear())
+    dispatch(member())
+  }
   function member() {
     return { type: roleTypes.SET_MEMBER }
   }
 }
 
 function setMerchant() {
-  return (dispatch) => dispatch(merchant())
+  return (dispatch) => {
+    dispatch(clear())
+    dispatch(merchant())
+  }
 
   function merchant() {
     return { type: roleTypes.SET_MERCHANT }
@@ -87,7 +87,11 @@ function setMerchant() {
 }
 
 function setNeeds() {
-  return (dispatch) => dispatch(needs())
+  return (dispatch) => {
+    dispatch(clear())
+    dispatch(needs())
+  }
+
   function needs() {
     return { type: roleTypes.SET_NEEDS }
   }

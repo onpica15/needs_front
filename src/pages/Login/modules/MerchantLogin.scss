@@ -10,7 +10,7 @@ $bg-gray: #cdcdcd;
 $bg-light: #f0f0f0;
 
 .merchantLogin {
-  .btn {
+  .btn-primary {
     font-family: 'Noto Sans TC', sans-serif;
     font-size: 1 rem;
     font-weight: 300;
@@ -20,6 +20,10 @@ $bg-light: #f0f0f0;
     height: 60px;
     border-radius: 3px;
     text-align: center;
+  }
+
+  .btn:focus {
+    box-shadow: none;
   }
 
   h2,
@@ -86,18 +90,20 @@ $bg-light: #f0f0f0;
       flex-direction: row;
       justify-content: flex-end;
       align-items: center;
-      margin-right: 30px;
-      margin-top: 30px;
-      a {
+      margin: 30px 30px 16px 0px;
+      .btn-link {
         color: $font-gray;
+        font-weight: 400;
+        height: 25px;
+        line-height: 0;
       }
-      a.actived {
+      button.actived {
         color: $danger;
         font-weight: 500;
       }
       .seperator {
-        line-height: 1.25;
         border-left: 1px solid $font-gray;
+        border-radius: 0px;
       }
     }
 

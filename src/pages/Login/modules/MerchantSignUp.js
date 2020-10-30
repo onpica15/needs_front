@@ -1,34 +1,47 @@
 import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios'
+// import { createBrowserHistory } from 'history'
+import history from '../../../components/history'
+
+import { alertActions } from '../../../actions'
 import { Button, Form, Modal } from 'react-bootstrap'
-import { FaUserCircle, FaLock, FaFacebook } from 'react-icons/fa'
-import { AiFillGooglePlusCircle, AiFillTwitterCircle } from 'react-icons/ai'
+import { FaUserCircle, FaLock } from 'react-icons/fa'
 import './MerchantSignUp.scss'
 
 const MerchantSignUp = (props) => {
-  const history = useHistory()
+  // const history = useHistory()
+  // const history = createBrowserHistory()
+  const dispatch = useDispatch()
+  const { error } = alertActions
+
   const [submitted, setSubmitted] = useState(false)
   const [modalSuccessShow, setModalSuccessShow] = useState(false)
+  const [formData, setFormData] = useState({})
+  const alertMsg = useSelector((state) => state.alert.message)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // const fd = new FormData(document.signUpFormData)
-    // fetch('', {
-    //   method: 'POST',
-    //   body: fd,
-    // })
-    //   .then((r) => r.json())
-    //   .then((obj) => {
-    //     console.log('obj', obj)
-    //     if (obj.success) {
-    //       setModalSuccessShow(true)
-    //     }
-    //   })
-    setModalSuccessShow(true)
-    // .catch((error) => {
-    //   console.log(error.toString())
-    //   return error.toString()
-    // })
+    setSubmitted(true)
+    axios
+      .post(`http://localhost:5000/signup-api/merchantsignup`, formData)
+      .then((res) => {
+        console.log(res)
+        if (!res.data.success) {
+          return dispatch(error(res.data.error))
+        }
+        setModalSuccessShow(true)
+      })
+      .catch((error) => {
+        console.log(error.toString())
+        return error.toString()
+      })
+  }
+
+  const handleSetForm = (e, key) => {
+    const value = e.target.value
+    setFormData({ ...formData, [key]: value })
   }
 
   return (
@@ -51,19 +64,44 @@ const MerchantSignUp = (props) => {
             <div className="signupInput">
               <h4>商家註冊</h4>
               <div className="signupForm">
-                <Form id="signUpFormData" onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit}>
                   <Form.Group controlId="name">
-                    <Form.Control type="text" placeholder="姓名" required />
+                    <Form.Control
+                      type="text"
+                      placeholder="姓名"
+                      value={formData.name}
+                      onChange={(e) => handleSetForm(e, 'name')}
+                      required
+                    />
                   </Form.Group>
                   <Form.Group controlId="mobile">
-                    <Form.Control type="text" placeholder="手機" required />
+                    <Form.Control
+                      type="text"
+                      placeholder="手機"
+                      value={formData.mobile}
+                      onChange={(e) => handleSetForm(e, 'mobile')}
+                      required
+                    />
                   </Form.Group>
                   <Form.Group controlId="email">
-                    <Form.Control type="email" placeholder="信箱" required />
+                    <Form.Control
+                      type="email"
+                      placeholder="信箱"
+                      value={formData.email}
+                      onChange={(e) => handleSetForm(e, 'email')}
+                      required
+                    />
                   </Form.Group>
                   <Form.Group controlId="password">
-                    <Form.Control type="password" placeholder="密碼" required />
+                    <Form.Control
+                      type="password"
+                      placeholder="密碼"
+                      value={formData.password}
+                      onChange={(e) => handleSetForm(e, 'password')}
+                      required
+                    />
                   </Form.Group>
+                  <p className={alertMsg ? 'alertmsg' : ''}>{alertMsg}</p>
                   <Button variant="primary" type="submit">
                     SIGNUP
                   </Button>
@@ -92,7 +130,7 @@ const MerchantSignUp = (props) => {
             <Button
               onClick={() => {
                 setModalSuccessShow(false)
-                history.push('/')
+                history.push('/login')
               }}
             >
               出發

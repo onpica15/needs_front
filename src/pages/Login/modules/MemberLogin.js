@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { connect, useSelector } from 'react-redux'
 import { userActions, roleActions } from '../../../actions'
-import { Link } from 'react-router-dom'
 import { Button, Form } from 'react-bootstrap'
 import { FaUserCircle, FaLock, FaFacebook } from 'react-icons/fa'
 import { AiFillGooglePlusCircle, AiFillTwitterCircle } from 'react-icons/ai'
@@ -9,8 +9,9 @@ import './MemberLogin.scss'
 
 const MemberLogin = (props) => {
   const { username, password, setUsername, setPassword } = props
-  const currentRole = useSelector((state) => state.role.type)
   const [submitted, setSubmitted] = useState(false)
+
+  const currentRole = useSelector((state) => state.role.type)
   const alertMsg = useSelector((state) => state.alert.message)
 
   const handleSubmit = (e) => {
@@ -20,12 +21,13 @@ const MemberLogin = (props) => {
       props.login(username, password, currentRole)
     }
   }
+
   return (
     <>
       <div className="memberLogin container-fluid">
         <div className="side">
           <div className="logo">
-            <Link to="#needs" onClick={props.setNeeds}>
+            <Link to="#" onClick={props.setNeeds}>
               <img
                 src={require('@assets/img/logo/logo_icon_whiite.png')}
                 alt=""
@@ -41,20 +43,20 @@ const MemberLogin = (props) => {
 
         <div className="main">
           <div className="loginRole">
-            <Link
-              to="#member"
+            <Button
+              variant="link"
               className={`pr-1 ${currentRole === 'member' ? 'actived' : ''}`}
               onClick={props.setMember}
             >
               會員
-            </Link>
-            <Link
-              to="#merchant"
+            </Button>
+            <Button
+              variant="link"
               className="pl-1 seperator"
               onClick={props.setMerchant}
             >
               商家
-            </Link>
+            </Button>
           </div>
           <div className="loginInput">
             <h4>會員登入</h4>

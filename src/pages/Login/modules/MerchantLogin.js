@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { connect, useSelector } from 'react-redux'
 import { userActions, roleActions } from '../../../actions'
-import { Link } from 'react-router-dom'
 import { Button, Form } from 'react-bootstrap'
 import { FaUserCircle, FaLock, FaFacebook } from 'react-icons/fa'
 import { AiFillGooglePlusCircle, AiFillTwitterCircle } from 'react-icons/ai'
@@ -10,6 +10,7 @@ import './MerchantLogin.scss'
 const MerchantLogin = (props) => {
   const { username, password, setUsername, setPassword } = props
   const [submitted, setSubmitted] = useState(false)
+
   const currentRole = useSelector((state) => state.role.type)
   const alertMsg = useSelector((state) => state.alert.message)
 
@@ -26,7 +27,7 @@ const MerchantLogin = (props) => {
       <div className="merchantLogin container-fluid">
         <div className="side">
           <div className="logo">
-            <Link to="#needs" onClick={props.setNeeds}>
+            <Link to="#" onClick={props.setNeeds}>
               <img
                 src={require('@assets/img/logo/logo_icon_whiite.png')}
                 alt=""
@@ -41,18 +42,18 @@ const MerchantLogin = (props) => {
         </div>
         <div className="main">
           <div className="loginRole">
-            <Link to="#member" className="pr-1" onClick={props.setMember}>
+            <Button variant="link" className="pr-1" onClick={props.setMember}>
               會員
-            </Link>
-            <Link
-              to="#merchant"
+            </Button>
+            <Button
+              variant="link"
               className={`pl-1 seperator ${
                 currentRole === 'merchant' ? 'actived' : ''
               }`}
               onClick={props.setMerchant}
             >
               商家
-            </Link>
+            </Button>
           </div>
           <div className="loginInput">
             <h4>商家登入</h4>
@@ -99,14 +100,14 @@ const MerchantLogin = (props) => {
                 </Button>
               </Form>
               {/* For Logout Test */}
-              {/* <Button
+              <Button
                 variant="primary"
                 className="mt-2"
                 type="button"
                 onClick={() => props.logout()}
               >
                 LOGOUT
-              </Button> */}
+              </Button>
             </div>
           </div>
         </div>
