@@ -15,6 +15,6 @@ const TestArticleDetial = (props) => {
   //   }, [])
   console.log(showHTML)
 
-  return <>{showHTML}</>
+  return <>{<div dangerouslySetInnerHTML={{ __html: showHTML }} />}</>
 }
 export default TestArticleDetial

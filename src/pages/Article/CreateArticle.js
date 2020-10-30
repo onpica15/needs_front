@@ -36,11 +36,11 @@ const CreateArticle = (props) => {
       </div>\n`
           break
         case 'image':
-          setImage(obj.data.url)
+          setImage(obj.data.file.url)
           articleHTML += `<div class="ce-block">
         <div class="ce-block__content">
           <div class="ce-paragraph cdx-block">
-            <img src="${obj.data.url}" alt="${obj.data.caption}" />
+            <img src="${obj.data.file.url}" alt="${obj.data.caption}" />
             <div class="text-center">
               <i>${obj.data.caption}</i>
             </div>
@@ -103,13 +103,13 @@ const CreateArticle = (props) => {
           return ''
       }
     })
-    const edjsParser = editorjsHTML()
-    const html = edjsParser.parse(contentDetial)
-    setShowHTML(html)
+    // const edjsParser = editorjsHTML()
+    // const html = edjsParser.parse(contentDetial)
+    setShowHTML(articleHTML)
     console.log(showHTML)
 
     await axios
-      .post('http://localhost:5000/article', [title, image, outline, html])
+      .post('http://localhost:5000/article', [title, image, outline, showHTML])
       .catch((error) => {
         console.log('Error', error)
       })
