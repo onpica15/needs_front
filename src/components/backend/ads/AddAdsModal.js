@@ -18,6 +18,7 @@ function AddAdsModal() {
         <Modal.Body>
           <Row>
             <Col xs={12}></Col>
+            <Col xs={12}></Col>
           </Row>
         </Modal.Body>
         <Modal.Footer>

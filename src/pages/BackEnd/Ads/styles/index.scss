@@ -109,43 +109,46 @@
     }
 }
 .ads-modal-wrapper{
+    @media (min-width: 576px) {
+        .modal-dialog {
+            max-width: 800px;
+            margin: 1.75rem auto;
+        }
+    }
 
-@media (min-width: 576px) {
     .modal-dialog {
-        max-width: 1140px;
-        margin: 1.75rem auto;
-    }
-}
+        .btn-primary {
+            background-color: $primary_color;
+            border: none;
+        }
+        .btn-secondary {
+            background-color: $secondary_color;
+            border: none;
+            color: #fff;
+        }
 
-.modal-dialog {
-    .btn-primary {
-        background-color: $primary_color;
-        border: none;
-    }
-    .btn-secondary {
-        background-color: $secondary_color;
-        border: none;
-        color: #fff;
-    }
+        .btn-warning {
+            background-color: $warning_color;
+            border: none;
+            color: #fff;
+        }
 
-    .btn-warning {
-        background-color: $warning_color;
-        border: none;
-        color: #fff;
-    }
+        .btn-danger {
+            background-color: $danger_color;
+            border: none;
+            color: #fff;
+        }
+        .modal-content{
+            border: none;
+            .modal-header {
+                border-bottom: none;
+            }
 
-    .btn-danger {
-        background-color: $danger_color;
-        border: none;
-        color: #fff;
+            .modal-footer {
+                border-top: none;
+            }
+        }
     }
-    .modal-header{
-        border-bottom: none;
-    }
-    .modal-footer {
-        border-top: none;
-    }
-}
 }
 
 
