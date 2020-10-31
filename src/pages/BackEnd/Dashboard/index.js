@@ -51,7 +51,9 @@ function Dashboard() {
             </Row>
             <Row className="my-3 dispatch-status">
               <Col xs={6}>
-                <AdsCalendar />
+                <div className="card">
+                  <AdsCalendar />
+                </div>
               </Col>
               <Col xs={6}>
                 <AdsPreview />

@@ -3,6 +3,10 @@
 .ads-wrapper{
     .card{
         border: none;
+        .card-body {
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
+        }
     }
     .btn-primary{
         background-color: $primary_color;

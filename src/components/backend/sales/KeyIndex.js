@@ -270,7 +270,7 @@ function KeyIndex() {
             </Col>
           </Row>
           <Row className="mt-3">
-            <Col xs={12}>
+            <Col xs={12} className="card-shadow" style={{ padding: '2rem' }}>
               <KeyIndexChart
                 initData={series.sort((a, b) => a.order - b.order)}
                 durationDays={durationDays}

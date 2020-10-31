@@ -19,13 +19,20 @@ class ReviewPieChart extends Component {
           show: false,
         },
       },
-      series: [46, 25, 3, 0, 0],
+      series: [props.fiveStar, 2, 3, 4, 5],
     }
   }
 
   render() {
     return (
       <>
+        <button
+          onClick={() => {
+            console.log(this.state.series)
+          }}
+        >
+          consoleLog
+        </button>
         <Chart
           options={this.state.options}
           series={this.state.series}
