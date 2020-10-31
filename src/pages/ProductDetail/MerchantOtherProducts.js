@@ -9,12 +9,12 @@ function MerchantOtherProducts(props) {
         {merchantInfo.products &&
           merchantInfo.products.map((value, index) => {
             return (
-              <Col md={2}>
+              <Col md={2} key={index}>
                 <div className="product-s">
-                  {value.image ? (
+                  {value.image_path ? (
                     <img
                       className="merchant-logo rounded"
-                      src={require(`../../assets/img/products/${value.image}`)}
+                      src={`http://localhost:5000/img/products/${value.image_path}`}
                       alt=""
                     />
                   ) : (

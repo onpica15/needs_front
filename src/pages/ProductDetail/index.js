@@ -22,7 +22,7 @@ function ProductDetail(props) {
 
   async function getProductDetail() {
     // 連接的伺服器資料網址
-    const url = 'https://run.mocky.io/v3/d1e7c9c5-65f7-4c82-aea1-7f06e578fa54'
+    const url = `http://localhost:5000/products/${props.match.params.id}`
 
     // 注意header資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {
@@ -40,7 +40,9 @@ function ProductDetail(props) {
     setProductDetail(data)
   }
   async function getMerchantInfo() {
-    const url = 'https://run.mocky.io/v3/c838303b-73df-4592-b391-058fdbef312d'
+    const url =
+      `http://localhost:5000/products/merchant/${productDetail.merchant_id}` +
+      `?exclude=${props.match.params.id}`
 
     const request = new Request(url, {
       method: 'GET',
@@ -58,23 +60,27 @@ function ProductDetail(props) {
 
   useEffect(() => {
     getProductDetail()
-    getMerchantInfo()
   }, [])
+
+  useEffect(() => {
+    if (productDetail === undefined) return
+    getMerchantInfo()
+  }, [productDetail])
 
   return (
     <div className="product-detail">
       <DetailNav />
       <Container className="product-main-info">
         <Row>
-          <Col md={7} className="photos-content">
+          <Col md={7}>
             <Carousel className="w-88">
               {productDetail.images &&
-                productDetail.images.map((value) => {
+                productDetail.images.map((value, index) => {
                   return (
-                    <div className="h-100">
+                    <div key={index} className="photos-content">
                       <img
                         className="w-100 h-100 cover"
-                        src={require(`../../assets/img/products/${value}`)}
+                        src={`http://localhost:5000/img/products/${value}`}
                         alt=""
                       />
                     </div>
@@ -92,7 +98,7 @@ function ProductDetail(props) {
               <span> {'>'} </span>
               <li>
                 <Link to="/" className="breadcrumb-item active">
-                  {productDetail.category}
+                  {productDetail.name}
                 </Link>
               </li>
             </ul>
@@ -100,7 +106,7 @@ function ProductDetail(props) {
             <p className="font-s">
               品牌：
               <Link to="/" className="merchant-link">
-                {merchantInfo.name}
+                {merchantInfo.brand_name}
               </Link>
             </p>
             <p className="description">{productDetail.outline}</p>
@@ -113,7 +119,7 @@ function ProductDetail(props) {
                 <Form.Control as="select">
                   {productDetail.skus &&
                     productDetail.skus.map((value, index) => {
-                      return <option>{value.name}</option>
+                      return <option key={index}>{value.name}</option>
                     })}
                 </Form.Control>
               </Form.Group>
@@ -146,7 +152,7 @@ function ProductDetail(props) {
                     +
                   </button>
                 </div>
-                <span className="stock">庫存：還剩10件</span>
+                <span className="stock">庫存：還剩 10 件</span>
               </Form.Group>
               <button className="btn btn-danger mt-3 w-100" type="submit">
                 <RiShoppingCart2Line className="cart-icon" />
@@ -163,7 +169,7 @@ function ProductDetail(props) {
       <Container>
         <h5 className="mt-4">商品介紹</h5>
         <hr />
-        <div className="product-detail-content row justify-content-center">
+        <div className="product-detail-content d-flex justify-content-center">
           <div
             dangerouslySetInnerHTML={{ __html: productDetail.description }}
           ></div>

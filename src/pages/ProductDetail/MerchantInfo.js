@@ -13,7 +13,7 @@ function MerchantInfo(props) {
             {merchantInfo.index_img ? (
               <img
                 className="merchant-logo rounded"
-                src={require(`../../assets/img/brands/${merchantInfo.index_img}`)}
+                src={`http://localhost:5000/img/brands/${merchantInfo.index_img}`}
                 alt=""
               />
             ) : (
@@ -21,7 +21,7 @@ function MerchantInfo(props) {
             )}
           </Col>
           <Col md={3}>
-            <h5 className="mb-3">{merchantInfo.name}</h5>
+            <h5 className="mb-3">{merchantInfo.brand_name}</h5>
             <button className="btn btn-sm btn-danger mr-2">+ 加入關注</button>
             <button className="btn btn-sm btn-secondary">
               <AiOutlineShop /> 逛逛店家

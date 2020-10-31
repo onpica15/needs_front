@@ -81,7 +81,7 @@ function App() {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/products"
+            path="/products/:id"
             component={ProductDetail}
             layout="FRONT_END_NAV"
           />

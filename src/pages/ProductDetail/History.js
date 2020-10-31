@@ -11,11 +11,11 @@ function History(props) {
               src={require('../../assets/img/products/1-paper/PT01_300x0.jpg')}
             />
           </div>
-          <p className="mt-2 mb-0 product-s-title">
-            南國的孩子 手寫數字章 (22個入)
-          </p>
-          <p className="mb-0">小山坡</p>
-          <p className="text-point">NT$1135</p>
+          <div className="minh-66">
+            <p className="mt-2 mb-0 product-s-title">片花 - 霧面 PET 紙膠帶</p>
+          </div>
+          <p className="mb-0">一分之一工作室</p>
+          <p className="text-point">NT$300</p>
         </Col>
         <Col md={2}>
           <div className="product-s">
@@ -23,11 +23,13 @@ function History(props) {
               src={require('../../assets/img/products/1-paper/PT02_300x0.jpg')}
             />
           </div>
-          <p className="mt-2 mb-0 product-s-title">
-            南國的孩子 手寫數字章 (22個入)
-          </p>
-          <p className="mb-0">小山坡</p>
-          <p className="text-point">NT$1135</p>
+          <div className="minh-66">
+            <p className="mt-2 mb-0 product-s-title">
+              紙膠帶 - 嚕咪 Luminous (Dark)
+            </p>
+          </div>
+          <p className="mb-0">一分之一工作室</p>
+          <p className="text-point">NT$150</p>
         </Col>
         <Col md={2}>
           <div className="product-s">
@@ -35,11 +37,11 @@ function History(props) {
               src={require('../../assets/img/products/1-paper/PT03_300x0.jpg')}
             />
           </div>
-          <p className="mt-2 mb-0 product-s-title">
-            南國的孩子 手寫數字章 (22個入)
-          </p>
-          <p className="mb-0">小山坡</p>
-          <p className="text-point">NT$1135</p>
+          <div className="minh-66">
+            <p className="mt-2 mb-0 product-s-title">薄霧隨筆 - 描圖紙本</p>
+          </div>
+          <p className="mb-0">禮拜文房具</p>
+          <p className="text-point">NT$250</p>
         </Col>
         <Col md={2}>
           <div className="product-s">
@@ -47,11 +49,11 @@ function History(props) {
               src={require('../../assets/img/products/1-paper/PT04_300x0.jpg')}
             />
           </div>
-          <p className="mt-2 mb-0 product-s-title">
-            南國的孩子 手寫數字章 (22個入)
-          </p>
-          <p className="mb-0">小山坡</p>
-          <p className="text-point">NT$1135</p>
+          <div className="minh-66">
+            <p className="mt-2 mb-0 product-s-title">活版印刷盒裝訊息小卡</p>
+          </div>
+          <p className="mb-0">一分之一工作室</p>
+          <p className="text-point">NT$270</p>
         </Col>
         <Col md={2}>
           <div className="product-s">
@@ -59,11 +61,13 @@ function History(props) {
               src={require('../../assets/img/products/1-paper/PT05_300x0.jpg')}
             />
           </div>
-          <p className="mt-2 mb-0 product-s-title">
-            南國的孩子 手寫數字章 (22個入)
-          </p>
-          <p className="mb-0">小山坡</p>
-          <p className="text-point">NT$1135</p>
+          <div className="minh-66">
+            <p className="mt-2 mb-0 product-s-title">
+              MIDORI Pocket Diary 2021手帳(月雙週)A6
+            </p>
+          </div>
+          <p className="mb-0">一分之一工作室</p>
+          <p className="text-point">NT$390</p>
         </Col>
         <Col md={2}>
           <div className="product-s">
@@ -71,11 +75,13 @@ function History(props) {
               src={require('../../assets/img/products/1-paper/PT06_300x0.jpg')}
             />
           </div>
-          <p className="mt-2 mb-0 product-s-title">
-            南國的孩子 手寫數字章 (22個入)
-          </p>
-          <p className="mb-0">小山坡</p>
-          <p className="text-point">NT$1135</p>
+          <div className="minh-66">
+            <p className="mt-2 mb-0 product-s-title">
+              MIDORI Pocket Diary 2021手帳長形(月間)嘉
+            </p>
+          </div>
+          <p className="mb-0">禮拜文房具</p>
+          <p className="text-point">NT$210</p>
         </Col>
       </Row>
     </div>
