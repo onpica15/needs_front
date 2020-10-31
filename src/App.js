@@ -23,6 +23,7 @@ import MerchantHome from './pages/MerchantHome/merchantHome'
 import ProductDetail from './pages/ProductDetail'
 import Login from './pages/Login/Login'
 import SignUp from './pages/Login/SignUp'
+import Cart from './pages/Cart'
 
 //商家後台
 import BackEndSidebar from './components/backend/Sidebar'
@@ -104,8 +105,13 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/products"
+            path="/products/:id"
             component={ProductDetail}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/cart"
+            component={Cart}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute

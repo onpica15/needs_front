@@ -4,6 +4,8 @@ import Breadcrumb from '../../components/Breadcrumb'
 import axios from 'axios'
 import { Button } from 'react-bootstrap'
 
+import ArticleClassic from '../../components/Article/ArticleClassic'
+
 import './Article.scss'
 
 const Article = (props) => {
@@ -52,18 +54,16 @@ const Article = (props) => {
     <>
       <div className="container">
         {/* <Breadcrumb /> */}
-        <section>
-          <div className="topic d-flex">
-            <div className="col-6">
-              <h5>精選文章</h5>
-            </div>
-            <div className="col-6 d-flex justify-content-end">
-              <Link to="/createArticle">新增文章</Link>
-            </div>
+        <div className="topic d-flex">
+          <div className="col-6">
+            <h5>精選文章</h5>
           </div>
-          {/* itemArea */}
-          {dataLoading ? loading : display}
-        </section>
+          <div className="col-6 d-flex justify-content-end">
+            <Link to="/createArticle">新增文章</Link>
+          </div>
+        </div>
+
+        <ArticleClassic />
 
         <section className="mb-5">
           <h5>最新文章</h5>

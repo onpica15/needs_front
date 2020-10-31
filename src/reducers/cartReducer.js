@@ -67,7 +67,6 @@ const updateProductUnits = (cart, product) => {
   const updatedUnitsProduct = {
     ...existingProduct,
     units: existingProduct.units + product.units,
-    price: existingProduct.price + product.price,
   }
   updatedCart[productIndex] = updatedUnitsProduct
 

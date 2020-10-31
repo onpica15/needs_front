@@ -6,7 +6,7 @@ $font-black: #323232;
 $font-gray: #787878;
 $bg-gray: #cdcdcd;
 $bg-light: #f0f0f0;
- 
+
 .product-detail {
   background-color: #fff;
   input::-webkit-outer-spin-button,
@@ -49,7 +49,7 @@ $bg-light: #f0f0f0;
   .sticky-nav-item li,
   .breadcrumb-wrap li {
     display: inline-block;
-  } 
+  }
   .detail-nav-item {
     display: inline-block;
     text-decoration: none;
@@ -74,9 +74,31 @@ $bg-light: #f0f0f0;
   }
   .product-main-info {
     padding: 2rem 15px;
+    .w-88 {
+      width: 88%;
+      .cover{
+        object-fit: cover;
+      }
+    }
+    .carousel .thumbs-wrapper {
+      margin: -90px 10px;
+    }
+    .carousel-root .carousel .thumb {
+      border: 3px solid transparent;
+      img {
+        width: 100% !important;
+        height: 68px !important;
+      }
+    }
+    .carousel .thumb.selected,
+    .carousel .thumb:hover {
+      border: 3px solid $accent;
+    }
+    .carousel .control-dots {
+      opacity: 0;
+    }
     .photos-content {
-      height: 600px;
-      position: relative;
+      height: 558.78px;
     }
     .main-photo {
       max-width: 100%;
@@ -153,7 +175,27 @@ $bg-light: #f0f0f0;
     .merchant-logo {
       width: 80px;
       height: 80px;
+      background-color: $font-black;
     }
+  }
+  .product-detail-content{
+    max-height: 600px;
+    overflow: hidden;
+    position: relative;
+  }
+  .product-detail-content:before {
+    content: '';
+    display: block;
+    width: auto;
+    position: absolute;
+    height: 124px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #fff 90%);
+    background-position: center top;
+    background-size: 100% 100%;
   }
   .text-point {
     color: $accent;
@@ -183,14 +225,17 @@ $bg-light: #f0f0f0;
     width: 90%;
   }
   .product-s {
-    // height: 182px;
     img {
       width: 100%;
       height: auto;
       border-radius: 0.25rem;
-    } 
+    }
   }
-  .product-s-title{
+  .product-s-title {
     color: $font-black;
+  }
+  .minh-66{
+    height: 66px;
+    overflow: hidden;
   }
 }

@@ -17,17 +17,15 @@ const HistoryItem = (props) => {
         <p className="mt-2 mb-0 product-s-title">{title}</p>
         <p className="mb-0">{outline}</p>
         <p className="text-point">{price}</p>
+        <p className="text-point">{price * units}</p>
         <button
-          onClick={() =>
-            updateCartUnits({
-              id,
-              units: units + 1,
-            })
-          }
+          onClick={() => updateCartUnits({ id, price, units: units + 1 })}
         >
           +
         </button>
-        <button onClick={() => updateCartUnits({ id, units: units - 1 })}>
+        <button
+          onClick={() => updateCartUnits({ id, price, units: units - 1 })}
+        >
           -
         </button>
       </div>
