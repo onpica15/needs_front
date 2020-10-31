@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from 'react-bootstrap'
 import {
   RiArrowRightLine,
   RiUserFollowLine,
@@ -18,29 +19,35 @@ const CreateStoreStep = () => {
   ]
   return (
     <>
-      <div className="stepContent d-flex justify-content-center flex-wrap">
-        {stepList.map((item, index) => {
-          return (
-            <div className="stepCard">
-              <div className="stepContent">
-                <div className="stepImg">
-                  <div className="circle">
-                    <h4>STEP {index + 1}</h4>
-                    {item.icon({ size: '65px' })}
-                  </div>
-                  <div className="stepTitle ">
-                    <h4>{item.text}</h4>
+      <div className="container createStoreSec">
+        <div className="secTitle">
+          <h4>開店流程</h4>
+        </div>
+        <div className="stepContent d-flex justify-content-center flex-wrap">
+          {stepList.map((item, index) => {
+            return (
+              <div key={index} className="stepCard">
+                <div className="stepContent">
+                  <div className="stepImg">
+                    <div className="circle">
+                      <h5>STEP {index + 1}</h5>
+                      {item.icon({ size: '65px' })}
+                    </div>
+                    <div className="stepTitle ">
+                      <h5>{item.text}</h5>
+                    </div>
                   </div>
                 </div>
+                {index + 1 < stepList.length && (
+                  <div className="arrowRight">
+                    <RiArrowRightLine size="40px" color="#243a6e" />
+                  </div>
+                )}
               </div>
-              {index + 1 < stepList.length && (
-                <div className="arrowRight">
-                  <RiArrowRightLine size="40px" color="#243a6e" />
-                </div>
-              )}
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
+        <Button variant="secondary">立即開店 →</Button>
       </div>
     </>
   )

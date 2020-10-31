@@ -4,6 +4,9 @@
 
   .filterRight {
     align-items: flex-end;
+    .choiceView {
+      transform: translateY(-4px);
+    }
     label {
       width: 90px;
     }
