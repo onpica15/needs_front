@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import EditorJs from 'react-editor-js'
 import { EDITOR_JS_TOOLS } from './constants'
+import { Button } from 'react-bootstrap'
 import TestArticleDetial from './TestArticleDetial'
 
 const CreateArticle = (props) => {
@@ -124,11 +125,11 @@ const CreateArticle = (props) => {
         tools={EDITOR_JS_TOOLS}
         data={contentDetial}
       />
-      <button onClick={saveToHtml}>儲存</button>
-      <div style={{ textAlign: 'center', margin: '2rem' }}>
-        <button className="" onClick={sendContent}>
+      <div className="d-flex justify-content-center">
+        <Button onClick={saveToHtml}>儲存</Button>
+        <Button className="" onClick={sendContent}>
           送出
-        </button>
+        </Button>
       </div>
       <TestArticleDetial showHTML={showHTML} />
     </>

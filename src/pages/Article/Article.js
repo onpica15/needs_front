@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Breadcrumb from '../../components/Breadcrumb'
 import axios from 'axios'
-
-// import picture from '../../img/1579141548450.jpg'
+import { Button } from 'react-bootstrap'
 
 import './Article.scss'
 
@@ -34,7 +33,7 @@ const Article = (props) => {
   )
 
   const display = (
-    <div className=" articleItems d-flex flex-wrap justify-content-around">
+    <div className=" articleItems d-flex flex-wrap">
       {articles.map((value, index) => (
         <div key={value.id} className="articleItem col-3">
           <div className="articlePic">
@@ -51,19 +50,35 @@ const Article = (props) => {
 
   return (
     <>
-      <div className="wrap">
+      <div className="container">
         {/* <Breadcrumb /> */}
+        <section>
+          <div className="topic d-flex">
+            <div className="col-6">
+              <h5>精選文章</h5>
+            </div>
+            <div className="col-6 d-flex justify-content-end">
+              <Link to="/createArticle">新增文章</Link>
+            </div>
+          </div>
+          {/* itemArea */}
+          {dataLoading ? loading : display}
+        </section>
 
-        <div className="topic d-flex">
-          <div className="col-6">
-            <h2>精選文章</h2>
-          </div>
-          <div className="col-6 d-flex justify-content-end">
-            <Link to="/createArticle">新增文章</Link>
-          </div>
-        </div>
-        {/* itemArea */}
-        {dataLoading ? loading : display}
+        <section className="mb-5">
+          <h5>最新文章</h5>
+          {dataLoading ? loading : display}
+          <Button className="search-more-btn d-flex justify-content-end">
+            探索更多 →
+          </Button>
+        </section>
+
+        <section>
+          <h5>推薦文章</h5>
+          <Button className="search-more-btn d-flex justify-content-end">
+            探索更多 →
+          </Button>
+        </section>
       </div>
     </>
   )
