@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Button } from 'react-bootstrap'
+import './Product.scss'
 // import { GrFavorite } from 'react-icons/gr'
 // import { MdFavorite } from 'react-icons/md'
 

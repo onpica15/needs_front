@@ -5,7 +5,6 @@ import { MdFavorite } from 'react-icons/md'
 
 import Product from './Product'
 
-import './Posts.scss'
 import image from '../../assets/img/products/1-paper/PT01_300x0.jpg'
 
 const Posts = (props) => {

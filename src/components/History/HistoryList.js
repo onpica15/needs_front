@@ -6,7 +6,7 @@ function HistoryList(props) {
   console.log(cart)
   return (
     <div>
-      <ul className="list pl0 mt0 measure center">
+      <div className="d-flex">
         {cart &&
           cart.map((item) => (
             <CartItem
@@ -15,7 +15,7 @@ function HistoryList(props) {
               updateCartUnits={updateCartUnits}
             />
           ))}
-      </ul>
+      </div>
     </div>
   )
 }

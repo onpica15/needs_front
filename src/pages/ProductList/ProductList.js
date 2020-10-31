@@ -89,6 +89,11 @@ const ProductList = (props) => {
         </div>
       </div>
       <div className="container mt-5">
+        <h5 className="d-flex justify-content-center">推薦商家</h5>
+        <HistoryList cart={cart} updateCartUnits={updateCartUnits} />
+      </div>
+      <div className="container mt-5">
+        <h5 className="d-flex justify-content-center">最近瀏覽</h5>
         <HistoryList cart={cart} updateCartUnits={updateCartUnits} />
       </div>
     </>
