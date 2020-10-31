@@ -145,7 +145,7 @@
     .dispatch-status{
         .card {
         border-radius: 0.5rem;
-    
+        border: none;
         .card-body {
             padding: 1.5rem;
     
@@ -250,7 +250,7 @@
                 margin-bottom: 15px;
     
                 .ad-title {
-                    font-size: 24px;
+                    font-size: 18px;
                 }
     
                 .ad-type {
@@ -260,7 +260,8 @@
     
             .ad-duration {
                 float: left;
-                display: 16px;
+                font-size: 14px;
+                color: #787878;
             }
     
             .ad-more-info {
