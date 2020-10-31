@@ -28,7 +28,7 @@
     .background-color{
       background-color:#323232;
       min-height: 35vh;
-      width: 58%;
+      width: 59%;
       padding-top: 35px;
       position: absolute;
     }
@@ -73,7 +73,7 @@
     }
     .sec1_info{
       min-height: 35vh;
-      width: 40%;
+      width: 41%;
       padding:5rem 1rem 2rem 3rem;
       .row1{
         margin-bottom: 2rem;
@@ -108,6 +108,7 @@
     background-image: url('../images/product_bg_1.jpg');
     background-size: cover;
     margin-right: 100px;
+    
   }
   .product-sml-pic{
     height: 300px;
@@ -117,6 +118,7 @@
     // margin-left: 5rem;
     display: flex;
     align-items: center;
+    box-shadow: 7px 7px 7px 2px rgba(0, 0, 0, 0.2);
   }
   .sec3{
     height: 100vh;
@@ -145,6 +147,7 @@
       position: absolute;
       left: -150px;
       top: 1rem;
+      box-shadow: 7px 7px 7px 2px rgba(0, 0, 0, 0.2);
     }
     
     .text{

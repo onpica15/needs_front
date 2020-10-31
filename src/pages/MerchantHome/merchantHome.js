@@ -19,7 +19,7 @@ function MerchantHome(){
             <div className="sec1 d-flex">
             <div className="sec1_avatar">
               <div className="d-flex mx-auto">
-                <div className="d-flex ml-5">  
+                <div className="d-flex ml-3">  
                 <div className="d-flex flex-column align-items-center">
                 
                 <div className="avatar rounded pb-3 ml-5"></div>
@@ -39,8 +39,8 @@ function MerchantHome(){
               </div>
             </div>  
 
-            <div className="sec1_info ml-5">
-              <Row className="row1">
+            <div className="sec1_info">
+              <Row className="row1 mx-auto">
                   <Col>
                   <h4>評價</h4>
                   <h4 className="red">尚無評價</h4>
@@ -54,7 +54,7 @@ function MerchantHome(){
                   <h4 className="red">106</h4>
                   </Col>
                 </Row>
-                <Row>
+                <Row className="mx-auto">
                   <Col>
                     <h4>加入時間</h4>
                     <h4>2019/10/05</h4>

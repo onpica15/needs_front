@@ -23,6 +23,7 @@ import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEdite
 import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
 import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
 
+
 //設置layout props
 const DynamicLayoutRoute = (props) => {
   const { component: RoutedComponent, layout, ...rest } = props
@@ -135,11 +136,15 @@ function App() {
             component={TemplateEditedPage}
             layout="BACK_END_NAV"
           />
+          {/* <Route
+            path="/customer-backend/template-edit"
+            component={EditedPage}
+          /> */}
           <DynamicLayoutRoute
             path="/customer-backend/template-list"
             component={TemplateList}
             layout="BACK_END_NAV"
-          />
+          />  
         </Switch>
       </>
     </Router>
