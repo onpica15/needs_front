@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import axios from 'axios'
 import EditorJs from 'react-editor-js'
-import editorjsHTML from 'editorjs-html'
 import { EDITOR_JS_TOOLS } from './constants'
 import TestArticleDetial from './TestArticleDetial'
 
@@ -22,8 +21,7 @@ const CreateArticle = (props) => {
     console.log('savedData', savedData)
     setContentDetial(savedData)
   }
-
-  const sendContent = async () => {
+  const saveToHtml = () => {
     contentDetial.blocks.map((obj) => {
       switch (obj.type) {
         case 'paragraph':
@@ -103,12 +101,14 @@ const CreateArticle = (props) => {
         default:
           return ''
       }
+      setShowHTML(articleHTML)
+      console.log(showHTML)
+      return [title, image, outline, showHTML]
     })
-    // const edjsParser = editorjsHTML()
-    // const html = edjsParser.parse(contentDetial)
-    setShowHTML(articleHTML)
-    console.log(showHTML)
+  }
 
+  const sendContent = async () => {
+    console.log(title)
     await axios
       .post('http://localhost:5000/article', [title, image, outline, showHTML])
       .catch((error) => {
@@ -124,7 +124,7 @@ const CreateArticle = (props) => {
         tools={EDITOR_JS_TOOLS}
         data={contentDetial}
       />
-      <button onClick={handleSave}>儲存</button>
+      <button onClick={saveToHtml}>儲存</button>
       <div style={{ textAlign: 'center', margin: '2rem' }}>
         <button className="" onClick={sendContent}>
           送出

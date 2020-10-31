@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { addToCartAction, updateCartUnits } from '../../actions/index'
 import { Breadcrumb } from 'react-bootstrap'
 
 import Posts from '../../components/ProductList/Posts'
@@ -7,6 +8,9 @@ import Pagination from '../../components/ProductList/Pagination'
 import ProductSideBar from './ProductSidebar'
 import Filter from './Filter/Filter'
 import SideFilter from './Filter/SideFilter'
+
+//test
+import HistoryList from '../../components/History/HistoryList'
 
 import axios from 'axios'
 
@@ -18,6 +22,8 @@ const ProductList = (props) => {
 
   const [sort, setSort] = useState('')
   const [productView, setProductView] = useState('bigPic')
+
+  const { cart, addToCartAction, updateCartUnits } = props
 
   // axios get data
   useEffect(() => {
@@ -72,7 +78,9 @@ const ProductList = (props) => {
             posts={currentPosts}
             dataLoading={dataLoading}
             productView={productView}
+            addToCartAction={addToCartAction}
           />
+
           <Pagination
             postsPerPage={postsPerPage}
             totalPosts={posts.length}
@@ -80,8 +88,17 @@ const ProductList = (props) => {
           />
         </div>
       </div>
+      <div className="container mt-5">
+        <HistoryList cart={cart} updateCartUnits={updateCartUnits} />
+      </div>
     </>
   )
 }
 
-export default ProductList
+const mapStateToProps = ({ cart }) => {
+  return { cart }
+}
+
+export default connect(mapStateToProps, { addToCartAction, updateCartUnits })(
+  ProductList
+)

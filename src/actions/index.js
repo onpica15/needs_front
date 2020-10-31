@@ -1,4 +1,10 @@
-import { userConstants, roleTypes, alertConstants } from './actiontypes'
+import {
+  userConstants,
+  roleTypes,
+  alertConstants,
+  ADD_TO_CART,
+  UPDATE_CART_UNITS,
+} from './actiontypes'
 import { createBrowserHistory } from 'history'
 const history = createBrowserHistory()
 
@@ -133,4 +139,18 @@ function error(message) {
 
 function clear() {
   return { type: alertConstants.CLEAR }
+}
+
+// cart action
+export function addToCartAction({ id, title, img_path, price, units }) {
+  return {
+    type: ADD_TO_CART,
+    payload: { id, title, img_path, price, units },
+  }
+}
+export function updateCartUnits({ id, units, price }) {
+  return {
+    type: UPDATE_CART_UNITS,
+    payload: { id, units, price },
+  }
 }

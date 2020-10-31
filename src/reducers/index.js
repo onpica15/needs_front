@@ -5,9 +5,12 @@ import { registration } from './registrationReducer'
 import { alert } from './alertReducer'
 import { role } from './roleReducer'
 
+import cartReducer from './cartReducer'
+
 export const rootReducer = combineReducers({
   authentication,
   role,
   // registration,
   alert,
+  cart: cartReducer,
 })
