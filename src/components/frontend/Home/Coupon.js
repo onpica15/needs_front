@@ -3,15 +3,15 @@ import Axios from 'axios'
 import { Container, Col, Row, Button } from 'react-bootstrap'
 
 function Coupon() {
-  const [productList, setProductList] = useState([])
-  useEffect(() => {
-    Axios.get('http://localhost:5000/try-db').then((response) => {
-      setProductList(response.data)
-    })
-  }, [])
-  if (productList.length == 0) {
-    return ''
-  }
+  // const [productList, setProductList] = useState([])
+  // useEffect(() => {
+  //   Axios.get('http://localhost:5000/try-db').then((response) => {
+  //     setProductList(response.data)
+  //   })
+  // }, [])
+  // if (productList.length == 0) {
+  //   return ''
+  // }
   return (
     <>
       <Container>
@@ -43,9 +43,10 @@ function Coupon() {
               />
             </div>
             <div className="promo-info">
+              ``
               <div className="promo-title">
-                {/* 【EL COMMUN】2021橫式週記事手帳B6 ‧白海藍鯨 */}
-                {productList[0].title}
+                【EL COMMUN】2021橫式週記事手帳B6 ‧白海藍鯨
+                {/* {productList[0].title} */}
               </div>
               <div className="promo-brand">EL COMMUN</div>
               <span className="promo-price">NT$684</span>

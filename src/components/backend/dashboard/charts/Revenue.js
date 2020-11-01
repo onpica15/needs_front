@@ -40,7 +40,7 @@ class RevenueChart extends Component {
         yaxis: {
           labels: {
             formatter: function (value) {
-              return value + 'k'
+              return value
             },
           },
         },
@@ -51,29 +51,9 @@ class RevenueChart extends Component {
           tooltip: {
             enabled: false,
           },
-          type: 'datetime',
-          categories: [
-            new Date('2020-11-01').getTime(),
-            new Date('2020-11-05').getTime(),
-            new Date('2020-11-09').getTime(),
-            new Date('2020-11-13').getTime(),
-            new Date('2020-11-17').getTime(),
-            new Date('2020-11-21').getTime(),
-            new Date('2020-11-25').getTime(),
-            new Date('2020-11-29').getTime(),
-          ],
+          categories: [...props.durationDays],
         },
       },
-      series: [
-        {
-          name: '本月',
-          data: [45.0, 47.0, 44.8, 47.5, 45.5, 48.5, 46.5, 48.6],
-        },
-        {
-          name: '上個月',
-          data: [45.0, 48.0, 45.5, 46.6, 44.5, 46.0, 45.5, 47.0],
-        },
-      ],
     }
   }
 
@@ -81,21 +61,40 @@ class RevenueChart extends Component {
     return (
       <>
         <div className="chart-card revenue">
-          <div className="revenue-title">本週收入</div>
+          <div className="revenue-title">近兩週收入比較</div>
           <div className=" monthly-income mr-5">
-            <div className="month-title">本月</div>
-            <sup className="font-medium-1">$</sup>
-            <span className="this-month-income">86,589</span>
+            <div className="month-title">本週</div>
+            {/* <sup className="font-medium-1">$</sup> */}
+            <span className="this-month-income">
+              {new Intl.NumberFormat('zh-Hans-TW', {
+                style: 'currency',
+                currency: 'TWD',
+              }).format(this.props.totalThisWeek)}
+            </span>
           </div>
           <div className="monthly-income mr-5">
-            <div className="month-title">上個月</div>
-            <sup className="font-medium-1">$</sup>
-            <span className="last-month-income">73,683</span>
+            <div className="month-title">上週</div>
+            {/* <sup className="font-medium-1">$</sup> */}
+            <span className="last-month-income">
+              {new Intl.NumberFormat('zh-Hans-TW', {
+                style: 'currency',
+                currency: 'TWD',
+              }).format(this.props.totalLastWeek)}
+            </span>
           </div>
           <div className="mixed-chart">
             <Chart
               options={this.state.options}
-              series={this.state.series}
+              series={[
+                {
+                  name: '本週',
+                  data: this.props.thisWeekIncome,
+                },
+                {
+                  name: '上週',
+                  data: this.props.lastWeekIncome,
+                },
+              ]}
               type="line"
               height="280"
             />

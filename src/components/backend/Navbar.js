@@ -121,7 +121,6 @@ function Navbar() {
                 <NavItem className="staff-info">
                   <div
                     style={{
-                      padding: '0px 0.5rem 0.5rem',
                       textAlign: 'end',
                     }}
                   >

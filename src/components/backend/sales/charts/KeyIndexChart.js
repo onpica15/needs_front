@@ -21,14 +21,7 @@ class KeyIndexChart extends React.Component {
           curve: 'straight',
           dashArray: [0, 8, 5, 0, 8, 5],
         },
-        colors: [
-          '#7367f0',
-          '#28c76f',
-          '#ea5455',
-          '#ff9f43',
-          '#00cfe8',
-          '#e8cd00',
-        ],
+        colors: [this.props.initData.color],
         title: {
           text: '過去七天 ',
           align: 'left',
