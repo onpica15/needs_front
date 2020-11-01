@@ -3,19 +3,45 @@ import { Card, Tabs, Tab, Table } from 'react-bootstrap'
 import Axios from 'axios'
 
 function MerchantsRank() {
+  const [totalRevenue, setTotalRevenue] = useState([])
+  const [dataTableForRevenue, setDataTableForRevenue] = useState([])
+  const [dataTableForAmount, setDataTableForAmount] = useState([])
   const getProductRank = () => {
     Axios.get('http://localhost:5000/dashboard/merchantsellrank').then(
       (response) => {
         const data = response.data
-        let dataTitle = ''
         let dataTitleArray = []
+        let revenueArray = []
         for (let i = 0; i < data.length; i++) {
-          console.log(data[i].title)
-          if (data[i].title === dataTitle) {
-            dataTitleArray.push(data[i].title)
-          }
-          dataTitle = data[i].title
+          dataTitleArray.push(data[i].title)
+          revenueArray.push(data[i].unit_price)
         }
+        console.log(dataTitleArray, revenueArray)
+        let result = {}
+        dataTitleArray.forEach((x) => {
+          result[x] = (result[x] || 0) + 1
+        })
+        let allProduct = Object.keys(result)
+        let totalAmount = Object.values(result)
+        console.log(allProduct, totalAmount)
+        for (let i = 0; i < allProduct.length; i++) {
+          dataTableForAmount.push(
+            <>
+              <tr>
+                <td>{i + 1}</td>
+                <td>{allProduct[i]}</td>
+                <td>{totalAmount[i]}</td>
+              </tr>
+            </>
+          )
+        }
+        setDataTableForAmount(dataTableForAmount)
+
+        for (let i = 0; i < data.length; i++) {
+          revenueArray.push(data[i].unit_price)
+        }
+        // console.log(totalAmount, revenueArray)
+        setTotalRevenue(totalRevenue)
       }
     )
   }
@@ -43,13 +69,7 @@ function MerchantsRank() {
                       <th>銷售額</th>
                     </tr>
                   </thead>
-                  <tbody className="rank-body">
-                    <tr>
-                      <td>1</td>
-                      <td>【Ｍister】歐式復古羽毛筆沾水鋼筆禮盒</td>
-                      <td>$825</td>
-                    </tr>
-                  </tbody>
+                  <tbody className="rank-body">{dataTableForAmount}</tbody>
                 </Table>
               </Tab>
               <Tab eventKey="saleDigit" title="售出件數">
@@ -61,16 +81,10 @@ function MerchantsRank() {
                       <th>售出件數</th>
                     </tr>
                   </thead>
-                  <tbody className="rank-body">
-                    <tr>
-                      <td>1</td>
-                      <td>【Ｍister】歐式復古羽毛筆沾水鋼筆禮盒</td>
-                      <td>40</td>
-                    </tr>
-                  </tbody>
+                  <tbody className="rank-body">{dataTableForAmount}</tbody>
                 </Table>
               </Tab>
-              <Tab eventKey="browse" title="頁面瀏覽數">
+              {/* <Tab eventKey="browse" title="頁面瀏覽數">
                 <Table borderless className="">
                   <thead className="rank-header">
                     <tr>
@@ -105,7 +119,7 @@ function MerchantsRank() {
                     </tr>
                   </tbody>
                 </Table>
-              </Tab>
+              </Tab> */}
             </Tabs>
           </div>
         </Card.Body>
