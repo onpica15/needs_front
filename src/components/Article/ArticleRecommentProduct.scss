@@ -1,0 +1,29 @@
+.ArticleRecommentProduct{
+    display: flex;
+    font-size: 16px;
+    margin-bottom: 50px;
+    color: #323232;
+    .picture{
+        max-width: 90px;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .textArea{
+        
+        text-decoration: none;
+        .btmArea{
+            color: #787878;
+            display: flex;
+            justify-content: space-between;
+        }
+        .price{
+            text-decoration: line-through;
+            margin-right: 10px;
+        }
+        .sale{
+            color: #D44F44;
+        }
+    }
+}

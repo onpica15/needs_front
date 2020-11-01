@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function ArticleClassic(props) {
   const classicData = [
     {
       title: '精選5款人氣筆記本套推薦',
-      img_path: 'http://localhost:5000/articleImg/Classic/1579158735687.jpg',
+      img_path: 'http://localhost:5000/articleImg/Classic/1579146747170.jpg',
       outline:
         '市面上可看到眾多文具廠商或皮革製品的品牌，都有推出各種造型和質...',
     },
@@ -33,7 +34,11 @@ function ArticleClassic(props) {
     <>
       <div className=" articleItems d-flex flex-wrap">
         {classicData.map((value, index) => (
-          <div key={value.id} className="articleItem col-3">
+          <Link
+            to="/articledetial"
+            key={value.id}
+            className="articleItem col-3"
+          >
             <div className="articlePic">
               <img src={value.img_path} alt=""></img>
             </div>
@@ -41,7 +46,7 @@ function ArticleClassic(props) {
               <h5 className="title">{value.title}</h5>
               <div className="ctx">{value.outline}</div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </>

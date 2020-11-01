@@ -6,6 +6,8 @@ import { Button } from 'react-bootstrap'
 
 import ArticleClassic from '../../components/Article/ArticleClassic'
 
+import Join from '../../components/Chat/Join'
+
 import './Article.scss'
 
 const Article = (props) => {
@@ -52,6 +54,7 @@ const Article = (props) => {
 
   return (
     <>
+      <Join />
       <div className="container">
         {/* <Breadcrumb /> */}
         <div className="topic d-flex">
