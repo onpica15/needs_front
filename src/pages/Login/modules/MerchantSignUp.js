@@ -1,18 +1,11 @@
 import React, { useState } from 'react'
-// import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import axios from 'axios'
-// import { createBrowserHistory } from 'history'
-import history from '../../../components/history'
-
+import { withRouter } from 'react-router-dom'
+import Axios from 'axios'
 import { alertActions } from '../../../actions'
 import { Button, Form, Modal } from 'react-bootstrap'
-import { FaUserCircle, FaLock } from 'react-icons/fa'
 import './MerchantSignUp.scss'
-
 const MerchantSignUp = (props) => {
-  // const history = useHistory()
-  // const history = createBrowserHistory()
   const dispatch = useDispatch()
   const { error } = alertActions
 
@@ -24,26 +17,21 @@ const MerchantSignUp = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     setSubmitted(true)
-    axios
-      .post(`http://localhost:5000/signup-api/merchantsignup`, formData)
-      .then((res) => {
-        console.log(res)
-        if (!res.data.success) {
-          return dispatch(error(res.data.error))
-        }
-        setModalSuccessShow(true)
-      })
-      .catch((error) => {
-        console.log(error.toString())
-        return error.toString()
-      })
+    Axios.post(
+      `http://122.116.38.12:5050/signup-api/merchantsignup`,
+      formData
+    ).then((res) => {
+      if (!res.data.success) {
+        return dispatch(error(res.data.error))
+      }
+      setModalSuccessShow(true)
+    })
   }
 
   const handleSetForm = (e, key) => {
     const value = e.target.value
     setFormData({ ...formData, [key]: value })
   }
-
   return (
     <>
       <div className="merchantSignup container-fluid">
@@ -130,7 +118,7 @@ const MerchantSignUp = (props) => {
             <Button
               onClick={() => {
                 setModalSuccessShow(false)
-                history.push('/login')
+                props.history.push('/login')
               }}
             >
               出發
@@ -142,4 +130,4 @@ const MerchantSignUp = (props) => {
   )
 }
 
-export default MerchantSignUp
+export default withRouter(MerchantSignUp)

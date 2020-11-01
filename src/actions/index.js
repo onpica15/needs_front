@@ -1,5 +1,5 @@
 import { userConstants, roleTypes, alertConstants } from './actiontypes'
-
+import History from '../components/history'
 export const userActions = { login, logout }
 export const roleActions = { setMember, setMerchant, setNeeds }
 export const alertActions = { success, error, clear }
@@ -14,7 +14,7 @@ function login(username, password, currentRole) {
       } else {
         dispatch(clear())
         dispatch(success(user))
-        window.history.back()
+        History.goBack()
       }
     })
   }
@@ -96,35 +96,6 @@ function setNeeds() {
     return { type: roleTypes.SET_NEEDS }
   }
 }
-
-// register action
-// function register(user) {
-//   return (dispatch) => {
-//     dispatch(request(user))
-
-//     userService.register(user).then(
-//       (user) => {
-//         dispatch(success())
-//         history.push('/login')
-//         dispatch(alertActions.success('註冊成功'))
-//       },
-//       (error) => {
-//         dispatch(failure(error.toString()))
-//         dispatch(alertActions.error(error.toString()))
-//       }
-//     )
-//   }
-
-//   function request(user) {
-//     return { type: userConstants.REGISTER_REQUEST, user }
-//   }
-//   function success(user) {
-//     return { type: userConstants.REGISTER_SUCCESS, user }
-//   }
-//   function failure(error) {
-//     return { type: userConstants.REGISTER_FAILURE, error }
-//   }
-// }
 
 // alert actions
 function success(message) {
