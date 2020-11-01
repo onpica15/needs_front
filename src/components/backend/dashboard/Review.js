@@ -7,7 +7,11 @@ import Axios from 'axios'
 
 function Review() {
   const [reviewStar, setReviewStar] = useState()
-  const [fiveStar, setFiveStar] = useState()
+  const [fiveStar, setFiveStar] = useState(0)
+  const [fourStar, setFourStar] = useState(0)
+  const [threeStar, setThreeStar] = useState(0)
+  const [twoStar, setTwoStar] = useState(0)
+  const [oneStar, setOneStar] = useState(0)
 
   const getStar = () => {
     Axios.get('http://localhost:5000/dashboard/star').then((response) => {
@@ -24,16 +28,49 @@ function Review() {
   }
   const getFiveStar = () => {
     Axios.get('http://localhost:5000/dashboard/5star').then((response) => {
-      const dataLength = response.data.length
+      let dataLength = response.data.length
       setFiveStar(dataLength)
-      console.log(dataLength)
+    })
+  }
+
+  const getFourStar = () => {
+    Axios.get('http://localhost:5000/dashboard/4star').then((response) => {
+      let dataLength = response.data.length
+      setFourStar(dataLength)
+    })
+  }
+
+  const getThreeStar = () => {
+    Axios.get('http://localhost:5000/dashboard/3star').then((response) => {
+      let dataLength = response.data.length
+      setThreeStar(dataLength)
+    })
+  }
+
+  const getTwoStar = () => {
+    Axios.get('http://localhost:5000/dashboard/2star').then((response) => {
+      let dataLength = response.data.length
+      setTwoStar(dataLength)
+    })
+  }
+
+  const getOneStar = () => {
+    Axios.get('http://localhost:5000/dashboard/1star').then((response) => {
+      let dataLength = response.data.length
+      setOneStar(dataLength)
     })
   }
 
   useEffect(() => {
     getStar()
+    getOneStar()
+    getTwoStar()
+    getThreeStar()
+    getFourStar()
     getFiveStar()
   }, [])
+
+  useEffect(() => {}, [])
 
   return (
     <>
@@ -47,9 +84,14 @@ function Review() {
             interactive={false}
           />
         </div>
-        data length: {fiveStar}
         <div className="review-chart">
-          <ReviewPieChart fiveStar={fiveStar ? fiveStar : ''} />
+          <ReviewPieChart
+            oneStar={oneStar}
+            twoStar={twoStar}
+            threeStar={threeStar}
+            fourStar={fourStar}
+            fiveStar={fiveStar}
+          />
         </div>
       </div>
     </>

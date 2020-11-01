@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, Card } from 'react-bootstrap'
 import moment from 'moment'
 import 'moment/locale/zh-tw'
 import KeyIndexChart from '../../../components/backend/sales/charts/KeyIndexChart.js'
+import Axios from 'axios'
 
 function KeyIndex() {
   moment.locale('zh-tw')
 
+  useEffect(() => {}, [])
   let dateArray = []
   for (let i = 0; i < 7; i++) {
     let date = moment().subtract(i, 'days').format('MMM Do')

@@ -34,7 +34,6 @@ class BrowseChart extends Component {
           show: false,
         },
         xaxis: {
-          type: 'datetime',
           labels: {
             show: false,
           },
@@ -50,6 +49,7 @@ class BrowseChart extends Component {
           tooltip: {
             enabled: false,
           },
+          categories: [...props.durationDays],
         },
         grid: {
           show: false,
@@ -69,41 +69,6 @@ class BrowseChart extends Component {
           offsetY: 0,
         },
       },
-      series: [
-        {
-          name: '轉換率',
-          data: [
-            {
-              x: new Date('2020-11-14').getTime(),
-              y: '3.86%',
-            },
-            {
-              x: new Date('2020-11-15').getTime(),
-              y: '2.54%',
-            },
-            {
-              x: new Date('2020-11-16').getTime(),
-              y: '1.86%',
-            },
-            {
-              x: new Date('2020-11-17').getTime(),
-              y: '2.11%',
-            },
-            {
-              x: new Date('2020-11-18').getTime(),
-              y: '3.01%',
-            },
-            {
-              x: new Date('2020-11-19').getTime(),
-              y: '3.88%',
-            },
-            {
-              x: new Date('2020-11-20').getTime(),
-              y: '1.54%',
-            },
-          ],
-        },
-      ],
     }
   }
 
@@ -115,13 +80,19 @@ class BrowseChart extends Component {
             <div className="circle-icon icon-money">
               <i className="fas fa-money-bill-wave"></i>
             </div>
-            <div className="chart-figures">2.68%</div>
+            <div className="chart-figures">{this.props.avgTurnover}%</div>
             <div className="chart-title">轉換率</div>
           </div>
           <div className="mixed-chart">
             <Chart
               options={this.state.options}
-              series={this.state.series}
+              series={[
+                {
+                  name: '轉換率',
+                  data: this.props.totalTurnover,
+                },
+              ]}
+              type
               type="area"
               height="100"
             />
