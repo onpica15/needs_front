@@ -15,7 +15,7 @@ function DispatchStatus() {
         for (let i = 0; i < data.length; i++) {
           let date = data[i].created_at
           let statusString = ''
-          date = moment(date).fromNow()
+          date = moment(date).startOf('hour').fromNow()
           dateArray.push(date)
           switch (data[i].delivery_status) {
             case 0:

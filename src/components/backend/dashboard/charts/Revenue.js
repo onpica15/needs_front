@@ -64,16 +64,22 @@ class RevenueChart extends Component {
           <div className="revenue-title">近兩週收入比較</div>
           <div className=" monthly-income mr-5">
             <div className="month-title">本週</div>
-            <sup className="font-medium-1">$</sup>
+            {/* <sup className="font-medium-1">$</sup> */}
             <span className="this-month-income">
-              {this.props.totalThisWeek}
+              {new Intl.NumberFormat('zh-Hans-TW', {
+                style: 'currency',
+                currency: 'TWD',
+              }).format(this.props.totalThisWeek)}
             </span>
           </div>
           <div className="monthly-income mr-5">
             <div className="month-title">上週</div>
-            <sup className="font-medium-1">$</sup>
+            {/* <sup className="font-medium-1">$</sup> */}
             <span className="last-month-income">
-              {this.props.totalLastWeek}
+              {new Intl.NumberFormat('zh-Hans-TW', {
+                style: 'currency',
+                currency: 'TWD',
+              }).format(this.props.totalLastWeek)}
             </span>
           </div>
           <div className="mixed-chart">

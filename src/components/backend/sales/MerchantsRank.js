@@ -1,7 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card, Tabs, Tab, Table } from 'react-bootstrap'
+import Axios from 'axios'
 
 function MerchantsRank() {
+  const getProductRank = () => {
+    Axios.get('http://localhost:5000/dashboard/merchantsellrank').then(
+      (response) => {
+        const data = response.data
+        let dataTitle = ''
+        let dataTitleArray = []
+        for (let i = 0; i < data.length; i++) {
+          console.log(data[i].title)
+          if (data[i].title === dataTitle) {
+            dataTitleArray.push(data[i].title)
+          }
+          dataTitle = data[i].title
+        }
+      }
+    )
+  }
+  useEffect(() => {
+    getProductRank()
+  }, [])
+
   return (
     <>
       <Card>

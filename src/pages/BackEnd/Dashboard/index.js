@@ -27,25 +27,50 @@ function Dashboard() {
   const [totalFans, setTotalFans] = useState()
   const [numberOfBrowse, setNumberOfBrowse] = useState()
   const [totalBrowse, setTotalBrowse] = useState()
-  const [numberOfOrder, setNumberOfOrder] = useState()
-  const [totalOrder, setTotalOrder] = useState()
   const [totalTurnover, setTotalTurnover] = useState()
   const [avgTurnover, setAvgTurnover] = useState()
 
   const [thisWeekIncome, setThisWeekIncome] = useState()
-  const [lastWeekIncome, setLastWeekIncome] = useState()
   const [totalThisWeek, setTotalThisWeek] = useState()
+  const [lastWeekIncome, setLastWeekIncome] = useState()
   const [totalLastWeek, setTotalLastWeek] = useState()
 
-  const [getAmountOfOrders, setGetAmountOfOrders] = useState(0)
+  const [getAmountOfOrders, setGetAmountOfOrders] = useState()
+  const [getNumberOfTotalOrders, setNumberOfTotalOrders] = useState()
 
   const getAmountOfOrdersAPI = () => {
     Axios.get('http://localhost:5000/dashboard/amountoforders').then(
       (response) => {
         const data = response.data
         let amountOfOrders = data.length
-        console.log(amountOfOrders)
-        setGetAmountOfOrders(amountOfOrders)
+        let fakeOrders = [22, 34, 38, 50, 19, 25]
+        let totalAmountOfOrders =
+          fakeOrders.reduce(function (a, b) {
+            return a + b
+          }, 0) + amountOfOrders
+
+        let incomeToday = 0
+        for (let i = 0; i < data.length; i++) {
+          incomeToday = incomeToday + parseInt(data[i].amount)
+          console.log(incomeToday)
+        }
+        let fakeIncomeThisWeek = [
+          195780,
+          130840,
+          170840,
+          189500,
+          217680,
+          169820,
+        ]
+        let totalIncomeThisWeek =
+          fakeIncomeThisWeek.reduce(function (a, b) {
+            return a + b
+          }, 0) + incomeToday
+
+        setNumberOfTotalOrders([totalAmountOfOrders])
+        setGetAmountOfOrders([...fakeOrders, amountOfOrders])
+        setTotalThisWeek([totalIncomeThisWeek])
+        setThisWeekIncome([...fakeIncomeThisWeek, incomeToday])
       }
     )
   }
@@ -57,8 +82,6 @@ function Dashboard() {
       let totalFans = 0
       let numberOfBrowseArray = []
       let totalBrowse = 0
-      let numberOfOrderArray = []
-      let totalOrder = 0
       let turnoverArray = []
       let avgTurnover = 0
       for (let i = 0; i < data.length; i++) {
@@ -66,8 +89,6 @@ function Dashboard() {
         totalFans = parseInt(totalFans + data[i].number_fans)
         numberOfBrowseArray.push(data[i].number_browse)
         totalBrowse = parseInt(totalBrowse + data[i].number_browse)
-        numberOfOrderArray.push(data[i].number_order)
-        totalOrder = parseInt(totalOrder + data[i].number_order)
         turnoverArray.push(
           ((data[i].number_order / data[i].number_browse) * 100).toFixed(1)
         )
@@ -83,27 +104,25 @@ function Dashboard() {
       setNumberOfFans(numberOfFansArray)
       setTotalBrowse(totalBrowse)
       setNumberOfBrowse(numberOfBrowseArray)
-      setTotalOrder(totalOrder)
-      setNumberOfOrder(numberOfOrderArray)
     })
   }
 
-  const getThisIncome = () => {
-    Axios.get('http://localhost:5000/dashboard/incomethisweek').then(
-      (response) => {
-        const data = response.data
-        let thisWeekIncomeArray = []
-        let totalThisWeek = 0
-        for (let i = 0; i < data.length; i++) {
-          thisWeekIncomeArray.push(data[i].income)
-          totalThisWeek = totalThisWeek + thisWeekIncomeArray[i]
-        }
-        // console.log(thisWeekIncomeArray)
-        setThisWeekIncome(thisWeekIncomeArray)
-        setTotalThisWeek(totalThisWeek)
-      }
-    )
-  }
+  // const getThisIncome = () => {
+  //   Axios.get('http://localhost:5000/dashboard/incomethisweek').then(
+  //     (response) => {
+  //       const data = response.data
+  //       let thisWeekIncomeArray = []
+  //       let totalThisWeek = 0
+  //       for (let i = 0; i < data.length; i++) {
+  //         thisWeekIncomeArray.push(data[i].income)
+  //         totalThisWeek = totalThisWeek + thisWeekIncomeArray[i]
+  //       }
+  //       // console.log(thisWeekIncomeArray)
+  //       setThisWeekIncome(thisWeekIncomeArray)
+  //       setTotalThisWeek(totalThisWeek)
+  //     }
+  //   )
+  // }
 
   const getLastIncome = () => {
     Axios.get('http://localhost:5000/dashboard/incomelastweek').then(
@@ -124,7 +143,7 @@ function Dashboard() {
 
   useEffect(() => {
     getDashboardData()
-    getThisIncome()
+    // getThisIncome()
     getLastIncome()
     getAmountOfOrdersAPI()
   }, [])
@@ -153,9 +172,8 @@ function Dashboard() {
               <Col xs={3}>
                 <SalesChart
                   durationDays={durationDays}
-                  numberOfOrder={numberOfOrder}
-                  totalOrder={totalOrder}
                   getAmountOfOrders={getAmountOfOrders}
+                  getNumberOfTotalOrders={getNumberOfTotalOrders}
                 />
               </Col>
               <Col xs={3}>

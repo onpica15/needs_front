@@ -8,8 +8,46 @@ import Axios from 'axios'
 
 function KeyIndex() {
   moment.locale('zh-tw')
+  const [thisWeekIncome, setThisWeekIncome] = useState()
+  const [totalThisWeek, setTotalThisWeek] = useState()
+  const [getAmountOfOrders, setGetAmountOfOrders] = useState()
+  const [getNumberOfTotalOrders, setNumberOfTotalOrders] = useState()
 
-  useEffect(() => {}, [])
+  const getAmountOfOrdersAPI = () => {
+    Axios.get('http://localhost:5000/dashboard/amountoforders').then(
+      (response) => {
+        const data = response.data
+        let amountOfOrders = data.length
+        let fakeOrders = [22, 34, 38, 50, 19, 25]
+        let totalAmountOfOrders =
+          fakeOrders.reduce(function (a, b) {
+            return a + b
+          }, 0) + amountOfOrders
+
+        let incomeToday = 0
+        for (let i = 0; i < data.length; i++) {
+          incomeToday = incomeToday + parseInt(data[i].amount)
+        }
+        let fakeIncomeThisWeek = [
+          195780,
+          130840,
+          170840,
+          189500,
+          217680,
+          169820,
+        ]
+        let totalIncomeThisWeek =
+          fakeIncomeThisWeek.reduce(function (a, b) {
+            return a + b
+          }, 0) + incomeToday
+
+        setNumberOfTotalOrders([totalAmountOfOrders])
+        setGetAmountOfOrders([...fakeOrders, amountOfOrders])
+        setTotalThisWeek([totalIncomeThisWeek])
+        setThisWeekIncome([...fakeIncomeThisWeek, incomeToday])
+      }
+    )
+  }
   let dateArray = []
   for (let i = 0; i < 7; i++) {
     let date = moment().subtract(i, 'days').format('MMM Do')
@@ -17,29 +55,35 @@ function KeyIndex() {
   }
   dateArray = dateArray.reverse()
 
+  let averageMoneyArray = []
+  let pageViewArray = [436, 674, 700, 891, 603, 788, 567]
+  let turnoverArray = []
+  for (let i = 0; i < 7; i++) {
+    if (thisWeekIncome && getAmountOfOrders) {
+      let averageMoney = Math.floor(thisWeekIncome[i] / getAmountOfOrders[i])
+      averageMoneyArray.push(averageMoney)
+      let averageTurnover = (
+        (getAmountOfOrders[i] / pageViewArray[i]) *
+        100
+      ).toFixed(2)
+      turnoverArray.push(averageTurnover)
+      turnoverArray = turnoverArray.map(parseFloat)
+    }
+  }
+
   const salesDigits = {
     order: 1,
     name: '銷售額',
-    data: [4500, 5200, 3800, 2400, 3300, 2600, 2100],
+    data: thisWeekIncome,
     color: '#7367f0',
   }
   const amountOfOrders = {
     order: 2,
     name: '訂單數',
-    data: [35, 41, 62, 42, 13, 18, 29],
+    data: getAmountOfOrders,
     color: '#28c76f',
   }
-  const turnOverPercentage = {
-    order: 3,
-    name: '下單轉換率',
-    data: [8, 4, 6, 3, 2, 5, 7],
-    color: '#ea5455',
-  }
-  let averageMoneyArray = []
-  for (let i = 0; i < 7; i++) {
-    let averageMoney = Math.floor(salesDigits.data[i] / amountOfOrders.data[i])
-    averageMoneyArray.push(averageMoney)
-  }
+
   const averageMoneyPerOrder = {
     order: 4,
     name: '平均訂單金額',
@@ -59,8 +103,18 @@ function KeyIndex() {
     color: '#e8cd00',
   }
 
-  const [series, setSeries] = useState([salesDigits])
+  const turnOverPercentage = {
+    order: 3,
+    name: '下單轉換率',
+    data: turnoverArray,
+    color: '#ea5455',
+  }
+
+  const [series, setSeries] = useState([])
   const [durationDays, setDurationDays] = useState([...dateArray])
+  useEffect(() => {
+    getAmountOfOrdersAPI()
+  }, [])
 
   return (
     <>
@@ -70,7 +124,7 @@ function KeyIndex() {
           <Row>
             <Col xs={2}>
               <div
-                className="key-card primary-top"
+                className="key-card"
                 onClick={(e) => {
                   console.log('1', series)
                   setSeries([...series, salesDigits])
@@ -96,11 +150,7 @@ function KeyIndex() {
               >
                 <div className="key-title">銷售額</div>
                 <span className="dollar-sign">$</span>
-                <span className="key-number">
-                  {salesDigits.data.reduce((a, b) => {
-                    return a + b
-                  }, 0)}
-                </span>
+                <span className="key-number">{totalThisWeek}</span>
               </div>
             </Col>
             <Col xs={2}>
@@ -129,11 +179,7 @@ function KeyIndex() {
                 }}
               >
                 <div className="key-title">訂單</div>
-                <span className="key-number">
-                  {amountOfOrders.data.reduce((a, b) => {
-                    return a + b
-                  }, 0)}
-                </span>
+                <span className="key-number">{getNumberOfTotalOrders}</span>
               </div>
             </Col>
             <Col xs={2}>
@@ -163,9 +209,11 @@ function KeyIndex() {
               >
                 <div className="key-title">下單轉換率</div>
                 <span className="key-number">
-                  {turnOverPercentage.data.reduce((a, b) => {
-                    return a + b
-                  }, 0) / 7}
+                  {(
+                    turnOverPercentage.data.reduce((a, b) => {
+                      return a + b
+                    }, 0) / 7
+                  ).toFixed(2)}
                 </span>
                 <span className="percentage-sign">%</span>
               </div>

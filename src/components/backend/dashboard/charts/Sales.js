@@ -80,7 +80,9 @@ class BrowseChart extends Component {
             <div className="circle-icon icon-sale">
               <i className="fas fa-cart-plus"></i>
             </div>
-            <div className="chart-figures">+ {this.props.totalOrder}</div>
+            <div className="chart-figures">
+              + {this.props.getNumberOfTotalOrders}
+            </div>
             <div className="chart-title">訂單數</div>
           </div>
           <div className="mixed-chart">
@@ -89,7 +91,7 @@ class BrowseChart extends Component {
               series={[
                 {
                   name: '訂單量',
-                  data: this.props.numberOfOrder,
+                  data: this.props.getAmountOfOrders,
                 },
               ]}
               type="area"
