@@ -54,7 +54,6 @@ function ProductDetail(props) {
 
     const response = await fetch(request)
     const data = await response.json()
-    console.log(data)
     setMerchantInfo(data)
   }
 
@@ -63,8 +62,9 @@ function ProductDetail(props) {
   }, [])
 
   useEffect(() => {
-    if (productDetail === undefined) return
-    getMerchantInfo()
+    if (productDetail.merchant_id) {
+      getMerchantInfo()
+    }
   }, [productDetail])
 
   return (
@@ -74,8 +74,8 @@ function ProductDetail(props) {
         <Row>
           <Col md={7}>
             <Carousel className="w-88">
-              {productDetail.images &&
-                productDetail.images.map((value, index) => {
+              {productDetail.image_path &&
+                productDetail.image_path.map((value, index) => {
                   return (
                     <div key={index} className="photos-content">
                       <img
@@ -132,7 +132,9 @@ function ProductDetail(props) {
                   <button
                     type="button"
                     className="btn btn-sm border-right px-3"
-                    onClick={() => setQuantity(quantity - 1)}
+                    onClick={
+                      quantity > 1 ? () => setQuantity(quantity - 1) : ''
+                    }
                   >
                     -
                   </button>
@@ -143,11 +145,14 @@ function ProductDetail(props) {
                     onChange={(event) => {
                       setQuantity(event.target.value)
                     }}
+                    readOnly
                   />
                   <button
                     type="button"
                     className="btn btn-sm border-left px-3"
-                    onClick={() => setQuantity(quantity + 1)}
+                    onClick={
+                      quantity < 10 ? () => setQuantity(quantity + 1) : ''
+                    }
                   >
                     +
                   </button>

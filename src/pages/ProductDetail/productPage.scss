@@ -225,6 +225,10 @@ $bg-light: #f0f0f0;
     width: 90%;
   }
   .product-s {
+    height: 160px;
+    .cover{
+      object-fit: cover;
+    }
     img {
       width: 100%;
       height: auto;
@@ -237,5 +241,9 @@ $bg-light: #f0f0f0;
   .minh-66{
     height: 66px;
     overflow: hidden;
+  }
+  .form-control:disabled, .form-control[readonly] {
+    background-color: #fff;
+    opacity: 1;
   }
 }

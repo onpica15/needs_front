@@ -37,7 +37,7 @@ function MerchantInfo(props) {
             <p className="m-0">
               加入時間：
               <span className="text-point">
-                {merchantInfo.created_time}個月 前
+                {merchantInfo.created_months}個月 前
               </span>
             </p>
           </Col>
