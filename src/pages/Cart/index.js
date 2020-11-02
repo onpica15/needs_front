@@ -8,7 +8,7 @@ import { FaTimes } from 'react-icons/fa'
 
 function Cart(props) {
   return (
-    <div className="cart">
+    <div className="cart-page">
       <Container>
         <CheckoutNav />
         <div className="border rounded-top">

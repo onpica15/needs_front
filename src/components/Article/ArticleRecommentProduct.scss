@@ -4,19 +4,23 @@
     margin-bottom: 50px;
     color: #323232;
     .picture{
-        max-width: 90px;
+        width: 90px;
         img{
             width: 100%;
             height: 100%;
         }
     }
     .textArea{
-        
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
         text-decoration: none;
+        width: 240px;
         .btmArea{
             color: #787878;
             display: flex;
             justify-content: space-between;
+            text-align: end;
         }
         .price{
             text-decoration: line-through;

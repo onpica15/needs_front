@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import MemSidebar from './memmodules/MemSidebar'
 import MemuInform from './memmodules/MemInform'
 import './member.scss'
+import './member-rwd.scss'
 
 function MemberInform() {
   return (

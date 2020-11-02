@@ -6,22 +6,24 @@ import {
   UPDATE_CART_UNITS,
 } from './actiontypes'
 import { createBrowserHistory } from 'history'
-const history = createBrowserHistory()
 
+import History from '../components/history'
+const history = createBrowserHistory()
 export const userActions = { login, logout }
 export const roleActions = { setMember, setMerchant, setNeeds }
 export const alertActions = { success, error, clear }
 
 // login action
-function login(username, password, currentRole) {
+function login(username, password, selectedRole) {
   return (dispatch) => {
-    checkAuth(username, password, currentRole).then((user) => {
+    checkAuth(username, password, selectedRole).then((user) => {
       if (!user.success) {
         dispatch(failure())
         dispatch(error('帳號或密碼錯誤'))
       } else {
+        dispatch(clear())
         dispatch(success(user))
-        history.goBack()
+        History.goBack()
       }
     })
   }
@@ -33,10 +35,8 @@ function login(username, password, currentRole) {
   }
 }
 
-const checkAuth = (username, password, currentRole) => {
-  console.log(currentRole)
-  const url = `http://122.116.38.12:5050/login-api/${currentRole}login`
-  console.log(url)
+const checkAuth = (username, password, selectedRole) => {
+  const url = `http://122.116.38.12:5050/login-api/${selectedRole}login`
   const req = new Request(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -55,8 +55,8 @@ function handleResponse(response) {
     if (!response.ok) {
       if (response.status === 401) {
         // auto logout if 401 response returned from api
-        // logout()
         console.log('401')
+        logout()
       }
       const error = response.statusText
       return Promise.reject(error)
@@ -67,25 +67,27 @@ function handleResponse(response) {
 
 // logout action
 function logout() {
-  sessRemove()
-  return { type: userConstants.LOGOUT }
-}
-
-function sessRemove() {
   sessionStorage.removeItem('user')
+  window.location.href = '/'
+  return { type: userConstants.LOGOUT }
 }
 
 // setRole action
 function setMember() {
-  return (dispatch) => dispatch(member())
-
+  return (dispatch) => {
+    dispatch(clear())
+    dispatch(member())
+  }
   function member() {
     return { type: roleTypes.SET_MEMBER }
   }
 }
 
 function setMerchant() {
-  return (dispatch) => dispatch(merchant())
+  return (dispatch) => {
+    dispatch(clear())
+    dispatch(merchant())
+  }
 
   function merchant() {
     return { type: roleTypes.SET_MERCHANT }
@@ -93,40 +95,15 @@ function setMerchant() {
 }
 
 function setNeeds() {
-  return (dispatch) => dispatch(needs())
+  return (dispatch) => {
+    dispatch(clear())
+    dispatch(needs())
+  }
+
   function needs() {
     return { type: roleTypes.SET_NEEDS }
   }
 }
-
-// register action
-// function register(user) {
-//   return (dispatch) => {
-//     dispatch(request(user))
-
-//     userService.register(user).then(
-//       (user) => {
-//         dispatch(success())
-//         history.push('/login')
-//         dispatch(alertActions.success('註冊成功'))
-//       },
-//       (error) => {
-//         dispatch(failure(error.toString()))
-//         dispatch(alertActions.error(error.toString()))
-//       }
-//     )
-//   }
-
-//   function request(user) {
-//     return { type: userConstants.REGISTER_REQUEST, user }
-//   }
-//   function success(user) {
-//     return { type: userConstants.REGISTER_SUCCESS, user }
-//   }
-//   function failure(error) {
-//     return { type: userConstants.REGISTER_FAILURE, error }
-//   }
-// }
 
 // alert actions
 function success(message) {

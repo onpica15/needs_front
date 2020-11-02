@@ -13,7 +13,7 @@ function MerchantOtherProducts(props) {
                 <div className="product-s">
                   {value.image_path ? (
                     <img
-                      className="merchant-logo rounded"
+                      className="w-100 h-100 cover rounded"
                       src={`http://localhost:5000/img/products/${value.image_path}`}
                       alt=""
                     />

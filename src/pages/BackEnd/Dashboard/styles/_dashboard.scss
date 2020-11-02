@@ -210,27 +210,38 @@
         background-color: $warning_color;
     }
     
+    .circle-preparing {
+        color: $primary_color;
+    }
+    
     .circle-shipped {
         color: $success_color;
     }
     
-    .circle-not-shipped {
-        color: $primary_color;
-    }
     
-    .circle-not-shipped {
-        color: $primary_color;
-    }
-    
-    .circle-refund {
+    .circle-arrived {
         color: $danger_color;
     }
     
-    .circle-cancel {
+    .circle-received {
         color: $warning_color;
     }
+
+    .circle-refunding {
+        color: $info_color;
+    }
+
+    .circle-refunded {
+        color: $secondary_color;
+    }
+
+    .circle-not-shipped {
+        color: #6C757D;
+    }
     
-    .order-table {}
+    p{
+        margin-bottom: 0;
+    }
     
     .dashboard-ads {
         margin-top: 1.75rem;
@@ -271,5 +282,11 @@
         }
     
     
+    }
+    .card{
+        width: 100%;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
+        background-color: #fff;
     }
 }

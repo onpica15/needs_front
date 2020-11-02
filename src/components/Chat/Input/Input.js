@@ -11,11 +11,11 @@ const Input = (props) => {
     <>
       <form className="form">
         <button className="fab fab_camera">
-          <AiOutlinePicture size={20} />
+          <AiOutlinePicture size={30} />
         </button>
         <textarea
           type="text"
-          placeholder="給對方的訊息.."
+          placeholder="給對方的訊息..."
           value={message}
           onChange={({ target: { value } }) => setMessage(value)}
           onKeyPress={(event) =>
@@ -23,7 +23,7 @@ const Input = (props) => {
           }
         />
         <button className="fab fab_send" onClick={(e) => sendMessage(e)}>
-          <RiSendPlaneFill size={20} />
+          <RiSendPlaneFill size={30} />
         </button>
       </form>
     </>

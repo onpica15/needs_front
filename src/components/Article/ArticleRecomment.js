@@ -23,7 +23,7 @@ const ArticleRecomment = (props) => {
     {
       img:
         'http://localhost:5000/articleImg/Classic/8fa8c6140a5f5294aef248060cb59c79-700x525.jpg',
-      title: '辦公室收納好物 都收進 WORKERS’BOX 吧',
+      title: '辦公室收納好物都收進WORKERS’BOX 吧',
     },
   ]
   return (

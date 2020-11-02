@@ -94,7 +94,7 @@ function ArticleDetial() {
             </section>
           </div>
           <div className="col-lg-4 col-md-12">
-            <div className="">
+            <div style={{ 'margin-bottom': '200px' }}>
               <h5 className="mb-4">推薦文章</h5>
               <ArticleRecomment />
             </div>

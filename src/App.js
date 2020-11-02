@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { createBrowserHistory } from 'history'
 import { alertActions } from './actions'
+import History from './components/history'
 
 //平台
 import Navbar from './components/Navbar'
@@ -15,15 +15,14 @@ import MemberLike from './pages/Member/MemberLike'
 import MemberInform from './pages/Member/MemberInform'
 import MemberEcoin from './pages/Member/MemberEcoin'
 import MemberComment from './pages/Member/MemberComment'
-
 import Investment from './pages/Investment'
 import Article from './pages/Article/Article'
 import ProductList from './pages/ProductList/ProductList'
 import MerchantHome from './pages/MerchantHome/merchantHome'
 import ProductDetail from './pages/ProductDetail'
+import Cart from './pages/Cart'
 import Login from './pages/Login/Login'
 import SignUp from './pages/Login/SignUp'
-import Cart from './pages/Cart'
 
 //商家後台
 import BackEndSidebar from './components/backend/Sidebar'
@@ -36,18 +35,14 @@ import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEdite
 import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
 import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
 import ArticleDetial from './pages/Article/ArticleDetial'
-
-const history = createBrowserHistory()
+import ProductsManagement from './pages/BackEnd/ProductsManagement'
 
 //設置layout props
 const DynamicLayoutRoute = (props) => {
   const { component: RoutedComponent, layout, ...rest } = props
 
   const actualRouteComponent = (
-    <Route
-      {...rest}
-      render={(props) => <RoutedComponent {...props} history={history} />}
-    />
+    <Route {...rest} render={(props) => <RoutedComponent {...props} />} />
   )
 
   //判斷layout
@@ -82,11 +77,14 @@ const DynamicLayoutRoute = (props) => {
   }
 }
 
+const url = new URL(window.location)
+const pathname = url.pathname
+
 //Route設置
 function App(props) {
   useEffect(() => {
-    history.listen((location, action) => props.clearAlerts)
-  }, [])
+    History.listen((location) => props.clearAlerts)
+  }, [pathname])
 
   return (
     <Router>
@@ -100,7 +98,7 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/Investment"
+            path="/investment"
             component={Investment}
             layout="FRONT_END_NAV"
           />
@@ -135,7 +133,7 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/member/card"
+            path="/member/card/:userid?"
             component={MemberCard}
             layout="FRONT_END_NAV"
           />
@@ -170,7 +168,7 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/login/:role?"
+            path="/login"
             component={Login}
             layout="FRONT_END_NAV"
           />
@@ -211,13 +209,16 @@ function App(props) {
             component={Ads}
             layout="BACK_END_NAV"
           />
+          <DynamicLayoutRoute
+            path="/customer-backend/productsmanagement"
+            component={ProductsManagement}
+            layout="BACK_END_NAV"
+          />
         </Switch>
       </>
     </Router>
   )
 }
-
-// export default App
 
 const mapStateToProps = (store) => {
   const { alert } = store

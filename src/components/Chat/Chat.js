@@ -15,10 +15,8 @@ const ENDPOINT = 'http://localhost:5000'
 let socket
 
 const Chat = ({ location }) => {
-  const user = useSelector((state) => state.user)
-  console.log(user)
-  const dispatch = useDispatch()
-  const [name, setName] = useState('')
+  const name = useSelector((state) => state.authentication.user.user.username)
+  console.log(name)
   const [room, setRoom] = useState('')
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([])
@@ -27,7 +25,6 @@ const Chat = ({ location }) => {
     // const { name, room } = quertString.parse(location.search)
 
     socket = io(ENDPOINT)
-    setName(name)
     setRoom(room)
 
     socket.emit('join', { name, room }, (error) => {

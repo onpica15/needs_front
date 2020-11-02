@@ -13,9 +13,9 @@ const InfoBar = (props) => {
     <>
       <div className="infoBar">
         <h5>123</h5>
-        <Link className="close" onClick={() => setShow(false)}>
+        {/* <Link className="close" onClick={() => setShow(false)}>
           <GrClose size={20} />
-        </Link>
+        </Link> */}
       </div>
     </>
   )

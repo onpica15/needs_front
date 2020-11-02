@@ -5,22 +5,23 @@ import { AiFillMessage } from 'react-icons/ai'
 // import { login } from '../../actions/index'
 import { useDispatch, useSelector } from 'react-redux'
 
-import './Join.scss'
-
 import Chat from './Chat'
 
 const Join = (props) => {
-  const [show, setShow] = useState(false)
-  const username = useSelector((state) => state.authentication.username)
-  const dispatch = useDispatch()
+  const [showChat, setShowChat] = useState(false)
   // const [room, setRoom] = useState('商家')
+
+  const showChatToggle = () => {
+    showChat ? setShowChat(false) : setShowChat(true)
+  }
 
   return (
     <>
-      {show ? <Chat /> : ''}
+      {showChat ? <Chat /> : ''}
       <Link
         className="customChat"
-        onClick={() => setShow(true)}
+        style={{ position: 'fixed', bottom: '30px', right: '20px' }}
+        onClick={() => showChatToggle(showChatToggle)}
         // to={`/chat?name=${username}&room=123`}
       >
         <AiFillMessage size={50} />

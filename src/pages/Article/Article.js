@@ -58,7 +58,7 @@ const Article = (props) => {
   return (
     <>
       <Join />
-      <div className="container">
+      <div className="container mt-3">
         {/* <Breadcrumb /> */}
         <div className="topic d-flex">
           <div className="col-6">

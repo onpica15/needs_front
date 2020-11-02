@@ -1,16 +1,13 @@
 import { combineReducers } from 'redux'
-
 import { authentication } from './authenticationReducer'
-import { registration } from './registrationReducer'
 import { alert } from './alertReducer'
-import { role } from './roleReducer'
+import { handleRole } from './roleReducer'
 
 import cartReducer from './cartReducer'
 
 export const rootReducer = combineReducers({
   authentication,
-  role,
-  // registration,
+  handleRole,
   alert,
   cart: cartReducer,
 })
