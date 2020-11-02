@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import MemSidebar from './memmodules/MemSidebar'
 import MemCard from './memmodules/Memcard'
 import './member.scss'
+import './member-rwd.scss'
 
 function MemberCard() {
   return (
@@ -11,7 +12,7 @@ function MemberCard() {
         <div className="row my-3">
           <MemSidebar />
           <MemCard />
-      </div>
+        </div>
       </div>
     </>
   )

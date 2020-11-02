@@ -1,20 +1,46 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  withRouter,
+} from 'react-router-dom'
 import axios from 'axios'
 
 // import memcarddata from './memcarddata.json'
+import { createStore, combineReducers } from 'redux'
+import { connect } from 'react-redux'
 
 import { BsPersonFill } from 'react-icons/bs'
 import { FaEdit } from 'react-icons/fa'
 
 const MemCard = () => {
+  // const store = createStore(reducer)
+
+  //可使用 store 的內建函式 getState() 確認目前 store 內所保管的資料console.log(store.getState())  // {name: 'Jack'}
+
+  // const userid = props.match.params.userid
+  // console.log(userid)
+//   function doPost(e) {
+//     var param = JSON.parse(Object.keys(e.parameter)[0]); // 這段是重點！！！！
+//     var name = param.name;
+//     var age = param.age;
+//     var replyMsg = {
+//         name: name,
+//         age: age,
+//         text: '你的名字是 '+name+'，年紀 '+age+' 歲～'
+//     };    
+//     var JSONString = JSON.stringify(replyMsg);
+//     return ContentService.createTextOutput(JSONString).setMimeType(ContentService.MimeType.JSON);
+// }
   const [memcarddata, setMemcarddata] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
   //axios get data
   useEffect(() => {
     const fetchPosts = async () => {
       setDataLoading(true)
-      let url = 'http://localhost:5000/member' + console.log(url)
+      let url = 'http://localhost:5000/member'
       const res = await axios.get(url).catch((err) => console.log('Error'.err))
       setMemcarddata(res.data)
       setDataLoading(false)
