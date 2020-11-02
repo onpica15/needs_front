@@ -9,9 +9,57 @@ import '../styles/navbar.scss'
 import logo from '../images/logo.png'
 
 function HomeNavbar() {
+  //從actions中引入登出函式
+  const { logout } = userActions
+
   //從redux中取出登入狀態
   const isLogin = useSelector((state) => state.authentication.loggedIn)
-  const { logout } = userActions
+  const loginUser = useSelector((state) => state.authentication.user)
+
+  //依登入狀態決定登出按鈕的樣式
+  const logoutBtn = () => {
+    if (loginUser.user.role === 'member') {
+      return (
+        <Nav.Link
+          href=""
+          onClick={(e) => {
+            e.preventDefault()
+            logout()
+          }}
+        >
+          會員登出
+        </Nav.Link>
+      )
+    } else if (loginUser.user.role === 'merchant') {
+      return (
+        <>
+          <Nav.Link
+            href=""
+            onClick={(e) => {
+              e.preventDefault()
+              logout()
+            }}
+          >
+            商家登出
+          </Nav.Link>
+        </>
+      )
+    } else {
+      return (
+        <>
+          <Nav.Link
+            href=""
+            onClick={(e) => {
+              e.preventDefault()
+              logout()
+            }}
+          >
+            NEEDS登出
+          </Nav.Link>
+        </>
+      )
+    }
+  }
 
   return (
     <>
@@ -33,22 +81,16 @@ function HomeNavbar() {
             <Nav.Link href="/investment">成為商家</Nav.Link>
           </Nav>
           <Nav className={isLogin ? `d-none` : `d-block`}>
-            <Nav.Link href="/login">
-              <span className="mr-1">登入</span>
-              <span className="pl-1 separator">註冊</span>
-            </Nav.Link>
+            {isLogin === false ? (
+              <Nav.Link href="/login">
+                <span className="mr-1">登入</span>
+                <span className="pl-1 separator">註冊</span>
+              </Nav.Link>
+            ) : (
+              ''
+            )}
           </Nav>
-          <Nav className={isLogin ? `d-block` : `d-none`}>
-            <Nav.Link
-              href=""
-              onClick={(e) => {
-                e.preventDefault()
-                logout()
-              }}
-            >
-              登出
-            </Nav.Link>
-          </Nav>
+          <Nav>{isLogin === true ? logoutBtn() : ''}</Nav>
           <Nav>
             <Nav.Link href="#link">
               <AiOutlineShoppingCart size="30px" style={{ color: '#d44f44' }} />
