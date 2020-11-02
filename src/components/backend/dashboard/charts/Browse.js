@@ -34,7 +34,6 @@ class BrowseChart extends Component {
           show: false,
         },
         xaxis: {
-          type: 'datetime',
           labels: {
             show: false,
           },
@@ -50,6 +49,7 @@ class BrowseChart extends Component {
           tooltip: {
             enabled: false,
           },
+          categories: [...props.durationDays],
         },
         grid: {
           show: false,
@@ -69,41 +69,6 @@ class BrowseChart extends Component {
           offsetY: 0,
         },
       },
-      series: [
-        {
-          name: '瀏覽次數',
-          data: [
-            {
-              x: new Date('2020-11-14').getTime(),
-              y: 159,
-            },
-            {
-              x: new Date('2020-11-15').getTime(),
-              y: 234,
-            },
-            {
-              x: new Date('2020-11-16').getTime(),
-              y: 251,
-            },
-            {
-              x: new Date('2020-11-17').getTime(),
-              y: 339,
-            },
-            {
-              x: new Date('2020-11-18').getTime(),
-              y: 142,
-            },
-            {
-              x: new Date('2020-11-19').getTime(),
-              y: 289,
-            },
-            {
-              x: new Date('2020-11-20').getTime(),
-              y: 300,
-            },
-          ],
-        },
-      ],
     }
   }
 
@@ -115,13 +80,18 @@ class BrowseChart extends Component {
             <div className="circle-icon icon-brose">
               <i className="far fa-window-restore"></i>
             </div>
-            <div className="chart-figures">1,714</div>
+            <div className="chart-figures">+ {this.props.totalBrowse}</div>
             <div className="chart-title">瀏覽人數</div>
           </div>
           <div className="mixed-chart">
             <Chart
               options={this.state.options}
-              series={this.state.series}
+              series={[
+                {
+                  name: '瀏覽次數',
+                  data: this.props.numberOfBrowse,
+                },
+              ]}
               type="area"
               height="100"
             />
