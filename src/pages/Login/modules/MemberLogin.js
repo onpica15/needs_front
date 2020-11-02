@@ -12,7 +12,7 @@ const MemberLogin = (props) => {
     setUsername,
     setPassword,
     handleSubmit,
-    currentRole,
+    selectedRole,
     setMember,
     setMerchant,
     setNeeds,
@@ -43,7 +43,7 @@ const MemberLogin = (props) => {
           <div className="loginRole">
             <Button
               variant="link"
-              className={`pr-1 ${currentRole === 'member' ? 'actived' : ''}`}
+              className={`pr-1 ${selectedRole === 'member' ? 'actived' : ''}`}
               onClick={setMember}
             >
               會員

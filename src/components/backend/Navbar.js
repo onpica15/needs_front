@@ -11,7 +11,7 @@ import {
 import avatar from '../../pages/BackEnd/Dashboard/images/book.jpg'
 import customer from '../../pages/BackEnd/Dashboard/images/australia-customer.jpg'
 import BreadcrumbBackend from './Breadcrumb'
-import { userActions } from '../../actions/index'
+import { userActions } from '../../actions'
 
 function Navbar() {
   const openFullscreen = () => {

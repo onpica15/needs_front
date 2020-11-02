@@ -4,7 +4,7 @@ const initialState = {
   type: 'member',
 }
 
-export function role(role = initialState, action) {
+export function handleRole(role = initialState, action) {
   switch (action.type) {
     case roleTypes.SET_MEMBER:
       return {
