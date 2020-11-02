@@ -7,8 +7,9 @@ import History from './components/history'
 //平台
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import Home from './pages/Home'
+import FixedButtons from './components/FixedButtons'
 
+import Home from './pages/Home'
 import MemberCard from './pages/Member/MemberCard'
 import MemberShop from './pages/Member/MemberShop'
 import MemberLike from './pages/Member/MemberLike'
@@ -51,6 +52,7 @@ const DynamicLayoutRoute = (props) => {
       return (
         <>
           <Navbar />
+          <FixedButtons />
           {actualRouteComponent}
           <Footer />
         </>
