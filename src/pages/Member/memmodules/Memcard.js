@@ -6,46 +6,35 @@ import {
   Switch,
   withRouter,
 } from 'react-router-dom'
-import axios from 'axios'
+import axios from 'axios' // import memcarddata from './memcarddata.json'
 
-// import memcarddata from './memcarddata.json'
-import { createStore, combineReducers } from 'redux'
-import { connect } from 'react-redux'
-
+import { useSelector } from 'react-redux' //引入redux
 import { BsPersonFill } from 'react-icons/bs'
 import { FaEdit } from 'react-icons/fa'
 
 const MemCard = () => {
-  // const store = createStore(reducer)
-
-  //可使用 store 的內建函式 getState() 確認目前 store 內所保管的資料console.log(store.getState())  // {name: 'Jack'}
-
-  // const userid = props.match.params.userid
-  // console.log(userid)
-//   function doPost(e) {
-//     var param = JSON.parse(Object.keys(e.parameter)[0]); // 這段是重點！！！！
-//     var name = param.name;
-//     var age = param.age;
-//     var replyMsg = {
-//         name: name,
-//         age: age,
-//         text: '你的名字是 '+name+'，年紀 '+age+' 歲～'
-//     };    
-//     var JSONString = JSON.stringify(replyMsg);
-//     return ContentService.createTextOutput(JSONString).setMimeType(ContentService.MimeType.JSON);
-// }
   const [memcarddata, setMemcarddata] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
+
+  const isLogin = useSelector((state) => state.authentication.loggedIn) //redux判斷是否為lodin狀態
+  const loginUser = useSelector((state) => state.authentication.user) //redux初始值設定為空值
   //axios get data
+  //先接收資料後再判斷memid,val=memid從前端先判斷需求是否有傳到後端
+  const fetchPosts = async (val) => {
+    setDataLoading(true)
+    let url = `http://localhost:5000/member?id=${val}`
+    const res = await axios.get(url).catch((err) => console.log('Error'.err))
+    setMemcarddata(res.data)
+    setDataLoading(false)
+  }
+
   useEffect(() => {
-    const fetchPosts = async () => {
-      setDataLoading(true)
-      let url = 'http://localhost:5000/member'
-      const res = await axios.get(url).catch((err) => console.log('Error'.err))
-      setMemcarddata(res.data)
-      setDataLoading(false)
+    if (isLogin) {
+      const memId = loginUser.user.id //確認為login狀態後,在取其id值
+      fetchPosts(memId)
+    } else {
+      window.location.href = '/login' //若非login狀態則跳轉至login畫面
     }
-    fetchPosts()
   }, [])
   return (
     <>
