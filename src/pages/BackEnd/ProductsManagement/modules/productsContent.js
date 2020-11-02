@@ -39,7 +39,7 @@ const productsContent = (props) => {
               <div className="specification">
                 {item.specification.replace(/,/g, ',\n')}
               </div>
-              <div className="title unitPrice">{item.price}</div>
+              <div className="title unitPrice">${item.price}</div>
               <div className="title stock">{item.stocks}</div>
               <div className="title soldAmount">1</div>
               <Dropdown className="actions">

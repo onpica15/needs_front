@@ -23,7 +23,6 @@ function Sidebar() {
             <Card>
               <Card.Header>
                 <Link to="/customer-backend">
-                  {' '}
                   <Accordion.Toggle
                     className="btn-toggle"
                     as={Button}
@@ -39,8 +38,7 @@ function Sidebar() {
             </Card>
             <Card>
               <Card.Header>
-                <Link to="/customer-backend/productsmanagement">
-                  {' '}
+                <Link to="/customer-backend/products-management">
                   <Accordion.Toggle
                     className="btn-toggle"
                     as={Button}
@@ -56,8 +54,7 @@ function Sidebar() {
             </Card>
             <Card>
               <Card.Header>
-                <Link to="">
-                  {' '}
+                <Link to="/customer-backend/orders-management">
                   <Accordion.Toggle
                     className="btn-toggle"
                     as={Button}
@@ -93,8 +90,7 @@ function Sidebar() {
             </Card>
             <Card>
               <Card.Header>
-                <Link to="">
-                  {' '}
+                <Link to="/customer-backend/contracts-management">
                   <Accordion.Toggle
                     className="btn-toggle"
                     as={Button}

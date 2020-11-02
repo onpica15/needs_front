@@ -10,13 +10,13 @@ function BreadcrumbBackend(props) {
     case '/customer-backend':
       path = 'Dashboard'
       break
-    case '/customer-backend/productsmanagement':
+    case '/customer-backend/products-management':
       path = '商品管理'
       break
-    case '/customer-backend/ordersmanagement':
+    case '/customer-backend/orders-management':
       path = '訂單管理'
       break
-    case '/customer-backend/contractsmanagement':
+    case '/customer-backend/contracts-management':
       path = '平台合約'
       break
     default:

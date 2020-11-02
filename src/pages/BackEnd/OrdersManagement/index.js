@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Axios from 'axios'
 import { Col, Container, Pagination } from 'react-bootstrap'
-import './ProductsManagement.scss'
 import ToolsBar from './modules/toolbar'
-import ProductsContent from './modules/productsContent'
 import BackendPagination from '../../../components/backend/pagination'
 import History from '../../../components/history'
 
-const ProductsManagement = (props) => {
+const OrdersManagement = (props) => {
   // all launched soldout unlaunched, grid list
   const [type, setType] = useState('all')
   const [viewType, setViewType] = useState('list')
@@ -20,48 +18,48 @@ const ProductsManagement = (props) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
 
-  const toPage = (e) => {
-    setCurrentPage(e)
-    History.push(`/customer-backend/products-management/page=${e}`)
-    window.scrollTo(0, 0)
-  }
+  //   const toPage = (e) => {
+  //     setCurrentPage(e)
+  //     History.push(`/customer-backend/productsmanagement/page=${e}`)
+  //     window.scrollTo(0, 0)
+  //   }
 
-  const getData = (merchantId, type) => {
-    //跟server拿資料
-    Axios.get(
-      `http://122.116.38.12:5050/bk-products-api/list?id=${merchantId}&filter=${type}&page=${currentPage}`
-    )
-      .then((res) => {
-        const data = res.data.rows
-        //送入資料
-        setTotalPages(res.data.totalPages)
-        setData(data)
+  //   const getData = (merchantId, type) => {
+  //     //跟server拿資料
+  //     Axios.get(
+  //       `http://122.116.38.12:5050/bk-products-api/list?id=${merchantId}&filter=${type}&page=${currentPage}`
+  //     )
+  //       .then((res) => {
+  //         const data = res.data.rows
+  //         //送入資料
+  //         setTotalPages(res.data.totalPages)
+  //         setData(data)
 
-        //處理頁碼
-        const pageArr = []
-        for (let i = 1; i <= res.data.totalPages; i++) {
-          pageArr.push(
-            <Pagination.Item
-              key={i}
-              active={i === currentPage}
-              onClick={(e) => toPage(i)}
-            >
-              {i}
-            </Pagination.Item>
-          )
-        }
-        setPageItems(pageArr)
-      })
-      .catch((error) => {
-        console.log(error.toString())
-        return error.toString()
-      })
-  }
+  //         //處理頁碼
+  //         const pageArr = []
+  //         for (let i = 1; i <= res.data.totalPages; i++) {
+  //           pageArr.push(
+  //             <Pagination.Item
+  //               key={i}
+  //               active={i === currentPage}
+  //               onClick={(e) => toPage(i)}
+  //             >
+  //               {i}
+  //             </Pagination.Item>
+  //           )
+  //         }
+  //         setPageItems(pageArr)
+  //       })
+  //       .catch((error) => {
+  //         console.log(error.toString())
+  //         return error.toString()
+  //       })
+  //   }
 
-  //type跟currentPage改變觸發filter
-  useEffect(() => {
-    getData(merchantId, type)
-  }, [currentPage, type])
+  //   //type跟currentPage改變觸發filter
+  //   useEffect(() => {
+  //     getData(merchantId, type)
+  //   }, [currentPage, type])
 
   return (
     <>
@@ -74,7 +72,6 @@ const ProductsManagement = (props) => {
               viewType={viewType}
               setViewType={setViewType}
             />
-            <ProductsContent data={data} />
             <BackendPagination
               pageItems={pageItems}
               currentPage={currentPage}
@@ -88,4 +85,4 @@ const ProductsManagement = (props) => {
   )
 }
 
-export default ProductsManagement
+export default OrdersManagement

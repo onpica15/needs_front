@@ -37,6 +37,8 @@ import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
 import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
 import ArticleDetial from './pages/Article/ArticleDetial'
 import ProductsManagement from './pages/BackEnd/ProductsManagement'
+import ContractsManagement from './pages/BackEnd/ContractsManagement'
+import OrdersManagement from './pages/BackEnd/OrdersManagement'
 
 //設置layout props
 const DynamicLayoutRoute = (props) => {
@@ -212,8 +214,18 @@ function App(props) {
             layout="BACK_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/customer-backend/productsmanagement"
+            path="/customer-backend/products-management"
             component={ProductsManagement}
+            layout="BACK_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/customer-backend/contracts-management"
+            component={ContractsManagement}
+            layout="BACK_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/customer-backend/orders-management"
+            component={OrdersManagement}
             layout="BACK_END_NAV"
           />
         </Switch>

@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Axios from 'axios'
 import { Col, Container, Pagination } from 'react-bootstrap'
-import './ProductsManagement.scss'
 import ToolsBar from './modules/toolbar'
-import ProductsContent from './modules/productsContent'
+import ContractsContent from './modules/contractsContent'
 import BackendPagination from '../../../components/backend/pagination'
 import History from '../../../components/history'
+import './ContractsManagement.scss'
 
-const ProductsManagement = (props) => {
-  // all launched soldout unlaunched, grid list
+const ContractsManagement = (props) => {
+  // all ended, grid list
   const [type, setType] = useState('all')
   const [viewType, setViewType] = useState('list')
 
@@ -20,16 +20,30 @@ const ProductsManagement = (props) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
 
+  // const data = [
+  //   {
+  //     id: 2,
+  //     merchants_id: 12,
+  //     contract_id: 'M2020110301',
+  //     plan_name: '進階方案',
+  //     start_date: '2020-11-01',
+  //     end_date: '2020-12-31',
+  //     total_days: 61,
+  //     amount: 6000,
+  //     payment_status: '已付款',
+  //   },
+  // ]
+
   const toPage = (e) => {
     setCurrentPage(e)
-    History.push(`/customer-backend/products-management/page=${e}`)
+    History.push(`/customer-backend/contracts-management/page=${e}`)
     window.scrollTo(0, 0)
   }
 
   const getData = (merchantId, type) => {
     //跟server拿資料
     Axios.get(
-      `http://122.116.38.12:5050/bk-products-api/list?id=${merchantId}&filter=${type}&page=${currentPage}`
+      `http://122.116.38.12:5050/bk-contracts-api/list?id=${merchantId}&filter=${type}&page=${currentPage}`
     )
       .then((res) => {
         const data = res.data.rows
@@ -65,7 +79,7 @@ const ProductsManagement = (props) => {
 
   return (
     <>
-      <div className="productsMng">
+      <div className="contractsMng">
         <Col className="main offset-2" xs={10}>
           <Container fluid main>
             <ToolsBar
@@ -74,7 +88,7 @@ const ProductsManagement = (props) => {
               viewType={viewType}
               setViewType={setViewType}
             />
-            <ProductsContent data={data} />
+            <ContractsContent data={data} />
             <BackendPagination
               pageItems={pageItems}
               currentPage={currentPage}
@@ -88,4 +102,4 @@ const ProductsManagement = (props) => {
   )
 }
 
-export default ProductsManagement
+export default ContractsManagement
