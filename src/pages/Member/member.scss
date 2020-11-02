@@ -207,14 +207,20 @@ $shadow: #e7e7e7;
         white-space: pre;
     }
 
+    .sidebar {
+        width: 100px;
+        height: 280px;
+    }
+
     .wrapper {
-        width: 155 px;
+        width: 100px;
         height: 40px;
 
         .icons {
             margin-right: 10px;
         }
     }
+
 }
 
 .memsidebar a:hover {
@@ -245,12 +251,27 @@ $shadow: #e7e7e7;
             color: $danger;
         }
     }
+
     .container {
         li {
-        margin-top: 30px;
+            margin-top: 30px;
+
+            .item {
+                width: 80px;
+                height: 18px;
+                color: $font-gray;
+            }
+
+            .item2 {
+                width: 100px;
+                height: 18px;
+                color: $font-gray;
+            }
         }
     }
-  }
+}
+
+
 
 
 
@@ -274,36 +295,36 @@ $shadow: #e7e7e7;
             }
         }
     }
-  }
+}
 
 
-    //---memshop shoppinglist
-    .shoppinglist {
-        .listhead {
-            width: 850px;
-            height: 50px;
-            background-color: $bg-gray;
-            margin-top: 20px;
+//---memshop shoppinglist
+.shoppinglist {
+    .listhead {
+        width: 850px;
+        height: 50px;
+        background-color: $bg-gray;
+        margin-top: 20px;
 
-            th {
-                text-align: center;
-                vertical-align: middle;
-            }
-
-            td {
-                text-align: center;
-                vertical-align: middle;
-            }
+        th {
+            text-align: center;
+            vertical-align: middle;
         }
 
-        .box {
-            width: 90px;
-            height: 90px;
-            background-color: blue;
-            border-radius: 10px;
-            margin: 5px;
+        td {
+            text-align: center;
+            vertical-align: middle;
         }
     }
+
+    .box {
+        width: 90px;
+        height: 90px;
+        background-color: blue;
+        border-radius: 10px;
+        margin: 5px;
+    }
+}
 
 
 //memshop 以上購物清單

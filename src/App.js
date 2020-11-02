@@ -135,7 +135,7 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/member/card"
+            path="/member/card/:userid?"
             component={MemberCard}
             layout="FRONT_END_NAV"
           />
