@@ -246,4 +246,11 @@ $bg-light: #f0f0f0;
     background-color: #fff;
     opacity: 1;
   }
+  .add-to-cart-success{
+    text-align: center;
+    position: fixed;
+    top:0;
+    width: 100%;
+    z-index: 299;
+  }
 }
