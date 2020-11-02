@@ -1,33 +1,31 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { connect, useSelector } from 'react-redux'
-import { userActions, roleActions } from '../../../actions'
 import { Button, Form } from 'react-bootstrap'
-import { FaUserCircle, FaLock, FaFacebook } from 'react-icons/fa'
+import { FaFacebook } from 'react-icons/fa'
 import { AiFillGooglePlusCircle, AiFillTwitterCircle } from 'react-icons/ai'
 import './MemberLogin.scss'
 
 const MemberLogin = (props) => {
-  const { username, password, setUsername, setPassword } = props
-  const [submitted, setSubmitted] = useState(false)
-
-  const currentRole = useSelector((state) => state.role.type)
-  const alertMsg = useSelector((state) => state.alert.message)
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setSubmitted(true)
-    if (username && password) {
-      props.login(username, password, currentRole)
-    }
-  }
-
+  const {
+    username,
+    password,
+    setUsername,
+    setPassword,
+    handleSubmit,
+    currentRole,
+    setMember,
+    setMerchant,
+    setNeeds,
+    login,
+    alertMsg,
+  } = props
+  console.log('login', login)
   return (
     <>
       <div className="memberLogin container-fluid">
         <div className="side">
           <div className="logo">
-            <Link to="#" onClick={props.setNeeds}>
+            <Link to="#" onClick={setNeeds}>
               <img
                 src={require('@assets/img/logo/logo_icon_whiite.png')}
                 alt=""
@@ -46,14 +44,14 @@ const MemberLogin = (props) => {
             <Button
               variant="link"
               className={`pr-1 ${currentRole === 'member' ? 'actived' : ''}`}
-              onClick={props.setMember}
+              onClick={setMember}
             >
               會員
             </Button>
             <Button
               variant="link"
               className="pl-1 seperator"
-              onClick={props.setMerchant}
+              onClick={setMerchant}
             >
               商家
             </Button>
@@ -110,18 +108,4 @@ const MemberLogin = (props) => {
   )
 }
 
-const mapStateToProps = (store) => {
-  const { loggingIn } = store.authentication
-  const { type } = store.role
-  return { loggingIn, type }
-}
-
-const actionCreators = {
-  login: userActions.login,
-  logout: userActions.logout,
-  setMember: roleActions.setMember,
-  setMerchant: roleActions.setMerchant,
-  setNeeds: roleActions.setNeeds,
-}
-
-export default connect(mapStateToProps, actionCreators)(MemberLogin)
+export default MemberLogin

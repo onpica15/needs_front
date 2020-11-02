@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { alertActions } from './actions'
-import history from './components/history'
+import History from './components/history'
 
 //平台
 import Navbar from './components/Navbar'
@@ -35,6 +35,7 @@ import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEdite
 import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
 import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
 import ArticleDetial from './pages/Article/ArticleDetial'
+import ProductsManagement from './pages/BackEnd/ProductsManagement'
 
 //設置layout props
 const DynamicLayoutRoute = (props) => {
@@ -76,18 +77,14 @@ const DynamicLayoutRoute = (props) => {
   }
 }
 
+const url = new URL(window.location)
+const pathname = url.pathname
+
 //Route設置
 function App(props) {
   useEffect(() => {
-    console.log('aa')
-    history.listen((location) => props.clearAlerts)
-  }, [])
-
-  // const pathname = history.location.pathname
-  // useEffect(() => {
-  //   console.log('pathname', pathname)
-  //   props.clearAlerts()
-  // }, [pathname])
+    History.listen((location) => props.clearAlerts)
+  }, [pathname])
 
   return (
     <Router>
@@ -171,7 +168,7 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/login/:role?"
+            path="/login"
             component={Login}
             layout="FRONT_END_NAV"
           />
@@ -210,6 +207,11 @@ function App(props) {
           <DynamicLayoutRoute
             path="/customer-backend/ads"
             component={Ads}
+            layout="BACK_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/customer-backend/productsmanagement"
+            component={ProductsManagement}
             layout="BACK_END_NAV"
           />
         </Switch>
