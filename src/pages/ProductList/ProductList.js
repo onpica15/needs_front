@@ -3,11 +3,14 @@ import { connect } from 'react-redux'
 import { addToCartAction, updateCartUnits } from '../../actions/index'
 import { Breadcrumb } from 'react-bootstrap'
 
+import ForProductListCarousel from '../../components/ProductList/ForProductListCarousel'
 import Posts from '../../components/ProductList/Posts'
 import Pagination from '../../components/ProductList/Pagination'
 import ProductSideBar from './ProductSidebar'
 import Filter from './Filter/Filter'
 import SideFilter from './Filter/SideFilter'
+
+import './ProductList.scss'
 
 //test
 import HistoryList from '../../components/History/HistoryList'
@@ -58,43 +61,47 @@ const ProductList = (props) => {
 
   return (
     <>
-      <Breadcrumb>
-        <Breadcrumb.Item href="#">首頁</Breadcrumb.Item>
-        <Breadcrumb.Item active>文章列表</Breadcrumb.Item>
-      </Breadcrumb>
-      <div className="container d-flex">
-        <div className="col-2">
-          <ProductSideBar />
-          <SideFilter />
-        </div>
-        <div className="col-10">
-          <Filter
-            totalPosts={posts.length}
-            handleSort={handleSort}
-            setSort={setSort}
-            setProductView={setProductView}
-          />
-          <Posts
-            posts={currentPosts}
-            dataLoading={dataLoading}
-            productView={productView}
-            addToCartAction={addToCartAction}
-          />
+      <ForProductListCarousel />
+      <div className="container productlist">
+        <Breadcrumb>
+          <Breadcrumb.Item href="#">首頁</Breadcrumb.Item>
+          <Breadcrumb.Item href="#">文章列表</Breadcrumb.Item>
+          <Breadcrumb.Item active>所有分類</Breadcrumb.Item>
+        </Breadcrumb>
+        <div className="d-flex">
+          <div className="sideFilter">
+            <ProductSideBar />
+            <SideFilter />
+          </div>
+          <div className="mainProductList">
+            <Filter
+              totalPosts={posts.length}
+              handleSort={handleSort}
+              setSort={setSort}
+              setProductView={setProductView}
+            />
+            <Posts
+              posts={currentPosts}
+              dataLoading={dataLoading}
+              productView={productView}
+              addToCartAction={addToCartAction}
+            />
 
-          <Pagination
-            postsPerPage={postsPerPage}
-            totalPosts={posts.length}
-            paginate={paginate}
-          />
+            <Pagination
+              postsPerPage={postsPerPage}
+              totalPosts={posts.length}
+              paginate={paginate}
+            />
+          </div>
         </div>
-      </div>
-      <div className="container mt-5">
-        <h5 className="d-flex justify-content-center">推薦商家</h5>
-        <HistoryList cart={cart} updateCartUnits={updateCartUnits} />
-      </div>
-      <div className="container mt-5">
-        <h5 className="d-flex justify-content-center">最近瀏覽</h5>
-        <HistoryList cart={cart} updateCartUnits={updateCartUnits} />
+        <div className="container mt-5">
+          <h5 className="d-flex justify-content-center">推薦商家</h5>
+          <HistoryList cart={cart} updateCartUnits={updateCartUnits} />
+        </div>
+        <div className="container mt-5">
+          <h5 className="d-flex justify-content-center">最近瀏覽</h5>
+          <HistoryList cart={cart} updateCartUnits={updateCartUnits} />
+        </div>
       </div>
     </>
   )

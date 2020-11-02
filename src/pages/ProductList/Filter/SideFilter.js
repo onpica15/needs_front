@@ -7,17 +7,17 @@ import './SideFilter.scss'
 
 const SideFilter = (props) => {
   // setting PriceRang
-  const [price, setPrice] = useState([400, 1300])
+  const [price, setPrice] = useState([500, 6000])
 
   //setting handlePrice step
   const sliderProps = {
     min: 0,
-    max: 2000,
-    step: 50,
+    max: 10000,
+    step: 100,
     marks: {
       0: 0,
-      1000: 1000,
-      2000: 2000,
+      5000: 5000,
+      10000: 10000,
     },
   }
 
@@ -39,7 +39,7 @@ const SideFilter = (props) => {
             </div>
             <Range
               allowCross={false}
-              defaultValue={[400, 1300]}
+              defaultValue={[500, 6000]}
               onChange={onSliderChange}
               {...sliderProps}
             />

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 function ArticleClassic(props) {
@@ -30,6 +30,7 @@ function ArticleClassic(props) {
         '「便利貼」的用途廣泛，可貼在行事曆或電腦上當作備忘錄，也能作為...',
     },
   ]
+
   return (
     <>
       <div className=" articleItems d-flex flex-wrap">
@@ -37,7 +38,8 @@ function ArticleClassic(props) {
           <Link
             to="/articledetial"
             key={value.id}
-            className="articleItem col-3"
+            className="articleItem col-lg-3 col-md-6 col-sm-12 text-decoration-none"
+            style={{ color: '#323232' }}
           >
             <div className="articlePic">
               <img src={value.img_path} alt=""></img>

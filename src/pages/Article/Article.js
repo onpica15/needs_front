@@ -39,7 +39,10 @@ const Article = (props) => {
   const display = (
     <div className=" articleItems d-flex flex-wrap">
       {articles.map((value, index) => (
-        <div key={value.id} className="articleItem col-3">
+        <div
+          key={value.id}
+          className="articleItem col-lg-3 col-md-6 col-sm-12 text-decoration-none"
+        >
           <div className="articlePic">
             <img src={value.image} alt=""></img>
           </div>
@@ -71,9 +74,9 @@ const Article = (props) => {
         <section className="mb-5">
           <h5>最新文章</h5>
           {dataLoading ? loading : display}
-          <Button className="search-more-btn d-flex justify-content-end">
-            探索更多 →
-          </Button>
+          <div className="d-flex justify-content-end">
+            <Button className="search-more-btn ">探索更多 →</Button>
+          </div>
         </section>
 
         <section>

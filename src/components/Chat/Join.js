@@ -10,17 +10,18 @@ import './Join.scss'
 import Chat from './Chat'
 
 const Join = (props) => {
+  const [show, setShow] = useState(false)
   const username = useSelector((state) => state.authentication.username)
   const dispatch = useDispatch()
   // const [room, setRoom] = useState('商家')
 
   return (
     <>
-      <Chat />
+      {show ? <Chat /> : ''}
       <Link
         className="customChat"
-        onClick={() => dispatch({ user: username })}
-        to={`/chat?name=${username}&room=123`}
+        onClick={() => setShow(true)}
+        // to={`/chat?name=${username}&room=123`}
       >
         <AiFillMessage size={50} />
       </Link>

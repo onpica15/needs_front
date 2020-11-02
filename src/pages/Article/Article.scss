@@ -1,4 +1,6 @@
 .articleItems{
+  font-size: 16px;
+  color: #323232;
 .articleItem {
   margin-bottom: 30px;
   .articlePic {
@@ -14,6 +16,10 @@
     .title {
       font-size: 24px;
       margin-bottom: 30px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
     }
       .ctx{
         display: -webkit-box;

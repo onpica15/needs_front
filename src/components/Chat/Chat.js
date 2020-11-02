@@ -10,7 +10,7 @@ import Messages from './Messages/Messages'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-const ENDPOINT = 'localhost:5000'
+const ENDPOINT = 'http://localhost:5000'
 
 let socket
 
@@ -19,16 +19,16 @@ const Chat = ({ location }) => {
   console.log(user)
   const dispatch = useDispatch()
   const [name, setName] = useState('')
-  const [room, setRoom] = useState('123')
+  const [room, setRoom] = useState('')
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([])
 
   useEffect(() => {
-    // const { user, room } = quertString.parse(location.search)
+    // const { name, room } = quertString.parse(location.search)
 
     socket = io(ENDPOINT)
-    setName('123')
-    setRoom('abc')
+    setName(name)
+    setRoom(room)
 
     socket.emit('join', { name, room }, (error) => {
       if (error) {
@@ -53,7 +53,7 @@ const Chat = ({ location }) => {
 
   return (
     <div className="outerContainer">
-      <div className="container chat">
+      <div className="chat">
         <InfoBar room={room} />
         <Messages messages={messages} name={name} />
         <Input
