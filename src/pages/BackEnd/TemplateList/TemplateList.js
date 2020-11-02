@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import Axios from 'axios'
 import Templatepic1 from './images/Atlanta_pro.png'
 import TemplatepicBig from './images/minimal_pro.png'
 import './styles/TemplateList.scss'
@@ -35,7 +35,20 @@ import { Radio } from 'antd'
 
 // ReactDOM.render(<App />, mountNode);
 
+
+
 function TemplateList(props) {
+  
+  const [TemplateList ,setTemplateList ]= useState([])
+  
+  useEffect(()=>{
+    Axios.get('http://localhost:5000/TemplateList').then((response)=>{
+      setTemplateList(response.data)
+    })
+  },[])
+  if(Templatepic1.length == 0){
+    return''
+  }
   return (
     <>
       <div className="template">
@@ -94,7 +107,9 @@ function TemplateList(props) {
           </Container>
         </Col>
       </div>
+      
       {/* ############### */}
+
 
       <div className="template mt-5">
         <Col className="offset-2" xs={10}>
