@@ -50,7 +50,7 @@ class CTR extends React.Component {
           },
         },
         xaxis: {
-          categories: [...props.durationDays],
+          categories: [...props.durationDays].reverse(),
           labels: {
             formatter: function (val) {
               return val + '次'
