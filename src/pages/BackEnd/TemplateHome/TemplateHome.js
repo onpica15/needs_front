@@ -4,7 +4,7 @@ import { Col, Container } from 'react-bootstrap'
 
 import TemplatepicBig from './images/minimal_pro.png'
 import './Styles/TemplateHome.scss'
-import '../../../styles/backend/_backend.scss'
+import '../../../styles/Backend/_backend.scss'
 
 import { MdVisibility, MdVisibilityOff, MdEdit } from 'react-icons/md'
 
