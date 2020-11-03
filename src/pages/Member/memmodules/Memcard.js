@@ -13,7 +13,7 @@ import { BsPersonFill } from 'react-icons/bs'
 import { FaEdit } from 'react-icons/fa'
 
 const MemCard = () => {
-  const [memcarddata, setMemcarddata] = useState([])
+  const [memcard, setMemcard] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
 
   const isLogin = useSelector((state) => state.authentication.loggedIn) //redux判斷是否為lodin狀態
@@ -24,7 +24,7 @@ const MemCard = () => {
     setDataLoading(true)
     let url = `http://localhost:5000/member?id=${val}`
     const res = await axios.get(url).catch((err) => console.log('Error'.err))
-    setMemcarddata(res.data)
+    setMemcard(res.data)
     setDataLoading(false)
   }
 
@@ -56,7 +56,7 @@ const MemCard = () => {
             <div className="container">
               <div className="row">
                 <div className="col-md-6">
-                  {memcarddata.map((item, index) => {
+                  {memcard.map((item, index) => {
                     return (
                       <ul>
                         <li className="d-flex">
@@ -93,20 +93,20 @@ const MemCard = () => {
                 </div>
 
                 <div className="col-md-6">
-                  {memcarddata.map((item, index) => {
+                  {memcard.map((item, index) => {
                     return (
                       <ul>
                         <li className="d-flex">
                           <div className="item2">信用卡資料</div>
-                          {/* <span>{item.name}</span> */}
+                          <span>{item.credit_card}</span>
                         </li>
                         <li className="d-flex">
                           <div className="item2">e幣</div>
-                          <span>{item.e_points}</span>
+                          <span>{item.e_coin}</span>
                         </li>
                         <li className="d-flex">
                           <div className="item2">購物紀錄</div>
-                          {/* <span>{item.birthday}</span> */}
+                          <span>{item.shopping_record}</span>
                         </li>
                         <li className="d-flex">
                           <div className="item2">入會時間</div>
@@ -114,11 +114,7 @@ const MemCard = () => {
                         </li>
                         <li className="d-flex">
                           <div className="item2">退貨紀錄</div>
-                          {/* <span>{item.address}</span> */}
-                        </li>
-                        <li className="d-flex">
-                          <div className="item2">退會時間</div>
-                          {/* <span>{item.phone_number}</span> */}
+                          <span>{item.return_product}</span>
                         </li>
                       </ul>
                     )

@@ -1,7 +1,38 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  withRouter,
+  Switch,
+} from 'react-router-dom'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
+
 import { RiMessage2Fill } from 'react-icons/ri'
-function MemComment() {
+const MemComment = () => {
+  const [memcomment, setMemcomment] = useState([])
+  const [dataLoading, setDataLoading] = useState(false)
+
+  const isLogin = useSelector((state) => state.authentication.loggedIn)
+  const loginUser = useSelector((state) => state.authentication.user)
+  const fetchPosts = async (val) => {
+    setDataLoading(true)
+    let url = `http://localhost:5000/comment?id=${val}`
+    const res = await axios.get(url).catch((err) => console.log('Error'.err))
+    setMemcomment(res.data)
+    setDataLoading(false)
+  }
+  useEffect(() => {
+    if (isLogin) {
+      const memId = loginUser.user.id
+      fetchPosts(memId)
+    } else {
+      window.location.href = '/login'
+    }
+  }, [])
+  // }
+  // function MemComment() {
   return (
     <>
       <div className="meminform">
@@ -32,14 +63,18 @@ function MemComment() {
 
           <div className="informbar d-flex justify-content-center">
             <div className="sign"></div>
-            <div className="textbox">
-              <div>
-                <p>海景手札</p>
-              </div>
-              <div>
-                <p>非常有質感的手札,好滿意！</p>
-              </div>
-            </div>
+            {memcomment.map((item, index) => {
+              return (
+                <div className="textbox">
+                  <div>
+                    <p></p>
+                  </div>
+                  <div>
+                    <p>{item.buyer_message}</p>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>
