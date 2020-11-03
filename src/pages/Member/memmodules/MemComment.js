@@ -18,7 +18,7 @@ const MemComment = () => {
   const loginUser = useSelector((state) => state.authentication.user)
   const fetchPosts = async (val) => {
     setDataLoading(true)
-    let url = `http://localhost:5000/comment?id=${val}`
+    let url = `http://localhost:5000/comment?customer_id=${val}`
     const res = await axios.get(url).catch((err) => console.log('Error'.err))
     setMemcomment(res.data)
     setDataLoading(false)
@@ -60,22 +60,22 @@ const MemComment = () => {
               </Link>
             </div>
           </div>
+          {memcomment.map((item, index) => {
+            return (
+              <div className="informbar d-flex justify-content-center">
+                <div className="sign"></div>
 
-          <div className="informbar d-flex justify-content-center">
-            <div className="sign"></div>
-            {memcomment.map((item, index) => {
-              return (
                 <div className="textbox">
                   <div>
-                    <p></p>
+                    <p>{item.brand_name}</p>
                   </div>
                   <div>
                     <p>{item.buyer_message}</p>
                   </div>
                 </div>
-              )
-            })}
-          </div>
+              </div>
+            )
+          })}
         </div>
       </div>
     </>
