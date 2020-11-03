@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import MemSidebar from './memmodules/MemSidebar'
 import MemEcoin from './memmodules/MemEcoin'
 import './member.scss'
+import './member-rwd.scss'
 
 function MemberEcoin() {
   return (
@@ -11,7 +12,7 @@ function MemberEcoin() {
         <div className="row my-3">
           <MemSidebar />
           <MemEcoin />
-      </div>
+        </div>
       </div>
     </>
   )

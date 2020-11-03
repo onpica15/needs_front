@@ -23,14 +23,14 @@ $enable-caret: false;
     background-color: #f0f0f0;
     position: absolute;
     margin-top: -50px;
-    height: 492px;
+    height: 374px;
     width: 100%;
-    z-index: -1;
   }
   .subSection {
     font-size: 0.875rem;
     width: 20%;
     margin-bottom: 80px;
+    z-index: 1;
     .title {
       font-weight: 700;
       margin-bottom: 10px;
@@ -53,5 +53,35 @@ $enable-caret: false;
     font-weight: 300;
     font-size: 0.875rem;
     margin-bottom: 0px;
+    z-index: 1;
+  }
+}
+
+.fixedBtn {
+  position: fixed;
+  right: 40px;
+  bottom: 100px;
+  z-index: 10;
+  div {
+    width: 50px;
+    height: 50px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+  .toTop {
+    background-color: #939393;
+  }
+  .toCart {
+    background-color: #fc6b5a;
+  }
+  .toSupport {
+    background-color: #37508d;
   }
 }

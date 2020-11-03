@@ -34,7 +34,6 @@ class BrowseChart extends Component {
           show: false,
         },
         xaxis: {
-          type: 'datetime',
           labels: {
             show: false,
           },
@@ -50,6 +49,7 @@ class BrowseChart extends Component {
           tooltip: {
             enabled: false,
           },
+          categories: [...props.durationDays],
         },
         grid: {
           show: false,
@@ -69,41 +69,6 @@ class BrowseChart extends Component {
           offsetY: 0,
         },
       },
-      series: [
-        {
-          name: '訂單量',
-          data: [
-            {
-              x: new Date('2020-11-14').getTime(),
-              y: 10,
-            },
-            {
-              x: new Date('2020-11-15').getTime(),
-              y: 15,
-            },
-            {
-              x: new Date('2020-11-16').getTime(),
-              y: 7,
-            },
-            {
-              x: new Date('2020-11-17').getTime(),
-              y: 12,
-            },
-            {
-              x: new Date('2020-11-18').getTime(),
-              y: 3,
-            },
-            {
-              x: new Date('2020-11-19').getTime(),
-              y: 16,
-            },
-            {
-              x: new Date('2020-11-20').getTime(),
-              y: 8,
-            },
-          ],
-        },
-      ],
     }
   }
 
@@ -115,13 +80,20 @@ class BrowseChart extends Component {
             <div className="circle-icon icon-sale">
               <i className="fas fa-cart-plus"></i>
             </div>
-            <div className="chart-figures">+ 71</div>
+            <div className="chart-figures">
+              + {this.props.getNumberOfTotalOrders}
+            </div>
             <div className="chart-title">訂單數</div>
           </div>
           <div className="mixed-chart">
             <Chart
               options={this.state.options}
-              series={this.state.series}
+              series={[
+                {
+                  name: '訂單量',
+                  data: this.props.getAmountOfOrders,
+                },
+              ]}
               type="area"
               height="100"
             />

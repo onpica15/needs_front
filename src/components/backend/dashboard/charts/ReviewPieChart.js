@@ -7,7 +7,7 @@ class ReviewPieChart extends Component {
 
     this.state = {
       options: {
-        labels: ['5顆星', '4顆星', '3顆星', '2顆星', '1顆星'],
+        labels: ['1顆星', '2顆星', '3顆星', '4顆星', '5顆星'],
         colors: [
           'rgba(115, 103, 240, 0.8)',
           'rgba(255, 159, 67, 0.8)',
@@ -19,7 +19,6 @@ class ReviewPieChart extends Component {
           show: false,
         },
       },
-      series: [46, 25, 3, 0, 0],
     }
   }
 
@@ -28,7 +27,13 @@ class ReviewPieChart extends Component {
       <>
         <Chart
           options={this.state.options}
-          series={this.state.series}
+          series={[
+            this.props.oneStar,
+            this.props.twoStar,
+            this.props.threeStar,
+            this.props.fourStar,
+            this.props.fiveStar,
+          ]}
           type="donut"
           width="100%"
         />

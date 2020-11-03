@@ -1,5 +1,6 @@
-import React from 'react'
-import { Card, Table } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Card, Table, Button, Modal } from 'react-bootstrap'
+import AddAdsModal from './AddAdsModal'
 import {} from 'react-icons/ai'
 
 function InProgressAds() {
@@ -8,9 +9,12 @@ function InProgressAds() {
       <div className="in-progress-wrapper">
         <Card>
           <Card.Body>
-            <Card.Title className="mb-3">已投放之廣告</Card.Title>
+            <div className="in-progress-card-header">
+              <Card.Title className="mb-3">已投放之廣告</Card.Title>
+              <AddAdsModal />
+            </div>
             <div className="table-container">
-              <Table hover borderless className="in-progress-table">
+              <Table hover borderless className="in-progress-table mt-3">
                 <thead className="in-progress-header">
                   <tr>
                     <th>訂單編號</th>
@@ -33,7 +37,7 @@ function InProgressAds() {
                     <td>#879985</td>
                     <td>小亞細亞</td>
                     <td>投放中</td>
-                    <td>關鍵字廣告</td>
+                    <td>首頁廣告</td>
                     <td>$5000</td>
                     <td>2050</td>
                     <td>46</td>

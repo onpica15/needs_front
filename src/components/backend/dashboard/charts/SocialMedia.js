@@ -34,7 +34,6 @@ class SocialMediaChart extends Component {
           show: false,
         },
         xaxis: {
-          type: 'datetime',
           labels: {
             show: false,
           },
@@ -47,6 +46,7 @@ class SocialMediaChart extends Component {
           tooltip: {
             enabled: false,
           },
+          categories: [...props.durationDays],
         },
         grid: {
           show: false,
@@ -60,47 +60,13 @@ class SocialMediaChart extends Component {
         tooltip: {
           x: {
             // show: false
+            name: '訂閱用戶',
           },
           enabled: true,
           formatter: undefined,
           offsetY: 0,
         },
       },
-      series: [
-        {
-          name: '訂閱用戶',
-          data: [
-            {
-              x: new Date('2020-11-14').getTime(),
-              y: 28,
-            },
-            {
-              x: new Date('2020-11-15').getTime(),
-              y: 40,
-            },
-            {
-              x: new Date('2020-11-16').getTime(),
-              y: 36,
-            },
-            {
-              x: new Date('2020-11-17').getTime(),
-              y: 52,
-            },
-            {
-              x: new Date('2020-11-18').getTime(),
-              y: 38,
-            },
-            {
-              x: new Date('2020-11-19').getTime(),
-              y: 60,
-            },
-            {
-              x: new Date('2020-11-20').getTime(),
-              y: 55,
-            },
-          ],
-        },
-      ],
     }
   }
 
@@ -112,13 +78,18 @@ class SocialMediaChart extends Component {
             <div className="circle-icon icon-social">
               <i className="fas fa-user-plus"></i>
             </div>
-            <div className="chart-figures">+ 309</div>
+            <div className="chart-figures">+ {this.props.totalFans}</div>
             <div className="chart-title">粉絲人數</div>
           </div>
           <div className="mixed-chart">
             <Chart
               options={this.state.options}
-              series={this.state.series}
+              series={[
+                {
+                  name: '訂閱用戶',
+                  data: this.props.numberOfFans,
+                },
+              ]}
               type="area"
               height="100"
             />

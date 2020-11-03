@@ -8,25 +8,25 @@ const Login = (props) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [submitted, setSubmitted] = useState(false)
-  const currentRole = useSelector((state) => state.role.type)
+  const selectedRole = useSelector((state) => state.handleRole.type)
   const alertMsg = useSelector((state) => state.alert.message)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setSubmitted(true)
     if (username && password) {
-      props.login(username, password, currentRole)
+      props.login(username, password, selectedRole)
     }
   }
 
   useEffect(() => {
     setUsername('')
     setPassword('')
-  }, [currentRole])
+  }, [selectedRole])
 
   return (
     <>
-      {currentRole === 'member' ? (
+      {selectedRole === 'member' ? (
         <MemberLogin
           username={username}
           setUsername={setUsername}
@@ -35,7 +35,7 @@ const Login = (props) => {
           submitted={submitted}
           setSubmitted={setSubmitted}
           handleSubmit={handleSubmit}
-          currentRole={currentRole}
+          selectedRole={selectedRole}
           setMember={props.setMember}
           setMerchant={props.setMerchant}
           setNeeds={props.setNeeds}
@@ -52,7 +52,7 @@ const Login = (props) => {
           submitted={submitted}
           setSubmitted={setSubmitted}
           handleSubmit={handleSubmit}
-          currentRole={currentRole}
+          selectedRole={selectedRole}
           setMember={props.setMember}
           setMerchant={props.setMerchant}
           setNeeds={props.setNeeds}
@@ -67,7 +67,7 @@ const Login = (props) => {
 
 const mapStateToProps = (store) => {
   const { loggingIn } = store.authentication
-  const { type } = store.role
+  const { type } = store.handleRole
   return { loggingIn, type }
 }
 
