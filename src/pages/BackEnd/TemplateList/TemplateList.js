@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import Axios from 'axios'
+// import Axios from 'axios'
 import Templatepic1 from './images/Atlanta_pro.png'
 import TemplatepicBig from './images/minimal_pro.png'
-import './styles/TemplateList.scss'
-import '../../../styles/Backend/_backend.scss'
 
 import { Col, Container, Card, CardDeck, Row } from 'react-bootstrap'
-
 import { FiHeart } from 'react-icons/fi'
-
 import { Radio } from 'antd'
+
+import './styles/TemplateList.scss'
+import '../../../styles/Backend/_backend.scss'
+import TemplateCard from './TemplateCard'
 
 // class App extends React.Component {
 //   state = {
@@ -35,20 +35,38 @@ import { Radio } from 'antd'
 
 // ReactDOM.render(<App />, mountNode);
 
-
-
 function TemplateList(props) {
-  
-  const [TemplateList ,setTemplateList ]= useState([])
-  
-  useEffect(()=>{
-    Axios.get('http://localhost:5000/TemplateList').then((response)=>{
-      setTemplateList(response.data)
+  //設定初始狀態
+  const [Template ,setTemplate ]= useState([])
+  const [error,setError] = useState(null)
+  const [type,setType] = useState(1)
+
+  //server-data
+  async function getTemplateData(type){
+    // setDataLoading(true)// 載入資料就先打開
+    console.log('type',type)
+    const url =`http://localhost:5000/TemplateList?type=${type}`
+    const request = new Request(url, {
+        method:'GET',
+        headers:new Headers({
+            Accept:'application/json',
+            'Content-Type':'application/json'
+        }),
     })
-  },[])
-  if(Templatepic1.length == 0){
-    return''
-  }
+    try{
+      const response = await fetch(request)//response:fetch網址的資料
+      const data = await response.json()
+      // console.log(data)
+      setTemplate(data)
+    }catch(error){
+      setError(error)
+    }
+}
+
+    useEffect(() => {
+      getTemplateData(type)
+    }, [type])
+
   return (
     <>
       <div className="template">
@@ -60,7 +78,7 @@ function TemplateList(props) {
               </div>
               <div className="main-div rounded">
                 <p className="f-14">
-                  主題類別：<Radio> pro </Radio> <Radio> free </Radio>
+                  主題類別：<Radio> 全部 </Radio> <Radio> 標準方案 </Radio> <Radio> 進階方案 </Radio>
                 </p>
               </div>
             </div>
@@ -79,7 +97,7 @@ function TemplateList(props) {
                 <div className="col-8">
                   <img
                     src={Templatepic1}
-                    class="main-small-pic"
+                    className="main-small-pic"
                     alt="Responsive image"
                   ></img>
                   <img
@@ -98,7 +116,7 @@ function TemplateList(props) {
                       </button>
                     </div>
                     <div>
-                      <button className="btn-bg purple mt-2">立即套用</button>
+                      <button className="btn-bg purple mt-2" >立即套用</button>
                     </div>
                   </div>
                 </div>
@@ -108,101 +126,21 @@ function TemplateList(props) {
         </Col>
       </div>
       
-      {/* ############### */}
+      {/* TemplateCard */}
 
 
-      <div className="template mt-5">
+      <div className="template mt-3">
         <Col className="offset-2" xs={10}>
           <Container fluid>
             <Row>
               <CardDeck className="pb-3 card-adjust">
-                {' '}
-                <Card className="rounded">
-                  <Card.Img className="p-3" variant="top" src={Templatepic1} />
-                  <div className="align-items:center">
-                    <Card.Title className="text-center">Narrative</Card.Title>
-                    <Card.Text className="text-center">FREE</Card.Text>
-                    <Container className="d-flex p-0">
-                      <button className="btn-sml gray left">
-                        <FiHeart /> 加入收藏
-                      </button>
-                      <button className="btn-sml purple right">立即套用</button>
-                    </Container>
-                  </div>
-                </Card>
-                <Card className="rounded">
-                  <Card.Img className="p-3" variant="top" src={Templatepic1} />
-                  <div className="align-items:center">
-                    <Card.Title className="text-center">Narrative</Card.Title>
-                    <Card.Text className="text-center">FREE</Card.Text>
-                    <Container className="d-flex p-0">
-                      <button className="btn-sml gray left">
-                        <FiHeart /> 加入收藏
-                      </button>
-                      <button className="btn-sml purple right">立即套用</button>
-                    </Container>
-                  </div>
-                </Card>
-                <Card className="rounded">
-                  <Card.Img className="p-3" variant="top" src={Templatepic1} />
-                  <div className="align-items:center">
-                    <Card.Title className="text-center">Narrative</Card.Title>
-                    <Card.Text className="text-center">FREE</Card.Text>
-                    <Container className="d-flex p-0">
-                      <button className="btn-sml gray left">
-                        <FiHeart /> 加入收藏
-                      </button>
-                      <button className="btn-sml purple right">立即套用</button>
-                    </Container>
-                  </div>
-                </Card>
+                
+                <TemplateCard Template = {Template} />
+
               </CardDeck>
+
             </Row>
 
-            <Row>
-              <CardDeck className="pb-3 card-adjust">
-                {' '}
-                <Card className="rounded">
-                  <Card.Img className="p-3" variant="top" src={Templatepic1} />
-                  <div className="align-items:center">
-                    <Card.Title className="text-center">Narrative</Card.Title>
-                    <Card.Text className="text-center">FREE</Card.Text>
-                    <Container className="d-flex p-0">
-                      <button className="btn-sml gray left">
-                        <FiHeart /> 加入收藏
-                      </button>
-                      <button className="btn-sml purple right">立即套用</button>
-                    </Container>
-                  </div>
-                </Card>
-                <Card className="rounded">
-                  <Card.Img className="p-3" variant="top" src={Templatepic1} />
-                  <div className="align-items:center">
-                    <Card.Title className="text-center">Narrative</Card.Title>
-                    <Card.Text className="text-center">FREE</Card.Text>
-                    <Container className="d-flex p-0">
-                      <button className="btn-sml gray left">
-                        <FiHeart /> 加入收藏
-                      </button>
-                      <button className="btn-sml purple right">立即套用</button>
-                    </Container>
-                  </div>
-                </Card>
-                <Card className="rounded">
-                  <Card.Img className="p-3" variant="top" src={Templatepic1} />
-                  <div className="align-items:center">
-                    <Card.Title className="text-center">Narrative</Card.Title>
-                    <Card.Text className="text-center">FREE</Card.Text>
-                    <Container className="d-flex p-0">
-                      <button className="btn-sml gray left">
-                        <FiHeart /> 加入收藏
-                      </button>
-                      <button className="btn-sml purple right">立即套用</button>
-                    </Container>
-                  </div>
-                </Card>
-              </CardDeck>
-            </Row>
           </Container>
         </Col>
       </div>
