@@ -7,6 +7,7 @@ $bg-light: #f0f0f0;
 .cart-page {
   font-size: 0.875rem;
   color: $font-gray;
+  background-color: #fff;
   .form-check input[type="radio"]:checked ~ label:before,
   .form-check input[type="checkbox"]:checked ~ label:before {
     color: #fff;
@@ -69,6 +70,9 @@ $bg-light: #f0f0f0;
     transform: translate(-45%, -45%);
     z-index: 1;
   }
+  .cart-item{
+    margin-bottom: 1.875rem;
+  }
   .cart-infobar {
     background-color: $bg-light;
     font-weight: 500;
@@ -78,7 +82,8 @@ $bg-light: #f0f0f0;
   }
   .item-product img {
     width: 80px;
-    height: auto;
+    height: 80px;
+    object-fit: cover;
   }
   img {
     border-radius: 0.25rem;
@@ -102,9 +107,11 @@ $bg-light: #f0f0f0;
     height: 1px;
     background-color: $bg-light;
   }
+  .item-hr:last-child{
+    height: 0px;
+  } 
   .delivery-pay-info{
-      margin-top: 1.875rem;
-      margin-bottom: 3rem;
+      padding-bottom: 3rem;
   }
   .pay-total {
     font-size: 1.5rem;
