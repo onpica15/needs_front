@@ -13,12 +13,12 @@ const Filter = (props) => {
             <MdViewComfy
               size={40}
               value={1}
-              onClick={() => setProductView('bigPic')}
+              onClick={() => setProductView(true)}
             />
             <MdViewList
               size={40}
               value={2}
-              onClick={() => setProductView('list')}
+              onClick={() => setProductView(false)}
             />
           </div>
           <label>排序方式:</label>
@@ -29,8 +29,8 @@ const Filter = (props) => {
           >
             <option value="?">請選擇</option>
             <option value="?sort=lastest">最新上架</option>
-            <option value="?sort=-price">價格由低到高</option>
-            <option value="?sort=price">價格由高到低</option>
+            <option value="-price">價格由低到高</option>
+            <option value="price">價格由高到低</option>
           </select>
         </div>
       </div>

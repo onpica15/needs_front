@@ -37,7 +37,7 @@ function ArticleClassic(props) {
         {classicData.map((value, index) => (
           <Link
             to="/articledetial"
-            key={value.id}
+            key={index}
             className="articleItem col-lg-3 col-md-6 col-sm-12 text-decoration-none"
             style={{ color: '#323232' }}
           >

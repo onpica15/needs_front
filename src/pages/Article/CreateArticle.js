@@ -117,6 +117,16 @@ const CreateArticle = (props) => {
       })
   }
 
+  const sendEmail = async () => {
+    const data = <div dangerouslySetInnerHTML={{ __html: showHTML }} />
+    const email = '123@yac.com'
+    await axios
+      .post('http://localhost:5000/article/email', [title, email, data])
+      .catch((error) => {
+        console.log('Error', error)
+      })
+  }
+
   return (
     <>
       <EditorJs
@@ -130,6 +140,7 @@ const CreateArticle = (props) => {
         <Button className="" onClick={sendContent}>
           送出
         </Button>
+        <Button onClick={sendEmail}>電子報</Button>
       </div>
       <TestArticleDetial showHTML={showHTML} />
     </>

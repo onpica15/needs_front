@@ -3,28 +3,20 @@ import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
 import './Product.scss'
-// import { GrFavorite } from 'react-icons/gr'
-// import { MdFavorite } from 'react-icons/md'
-
-const Product = (props) => {
-  const { id, title, image_path, price, skus, addToCart } = props
-
+function ProductViewList(props) {
+  const { id, title, image_path, price, outline, skus, addToCart } = props
   return (
     <>
-      <div
-        className="productItem col-lg-4 col-md-6
-      col-sm-6 col-xs-12"
-      >
-        <Link to={`/products/${id}`}>
-          <div className="productPic">
-            <img
-              src={`http://localhost:5000/img/products/${image_path}`}
-              alt=""
-            ></img>
-          </div>
-        </Link>
+      <div className="productListItem d-flex col-12">
+        <div className="productPic">
+          <img
+            src={`http://localhost:5000/img/products/${image_path}`}
+            alt=""
+          ></img>
+        </div>
         <div className="textArea">
           <div className="title">{title}</div>
+          <div className="outline">{outline}</div>
           <div className="d-flex justify-content-center">
             <div className="priceDiscount">
               NT$ {skus[0].sale_price ? skus[0].sale_price : skus[0].price}
@@ -50,4 +42,4 @@ const Product = (props) => {
   )
 }
 
-export default Product
+export default ProductViewList

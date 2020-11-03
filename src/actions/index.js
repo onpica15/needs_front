@@ -119,10 +119,10 @@ function clear() {
 }
 
 // cart action
-export function addToCartAction({ id, title, img_path, price, units }) {
+export function addToCartAction({ id, title, image_path, price, units }) {
   return {
     type: ADD_TO_CART,
-    payload: { id, title, img_path, price, units },
+    payload: { id, title, image_path, price, units },
   }
 }
 export function updateCartUnits({ id, units, price }) {

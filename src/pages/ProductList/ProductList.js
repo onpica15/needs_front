@@ -14,6 +14,7 @@ import './ProductList.scss'
 
 //test
 import HistoryList from '../../components/History/HistoryList'
+import RecommendStoreForProductListPage from '../../components/ProductList/RecommendStoreForProductListPage'
 
 import axios from 'axios'
 
@@ -24,7 +25,7 @@ const ProductList = (props) => {
   const [postsPerPage] = useState(12)
 
   const [sort, setSort] = useState('')
-  const [productView, setProductView] = useState('bigPic')
+  const [productView, setProductView] = useState(true)
 
   const { cart, addToCartAction, updateCartUnits } = props
 
@@ -34,7 +35,6 @@ const ProductList = (props) => {
       console.log(sort)
       setDataLoading(true)
       let url = 'http://localhost:5000/productlist' + sort
-      console.log(url)
       const res = await axios.get(url).catch((err) => console.log('Error', err))
       setPosts(res.data)
       setDataLoading(false)
@@ -57,6 +57,16 @@ const ProductList = (props) => {
   const handleSort = (event) => {
     console.log(event.target.value)
     setSort(event.target.value)
+
+    const sortRes = posts.sort((a, b) => {
+      if (sort === '-price') {
+        return a.skus[0].sale_price < b.skus[0].sale_price ? 1 : -1
+      }
+      if (sort === 'price') {
+        return a.skus[0].sale_price > b.skus[0].sale_price ? 1 : -1
+      }
+    })
+    setPosts(sortRes)
   }
 
   return (
@@ -94,9 +104,9 @@ const ProductList = (props) => {
             />
           </div>
         </div>
-        <div className="container mt-5">
-          <h5 className="d-flex justify-content-center">推薦商家</h5>
-          <HistoryList cart={cart} updateCartUnits={updateCartUnits} />
+        <h5 className="d-flex justify-content-center">推薦商家</h5>
+        <div className="container mt-5 d-flex">
+          <RecommendStoreForProductListPage />
         </div>
         <div className="container mt-5">
           <h5 className="d-flex justify-content-center">最近瀏覽</h5>

@@ -3,17 +3,13 @@ import CartItem from './HistoryItem'
 
 function HistoryList(props) {
   const { cart, updateCartUnits } = props
-  console.log(cart)
+
   return (
     <div>
       <div className="d-flex">
         {cart &&
-          cart.map((item) => (
-            <CartItem
-              {...item}
-              key={item.id}
-              updateCartUnits={updateCartUnits}
-            />
+          cart.map((item, index) => (
+            <CartItem {...item} key={index} updateCartUnits={updateCartUnits} />
           ))}
       </div>
     </div>

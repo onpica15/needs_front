@@ -9,7 +9,7 @@ const initialState = [
   {
     id: 1,
     title: 'LABAN CAMBRIDGE 劍橋鋼筆',
-    img_path: 'ST01_300x0.jpg',
+    image_path: 'ST01_300x0.jpg',
     price: 100,
     units: 2,
   },
