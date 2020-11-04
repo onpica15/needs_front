@@ -16,9 +16,11 @@ function AddAdsModal() {
       startdate: document.form1.title.startdate,
       enddate: document.form1.title.enddate,
     }
-    Axios.post('http://localhost:5000/dashboard/addnewads').then((response) => {
-      console.log(response)
-    })
+    Axios.post('http://localhost:5000/dashboard/addnewads', d).then(
+      (response) => {
+        console.log(response.data)
+      }
+    )
   }
   return (
     <>
