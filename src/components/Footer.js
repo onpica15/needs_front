@@ -6,7 +6,6 @@ const Footer = () => {
   return (
     <>
       <Container>
-        {' '}
         <div className="footerSec">
           <div className="subSection">
             <div className="title">購買</div>

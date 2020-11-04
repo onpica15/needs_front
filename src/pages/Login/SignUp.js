@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux'
 import MerchantSignUp from './modules/MerchantSignUp'
 
 const SignUp = () => {
-  const currentRole = useSelector((state) => state.role.type)
+  const selectedRole = useSelector((state) => state.handleRole.type)
 
   return (
-    <>{currentRole === 'member' ? <span>Hello</span> : <MerchantSignUp />}</>
+    <>{selectedRole === 'member' ? <span>Hello</span> : <MerchantSignUp />}</>
   )
 }
 
