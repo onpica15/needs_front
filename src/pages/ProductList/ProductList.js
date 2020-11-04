@@ -19,20 +19,33 @@ import RecommendStoreForProductListPage from '../../components/ProductList/Recom
 import axios from 'axios'
 
 const ProductList = (props) => {
+  // getdata
   const [posts, setPosts] = useState([])
+  const [categories, setCategories] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
+
+  //set page
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(12)
 
+  // topFilter handle
   const [sort, setSort] = useState('')
   const [productView, setProductView] = useState(true)
 
+  //set select Index to filter of Category
+  const [selectCategory, setSelectCategory] = useState(22)
+  // 0 = can't use  1 = use
+  const [ecoin, setEcoin] = useState(false)
+  //Redux addCart
   const { cart, addToCartAction, updateCartUnits } = props
+
+  useEffect(() => {
+    getCategories()
+  }, [])
 
   // axios get data
   useEffect(() => {
     const fetchPosts = async () => {
-      console.log(sort)
       setDataLoading(true)
       let url = 'http://localhost:5000/productlist' + sort
       const res = await axios.get(url).catch((err) => console.log('Error', err))
@@ -41,6 +54,18 @@ const ProductList = (props) => {
     }
     fetchPosts()
   }, [sort])
+
+  //get all data
+
+  const getCategories = async () => {
+    setDataLoading(true)
+    let url = 'http://localhost:5000/productlist/categories'
+    const res = await axios
+      .get(url)
+      .catch((err) => console.log(`'Can't get categories`))
+    setCategories(res.data)
+    setDataLoading(false)
+  }
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage
@@ -78,10 +103,14 @@ const ProductList = (props) => {
           <Breadcrumb.Item href="#">文章列表</Breadcrumb.Item>
           <Breadcrumb.Item active>所有分類</Breadcrumb.Item>
         </Breadcrumb>
+        {/* Filter */}
         <div className="d-flex">
           <div className="sideFilter">
-            <ProductSideBar />
-            <SideFilter />
+            <ProductSideBar
+              categories={categories}
+              setSelectCategory={setSelectCategory}
+            />
+            <SideFilter setEcoin={setEcoin} ecoin={ecoin} />
           </div>
           <div className="mainProductList">
             <Filter
@@ -90,11 +119,15 @@ const ProductList = (props) => {
               setSort={setSort}
               setProductView={setProductView}
             />
+
+            {/* dataView */}
             <Posts
               posts={currentPosts}
               dataLoading={dataLoading}
               productView={productView}
               addToCartAction={addToCartAction}
+              ecoin={ecoin}
+              selectCategory={selectCategory}
             />
 
             <Pagination
@@ -104,6 +137,8 @@ const ProductList = (props) => {
             />
           </div>
         </div>
+
+        {/* RecommendStore */}
         <h5 className="d-flex justify-content-center">推薦商家</h5>
         <div className="container mt-5 d-flex">
           <RecommendStoreForProductListPage />

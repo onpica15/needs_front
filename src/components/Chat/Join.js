@@ -18,14 +18,20 @@ const Join = (props) => {
   return (
     <>
       {showChat ? <Chat /> : ''}
-      <Link
+      <div
         className="customChat"
-        style={{ position: 'fixed', bottom: '30px', right: '20px' }}
+        style={{
+          position: 'fixed',
+          bottom: '30px',
+          right: '20px',
+          zIndex: '2',
+          cursor: 'pointer',
+        }}
         onClick={() => showChatToggle(showChatToggle)}
         // to={`/chat?name=${username}&room=123`}
       >
         <AiFillMessage size={50} />
-      </Link>
+      </div>
     </>
   )
 }

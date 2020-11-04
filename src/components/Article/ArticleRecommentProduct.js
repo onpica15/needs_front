@@ -53,7 +53,7 @@ const ArticleRecommentProduct = (props) => {
     <>
       {data.map((value, id) => (
         <Link
-          to="/article"
+          to="/articles"
           className="ArticleRecommentProduct text-decoration-none"
         >
           <div key={value.id} className="picture mr-2">

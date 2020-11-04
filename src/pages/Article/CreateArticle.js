@@ -40,7 +40,7 @@ const CreateArticle = (props) => {
           articleHTML += `<div className="ce-block">
       <div className="ce-block__content">
         <div className="ce-paragraph cdx-block">
-          <img src="${obj.data.file.url}" alt="${obj.data.caption}" />
+          <img src="${obj.data.file.url}" alt="${obj.data.caption}" style="width:270px;height:270px" />
           <div className="text-center">
             <i>${obj.data.caption}</i>
           </div>
@@ -142,7 +142,6 @@ const CreateArticle = (props) => {
         </Button>
         <Button onClick={sendEmail}>電子報</Button>
       </div>
-      <TestArticleDetial showHTML={showHTML} />
     </>
   )
 }

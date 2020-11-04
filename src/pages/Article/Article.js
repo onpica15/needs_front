@@ -39,8 +39,9 @@ const Article = (props) => {
   const display = (
     <div className=" articleItems d-flex flex-wrap">
       {articles.map((value, index) => (
-        <div
+        <Link
           key={value.id}
+          to={`/article/${value.id}`}
           className="articleItem col-lg-3 col-md-6 col-sm-12 text-decoration-none"
         >
           <div className="articlePic">
@@ -50,7 +51,7 @@ const Article = (props) => {
             <div className="title">{value.title}</div>
             <div className="ctx">{value.outline}</div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   )

@@ -29,7 +29,7 @@ function HomeNavbar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="#home">所有分類</Nav.Link>
-            <Nav.Link href="/article">文章列表</Nav.Link>
+            <Nav.Link href="/articles">文章列表</Nav.Link>
             <Nav.Link href="/investment">成為商家</Nav.Link>
           </Nav>
           <Nav className={isLogin ? `d-none` : `d-block`}>

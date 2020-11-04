@@ -14,7 +14,7 @@ function ArticleDetial() {
       <div className="container">
         <Breadcrumb>
           <Breadcrumb.Item href="#">首頁</Breadcrumb.Item>
-          <Breadcrumb.Item href="/article">文章列表</Breadcrumb.Item>
+          <Breadcrumb.Item href="/articles">文章列表</Breadcrumb.Item>
           <Breadcrumb.Item active>精選5款人氣筆記本套推薦</Breadcrumb.Item>
         </Breadcrumb>
         <div className="d-flex flex-lg-row flex-md-column mt-4">
