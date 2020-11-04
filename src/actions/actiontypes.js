@@ -20,3 +20,6 @@ export const alertConstants = {
   ERROR: 'ALERT_ERROR',
   CLEAR: 'ALERT_CLEAR',
 }
+
+// orderItems
+export const REPLACE_ORDER_ITEMS = 'REPLACE_ORDER_ITEMS'

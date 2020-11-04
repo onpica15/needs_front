@@ -94,12 +94,12 @@ function HomeNavbar() {
             </Nav>
             <Nav>{isLogin === true ? logoutBtn() : ''}</Nav>
             <Nav>
-              <Nav.Link href="#link">
+              <Link to={`/cart_list`}>
                 <AiOutlineShoppingCart
                   size="30px"
-                  style={{ color: '#d44f44' }}
+                  style={{ color: '#d44f44', marginTop: '0.5rem' }}
                 />
-              </Nav.Link>
+              </Link>
               <Nav.Link href="#link">
                 <AiOutlineSearch size="30px" />
               </Nav.Link>

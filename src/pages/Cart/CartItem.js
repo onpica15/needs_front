@@ -1,6 +1,7 @@
 import React from 'react'
 import { Row, Col, Form } from 'react-bootstrap'
 import { FaTimes } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 import * as storage from './localStorage'
 
 function CartItem(props) {
@@ -51,15 +52,21 @@ function CartItem(props) {
             />
           </div>
           <div className="item-product ml-4 d-flex">
-            <img
-              src={`http://localhost:5000/img/products/${product.image_s}`}
-              alt=""
-            />
+            <Link to={`/products/${product.product_id}`}>
+              <img
+                src={`http://localhost:5000/img/products/${product.image_s}`}
+                alt=""
+              />
+            </Link>
             <div className="ml-5">
-              <p className="item-title">{product.title}</p>
+              <Link to={`/products/${product.product_id}`}>
+                <p className="item-title">{product.title}</p>
+              </Link>
               <span>
                 規格：
-                {product.specification === '-' ? '單一規格' : product.specification}
+                {product.specification === '-'
+                  ? '單一規格'
+                  : product.specification}
               </span>
             </div>
           </div>

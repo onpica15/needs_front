@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, Form } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 import { FaTimes } from 'react-icons/fa'
+import { connect } from 'react-redux'
+import { replaceOrderItems } from '../../actions'
 import './cart.scss'
 import * as storage from './localStorage'
 
@@ -9,10 +11,12 @@ import CheckoutNav from './CheckoutNav'
 import CartItem from './CartItem'
 
 function Cart(props) {
+  // console.log('props', props)
   const [cart, setCart] = useState({})
   const [skuId, setSkuId] = useState({})
   const [merchantCarts, setMerchantCarts] = useState([])
   const [sum, setSum] = useState(0)
+  const [orderItems, setOrderItems] = useState()
 
   function getCart(value) {
     const data = storage.getCartItems()
@@ -98,14 +102,33 @@ function Cart(props) {
     setSum(sum)
   }
 
+  function getOrderItems() {
+    let orderItems = []
+    merchantCarts.forEach((merchantCart) => {
+      merchantCart.products.map((item) => {
+        if (item.isChecked) {
+          orderItems.push(item)
+        }
+      })
+    })
+    orderItems.sum = sum
+    console.log(orderItems)
+    setOrderItems(orderItems)
+  }
+
   useEffect(() => {
     getCart()
     getMerchantCarts()
+    window.scrollTo(0, 0)
   }, [])
 
   useEffect(() => {
     calculateSum()
   }, [merchantCarts])
+
+  useEffect(() => {
+    getOrderItems()
+  }, [sum])
 
   return (
     <div className="cart-page">
@@ -221,6 +244,14 @@ function Cart(props) {
                   </p>
                 </div>
               </div>
+              <Link to={`/cart_payment`}>
+                <button
+                  className="btn btn-danger w-100 mt-3"
+                  onClick={() => props.replaceOrderItems(orderItems)}
+                >
+                  前往結帳
+                </button>
+              </Link>
             </div>
           </Col>
         </Row>
@@ -229,4 +260,10 @@ function Cart(props) {
   )
 }
 
-export default Cart
+const mapStateToProps = (store) => {
+  return { type: store.orderItems }
+}
+
+export default connect(mapStateToProps, {
+  replaceOrderItems,
+})(Cart)

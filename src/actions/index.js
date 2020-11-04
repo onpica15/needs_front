@@ -1,4 +1,9 @@
-import { userConstants, roleTypes, alertConstants } from './actiontypes'
+import {
+  userConstants,
+  roleTypes,
+  alertConstants,
+  REPLACE_ORDER_ITEMS,
+} from './actiontypes'
 import History from '../components/history'
 export const userActions = { login, logout }
 export const roleActions = { setMember, setMerchant, setNeeds }
@@ -108,3 +113,17 @@ function error(message) {
 function clear() {
   return { type: alertConstants.CLEAR }
 }
+
+export function replaceOrderItems(item) {
+  return (dispatch) => {
+    dispatch(replaceOrderItem(item))
+  }
+
+  function replaceOrderItem(item) {
+    return { type: REPLACE_ORDER_ITEMS, item }
+  }
+}
+
+// export const replaceOrderItems = (item) => {
+//   return { type: REPLACE_ORDER_ITEMS, item }
+// }
