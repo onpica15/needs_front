@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Axios from 'axios'
 import { Col, Container, Pagination } from 'react-bootstrap'
-import ToolsBar from './modules/toolbar'
-import BackendPagination from '../../../components/backend/pagination'
+import ToolsBar from './modules/ToolBar'
+import BackendPagination from '../../../components/backend/BackendPagination'
 import History from '../../../components/history'
 
 const OrdersManagement = (props) => {

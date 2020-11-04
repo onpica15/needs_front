@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Axios from 'axios'
 import { Col, Container, Pagination } from 'react-bootstrap'
-import ToolsBar from './modules/toolbar'
-import ContractsContent from './modules/contractsContent'
-import BackendPagination from '../../../components/backend/pagination'
+import ToolBar from './modules/ToolBar'
+import ContractsContent from './modules/ContractsContent'
+import BackendPagination from '../../../components/backend/BackendPagination'
 import History from '../../../components/history'
 import './ContractsManagement.scss'
+import SignForm from './modules/SignForm'
 
 const ContractsManagement = (props) => {
   // all ended, grid list
@@ -19,25 +20,16 @@ const ContractsManagement = (props) => {
   const [pageItems, setPageItems] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
-
-  // const data = [
-  //   {
-  //     id: 2,
-  //     merchants_id: 12,
-  //     contract_id: 'M2020110301',
-  //     plan_name: '進階方案',
-  //     start_date: '2020-11-01',
-  //     end_date: '2020-12-31',
-  //     total_days: 61,
-  //     amount: 6000,
-  //     payment_status: '已付款',
-  //   },
-  // ]
+  const [showSignUp, setShowSignUp] = useState(true)
 
   const toPage = (e) => {
     setCurrentPage(e)
     History.push(`/customer-backend/contracts-management/page=${e}`)
     window.scrollTo(0, 0)
+  }
+
+  const toSignUp = (e) => {
+    setShowSignUp(true)
   }
 
   const getData = (merchantId, type) => {
@@ -82,11 +74,13 @@ const ContractsManagement = (props) => {
       <div className="contractsMng">
         <Col className="main offset-2" xs={10}>
           <Container fluid main>
-            <ToolsBar
+            <ToolBar
               type={type}
               setType={setType}
               viewType={viewType}
               setViewType={setViewType}
+              toSignUp={toSignUp}
+              setShowSignUp={setShowSignUp}
             />
             <ContractsContent data={data} />
             <BackendPagination
@@ -97,6 +91,7 @@ const ContractsManagement = (props) => {
             />
           </Container>
         </Col>
+        <SignForm showSignUp={showSignUp} setShowSignUp={setShowSignUp} />
       </div>
     </>
   )

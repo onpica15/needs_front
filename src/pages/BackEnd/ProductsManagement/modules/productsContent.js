@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Row, Dropdown, Form } from 'react-bootstrap'
 import { AiOutlineEdit } from 'react-icons/ai'
 
-const productsContent = (props) => {
+const ProductsContent = (props) => {
   const { data } = props
   return (
     <>
@@ -60,4 +60,4 @@ const productsContent = (props) => {
   )
 }
 
-export default productsContent
+export default ProductsContent

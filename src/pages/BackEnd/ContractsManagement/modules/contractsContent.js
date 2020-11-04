@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Row, Dropdown, Form } from 'react-bootstrap'
 import { AiOutlineEdit } from 'react-icons/ai'
 
-const contractsContent = (props) => {
+const ContractsContent = (props) => {
   const { data } = props
 
   //合約付款狀態顏色
@@ -74,4 +74,4 @@ const contractsContent = (props) => {
   )
 }
 
-export default contractsContent
+export default ContractsContent

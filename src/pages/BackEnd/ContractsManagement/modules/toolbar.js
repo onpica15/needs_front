@@ -15,8 +15,8 @@ import {
   AiOutlineSearch,
 } from 'react-icons/ai'
 
-const ToolsBar = (props) => {
-  const { type, setType, viewType, setViewType } = props
+const ToolBar = (props) => {
+  const { type, setType, viewType, setViewType, toSignUp } = props
   return (
     <>
       <Row className="toolsSec my-3">
@@ -39,7 +39,7 @@ const ToolsBar = (props) => {
       </Row>
       <Row className="buttonSec my-3">
         <Button>
-          <AiOutlinePlus size="30px" />
+          <AiOutlinePlus size="30px" onClick={toSignUp} />
         </Button>
         <div className="viewSelect d-flex">
           <Button
@@ -62,4 +62,4 @@ const ToolsBar = (props) => {
   )
 }
 
-export default ToolsBar
+export default ToolBar
