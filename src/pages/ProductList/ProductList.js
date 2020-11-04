@@ -33,7 +33,7 @@ const ProductList = (props) => {
   const [productView, setProductView] = useState(true)
 
   //set select Index to filter of Category
-  const [selectCategory, setSelectCategory] = useState(22)
+  const [selectCategory, setSelectCategory] = useState('')
   // 0 = can't use  1 = use
   const [ecoin, setEcoin] = useState(false)
   //Redux addCart

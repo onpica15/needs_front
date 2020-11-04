@@ -36,7 +36,8 @@ const Posts = (props) => {
     <div className="productItems d-flex flex-wrap">
       {posts &&
         posts.map((posts, index) => {
-          if (selectCategory !== posts.categories_id) return <></>
+          if (selectCategory && selectCategory !== posts.categories_id)
+            return <></>
           if (!ecoin === false && posts.e_points_usable === 0) return <></>
           return productView ? (
             <>
