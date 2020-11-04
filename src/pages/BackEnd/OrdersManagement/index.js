@@ -3,8 +3,10 @@ import { useSelector } from 'react-redux'
 import Axios from 'axios'
 import { Col, Container, Pagination } from 'react-bootstrap'
 import ToolsBar from './modules/ToolBar'
+import OrdersContent from './modules/OrdersContent'
 import BackendPagination from '../../../components/backend/BackendPagination'
 import History from '../../../components/history'
+import './OrdersManagement.scss'
 
 const OrdersManagement = (props) => {
   // all launched soldout unlaunched, grid list
@@ -13,10 +15,36 @@ const OrdersManagement = (props) => {
 
   // const merchantId = useSelector((state) => state.authentication.user.user.id)
   const [merchantId, setMerchantId] = useState(12)
-  const [data, setData] = useState([])
+  // const [data, setData] = useState([])
   const [pageItems, setPageItems] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
+
+  const data = [
+    {
+      id: 1,
+      order_number: '2020110501',
+      order_date: '2020-11-5',
+      amount: 1135,
+      payment_type: '信用卡',
+      //待付款 待出貨 已出貨 已送達 已取貨 退貨中 已退貨
+      order_status: '待付款',
+      order_details: {
+        id: 1,
+        quantity: 1,
+        product_id: 7,
+        product_title: '南國的孩子 派特打底章 (10個入)',
+        product_specification: '單一規格',
+        unit_price: 1135,
+      },
+      delivery_details: {
+        delivery_type: '宅配',
+        delivery_name: '路人甲',
+        phone_number: '0911222333',
+        address: '287-01 屏東縣南州鄉崇陽街956巷200號',
+      },
+    },
+  ]
 
   //   const toPage = (e) => {
   //     setCurrentPage(e)
@@ -63,7 +91,7 @@ const OrdersManagement = (props) => {
 
   return (
     <>
-      <div className="productsMng">
+      <div className="ordersMng">
         <Col className="main offset-2" xs={10}>
           <Container fluid main>
             <ToolsBar
@@ -72,6 +100,7 @@ const OrdersManagement = (props) => {
               viewType={viewType}
               setViewType={setViewType}
             />
+            <OrdersContent data={data} />
             <BackendPagination
               pageItems={pageItems}
               currentPage={currentPage}

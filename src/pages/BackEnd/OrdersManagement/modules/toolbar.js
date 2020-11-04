@@ -1,19 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import {
-  Row,
-  Button,
-  Dropdown,
-  InputGroup,
-  Form,
-  FormControl,
-} from 'react-bootstrap'
-import {
-  AiOutlinePlus,
-  AiOutlineAppstore,
-  AiOutlineBars,
-  AiOutlineSearch,
-} from 'react-icons/ai'
+import { Row, Button, InputGroup, Form, FormControl } from 'react-bootstrap'
+import { AiOutlineSearch } from 'react-icons/ai'
 
 const ToolBar = (props) => {
   const { type, setType, viewType, setViewType } = props
@@ -30,30 +18,31 @@ const ToolBar = (props) => {
           </Button>
           <Button
             variant="light"
-            className={type === 'launched' ? 'actived' : ''}
-            onClick={(e) => setType('launched')}
+            className={type === 'unpaid' ? 'actived' : ''}
+            onClick={(e) => setType('unpaid')}
           >
-            架上商品
+            待付款
           </Button>
           <Button
             variant="light"
-            className={type === 'soldout' ? 'actived' : ''}
-            onClick={(e) => setType('soldout')}
+            className={type === 'backorder' ? 'actived' : ''}
+            onClick={(e) => setType('backorder')}
           >
-            已售完
+            待出貨
           </Button>
           <Button
             variant="light"
-            className={type === 'unlaunched' ? 'actived' : ''}
-            onClick={(e) => setType('unlaunched')}
+            className={type === 'returning' ? 'actived' : ''}
+            onClick={(e) => setType('returned')}
           >
-            未上架
+            退貨中
           </Button>
         </div>
         <Form className="searchBar">
           <Form.Control as="select" id="inlineFormCustomSelect" custom>
-            <option value="0">商品名稱</option>
-            <option value="1">商品類別</option>
+            <option value="0">訂單編號</option>
+            <option value="1">訂購人電話</option>
+            <option value="1">訂購人姓名</option>
           </Form.Control>
           <InputGroup>
             <FormControl aria-describedby="basic-addon1" />
@@ -62,33 +51,6 @@ const ToolBar = (props) => {
             <AiOutlineSearch size="24px" />
           </Button>
         </Form>
-      </Row>
-      <Row className="buttonSec my-3">
-        <Dropdown>
-          <Dropdown.Toggle id="dropdown-basic">
-            <AiOutlinePlus size="30px" />
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">實體商品</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">活動體驗</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-        <div className="viewSelect d-flex">
-          <Button
-            variant="light"
-            className={`${viewType === 'grid' ? 'actived' : ''}`}
-            onClick={(e) => setViewType('grid')}
-          >
-            <AiOutlineAppstore size="35px" />
-          </Button>
-          <Button
-            variant="light"
-            className={` ml-2 ${viewType === 'list' ? 'actived' : ''}`}
-            onClick={(e) => setViewType('list')}
-          >
-            <AiOutlineBars size="40px" />
-          </Button>
-        </div>
       </Row>
     </>
   )
