@@ -44,9 +44,13 @@ const MemSidebar = () => {
     <>
       <div className="d-flex flex-column memsidebar ">
         {memsidebar.map((item, index) => {
-          return( 
-            <img className="avatar mx-auto" src={`http://localhost:5000/img/avatar/${item.avatar}`} alt="avatar"/>
-        )
+          return (
+            <img
+              className="avatar mx-auto"
+              src={`http://localhost:5000/img/avatar/${item.avatar}`}
+              alt="avatar"
+            />
+          )
         })}
         <p className="font-ss">
           <Link to="#">

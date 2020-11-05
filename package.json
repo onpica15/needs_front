@@ -57,6 +57,7 @@
     "react-scripts": "^3.4.4",
     "react-scroll-to-bottom": "^4.0.0",
     "react-slick": "^0.27.12",
+    "react-spinners": "^0.9.0",
     "react-spring": "^8.0.27",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",

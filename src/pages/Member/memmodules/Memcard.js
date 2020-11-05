@@ -7,16 +7,17 @@ import {
   withRouter,
 } from 'react-router-dom'
 import axios from 'axios' // import memcarddata from './memcarddata.json'
+import Spinner from 'react-bootstrap/Spinner'
 
 import { useSelector } from 'react-redux' //引入redux
 import { BsPersonFill } from 'react-icons/bs'
 import { FaEdit } from 'react-icons/fa'
 
-const MemCard = () => {
+function MemCard(props) {
   const [memcard, setMemcard] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
 
-  const isLogin = useSelector((state) => state.authentication.loggedIn) //redux判斷是否為lodin狀態
+  const isLogin = useSelector((state) => state.authentication.loggedIn) //redux判斷是否為login狀態
   const loginUser = useSelector((state) => state.authentication.user) //redux初始值設定為空值
   //axios get data
   //先接收資料後再判斷memid,val=memid從前端先判斷需求是否有傳到後端
@@ -36,7 +37,16 @@ const MemCard = () => {
       window.location.href = '/login' //若非login狀態則跳轉至login畫面
     }
   }, [])
-  return (
+  useEffect(() => {
+    setTimeout(() => setDataLoading(false), 1000)
+  }, [memcard])
+  const loading = (
+    <Spinner animation="border" role="status">
+      <span className="sr-only">Loading...</span>
+    </Spinner>
+  )
+
+  const display = (
     <>
       <div className="memcard">
         <div className="col-md-10">
@@ -48,7 +58,7 @@ const MemCard = () => {
                 </p>
                 <p>會員資料</p>
 
-                <Link to="#" className="icons">
+                <Link to="#" onClick={() => {}} className="icons">
                   <FaEdit />
                 </Link>
               </div>
@@ -127,6 +137,8 @@ const MemCard = () => {
       </div>
     </>
   )
+
+  return dataLoading ? loading : display
 }
 
 export default MemCard
