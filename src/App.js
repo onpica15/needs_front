@@ -36,6 +36,7 @@ import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEdite
 import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
 import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
 import ArticleDetial from './pages/Article/ArticleDetial'
+import TestArticleDetial from './pages/Article/TestArticleDetial'
 import ProductsManagement from './pages/BackEnd/ProductsManagement'
 
 //設置layout props
@@ -115,13 +116,18 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/article"
+            path="/articles"
             component={Article}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
             path="/createArticle"
             component={CreateArticle}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/article/:id"
+            component={TestArticleDetial}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute

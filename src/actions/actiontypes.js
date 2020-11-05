@@ -20,3 +20,7 @@ export const alertConstants = {
   ERROR: 'ALERT_ERROR',
   CLEAR: 'ALERT_CLEAR',
 }
+
+//cartActions
+export const ADD_TO_CART = 'ADD_TO_CART'
+export const UPDATE_CART_UNITS = 'UPDATE_CART_UNITS'

@@ -1,13 +1,17 @@
 .form{
-    border-top: 1px solid #eee;
+    border-top: 1px solid rgba(0,0,0,.1);
     display: flex;
     justify-content: space-around;
+    border-top: 1px solid ;
+    height: 60px;
+    padding-top: 8px;
 
     .fab{
         background: rgba(0,0,0,0);
          width: 40px;
          height: 40px;
          line-height: 35px;
+        //  transform: translateY();
             color: #bbb;
             border: none;
             outline: none;
@@ -16,13 +20,15 @@
             color:#42a5f5
             }
     }
-    .input{
+    textarea{
         margin: 5px 0 5px 0;
-        width: 50%;
-        height: 30px;
+        width: 60%;
+        height: 40px;
         resize: none;
         border: none;
         outline: none;
         display: inline-block;
+        background-color: #f8f9fa;
+        transform: translateY(3px);
     }
 }

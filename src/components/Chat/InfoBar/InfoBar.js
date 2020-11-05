@@ -1,19 +1,24 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
+import { GrClose } from 'react-icons/gr'
 
 import './InfoBar.scss'
 // import closeIcon from '../../icons/closeIcon.png'
 // src = { closeIcon }
 
-const InfoBar = ({ room }) => (
-    <div className="infoBar">
-        <div className='leftInnerContainer'>
-            {/* <img className='onlineIcon' alt='online image'></img> */}
-            <h3>{room}</h3>
-        </div>
-        <div className='rightInnerContainer'>
-            {/* <a href='/'><img alt='close image'></img></a> */}
-        </div>
-    </div>
-)
+const InfoBar = (props) => {
+  const { setShow, room } = props
+  return (
+    <>
+      <div className="infoBar">
+        <h5>123</h5>
+        {/* <Link className="close" onClick={() => setShow(false)}>
+          <GrClose size={20} />
+        </Link> */}
+      </div>
+    </>
+  )
+}
 
 export default InfoBar

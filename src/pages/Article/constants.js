@@ -12,7 +12,6 @@ import Marker from '@editorjs/marker'
 import CheckList from '@editorjs/checklist'
 import Delimiter from '@editorjs/delimiter'
 import InlineCode from '@editorjs/inline-code'
-import SimpleImage from '@editorjs/simple-image'
 
 export const EDITOR_JS_TOOLS = {
   embed: Embed,
@@ -23,17 +22,14 @@ export const EDITOR_JS_TOOLS = {
   code: Code,
   linkTool: {
     class: LinkTool,
-    config: {
-      // endpoint: 'http://localhost:5000/api/articles',
-    },
   },
   image: {
     class: Image,
-    endpoints: {
-      byFile: 'http://localhost:5000/article/upload',
-      // Your backend file uploader endpoint
-      byUrl: 'http://localhost:5000/article/upload',
-      // Your endpoint that provides uploading by Url
+    config: {
+      endpoints: {
+        accept: 'image/*',
+        byFile: 'http://localhost:5000/article/fetchUrl',
+      },
     },
   },
   raw: Raw,
@@ -49,5 +45,4 @@ export const EDITOR_JS_TOOLS = {
   checklist: CheckList,
   delimiter: Delimiter,
   inlineCode: InlineCode,
-  simpleImage: SimpleImage,
 }
