@@ -63,7 +63,11 @@ const MemComment = () => {
           {memcomment.map((item, index) => {
             return (
               <div className="informbar d-flex justify-content-center">
-                <div className="sign"></div>
+              <img
+                  className="sign"
+                  src={`http://localhost:5000/img/brands/${item.index_img}`}
+                  alt="brands"
+                />
 
                 <div className="textbox">
                   <div>

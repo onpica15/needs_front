@@ -1,5 +1,14 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  withRouter,
+} from 'react-router-dom'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
+
 import {
   BsPersonFill,
   BsFillBellFill,
@@ -8,18 +17,44 @@ import {
 import { FaShoppingBag, FaStore, FaCoins } from 'react-icons/fa'
 import { RiMessage2Fill } from 'react-icons/ri'
 import { MdAddAPhoto } from 'react-icons/md'
+
 const MemSidebar = () => {
+  const [memsidebar, setMemsidebar] = useState([])
+  const [dataLoading, setDataLoading] = useState(false)
+  const isLogin = useSelector((state) => state.authentication.loggedIn)
+  const loginUser = useSelector((state) => state.authentication.user)
+
+  const fetchPosts = async (val) => {
+    setDataLoading(true)
+    let url = `http://localhost:5000/member?id=${val}`
+    const res = await axios.get(url).catch((err) => console.log('Error'.err))
+    setMemsidebar(res.data)
+    setDataLoading(false)
+  }
+
+  useEffect(() => {
+    if (isLogin) {
+      const memId = loginUser.user.id
+      fetchPosts(memId)
+    } else {
+      window.location.href = '/login'
+    }
+  }, [])
   return (
     <>
       <div className="d-flex flex-column memsidebar ">
-        <div className="sticker mx-auto"> </div>
-
+        {memsidebar.map((item, index) => {
+          return( 
+            <img className="avatar mx-auto" src={`http://localhost:5000/img/avatar/${item.avatar}`} alt="avatar"/>
+        )
+        })}
         <p className="font-ss">
           <Link to="#">
             <div className="d-flex ml-5 wrapper">
               <div className="icons">
                 <MdAddAPhoto />
               </div>
+
               <p className="whiteSpacePre">更換大頭貼 </p>
             </div>
           </Link>
