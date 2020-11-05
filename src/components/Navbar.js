@@ -94,12 +94,22 @@ function HomeNavbar() {
             </Nav>
             <Nav>{isLogin === true ? logoutBtn() : ''}</Nav>
             <Nav>
-              <Link to={`/cart_list`}>
-                <AiOutlineShoppingCart
-                  size="30px"
-                  style={{ color: '#d44f44', marginTop: '0.5rem' }}
-                />
-              </Link>
+              {isLogin === false ? (
+                <Link to={`/login`}>
+                  <AiOutlineShoppingCart
+                    size="30px"
+                    style={{ color: '#d44f44', marginTop: '0.5rem' }}
+                  />
+                </Link>
+              ) : (
+                <Link to={`/cart_list`}>
+                  <AiOutlineShoppingCart
+                    size="30px"
+                    style={{ color: '#d44f44', marginTop: '0.5rem' }}
+                  />
+                </Link>
+              )}
+
               <Nav.Link href="#link">
                 <AiOutlineSearch size="30px" />
               </Nav.Link>

@@ -3,17 +3,35 @@ import { Container, Row, Col, Form, Accordion, Card } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { IoIosArrowDown } from 'react-icons/io'
+import { useSelector } from 'react-redux'
 import './cartPayment.scss'
 
 import CheckoutNav from './CheckoutNav'
 import CartItems from './CartItems'
 
 function Payment(props) {
-  // console.log('props', props)
   const [products, setProducts] = useState([])
+  const loginUser = useSelector((state) => state.authentication.user)
+  const [userInfo, setUserInfo] = useState()
+
+  async function getUserInfo() {
+    // const url = `http://localhost:5000/cart/user/${loginUser.user.id}`
+    const url = ``
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log(data)
+    setUserInfo(data)
+  }
 
   useEffect(() => {
-    setProducts(props.content)
+    setProducts(props.orderItems)
     window.scrollTo(0, 0)
   }, [])
 
@@ -119,9 +137,9 @@ function Payment(props) {
                   </Col>
                 </Form.Group>
               </fieldset>
-              <Link to={`/cart_list`}>
-                <button className="btn btn-danger w-100 mt-3">確認付款</button>
-              </Link>
+              {/* <Link to={`/cart_list`}> */}
+              <button className="btn btn-danger w-100 mt-3">確認付款</button>
+              {/* </Link> */}
             </div>
           </Col>
         </Row>
@@ -131,7 +149,7 @@ function Payment(props) {
 }
 
 const mapStateToProps = (store) => {
-  return { content: store.orderItems }
+  return { orderItems: store.orderItems }
 }
 
 export default connect(mapStateToProps)(Payment)

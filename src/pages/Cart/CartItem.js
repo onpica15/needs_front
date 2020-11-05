@@ -54,7 +54,7 @@ function CartItem(props) {
           <div className="item-product ml-4 d-flex">
             <Link to={`/products/${product.product_id}`}>
               <img
-                src={`http://localhost:5000/img/products/${product.image_s}`}
+                src={`http://localhost:5000/img/products/${product.image_path}`}
                 alt=""
               />
             </Link>

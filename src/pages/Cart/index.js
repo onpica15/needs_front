@@ -17,21 +17,25 @@ function Cart(props) {
   const [merchantCarts, setMerchantCarts] = useState([])
   const [sum, setSum] = useState(0)
   const [orderItems, setOrderItems] = useState()
+  const [delivery, setDelivery] = useState([])
 
-  function getCart(value) {
-    const data = storage.getCartItems()
-    const itemSkuId = data.map((v) => v.skuid)
-    setSkuId(itemSkuId)
-    setCart(data)
+  function getCart() {
+    return storage.getCartItems()
+  }
+
+  function getSkuIdsInCart() {
+    return storage.getCartItems().map((v) => v.skuid)
   }
 
   async function getMerchantCarts() {
-    const url = `https://run.mocky.io/v3/f082aaf2-5a9a-4b9a-b8ca-e76e5317c467`
+    const url = `http://localhost:5000/products/bulk-get-product-skus`
     const request = new Request(url, {
-      method: 'GET',
+      method: 'POST',
       headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'appliaction/json',
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({
+        skuIds: getSkuIdsInCart(),
       }),
     })
     const response = await fetch(request)
@@ -50,7 +54,11 @@ function Cart(props) {
       })
       return cartItems
     })
-
+    merchantCartItems[0].allChecked = true
+    merchantCartItems[0].products.map((item) => {
+      item.isChecked = true
+      return item
+    })
     setMerchantCarts(merchantCartItems)
   }
 
@@ -112,13 +120,25 @@ function Cart(props) {
       })
     })
     orderItems.sum = sum
+    orderItems.delivery = delivery[3]
     console.log(orderItems)
     setOrderItems(orderItems)
+  }
+
+  function initDelivery() {
+    let delivery = [true, false, false, 1]
+    setDelivery(delivery)
+  }
+
+  function getdeliveryState(vlaue) {
+    delivery[3] = vlaue
+    setDelivery(delivery)
   }
 
   useEffect(() => {
     getCart()
     getMerchantCarts()
+    initDelivery()
     window.scrollTo(0, 0)
   }, [])
 
@@ -126,9 +146,13 @@ function Cart(props) {
     calculateSum()
   }, [merchantCarts])
 
-  useEffect(() => {
-    getOrderItems()
-  }, [sum])
+  useEffect(
+    () => {
+      getOrderItems()
+    },
+    [sum],
+    [delivery]
+  )
 
   return (
     <div className="cart-page">
@@ -174,7 +198,7 @@ function Cart(props) {
                       product={product}
                       merchantCarts={merchantCarts}
                       setMerchantCarts={setMerchantCarts}
-                      cart={cart}
+                      cart={getCart()}
                       setCart={setCart}
                       checkOne={checkOne}
                     />
@@ -192,23 +216,29 @@ function Cart(props) {
                   <Col>
                     <Form.Check
                       type="radio"
-                      label="7-11 取貨"
+                      label="宅配到府"
                       name="formHorizontalRadios"
                       id="formHorizontalRadios1"
                       className="mb-3"
-                    />
-                    <Form.Check
-                      type="radio"
-                      label="宅配到府"
-                      name="formHorizontalRadios"
-                      id="formHorizontalRadios2"
-                      className="mb-3"
+                      checked={delivery[0]}
+                      onChange={() => getdeliveryState(1)}
                     />
                     <Form.Check
                       type="radio"
                       label="郵局配送"
                       name="formHorizontalRadios"
+                      id="formHorizontalRadios2"
+                      className="mb-3"
+                      checked={delivery[1]}
+                      onChange={() => getdeliveryState(1)}
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="7-11 取貨"
+                      name="formHorizontalRadios"
                       id="formHorizontalRadios3"
+                      checked={delivery[2]}
+                      onChange={() => getdeliveryState(2)}
                     />
                   </Col>
                 </Form.Group>

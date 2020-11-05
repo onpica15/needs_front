@@ -3,12 +3,14 @@ export function getCartItems() {
 }
 
 export function addCartItem(cartItems, newCartItem) {
-  cartItems = cartItems.map((item) => {
-    if (item.skuid === newCartItem.skuid) {
-      item.amount += newCartItem.amount
-    }
-    return item
-  })
+  const existedIndex = cartItems.findIndex(
+    (item) => item.skuid === newCartItem.skuid
+  )
+  if (existedIndex === -1) {
+    cartItems.push(newCartItem)
+  } else {
+    cartItems[existedIndex].amount += newCartItem.amount
+  }
   return cartItems
 }
 
