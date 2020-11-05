@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Axios from 'axios'
 import { Col, Container, Pagination } from 'react-bootstrap'
-import ToolsBar from './modules/ToolBar'
+import ToolBar from './modules/ToolBar'
 import OrdersContent from './modules/OrdersContent'
 import BackendPagination from '../../../components/backend/BackendPagination'
 import History from '../../../components/history'
@@ -97,7 +97,7 @@ const OrdersManagement = (props) => {
       <div className="ordersMng">
         <Col className="main offset-2" xs={10}>
           <Container fluid main>
-            <ToolsBar
+            <ToolBar
               type={type}
               setType={setType}
               viewType={viewType}
