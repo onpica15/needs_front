@@ -78,8 +78,8 @@ function HomeNavbar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="#home">所有分類</Nav.Link>
-              <Nav.Link href="/article">文章列表</Nav.Link>
+              <Nav.Link href="/productlist">所有分類</Nav.Link>
+              <Nav.Link href="/articles">文章列表</Nav.Link>
               <Nav.Link href="/investment">成為商家</Nav.Link>
             </Nav>
             <Nav className={isLogin ? `d-none` : `d-block`}>
@@ -94,12 +94,22 @@ function HomeNavbar() {
             </Nav>
             <Nav>{isLogin === true ? logoutBtn() : ''}</Nav>
             <Nav>
-              <Nav.Link href="#link">
-                <AiOutlineShoppingCart
-                  size="30px"
-                  style={{ color: '#d44f44' }}
-                />
-              </Nav.Link>
+              {isLogin === false ? (
+                <Link to={`/login`}>
+                  <AiOutlineShoppingCart
+                    size="30px"
+                    style={{ color: '#d44f44', marginTop: '0.5rem' }}
+                  />
+                </Link>
+              ) : (
+                <Link to={`/cart_list`}>
+                  <AiOutlineShoppingCart
+                    size="30px"
+                    style={{ color: '#d44f44', marginTop: '0.5rem' }}
+                  />
+                </Link>
+              )}
+
               <Nav.Link href="#link">
                 <AiOutlineSearch size="30px" />
               </Nav.Link>

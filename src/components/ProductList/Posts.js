@@ -1,53 +1,27 @@
 import React, { useState } from 'react'
-import { Button } from 'react-bootstrap'
 import { GrFavorite } from 'react-icons/gr'
 import { MdFavorite } from 'react-icons/md'
 
-import './Posts.scss'
-import image from '../../assets/img/products/1-paper/PT01_300x0.jpg'
+import Product from './Product'
+import ProductViewList from './ProductViewList'
 
 const Posts = (props) => {
-  const { posts, dataLoading, productView } = props
+  const {
+    selectCategory,
+    ecoin,
+    posts,
+    dataLoading,
+    productView,
+    addToCartAction,
+  } = props
   const [favore, setFavore] = useState(false)
 
+  const addToCart = (product) => {
+    addToCartAction(product)
+  }
   const changeFavoreIcon = () => {
     setFavore((value) => !value)
   }
-  //change Product view
-  const ViewList = (
-    <div className="productItems d-flex flex-wrap">
-      {posts.map((posts) => (
-        <div key={posts.id} className="productListItem d-flex col-12">
-          <div className="productPic">
-            <img src={image} alt=""></img>
-          </div>
-          <div className="textArea">
-            <div className="title">{posts.title}</div>
-            <div className="price">NT$ {posts.price}</div>
-            <div className="d-flex justify-content-center">
-              <Button className="cart" variant="danger">
-                加入購物車
-              </Button>
-              <label className="favore">
-                <input
-                  type="radio"
-                  value={favore}
-                  onClick={changeFavoreIcon}
-                  checked={favore}
-                />
-                {favore ? (
-                  <GrFavorite size={30} />
-                ) : (
-                  <MdFavorite color={'#D44F44'} size={30} />
-                )}
-              </label>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-
   if (dataLoading) {
     return (
       <div className="d-flex justify-content-center">
@@ -57,44 +31,24 @@ const Posts = (props) => {
       </div>
     )
   }
-  if (productView === 'bigPic')
-    return (
-      <div className="productItems d-flex flex-wrap">
-        {posts.map((posts) => (
-          <div
-            key={posts.id}
-            className="productItem col-lg-4 col-md-6 col-sm-12"
-          >
-            <div className="productPic">
-              <img src={image} alt=""></img>
-            </div>
-            <div className="textArea">
-              <div className="title">{posts.title}</div>
-              <div className="price">NT$ {posts.price}</div>
-              <div className="d-flex justify-content-center">
-                <Button className="cart" variant="danger">
-                  加入購物車
-                </Button>
-                <label className="favore">
-                  <input
-                    type="radio"
-                    value={favore}
-                    onClick={changeFavoreIcon}
-                    checked={favore}
-                  />
-                  {favore ? (
-                    <GrFavorite size={30} />
-                  ) : (
-                    <MdFavorite color={'#D44F44'} size={30} />
-                  )}
-                </label>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    )
-  return ViewList
+
+  return (
+    <div className="productItems d-flex flex-wrap">
+      {posts &&
+        posts.map((posts, index) => {
+          if (selectCategory && selectCategory !== posts.categories_id)
+            return <></>
+          if (!ecoin === false && posts.e_points_usable === 0) return <></>
+          return productView ? (
+            <>
+              <Product key={posts.id} {...posts} addToCart={addToCart} />
+            </>
+          ) : (
+            <ProductViewList key={index} {...posts} addToCart={addToCart} />
+          )
+        })}
+    </div>
+  )
 }
 
 export default Posts

@@ -22,6 +22,7 @@ import ProductList from './pages/ProductList/ProductList'
 import MerchantHome from './pages/MerchantHome/merchantHome'
 import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
+import Payment from './pages/Payment'
 import Login from './pages/Login/Login'
 import SignUp from './pages/Login/SignUp'
 
@@ -36,6 +37,7 @@ import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEdite
 import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
 import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
 import ArticleDetial from './pages/Article/ArticleDetial'
+import TestArticleDetial from './pages/Article/TestArticleDetial'
 import ProductsManagement from './pages/BackEnd/ProductsManagement'
 import ContractsManagement from './pages/BackEnd/ContractsManagement'
 import OrdersManagement from './pages/BackEnd/OrdersManagement'
@@ -113,8 +115,13 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/cart"
+            path="/cart_list"
             component={Cart}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/cart_payment"
+            component={Payment}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
@@ -125,6 +132,11 @@ function App(props) {
           <DynamicLayoutRoute
             path="/createArticle"
             component={CreateArticle}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/article/:id"
+            component={TestArticleDetial}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute

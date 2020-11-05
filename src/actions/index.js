@@ -1,5 +1,15 @@
-import { userConstants, roleTypes, alertConstants } from './actiontypes'
+import {
+  userConstants,
+  roleTypes,
+  alertConstants,
+  REPLACE_ORDER_ITEMS,
+  ADD_TO_CART,
+  UPDATE_CART_UNITS,
+} from './actiontypes'
+import { createBrowserHistory } from 'history'
+
 import History from '../components/history'
+const history = createBrowserHistory()
 export const userActions = { login, logout }
 export const roleActions = { setMember, setMerchant, setNeeds }
 export const alertActions = { success, error, clear }
@@ -107,4 +117,28 @@ function error(message) {
 
 function clear() {
   return { type: alertConstants.CLEAR }
+}
+
+export function replaceOrderItems(item) {
+  return (dispatch) => {
+    dispatch(replaceOrderItem(item))
+  }
+
+  function replaceOrderItem(item) {
+    return { type: REPLACE_ORDER_ITEMS, item }
+  }
+}
+
+// cart action
+export function addToCartAction({ id, title, image_path, price, units }) {
+  return {
+    type: ADD_TO_CART,
+    payload: { id, title, image_path, price, units },
+  }
+}
+export function updateCartUnits({ id, units, price }) {
+  return {
+    type: UPDATE_CART_UNITS,
+    payload: { id, units, price },
+  }
 }

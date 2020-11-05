@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Breadcrumb from '../../components/Breadcrumb'
 import axios from 'axios'
+import { Button } from 'react-bootstrap'
 
-// import picture from '../../img/1579141548450.jpg'
+import ArticleClassic from '../../components/Article/ArticleClassic'
+
+import Join from '../../components/Chat/Join'
 
 import './Article.scss'
 
@@ -34,9 +37,13 @@ const Article = (props) => {
   )
 
   const display = (
-    <div className=" articleItems d-flex flex-wrap justify-content-around">
+    <div className=" articleItems d-flex flex-wrap">
       {articles.map((value, index) => (
-        <div key={value.id} className="articleItem col-3">
+        <Link
+          key={value.id}
+          to={`/article/${value.id}`}
+          className="articleItem col-lg-3 col-md-6 col-sm-12 text-decoration-none"
+        >
           <div className="articlePic">
             <img src={value.image} alt=""></img>
           </div>
@@ -44,26 +51,41 @@ const Article = (props) => {
             <div className="title">{value.title}</div>
             <div className="ctx">{value.outline}</div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   )
 
   return (
     <>
-      <div className="wrap">
+      <Join />
+      <div className="container mt-3">
         {/* <Breadcrumb /> */}
-
         <div className="topic d-flex">
           <div className="col-6">
-            <h2>精選文章</h2>
+            <h5>精選文章</h5>
           </div>
           <div className="col-6 d-flex justify-content-end">
             <Link to="/createArticle">新增文章</Link>
           </div>
         </div>
-        {/* itemArea */}
-        {dataLoading ? loading : display}
+
+        <ArticleClassic />
+
+        <section className="mb-5">
+          <h5>最新文章</h5>
+          {dataLoading ? loading : display}
+          <div className="d-flex justify-content-end">
+            <Button className="search-more-btn ">探索更多 →</Button>
+          </div>
+        </section>
+
+        <section>
+          <h5>推薦文章</h5>
+          <Button className="search-more-btn d-flex justify-content-end">
+            探索更多 →
+          </Button>
+        </section>
       </div>
     </>
   )

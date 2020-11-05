@@ -1,28 +1,33 @@
 import React from 'react'
 
 import './Input.scss'
+import { RiSendPlaneFill } from 'react-icons/ri'
+import { AiOutlinePicture } from 'react-icons/ai'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShare } from '@fortawesome/free-solid-svg-icons'
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
+const Input = (props) => {
+  const { setMessage, sendMessage, message } = props
 
-const Input = ({ setMessage, sendMessage, message }) => (
-    <form className="form">
-            <button className="fab fab_camera">
-                <FontAwesomeIcon icon={faCamera} className="faCamera"/>
-            </button>
-        <textarea
-            className='input'
-            type='text'
-            placeholder='Type a message..'
-            value={message}
-            onChange={({ target: { value } }) => setMessage(value)}
-            onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null} />
-        <button className="fab fab_send" onClick={e => sendMessage(e)}>
-            <FontAwesomeIcon icon={faShare} />
+  return (
+    <>
+      <form className="form">
+        <button className="fab fab_camera">
+          <AiOutlinePicture size={30} />
         </button>
-
-    </form >
-)
+        <textarea
+          type="text"
+          placeholder="給對方的訊息..."
+          value={message}
+          onChange={({ target: { value } }) => setMessage(value)}
+          onKeyPress={(event) =>
+            event.key === 'Enter' ? sendMessage(event) : null
+          }
+        />
+        <button className="fab fab_send" onClick={(e) => sendMessage(e)}>
+          <RiSendPlaneFill size={30} />
+        </button>
+      </form>
+    </>
+  )
+}
 
 export default Input
