@@ -40,6 +40,7 @@ import ProductsManagement from './pages/BackEnd/ProductsManagement'
 import ContractsManagement from './pages/BackEnd/ContractsManagement'
 import OrdersManagement from './pages/BackEnd/OrdersManagement'
 
+
 //設置layout props
 const DynamicLayoutRoute = (props) => {
   const { component: RoutedComponent, layout, ...rest } = props
@@ -198,10 +199,15 @@ function App(props) {
             component={TemplateEditedPage}
             layout="BACK_END_NAV"
           />
+          {/* <Route
+            path="/customer-backend/template-edit"
+            component={EditedPage}
+          /> */}
           <DynamicLayoutRoute
             path="/customer-backend/template-list"
             component={TemplateList}
             layout="BACK_END_NAV"
+          />  
           />{' '}
           <DynamicLayoutRoute
             path="/customer-backend/sales-index"

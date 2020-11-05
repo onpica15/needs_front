@@ -73,7 +73,7 @@ function Sidebar() {
             </Card>
             <Card>
               <Card.Header>
-                <Link to="">
+                <Link to="/customer-backend/template-home">
                   {' '}
                   <Accordion.Toggle
                     className="btn-toggle"
