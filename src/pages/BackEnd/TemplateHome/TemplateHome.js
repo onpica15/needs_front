@@ -12,14 +12,13 @@ import TemplateCard from '../TemplateList/TemplateCard'
 
 function TemplateHome(props) {
 
-const [eyeshow,setEyeShow]= useState(true)
 const currentFav = JSON.parse(localStorage.getItem('Fav')) || []
 
   return (
     <>
       <div className="template">
         <Col className="offset-2" xs={10}>
-          <Container className="w-80">
+          <Container className="fluid">
             <h4 className="mt-4">主題</h4>
             <Button className="mt-4 btn-light" onClick={()=>{props.history.push('/homepage')}}>
               <MdVisibility /> 查看目前主頁
@@ -35,10 +34,10 @@ const currentFav = JSON.parse(localStorage.getItem('Fav')) || []
                 <div className="d-flex flex-column">
                   <img
                     src={TemplatepicBig}
-                    className="img-fluid bg-img"
+                    className="img-fluid bg-img mt-3"
                     alt="Responsive image"
                   ></img>
-                  <button className="mt-4 btn-large" onClick={()=>{props.history.push('/customer-backend/template-list')}}>前往主題商店</button>
+                  <button className="mt-4 mb-2 btn-large" onClick={()=>{props.history.push('/customer-backend/template-list')}}>前往主題商店</button>
                 </div>
               </div>
               <div className="col-6"></div>

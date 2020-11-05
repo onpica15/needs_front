@@ -13,18 +13,24 @@ import Templatepic1 from './images/Atlanta_pro.png'
 import { BsFillEyeFill,BsFillEyeSlashFill } from "react-icons/bs";
 
 function TemplateEditedPage(props) {
+const [eyeshow,setEyeShow]= useState(true)
+
   return(
     <>
     <div className="template-editPage">
     <Col className="offset-2" xs={10}>
     <Container className="fluid mt-2">
+
+    {/* edit-bar */}
+
     <div className="edit-bar">
 
         <Accordion defaultActiveKey="0">
         <Card>
           <Card.Header className ="rounded">
             <div className="d-flex justify-content-start">
-              <Button variant="light"><BsFillEyeFill/></Button>
+            {/* onClick={toggleShowHandler} */}
+              <Button variant="light" ><BsFillEyeFill/></Button>
               <Accordion.Toggle as={Button} variant="light" eventKey="0">
                   <GrMoreVertical />
                 </Accordion.Toggle>    
@@ -92,7 +98,7 @@ function TemplateEditedPage(props) {
         </Card>
       </Accordion>
 
-      {/* ########## */}
+      {/* change section*/}
 
       
 
