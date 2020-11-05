@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import axios from 'axios'
 import EditorJs from 'react-editor-js'
-import editorjsHTML from 'editorjs-html'
 import { EDITOR_JS_TOOLS } from './constants'
+import { Button } from 'react-bootstrap'
 import TestArticleDetial from './TestArticleDetial'
 
 const CreateArticle = (props) => {
@@ -13,103 +13,115 @@ const CreateArticle = (props) => {
   const [contentDetial, setContentDetial] = useState({})
   const [showHTML, setShowHTML] = useState('')
   const instanceRef = React.useRef(null)
+
+  let articleHTML = ''
+
   async function handleSave() {
     const savedData = await instanceRef.current.save()
 
     console.log('savedData', savedData)
     setContentDetial(savedData)
   }
-
-  let articleHTML = ''
-
-  const sendContent = async () => {
+  const saveToHtml = () => {
     contentDetial.blocks.map((obj) => {
       switch (obj.type) {
         case 'paragraph':
           setOutline(obj.data.text)
-          articleHTML += `<div class="ce-block">
-        <div class="ce-block__content">
-          <div class="ce-paragraph cdx-block">
-            ${obj.data.text}
-          </div>
+          articleHTML += `<div className="ce-block">
+      <div className="ce-block__content">
+        <div className="ce-paragraph cdx-block">
+          ${obj.data.text}
         </div>
-      </div>\n`
+      </div>
+    </div>\n`
           break
         case 'image':
-          setImage(obj.data.url)
-          articleHTML += `<div class="ce-block">
-        <div class="ce-block__content">
-          <div class="ce-paragraph cdx-block">
-            <img src="${obj.data.url}" alt="${obj.data.caption}" />
-            <div class="text-center">
-              <i>${obj.data.caption}</i>
-            </div>
+          setImage(obj.data.file.url)
+          articleHTML += `<div className="ce-block">
+      <div className="ce-block__content">
+        <div className="ce-paragraph cdx-block">
+          <img src="${obj.data.file.url}" alt="${obj.data.caption}" style="width:270px;height:270px" />
+          <div className="text-center">
+            <i>${obj.data.caption}</i>
           </div>
         </div>
-      </div>\n`
+      </div>
+    </div>\n`
           break
         case 'header':
           setTitle(obj.data.text)
-          articleHTML += `<div class="ce-block">
-        <div class="ce-block__content">
-          <div class="ce-paragraph cdx-block">
-            <h${obj.data.level}>${obj.data.text}</h${obj.data.level}>
-          </div>
+          articleHTML += `<div className="ce-block">
+      <div className="ce-block__content">
+        <div className="ce-paragraph cdx-block">
+          <h${obj.data.level}>${obj.data.text}</h${obj.data.level}>
         </div>
-      </div>\n`
+      </div>
+    </div>\n`
           break
         case 'raw':
-          articleHTML += `<div class="ce-block">
-        <div class="ce-block__content">
-          <div class="ce-rawtool">
-            <code>${obj.data.html}</code>
-          </div>
+          articleHTML += `<div className="ce-block">
+      <div className="ce-block__content">
+        <div className="ce-rawtool">
+          <code>${obj.data.html}</code>
         </div>
-      </div>\n`
+      </div>
+    </div>\n`
           break
         case 'list':
           if (obj.data.style === 'unordered') {
             const list = obj.data.items.map((item) => {
-              return `<li class="cdx-list__item">${item}</li>`
+              return `<li className="cdx-list__item">${item}</li>`
             })
-            articleHTML += `<div class="ce-block">
-          <div class="ce-block__content">
-            <div class="ce-paragraph cdx-block">
-              <ul class="cdx-list--unordered">${list}</ul>
-            </div>
-            </div>
-          </div>\n`
+            articleHTML += `<div className="ce-block">
+        <div className="ce-block__content">
+          <div className="ce-paragraph cdx-block">
+            <ul className="cdx-list--unordered">${list}</ul>
+          </div>
+          </div>
+        </div>\n`
           } else {
             const list = obj.data.items.map((item) => {
-              return `<li class="cdx-list__item">${item}</li>`
+              return `<li className="cdx-list__item">${item}</li>`
             })
-            articleHTML += `<div class="ce-block">
-          <div class="ce-block__content">
-            <div class="ce-paragraph cdx-block">
-              <ol class="cdx-list--ordered">${list}</ol>
-            </div>
-            </div>
-          </div>\n`
+            articleHTML += `<div className="ce-block">
+        <div className="ce-block__content">
+          <div className="ce-paragraph cdx-block">
+            <ol class="cdx-list--ordered">${list}</ol>
+          </div>
+          </div>
+        </div>\n`
           }
           break
         case 'delimeter':
-          articleHTML += `<div class="ce-block">
-        <div class="ce-block__content">
-          <div class="ce-delimiter cdx-block"></div>
-        </div>
-      </div>\n`
+          articleHTML += `<div className="ce-block">
+      <div className="ce-block__content">
+        <div className="ce-delimiter cdx-block"></div>
+      </div>
+    </div>\n`
           break
         default:
           return ''
       }
+      setShowHTML(articleHTML)
+      console.log(showHTML)
+      return [title, image, outline, showHTML]
     })
-    const edjsParser = editorjsHTML()
-    const html = edjsParser.parse(contentDetial)
-    setShowHTML(html)
-    console.log(showHTML)
+  }
 
+  const sendContent = async () => {
+    console.log(title)
     await axios
-      .post('http://localhost:5000/article', [title, image, outline, html])
+      .post('http://localhost:5000/article', [title, image, outline, showHTML])
+      .catch((error) => {
+        console.log('Error', error)
+      })
+  }
+
+  const sendEmail = async () => {
+    const data = <div dangerouslySetInnerHTML={{ __html: showHTML }} />
+    const email = '123@yac.com'
+    await axios
+      .post('http://localhost:5000/article/email', [title, email, data])
       .catch((error) => {
         console.log('Error', error)
       })
@@ -123,13 +135,13 @@ const CreateArticle = (props) => {
         tools={EDITOR_JS_TOOLS}
         data={contentDetial}
       />
-      <button onClick={handleSave}>儲存</button>
-      <div style={{ textAlign: 'center', margin: '2rem' }}>
-        <button className="" onClick={sendContent}>
+      <div className="d-flex justify-content-center">
+        <Button onClick={saveToHtml}>儲存</Button>
+        <Button className="" onClick={sendContent}>
           送出
-        </button>
+        </Button>
+        <Button onClick={sendEmail}>電子報</Button>
       </div>
-      <TestArticleDetial showHTML={showHTML} />
     </>
   )
 }
