@@ -118,10 +118,10 @@ const CreateArticle = (props) => {
   }
 
   const sendEmail = async () => {
-    const data = <div dangerouslySetInnerHTML={{ __html: showHTML }} />
-    const email = '123@yac.com'
+    const data = { __html: showHTML }
+    // const email = 'deri19911010@gmail.com'
     await axios
-      .post('http://localhost:5000/article/email', [title, email, data])
+      .post('http://localhost:5000/article/email', [title, image, data])
       .catch((error) => {
         console.log('Error', error)
       })
