@@ -22,6 +22,7 @@ import ProductList from './pages/ProductList/ProductList'
 import MerchantHome from './pages/MerchantHome/merchantHome'
 import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
+import Payment from './pages/Payment'
 import Login from './pages/Login/Login'
 import SignUp from './pages/Login/SignUp'
 
@@ -111,12 +112,17 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/cart"
+            path="/cart_list"
             component={Cart}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/articles"
+            path="/cart_payment"
+            component={Payment}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/article"
             component={Article}
             layout="FRONT_END_NAV"
           />
