@@ -24,6 +24,7 @@ const OrdersManagement = (props) => {
     {
       id: 1,
       order_number: '2020110501',
+      order_member_name: '路人甲',
       order_date: '2020-11-5',
       amount: 1135,
       payment_type: '信用卡',
@@ -31,14 +32,16 @@ const OrdersManagement = (props) => {
       order_status: '待付款',
       order_details: {
         id: 1,
-        quantity: 1,
+        quantity: 2,
         product_id: 7,
+        product_img_path: 'ST07_800x0.jpg',
         product_title: '南國的孩子 派特打底章 (10個入)',
         product_specification: '單一規格',
         unit_price: 1135,
       },
       delivery_details: {
         delivery_type: '宅配',
+        delivery_fee: 60,
         delivery_name: '路人甲',
         phone_number: '0911222333',
         address: '287-01 屏東縣南州鄉崇陽街956巷200號',
