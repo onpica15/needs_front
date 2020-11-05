@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { addToCartAction, updateCartUnits } from '../../actions/index'
-import { Breadcrumb } from 'react-bootstrap'
+// import { Breadcrumb } from 'react-bootstrap'
 
+import Breadcrumbs from '../../components/Breadcrumbs'
 import ForProductListCarousel from '../../components/ProductList/ForProductListCarousel'
 import Posts from '../../components/ProductList/Posts'
 import Pagination from '../../components/ProductList/Pagination'
@@ -36,6 +37,9 @@ const ProductList = (props) => {
   const [selectCategory, setSelectCategory] = useState('')
   // 0 = can't use  1 = use
   const [ecoin, setEcoin] = useState(false)
+  // set price filter
+  const [price, setPrice] = useState([500, 6000])
+
   //Redux addCart
   const { cart, addToCartAction, updateCartUnits } = props
 
@@ -53,7 +57,7 @@ const ProductList = (props) => {
       setDataLoading(false)
     }
     fetchPosts()
-  }, [sort])
+  }, [sort, price])
 
   //get all data
 
@@ -98,11 +102,12 @@ const ProductList = (props) => {
     <>
       <ForProductListCarousel />
       <div className="container productlist">
-        <Breadcrumb>
+        <Breadcrumbs />
+        {/* <Breadcrumb>
           <Breadcrumb.Item href="#">首頁</Breadcrumb.Item>
           <Breadcrumb.Item href="#">文章列表</Breadcrumb.Item>
           <Breadcrumb.Item active>所有分類</Breadcrumb.Item>
-        </Breadcrumb>
+        </Breadcrumb> */}
         {/* Filter */}
         <div className="d-flex">
           <div className="sideFilter">
@@ -110,7 +115,12 @@ const ProductList = (props) => {
               categories={categories}
               setSelectCategory={setSelectCategory}
             />
-            <SideFilter setEcoin={setEcoin} ecoin={ecoin} />
+            <SideFilter
+              setEcoin={setEcoin}
+              ecoin={ecoin}
+              setPrice={setPrice}
+              price={price}
+            />
           </div>
           <div className="mainProductList">
             <Filter
@@ -127,6 +137,7 @@ const ProductList = (props) => {
               productView={productView}
               addToCartAction={addToCartAction}
               ecoin={ecoin}
+              price={price}
               selectCategory={selectCategory}
             />
 

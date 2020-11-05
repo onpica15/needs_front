@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Breadcrumb from '../../components/Breadcrumb'
+import Breadcrumbs from '../../components/Breadcrumbs'
 import axios from 'axios'
 import { Button } from 'react-bootstrap'
 
@@ -60,7 +60,7 @@ const Article = (props) => {
     <>
       <Join />
       <div className="container mt-3">
-        {/* <Breadcrumb /> */}
+        <Breadcrumbs />
         <div className="topic d-flex">
           <div className="col-6">
             <h5>精選文章</h5>

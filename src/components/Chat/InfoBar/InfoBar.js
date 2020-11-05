@@ -1,11 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import { GrClose } from 'react-icons/gr'
 
 import './InfoBar.scss'
-// import closeIcon from '../../icons/closeIcon.png'
-// src = { closeIcon }
 
 const InfoBar = (props) => {
   const { setShow, room } = props

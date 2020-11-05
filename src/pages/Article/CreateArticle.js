@@ -4,7 +4,6 @@ import axios from 'axios'
 import EditorJs from 'react-editor-js'
 import { EDITOR_JS_TOOLS } from './constants'
 import { Button } from 'react-bootstrap'
-import TestArticleDetial from './TestArticleDetial'
 
 const CreateArticle = (props) => {
   const [title, setTitle] = useState('')

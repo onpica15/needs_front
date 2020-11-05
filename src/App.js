@@ -38,6 +38,7 @@ import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
 import ArticleDetial from './pages/Article/ArticleDetial'
 import TestArticleDetial from './pages/Article/TestArticleDetial'
 import ProductsManagement from './pages/BackEnd/ProductsManagement'
+import Breadcrumb from './components/backend/Breadcrumb'
 
 //設置layout props
 const DynamicLayoutRoute = (props) => {
@@ -131,7 +132,7 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/articledetial"
+            path="/articleClassic"
             component={ArticleDetial}
             layout="FRONT_END_NAV"
           />

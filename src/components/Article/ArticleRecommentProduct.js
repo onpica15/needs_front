@@ -51,8 +51,9 @@ const ArticleRecommentProduct = (props) => {
   ]
   return (
     <>
-      {data.map((value, id) => (
+      {data.map((value, index) => (
         <Link
+          key={index}
           to="/articles"
           className="ArticleRecommentProduct text-decoration-none"
         >

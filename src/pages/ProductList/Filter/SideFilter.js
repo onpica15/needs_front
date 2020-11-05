@@ -4,12 +4,10 @@ import { Button } from 'react-bootstrap'
 import StarRating from '../../../components/StarRating'
 import 'rc-slider/assets/index.css'
 import './SideFilter.scss'
-import { event } from 'jquery'
 
 const SideFilter = (props) => {
-  const { ecoin, setEcoin } = props
+  const { ecoin, setEcoin, price, setPrice } = props
   // setting PriceRang
-  const [price, setPrice] = useState([500, 6000])
 
   //setting handlePrice step
   const sliderProps = {
@@ -24,7 +22,8 @@ const SideFilter = (props) => {
   }
 
   const onSliderChange = (price) => {
-    console.log(price)
+    console.log(price[0])
+    console.log(price[1])
     setPrice(price)
   }
 

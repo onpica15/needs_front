@@ -1,9 +1,9 @@
 import React from 'react'
-
+import { withRouter } from 'react-router-dom'
 import './ProductSideBar.scss'
 
 const ProductSideBar = (props) => {
-  const { categories, setSelectCategory } = props
+  const { categories, setSelectCategory, history } = props
 
   return (
     <>
@@ -12,11 +12,18 @@ const ProductSideBar = (props) => {
       </div>
       {categories.map((value, index) => (
         <div className="classItem" key={index}>
-          <div onClick={() => setSelectCategory(index + 1)}>{value.name}</div>
+          <div
+            onClick={() => {
+              setSelectCategory(index + 1)
+              history.push(`/productlist/${value.name}`)
+            }}
+          >
+            {value.name}
+          </div>
         </div>
       ))}
     </>
   )
 }
 
-export default ProductSideBar
+export default withRouter(ProductSideBar)
