@@ -75,6 +75,12 @@
             }
         }
     }
+    .btn-sml.active{
+        svg{
+            fill:#EA5455;
+            stroke:#EA5455;
+        }
+    }
     .btn-bg{
         height:45px;
         width: 280px;
@@ -98,6 +104,12 @@
                 fill:#EA5455;
                 stroke:#EA5455;
             }
+        }
+    }
+    .btn-bg.active{
+        svg{
+            fill:#EA5455;
+            stroke:#EA5455;
         }
     }
     .left{

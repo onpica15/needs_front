@@ -3,47 +3,88 @@ import React, { useState, useEffect } from 'react'
 import Templatepic1 from './images/Atlanta_pro.png'
 import TemplatepicBig from './images/minimal_pro.png'
 
-import { Col, Container, Card, CardDeck, Row } from 'react-bootstrap'
+import { Col, Container, Card, CardDeck, Row , Modal ,Button } from 'react-bootstrap'
 import { FiHeart } from 'react-icons/fi'
 import { Radio } from 'antd'
 
 import './styles/TemplateList.scss'
 import '../../../styles/Backend/_backend.scss'
 import TemplateCard from './TemplateCard'
+import { Handle } from 'rc-slider'
+import ModalHeader from 'react-bootstrap/esm/ModalHeader'
 
-// class App extends React.Component {
-//   state = {
-//     value: 1,
-//   };
-
-//   onChange = e => {
-//     console.log('radio checked', e.target.value);
-//     this.setState({
-//       value: e.target.value,
-//     });
-//   };
-
-//   render() {
-//     return (
-//       <Radio.Group onChange={this.onChange} value={this.state.value}>
-//         <Radio value={1}>free</Radio>
-//         <Radio value={2}>pro</Radio>
-//       </Radio.Group>
-//     );
-//   }
-// }
-
-// ReactDOM.render(<App />, mountNode);
 
 function TemplateList(props) {
   //設定初始狀態
+  // const [dataLoading, setDataLoading] = useState(false)
   const [Template ,setTemplate ]= useState([])
   const [error,setError] = useState(null)
-  const [type,setType] = useState(1)
+  const [type,setType] = useState(2)
+  const [myFav,setMyFav] = useState([])
+  const [show,setShow] = useState(false)
+  const [favName,setFavName] = useState('')
+  const [favOrNotBtn,setFavOrNotBtn] = useState('')
+  
+  const handleShow = () =>setShow(true)
+  const handleClose = () =>setShow(false)
+
+  
+
+  //檢查要加入的項目是否存在localStorage
+  const updateFavToLocalStorage = function (item) {
+    const currentFav = JSON.parse(localStorage.getItem('Fav')) || []
+    console.log('currentFav',JSON.parse(localStorage.getItem('Fav')) );
+    const index = currentFav.findIndex( (v) => v.Id === item.Id)
+    //若存在就取消，沒有就加入（found:index ! == -1）：index為在findIndex時localstorage的currentFav.id和要加入的item.id比對，第幾筆相同（若有，會從0開始因此<0不存在）
+    if( index > -1){
+      //currentFav[index].amount++
+      setFavName('已經收藏過囉～')
+      // setUnFav()
+      handleShow()
+      return
+    }else{
+      console.log('item',item);
+      currentFav.push(item)
+      console.log('currentFav',currentFav);
+      setFavName('收藏成功！')
+      localStorage.setItem('Fav', JSON.stringify(currentFav))
+      setMyFav(currentFav)
+      handleShow()
+    }
+  
+  //設定加入
+  
+}
+
+const messageModal = (
+  <div className="template">
+      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} centered>
+    <Modal.Header closeButton>
+      <Modal.Title></Modal.Title>
+    </Modal.Header>
+    <Modal.Body><h2>{favName}</h2></Modal.Body>
+    <Modal.Footer>
+      <Button variant="light" onClick={handleClose}>
+        繼續看看
+      </Button>
+      <Button
+        variant="dark"
+        onClick={() => {
+          props.history.push('/customer-backend/template-home')
+        }}
+      >
+        前往收藏清單
+      </Button>
+    </Modal.Footer>
+  </Modal>
+  </div>
+
+)
+
 
   //server-data
   async function getTemplateData(type){
-    // setDataLoading(true)// 載入資料就先打開
+
     console.log('type',type)
     const url =`http://localhost:5000/TemplateList?type=${type}`
     const request = new Request(url, {
@@ -59,15 +100,19 @@ function TemplateList(props) {
       // console.log(data)
       setTemplate(data)
     }catch(error){
-      setError(error)
+      setError("oops! error")
     }
 }
 
     useEffect(() => {
       getTemplateData(type)
     }, [type])
+    
+    // ReactDOM.render(<App />, mountNode);
 
-  return (
+
+    // const dataLoading = 
+  const display=(
     <>
       <div className="template">
         <Col className="offset-2" xs={10}>
@@ -78,7 +123,13 @@ function TemplateList(props) {
               </div>
               <div className="main-div rounded">
                 <p className="f-14">
-                  主題類別：<Radio> 全部 </Radio> <Radio> 標準方案 </Radio> <Radio> 進階方案 </Radio>
+                  主題類別：
+                  <Radio.Group name="radiogroup" defaultValue={2}>
+                  <Radio value={1} onClick={()=>setType(1)} checked={type===1}> 標準方案 </Radio> 
+                  <Radio value={2} onClick={()=>setType(2)} checked={type===2}> 進階方案 </Radio>
+                  <Radio value={3} onClick={()=>setType(3)} checked={type===3}> 全部 </Radio> 
+                  </Radio.Group>
+                  
                 </p>
               </div>
             </div>
@@ -109,9 +160,10 @@ function TemplateList(props) {
                 <div className="col-4 mh-100 text-adjust">
                   <div className="d-flex flex-column justify-content-around ">
                     <h1 className="h4">Narrative</h1>
-                    <p className="mt-2">方案：FREE</p>
+                    <p className="mt-2">方案：PRO</p>
                     <div className="pb-2">
-                      <button className="btn-bg gray mt-2">
+                      <button className = "btn-bg gray mt-2" onClick={()=>{ updateFavToLocalStorage()}}
+                      >
                         <FiHeart /> 加入收藏
                       </button>
                     </div>
@@ -135,7 +187,7 @@ function TemplateList(props) {
             <Row>
               <CardDeck className="pb-3 card-adjust">
                 
-                <TemplateCard Template = {Template} />
+                <TemplateCard Template = {Template} onClickMethod={ function(abc) { updateFavToLocalStorage(abc)}   } />
 
               </CardDeck>
 
@@ -144,6 +196,12 @@ function TemplateList(props) {
           </Container>
         </Col>
       </div>
+    </>
+  )
+    return (
+    <>
+      {messageModal}
+      {display}
     </>
   )
 }
