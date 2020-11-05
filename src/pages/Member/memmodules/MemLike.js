@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 import { FaStore } from 'react-icons/fa'
-const MemLike = () => {
+
+function MemLike() {
   const [memlike, setMemLike] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
 
@@ -24,8 +25,7 @@ const MemLike = () => {
       window.location.href = '/login'
     }
   }, [])
-  // }
-  // function MemLike() {
+
   return (
     <>
       <div className="memlike">
@@ -63,7 +63,11 @@ const MemLike = () => {
             {memlike.map((item, index) => {
               return (
                 <div className="likecard">
-                  <div className="mark"></div>
+                  <img
+                    className="mark"
+                    src={`http://localhost:5000/img/brands/${item.index_img}`}
+                    alt="brands"
+                  />
 
                   <p className="font-s">{item.brand_name}</p>
 
