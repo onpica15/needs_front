@@ -32,7 +32,7 @@ $shadow: #e7e7e7;
             margin-bottom: 30px;
             padding: 10px;
             width: 450px;
-            height: 750px;
+            height: 800px;
             border-radius: 10px;
             border: solid 2px $danger;
             box-shadow: 6px 5px $shadow;
@@ -377,17 +377,17 @@ $shadow: #e7e7e7;
 
         .informbar {
             width: 400px;
-            height: 60px;
+            height: 100px;
             border: solid1px $font-gray;
             border-radius: 10px;
             margin: 10px;
 
             .sign {
-                width: 40px;
-                height: 40px;
+                width: 60px;
+                height: 60px;
                 border: solid 1px $font-gray;
                 border-radius: 10px;
-                margin: auto 5px;
+                margin: auto 10px;
             }
 
             .textbox {

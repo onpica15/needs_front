@@ -16,42 +16,15 @@ import { FaEdit } from 'react-icons/fa'
 function MemCard(props) {
   const [memcard, setMemcard] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
-  const [name, setName] = useState([])
-  const [gender, setGender] = useState([])
-  const [age, setAge] = useState([])
-  const [phone, setPhone] = useState([])
-  const [address, setAddress] = useState([])
-  const [email, setEmail] = useState([])
-  const [credit, setCredit] = useState([])
 
   const isLogin = useSelector((state) => state.authentication.loggedIn) //redux判斷是否為login狀態
   const loginUser = useSelector((state) => state.authentication.user) //redux初始值設定為空值
   //axios get data
   //先接收資料後再判斷memid,val=memid從前端先判斷需求是否有傳到後端
-  const memdata = async (val) => {
+  const fetchPosts = async (val) => {
     setDataLoading(true)
     let url = `http://localhost:5000/member?id=${val}`
     const res = await axios.get(url).catch((err) => console.log('Error'.err))
-    console.log('res.data', res.data)
-
-    console.log('res.data.name', res.data[0].name)
-    setMemcard(res.data)
-    setName(res.data[0].name)
-    setGender(res.data[0].gender)
-    setPhone(res.data[0].phone_number)
-    setEmail(res.data[0].email)
-    setAddress(res.data[0].address)
-    setCredit(res.data[0].credit_card)
-    setDataLoading(false)
-  }
-
-  const updatememdata = async (val) => {
-    setDataLoading(true)
-    const newData = { name, gender, age, phone, email, address, credit }
-    let url = `http://localhost:5000/member?id=${val}`
-    const res = await axios.put(url).catch((err) => console.log('Error'.err))
-
-    console.log('伺服器回傳json資料', res.data)
     setMemcard(res.data)
     setDataLoading(false)
   }
@@ -59,7 +32,7 @@ function MemCard(props) {
   useEffect(() => {
     if (isLogin) {
       const memId = loginUser.user.id //確認為login狀態後,在取其id值
-      memdata(memId)
+      fetchPosts(memId)
     } else {
       window.location.href = '/login' //若非login狀態則跳轉至login畫面
     }
@@ -85,14 +58,9 @@ function MemCard(props) {
                 </p>
                 <p>會員資料</p>
 
-                <button
-                  onClick={() => {
-                    updatememdata()
-                  }}
-                  className="btn btn-primary"
-                >
-                  儲存
-                </button>
+                <Link to="#" onClick={() => {}} className="icons">
+                  <FaEdit />
+                </Link>
               </div>
             </p>
             <div className="container">
@@ -102,30 +70,12 @@ function MemCard(props) {
                     return (
                       <ul>
                         <li className="d-flex">
-                          <label className="item" htmlFor="exampleInputEmail1">
-                            姓名
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            value={name}
-                            onChange={(event) => {
-                              setName(event.target.value)
-                            }}
-                          />
+                          <div className="item">姓名</div>
+                          <span>{item.name}</span>
                         </li>
                         <li className="d-flex">
-                          <label className="item" htmlFor="exampleInputEmail1">
-                            性別
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            value={gender}
-                            onChange={(event) => {
-                              setGender(event.target.value)
-                            }}
-                          />
+                          <div className="item">性別</div>
+                          <span>{item.gender}</span>
                         </li>
                         <li className="d-flex">
                           <div className="item">生日</div>
@@ -136,43 +86,16 @@ function MemCard(props) {
                           <span>{item.age}</span>
                         </li>
                         <li className="d-flex">
-                          <label className="item" htmlFor="exampleInputEmail1">
-                            地址
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            value={address}
-                            onChange={(event) => {
-                              setAddress(event.target.value)
-                            }}
-                          />
+                          <div className="item">地址</div>
+                          <span>{item.address}</span>
                         </li>
                         <li className="d-flex">
-                          <label className="item" htmlFor="exampleInputEmail1">
-                            電話
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            value={phone}
-                            onChange={(event) => {
-                              setPhone(event.target.value)
-                            }}
-                          />
+                          <div className="item">電話</div>
+                          <span>{item.phone_number}</span>
                         </li>
                         <li className="d-flex">
-                          <label className="item" htmlFor="exampleInputEmail1">
-                            Ｅmail
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            value={email}
-                            onChange={(event) => {
-                              setEmail(event.target.value)
-                            }}
-                          />
+                          <div className="item">Ｅmail</div>
+                          <span>{item.email}</span>
                         </li>
                       </ul>
                     )
@@ -184,17 +107,8 @@ function MemCard(props) {
                     return (
                       <ul>
                         <li className="d-flex">
-                          <label className="item" htmlFor="exampleInputEmail1">
-                            信用卡
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            value={credit}
-                            onChange={(event) => {
-                              setCredit(event.target.value)
-                            }}
-                          />
+                          <div className="item2">信用卡資料</div>
+                          <span>{item.credit_card}</span>
                         </li>
                         <li className="d-flex">
                           <div className="item2">e幣</div>
