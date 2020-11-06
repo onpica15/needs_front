@@ -18,11 +18,11 @@ function MemCard(props) {
   const [dataLoading, setDataLoading] = useState(false)
   const [name, setName] = useState([])
   const [gender, setGender] = useState([])
-  const [age, setAge] = useState([])
-  const [phone, setPhone] = useState([])
+  const [phone_number, setPhone] = useState([])
   const [address, setAddress] = useState([])
   const [email, setEmail] = useState([])
-  const [credit, setCredit] = useState([])
+  const [credit_card, setCredit] = useState([])
+  const [id, setId] = useState(0)
 
   const isLogin = useSelector((state) => state.authentication.loggedIn) //redux判斷是否為login狀態
   const loginUser = useSelector((state) => state.authentication.user) //redux初始值設定為空值
@@ -47,26 +47,38 @@ function MemCard(props) {
 
   const updatememdata = async (val) => {
     setDataLoading(true)
-    const newData = { name, gender, age, phone, email, address, credit }
-    let url = `http://localhost:5000/member?id=${val}`
-    const res = await axios.put(url).catch((err) => console.log('Error'.err))
+    const newData = { name, gender, phone_number, address, email, credit_card }
+    console.log('newData', newData)
 
-    console.log('伺服器回傳json資料', res.data)
-    setMemcard(res.data)
+    let url = `http://localhost:5000/member?id=${val}`
+    const res = await axios
+      .post(url, newData) //post資料
+      .catch((err) => console.log('Error'.err)) //若失敗的話
+    console.log('post-res', res)
     setDataLoading(false)
+    setTimeout(() => {
+      setDataLoading(false)
+      alert('儲存完成')
+    }, 1000)
+    // console.log('伺服器回傳json資料', res.data)
+    // setMemcard(res.data)
   }
 
   useEffect(() => {
     if (isLogin) {
       const memId = loginUser.user.id //確認為login狀態後,在取其id值
+      console.log('memId', memId)
       memdata(memId)
+      setId(memId)
     } else {
       window.location.href = '/login' //若非login狀態則跳轉至login畫面
     }
   }, [])
+
   useEffect(() => {
     setTimeout(() => setDataLoading(false), 1000)
   }, [memcard])
+
   const loading = (
     <Spinner animation="border" role="status">
       <span className="sr-only">Loading...</span>
@@ -87,7 +99,7 @@ function MemCard(props) {
 
                 <button
                   onClick={() => {
-                    updatememdata()
+                    updatememdata(id)
                   }}
                   className="btn btn-primary"
                 >
@@ -155,7 +167,7 @@ function MemCard(props) {
                           <input
                             type="text"
                             className="form-control"
-                            value={phone}
+                            value={phone_number}
                             onChange={(event) => {
                               setPhone(event.target.value)
                             }}
@@ -190,7 +202,7 @@ function MemCard(props) {
                           <input
                             type="text"
                             className="form-control"
-                            value={credit}
+                            value={credit_card}
                             onChange={(event) => {
                               setCredit(event.target.value)
                             }}
