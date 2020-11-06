@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom'
 import axios from 'axios' // import memcarddata from './memcarddata.json'
 import Spinner from 'react-bootstrap/Spinner'
+import HashLoader from 'react-spinners/HashLoader'
 
 import { useSelector } from 'react-redux' //引入redux
 import { BsPersonFill } from 'react-icons/bs'
@@ -55,11 +56,10 @@ function MemCard(props) {
       .post(url, newData) //post資料
       .catch((err) => console.log('Error'.err)) //若失敗的話
     console.log('post-res', res)
-    setDataLoading(false)
     setTimeout(() => {
       setDataLoading(false)
-      alert('儲存完成')
-    }, 1000)
+      // alert('儲存完成')
+    }, 2000)
     // console.log('伺服器回傳json資料', res.data)
     // setMemcard(res.data)
   }
@@ -75,15 +75,7 @@ function MemCard(props) {
     }
   }, [])
 
-  useEffect(() => {
-    setTimeout(() => setDataLoading(false), 1000)
-  }, [memcard])
-
-  const loading = (
-    <Spinner animation="border" role="status">
-      <span className="sr-only">Loading...</span>
-    </Spinner>
-  )
+  const loading = <HashLoader size={200} color={'#4A78E2'} />
 
   const display = (
     <>
