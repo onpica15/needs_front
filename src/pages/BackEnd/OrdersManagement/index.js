@@ -15,82 +15,53 @@ const OrdersManagement = (props) => {
 
   // const merchantId = useSelector((state) => state.authentication.user.user.id)
   const [merchantId, setMerchantId] = useState(12)
-  // const [data, setData] = useState([])
+  const [data, setData] = useState([])
   const [pageItems, setPageItems] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
 
-  const data = [
-    {
-      id: 1,
-      order_number: '2020110501',
-      order_member_name: '路人甲',
-      order_date: '2020-11-5',
-      amount: 1135,
-      payment_type: '信用卡',
-      //待付款 待出貨 已出貨 已送達 已取貨 退貨中 已退貨
-      order_status: '待付款',
-      order_details: {
-        id: 1,
-        quantity: 2,
-        product_id: 7,
-        product_img_path: 'ST07_800x0.jpg',
-        product_title: '南國的孩子 派特打底章 (10個入)',
-        product_specification: '單一規格',
-        unit_price: 1135,
-      },
-      delivery_details: {
-        delivery_type: '宅配',
-        delivery_fee: 60,
-        delivery_name: '路人甲',
-        phone_number: '0911222333',
-        address: '287-01 屏東縣南州鄉崇陽街956巷200號',
-      },
-    },
-  ]
+  const toPage = (e) => {
+    setCurrentPage(e)
+    History.push(`/customer-backend/orders-management/page=${e}`)
+    window.scrollTo(0, 0)
+  }
 
-  //   const toPage = (e) => {
-  //     setCurrentPage(e)
-  //     History.push(`/customer-backend/productsmanagement/page=${e}`)
-  //     window.scrollTo(0, 0)
-  //   }
+  const getData = (merchantId, type) => {
+    //跟server拿資料
+    Axios.get(
+      `http://122.116.38.12:5050/bk-orders-api/list?id=${merchantId}&filter=${type}&page=${currentPage}`
+    )
+      .then((res) => {
+        const data = res.data.rows
+        //送入資料
+        setTotalPages(res.data.totalPages)
+        setData(data)
 
-  //   const getData = (merchantId, type) => {
-  //     //跟server拿資料
-  //     Axios.get(
-  //       `http://122.116.38.12:5050/bk-products-api/list?id=${merchantId}&filter=${type}&page=${currentPage}`
-  //     )
-  //       .then((res) => {
-  //         const data = res.data.rows
-  //         //送入資料
-  //         setTotalPages(res.data.totalPages)
-  //         setData(data)
+        //處理頁碼
+        const pageArr = []
+        for (let i = 1; i <= res.data.totalPages; i++) {
+          pageArr.push(
+            <Pagination.Item
+              key={i}
+              active={i === currentPage}
+              onClick={(e) => toPage(i)}
+            >
+              {i}
+            </Pagination.Item>
+          )
+        }
+        setPageItems(pageArr)
+      })
+      .catch((error) => {
+        console.log(error.toString())
+        return error.toString()
+      })
+  }
 
-  //         //處理頁碼
-  //         const pageArr = []
-  //         for (let i = 1; i <= res.data.totalPages; i++) {
-  //           pageArr.push(
-  //             <Pagination.Item
-  //               key={i}
-  //               active={i === currentPage}
-  //               onClick={(e) => toPage(i)}
-  //             >
-  //               {i}
-  //             </Pagination.Item>
-  //           )
-  //         }
-  //         setPageItems(pageArr)
-  //       })
-  //       .catch((error) => {
-  //         console.log(error.toString())
-  //         return error.toString()
-  //       })
-  //   }
-
-  //   //type跟currentPage改變觸發filter
-  //   useEffect(() => {
-  //     getData(merchantId, type)
-  //   }, [currentPage, type])
+  //type跟currentPage改變觸發filter
+  useEffect(() => {
+    getData(merchantId, type)
+  }, [currentPage, type])
 
   return (
     <>

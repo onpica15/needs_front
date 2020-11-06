@@ -33,7 +33,7 @@ const ToolBar = (props) => {
           <Button
             variant="light"
             className={type === 'returning' ? 'actived' : ''}
-            onClick={(e) => setType('returned')}
+            onClick={(e) => setType('returning')}
           >
             退貨中
           </Button>

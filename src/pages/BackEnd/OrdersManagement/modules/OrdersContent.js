@@ -1,18 +1,64 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Row, Button, Accordion, Card } from 'react-bootstrap'
+import { Row, Button, Form } from 'react-bootstrap'
 import { AiOutlineEdit, AiOutlineSave, AiOutlinePlus } from 'react-icons/ai'
 
 const OrdersContent = (props) => {
   const { data } = props
-  const [isEdited, SetIsEdited] = useState(false)
-  const [detailsShow, setDetailsShow] = useState(false)
+  const [isEdited, SetIsEdited] = useState([])
+  const [open, setOpen] = useState([])
+  const [submitted, setSubmitted] = useState(false)
+  const [formData, setFormData] = useState({})
 
-  const handleEdit = () => {
-    SetIsEdited(!isEdited)
+  const mapStatus = {
+    0: '待付款',
+    1: '待出貨',
+    2: '已出貨',
+    3: '已送達',
+    4: '已取貨',
+    5: '退貨中',
+    6: '已退貨',
   }
-  const handleShow = () => {
-    setDetailsShow(!detailsShow)
+
+  const statusColor = (status) => {
+    switch (status) {
+      case '待付款':
+      case '待出貨':
+        return '#ff9f43'
+      case '退貨中':
+      case '已退貨':
+        return '#ea5455'
+      default:
+        return '#28c76f'
+    }
+  }
+
+  const handleOpen = (index) => {
+    const newOpen = [...open]
+    newOpen[index] = !open[index]
+    setOpen(newOpen)
+  }
+
+  const handleEdit = (index, item) => {
+    const newIsEdited = [...isEdited]
+    newIsEdited[index] = !isEdited[index]
+    SetIsEdited(newIsEdited)
+    setFormData({
+      status: item.status,
+      reciever: item.reciever,
+      phone_number: item.phone_number,
+      address: item.address,
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setSubmitted(true)
+  }
+
+  const handleSetForm = (e, key) => {
+    const value = e.target.value
+    setFormData({ ...formData, [key]: value })
   }
 
   return (
@@ -34,22 +80,49 @@ const OrdersContent = (props) => {
             <div className="detailsSec" key={item.id}>
               <Row className="main">
                 <div className="title">{item.order_number}</div>
-                <div className="title">{item.order_member_name}</div>
-                <div className="title">{item.order_date}</div>
-                <div className="title">${item.amount}</div>
+                <div className="title">{item.purchaser}</div>
+                <div className="title">{item.created_at}</div>
+                <div className="title">${item.sum}</div>
                 <div className="title">{item.payment_type}</div>
-                {isEdited ? (
-                  <div className="title">hi</div>
+                {isEdited[index] ? (
+                  <div className="title">
+                    <Form.Control
+                      as="select"
+                      size="sm"
+                      custom
+                      value={formData.status}
+                      onChange={(e) => handleSetForm(e, 'status')}
+                    >
+                      <option value={0}>待付款</option>
+                      <option value={1}>待出貨</option>
+                      <option value={2}>已出貨</option>
+                      <option value={3}>已送達</option>
+                      <option value={4}>已取貨</option>
+                      <option value={5}>退貨中</option>
+                      <option value={6}>已退貨</option>
+                    </Form.Control>
+                  </div>
                 ) : (
-                  <div className="title">{item.order_status}</div>
+                  <div className="title">
+                    <div
+                      className="status"
+                      style={{
+                        backgroundColor: statusColor(mapStatus[item.status]),
+                      }}
+                    >
+                      {mapStatus[item.status]}
+                    </div>
+                  </div>
                 )}
-
-                <div className="title">
-                  {item.delivery_details.delivery_type}
-                </div>
+                <div className="title">{item.delivery_type || '無'}</div>
                 <div className="actions">
-                  <Button variant="light" onClick={handleEdit}>
-                    {isEdited ? (
+                  <Button
+                    variant="light"
+                    onClick={(e) => {
+                      isEdited[index] ? handleSubmit() : handleEdit(index, item)
+                    }}
+                  >
+                    {isEdited[index] ? (
                       <AiOutlineSave size="24px" color={`#28c76f`} />
                     ) : (
                       <AiOutlineEdit size="24px" />
@@ -58,46 +131,14 @@ const OrdersContent = (props) => {
                 </div>
               </Row>
               <div className="addition">
-                <p onClick={handleShow}>
+                <p onClick={(e) => handleOpen(index)}>
                   <AiOutlinePlus size="18px" className="mb-1" />
                   查看明細
                 </p>
 
-                {detailsShow ? (
+                {open[index] ? (
                   <div className="orderDetails">
-                    <div className="card mb-3">
-                      <div className="card-header ">商品明細</div>
-                      <div className="card-title d-flex">
-                        <div className="blankBox">商品圖</div>
-                        <div className="col-4">商品名稱</div>
-                        <div className="col-2">規格</div>
-                        <div className="col-2">數量</div>
-                        <div className="col-2">金額</div>
-                      </div>
-                      <div className="card-body d-flex align-items-center">
-                        <div className="productImg">
-                          <img
-                            src={`http://122.116.38.12:5050/img/products/${item.order_details.product_img_path}`}
-                            alt={item.order_details.product_title}
-                          />
-                        </div>
-                        <div className="col-4">
-                          {item.order_details.product_title}
-                        </div>
-                        <div className="col-2">
-                          {item.order_details.product_specification}
-                        </div>
-                        <div className="col-2">
-                          {item.order_details.quantity}
-                        </div>
-                        <div className="col-2">
-                          $
-                          {item.order_details.quantity *
-                            Number(item.order_details.unit_price)}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="card">
+                    <div className="card mb-3" key={index.id}>
                       <div className="card-header">配送明細</div>
                       <div className="card-title d-flex">
                         <div className="col-2">姓名</div>
@@ -105,15 +146,80 @@ const OrdersContent = (props) => {
                         <div className="col-6">地址</div>
                       </div>
                       <div className="card-body d-flex align-items-center">
-                        <div className="col-2">
-                          {item.delivery_details.delivery_name}
-                        </div>
-                        <div className="col-2">
-                          {item.delivery_details.phone_number}
-                        </div>
-                        <div className="col-6">
-                          {item.delivery_details.address}
-                        </div>
+                        {isEdited[index] ? (
+                          <Form className="delivery">
+                            <div className="col-2">
+                              <Form.Control
+                                id="reciever"
+                                value={formData.reciever}
+                                onChange={(e) => handleSetForm(e, 'reciever')}
+                              />
+                            </div>
+                            <div className="col-2">
+                              <Form.Control
+                                id="phone_number"
+                                value={formData.phone_number}
+                                onChange={(e) =>
+                                  handleSetForm(e, 'phone_number')
+                                }
+                              />
+                            </div>
+                            <div className="col-6">
+                              <Form.Control
+                                id="address"
+                                value={formData.address}
+                                onChange={(e) => handleSetForm(e, 'address')}
+                              />
+                            </div>
+                          </Form>
+                        ) : (
+                          <>
+                            <div className="col-2">{item.reciever}</div>
+                            <div className="col-2">{item.phone_number}</div>
+                            <div className="col-6">{item.address}</div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                    <div className="card">
+                      <div className="card-header">商品明細</div>
+                      <div className="card-title d-flex">
+                        <div className="blankBox"></div>
+                        <div className="col-4">商品名稱</div>
+                        <div className="col-2">規格</div>
+                        <div className="col-2">數量</div>
+                        <div className="col-2">金額</div>
+                      </div>
+                      {item.prod_list.map((prod_list, index) => {
+                        return (
+                          <div className="card-body d-flex align-items-center">
+                            <div className="productImg">
+                              <img
+                                src={`http://122.116.38.12:5050/img/products/${
+                                  prod_list.image_path.split(',')[0]
+                                }`}
+                                alt={prod_list.title}
+                              />
+                            </div>
+                            <div className="col-4">{prod_list.title}</div>
+                            <div className="col-2">
+                              {prod_list.specification}
+                            </div>
+                            <div className="col-2">{prod_list.quantity}</div>
+                            <div className="col-2">
+                              $
+                              {prod_list.quantity *
+                                Number(prod_list.unit_price)}
+                            </div>
+                          </div>
+                        )
+                      })}
+                      <div className="card-body d-flex align-items-center">
+                        <div className="blankBox"></div>
+                        <div className="col-4"></div>
+                        <div className="col-2"></div>
+                        <div className="col-2">運費</div>
+                        <div className="col-2">${item.delivery_fee || 0}</div>
                       </div>
                     </div>
                   </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Modal, Button, InputGroup } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import StepBar from './StepBar'
 import Form1 from './Form1'
 
