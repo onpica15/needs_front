@@ -18,10 +18,13 @@ import HistoryList from '../../components/History/HistoryList'
 import RecommendStoreForProductListPage from '../../components/ProductList/RecommendStoreForProductListPage'
 
 import axios from 'axios'
+import { event } from 'jquery'
 
 const ProductList = (props) => {
   // getdata
-  const [posts, setPosts] = useState([])
+  const [allposts, setAllPosts] = useState([])
+  //filter allposts and show this data
+  const [showPosts, setShowPosts] = useState([])
   const [categories, setCategories] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
 
@@ -51,16 +54,31 @@ const ProductList = (props) => {
   useEffect(() => {
     const fetchPosts = async () => {
       setDataLoading(true)
-      let url = 'http://localhost:5000/productlist' + sort
+      let url = 'http://localhost:5000/productlist?sort=' + sort
       const res = await axios.get(url).catch((err) => console.log('Error', err))
-      setPosts(res.data)
+      setAllPosts(res.data)
+      console.log(res.data)
+      setShowPosts(res.data)
       setDataLoading(false)
     }
     fetchPosts()
-  }, [sort, price])
+  }, [sort])
+
+  // Filter everything
+  useEffect(() => {
+    if (selectCategory) {
+      setShowPosts(
+        allposts.filter((value) => value.categories_id === selectCategory)
+      )
+    }
+
+    // check Ecoin can be used , 1 is can useing .if not, Getting all Ecoin
+    // ecoin
+    //   ? setShowPosts(allposts.filter((value) => value.e_points_usable === 1))
+    //   : setShowPosts(allposts)
+  }, [selectCategory, ecoin])
 
   //get all data
-
   const getCategories = async () => {
     setDataLoading(true)
     let url = 'http://localhost:5000/productlist/categories'
@@ -74,7 +92,7 @@ const ProductList = (props) => {
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage
   const indexOfFirstPost = indexOfLastPost - postsPerPage
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
+  const currentPosts = showPosts.slice(indexOfFirstPost, indexOfLastPost)
 
   // Change page
   const paginate = (pageNumber) => {
@@ -82,20 +100,9 @@ const ProductList = (props) => {
     setCurrentPage(pageNumber)
   }
 
-  // TopFilter handle
   const handleSort = (event) => {
     console.log(event.target.value)
     setSort(event.target.value)
-
-    const sortRes = posts.sort((a, b) => {
-      if (sort === '-price') {
-        return a.skus[0].sale_price < b.skus[0].sale_price ? 1 : -1
-      }
-      if (sort === 'price') {
-        return a.skus[0].sale_price > b.skus[0].sale_price ? 1 : -1
-      }
-    })
-    setPosts(sortRes)
   }
 
   return (
@@ -103,11 +110,7 @@ const ProductList = (props) => {
       <ForProductListCarousel />
       <div className="container productlist">
         <Breadcrumbs />
-        {/* <Breadcrumb>
-          <Breadcrumb.Item href="#">首頁</Breadcrumb.Item>
-          <Breadcrumb.Item href="#">文章列表</Breadcrumb.Item>
-          <Breadcrumb.Item active>所有分類</Breadcrumb.Item>
-        </Breadcrumb> */}
+
         {/* Filter */}
         <div className="d-flex">
           <div className="sideFilter">
@@ -122,9 +125,9 @@ const ProductList = (props) => {
               price={price}
             />
           </div>
-          <div className="mainProductList">
+          <div className="mainProductList container-fluid">
             <Filter
-              totalPosts={posts.length}
+              totalPosts={showPosts.length}
               handleSort={handleSort}
               setSort={setSort}
               setProductView={setProductView}
@@ -132,18 +135,15 @@ const ProductList = (props) => {
 
             {/* dataView */}
             <Posts
-              posts={currentPosts}
+              showPosts={currentPosts}
               dataLoading={dataLoading}
               productView={productView}
               addToCartAction={addToCartAction}
-              ecoin={ecoin}
-              price={price}
-              selectCategory={selectCategory}
             />
 
             <Pagination
               postsPerPage={postsPerPage}
-              totalPosts={posts.length}
+              totalPosts={showPosts.length}
               paginate={paginate}
             />
           </div>

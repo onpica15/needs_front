@@ -7,7 +7,7 @@ import './Product.scss'
 // import { MdFavorite } from 'react-icons/md'
 
 const Product = (props) => {
-  const { id, title, image_path, price, skus, addToCart } = props
+  const { id, title, image_path, price, sale_price, addToCart } = props
 
   return (
     <>
@@ -27,11 +27,9 @@ const Product = (props) => {
           <div className="title">{title}</div>
           <div className="d-flex justify-content-center">
             <div className="priceDiscount">
-              NT$ {skus[0].sale_price ? skus[0].sale_price : skus[0].price}
+              NT$ {sale_price ? sale_price : price}
             </div>
-            <div className="price">
-              {skus[0].sale_price ? ' NT$ ' + skus[0].price : ''}
-            </div>
+            <div className="price">{sale_price ? ' NT$ ' + price : ''}</div>
           </div>
           <div className="d-flex justify-content-center">
             <Button

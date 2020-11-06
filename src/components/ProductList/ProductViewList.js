@@ -1,10 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
 import './Product.scss'
 function ProductViewList(props) {
-  const { id, title, image_path, price, outline, skus, addToCart } = props
+  const { id, title, image_path, sale_price, price, outline, addToCart } = props
   return (
     <>
       <div className="productListItem d-flex col-12">
@@ -19,11 +18,9 @@ function ProductViewList(props) {
           <div className="outline">{outline}</div>
           <div className="d-flex justify-content-center">
             <div className="priceDiscount">
-              NT$ {skus[0].sale_price ? skus[0].sale_price : skus[0].price}
+              NT$ {sale_price ? sale_price : price}
             </div>
-            <div className="price">
-              {skus[0].sale_price ? ' NT$ ' + skus[0].price : ''}
-            </div>
+            <div className="price">{sale_price ? ' NT$ ' + price : ''}</div>
           </div>
           <div className="d-flex justify-content-center">
             <Button

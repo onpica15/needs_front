@@ -6,15 +6,7 @@ import Product from './Product'
 import ProductViewList from './ProductViewList'
 
 const Posts = (props) => {
-  const {
-    price,
-    selectCategory,
-    ecoin,
-    posts,
-    dataLoading,
-    productView,
-    addToCartAction,
-  } = props
+  const { showPosts, dataLoading, productView, addToCartAction } = props
   const [favore, setFavore] = useState(false)
 
   const addToCart = (product) => {
@@ -33,15 +25,13 @@ const Posts = (props) => {
     )
   }
 
+  // if (price[0] >= posts.skus[0].price || posts.skus[0].sale_price)
+  // return <></>
+
   return (
     <div className="productItems d-flex flex-wrap">
-      {posts &&
-        posts.map((posts, index) => {
-          if (price[0] >= posts.skus[0].price || posts.skus[0].sale_price)
-            return <></>
-          if (selectCategory && selectCategory !== posts.categories_id)
-            return <posts.skus></posts.skus>
-          if (!ecoin === false && posts.e_points_usable === 0) return <></>
+      {showPosts &&
+        showPosts.map((posts, index) => {
           return productView ? (
             <>
               <Product key={posts.id} {...posts} addToCart={addToCart} />
