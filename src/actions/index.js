@@ -119,12 +119,12 @@ function clear() {
   return { type: alertConstants.CLEAR }
 }
 
-export function replaceOrderItems(item) {
+export function replaceOrderContent(item) {
   return (dispatch) => {
-    dispatch(replaceOrderItem(item))
+    dispatch(orderContent(item))
   }
 
-  function replaceOrderItem(item) {
+  function orderContent(item) {
     return { type: REPLACE_ORDER_ITEMS, item }
   }
 }

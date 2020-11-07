@@ -3,7 +3,7 @@ import { Container, Row, Col, Form } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 import { FaTimes } from 'react-icons/fa'
 import { connect } from 'react-redux'
-import { replaceOrderItems } from '../../actions'
+import { replaceOrderContent } from '../../actions'
 import './cart.scss'
 import * as storage from './localStorage'
 
@@ -16,8 +16,8 @@ function Cart(props) {
   const [skuId, setSkuId] = useState({})
   const [merchantCarts, setMerchantCarts] = useState([])
   const [sum, setSum] = useState(0)
-  const [orderItems, setOrderItems] = useState()
-  const [delivery, setDelivery] = useState([])
+  const [orderContent, setOrderContent] = useState()
+  const [delivery, setDelivery] = useState('宅配到府')
 
   function getCart() {
     return storage.getCartItems()
@@ -107,40 +107,33 @@ function Cart(props) {
         }
       })
     })
+    sum = sum > 2000 ? sum : sum + 60
     setSum(sum)
   }
 
-  function getOrderItems() {
-    let orderItems = []
+  function changeOrderContent() {
+    let orderContent = {
+      sum: sum,
+      delivery: delivery,
+      products: [],
+      merchantId: 0,
+    }
     merchantCarts.forEach((merchantCart) => {
       merchantCart.products.map((item) => {
         if (item.isChecked) {
-          orderItems.push(item)
+          orderContent.products.push(item)
+          orderContent.merchantId = merchantCart.merchant_id
         }
       })
     })
-    orderItems.sum = sum
-    orderItems.delivery = delivery[3]
-    console.log(orderItems)
-    setOrderItems(orderItems)
-  }
-
-  function initDelivery() {
-    let delivery = [true, false, false, 1]
-    setDelivery(delivery)
-  }
-
-  function getdeliveryState(vlaue) {
-    delivery[3] = vlaue
-    setDelivery(delivery)
+    setOrderContent(orderContent)
   }
 
   useEffect(() => {
     getCart()
     getMerchantCarts()
-    initDelivery()
     window.scrollTo(0, 0)
-  }, [])
+  })
 
   useEffect(() => {
     calculateSum()
@@ -148,7 +141,7 @@ function Cart(props) {
 
   useEffect(
     () => {
-      getOrderItems()
+      changeOrderContent()
     },
     [sum],
     [delivery]
@@ -195,6 +188,7 @@ function Cart(props) {
                 {merchantCart.products.map((product, index) => {
                   return (
                     <CartItem
+                      key={index}
                       product={product}
                       merchantCarts={merchantCarts}
                       setMerchantCarts={setMerchantCarts}
@@ -217,28 +211,34 @@ function Cart(props) {
                     <Form.Check
                       type="radio"
                       label="宅配到府"
-                      name="formHorizontalRadios"
-                      id="formHorizontalRadios1"
+                      name="delivery"
                       className="mb-3"
-                      checked={delivery[0]}
-                      onChange={() => getdeliveryState(1)}
+                      value="宅配到府"
+                      checked={delivery === '宅配到府'}
+                      onChange={(event) => {
+                        setDelivery(event.target.value)
+                      }}
                     />
                     <Form.Check
                       type="radio"
                       label="郵局配送"
-                      name="formHorizontalRadios"
-                      id="formHorizontalRadios2"
+                      name="delivery"
                       className="mb-3"
-                      checked={delivery[1]}
-                      onChange={() => getdeliveryState(1)}
+                      value="atm"
+                      checked={delivery === '郵局配送'}
+                      onChange={(event) => {
+                        setDelivery(event.target.value)
+                      }}
                     />
                     <Form.Check
                       type="radio"
                       label="7-11 取貨"
-                      name="formHorizontalRadios"
-                      id="formHorizontalRadios3"
-                      checked={delivery[2]}
-                      onChange={() => getdeliveryState(2)}
+                      name="delivery"
+                      value="atm"
+                      checked={delivery === '7-11 取貨'}
+                      onChange={(event) => {
+                        setDelivery(event.target.value)
+                      }}
                     />
                   </Col>
                 </Form.Group>
@@ -269,15 +269,13 @@ function Cart(props) {
                   <p>付款總計</p>
                 </div>
                 <div className="text-right">
-                  <p className="font-point pay-total">
-                    NT${sum > 2000 ? sum : sum + 60}
-                  </p>
+                  <p className="font-point pay-total">NT${sum}</p>
                 </div>
               </div>
               <Link to={`/cart_payment`}>
                 <button
                   className="btn btn-danger w-100 mt-3"
-                  onClick={() => props.replaceOrderItems(orderItems)}
+                  onClick={() => props.replaceOrderContent(orderContent)}
                 >
                   前往結帳
                 </button>
@@ -291,9 +289,9 @@ function Cart(props) {
 }
 
 const mapStateToProps = (store) => {
-  return { type: store.orderItems }
+  return { type: store.orderContent }
 }
 
 export default connect(mapStateToProps, {
-  replaceOrderItems,
+  replaceOrderContent,
 })(Cart)

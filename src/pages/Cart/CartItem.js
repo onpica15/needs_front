@@ -15,16 +15,41 @@ function CartItem(props) {
   } = props
 
   function updateSkuAmount(skuId, increment) {
-    console.log(skuId, increment)
+    setMerchantCarts(
+      merchantCarts.map((cartItems) => {
+        cartItems.products.map((item) => {
+          if (item.skuid === skuId) {
+            item.amount = Math.min(
+              Math.max(item.amount + increment, 1),
+              item.stocks
+            )
+            const newCartItem = { skuid: skuId, amount: item.amount }
+            setCart(
+              storage.saveCartItems(
+                storage.replaceCartItem(storage.getCartItems(), newCartItem)
+              )
+            )
+          }
+          return item
+        })
+        return cartItems
+      })
+    )
+  }
+
+  function filterInt(value) {
+    if (/^(\-|\+)?([0-9]+|Infinity)$/.test(value)) return Number(value)
+    return NaN
+  }
+
+  function replaceSkuAmount(skuId, value) {
+    console.log(skuId, value)
     setMerchantCarts(
       merchantCarts.map((cartItems) => {
         cartItems.products.map((item) => {
           if (item.skuid === skuId) {
             console.log('found')
-            item.amount = Math.min(
-              Math.max(item.amount + increment, 1),
-              item.stocks
-            )
+            item.amount = value
             const newCartItem = { skuid: skuId, amount: item.amount }
             setCart(
               storage.saveCartItems(
@@ -96,17 +121,18 @@ function CartItem(props) {
                 type="number"
                 value={product.amount}
                 className="quantity border-0 rounded-0"
-                // onChange={(e) => {
-                //   setQuantity(e.target.value)
-                // }}
-                // onBlur={(e) => {
-                //   setQuantity(
-                //     Math.min(
-                //       Math.max(e.target.value, 1),
-                //       sku.stocks
-                //     )
-                //   )
-                // }}
+                onChange={(e) => {
+                  replaceSkuAmount(product.skuid, filterInt(e.target.value))
+                }}
+                onBlur={(e) => {
+                  replaceSkuAmount(
+                    product.skuid,
+                    Math.min(
+                      Math.max(filterInt(e.target.value), 1),
+                      product.stocks
+                    )
+                  )
+                }}
               />
               <button
                 type="button"

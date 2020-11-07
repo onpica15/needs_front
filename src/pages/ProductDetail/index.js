@@ -28,7 +28,7 @@ function ProductDetail(props) {
       method: 'GET',
       headers: new Headers({
         Accept: 'application/json',
-        'Content-Type': 'appliaction/json',
+        'Content-Type': 'application/json',
       }),
     })
     const response = await fetch(request)
@@ -46,7 +46,7 @@ function ProductDetail(props) {
       method: 'GET',
       headers: new Headers({
         Accept: 'application/json',
-        'Content-Type': 'appliaction/json',
+        'Content-Type': 'application/json',
       }),
     })
     const response = await fetch(request)
