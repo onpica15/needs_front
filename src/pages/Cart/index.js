@@ -132,7 +132,6 @@ function Cart(props) {
   useEffect(() => {
     getCart()
     getMerchantCarts()
-    window.scrollTo(0, 0)
   })
 
   useEffect(() => {
@@ -272,7 +271,7 @@ function Cart(props) {
                   <p className="font-point pay-total">NT${sum}</p>
                 </div>
               </div>
-              <Link to={`/cart_payment`}>
+              <Link to={`/order_creating`}>
                 <button
                   className="btn btn-danger w-100 mt-3"
                   onClick={() => props.replaceOrderContent(orderContent)}
