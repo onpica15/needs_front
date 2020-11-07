@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import quertString from 'query-string'
 import io from 'socket.io-client'
 
 import './Chat.scss'
@@ -8,24 +7,23 @@ import InfoBar from './InfoBar/InfoBar'
 import Input from './Input/Input'
 import Messages from './Messages/Messages'
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 
 const ENDPOINT = 'http://localhost:5000'
 
 let socket
 
 const Chat = ({ location }) => {
+  const { search } = useLocation()
+  const searchParams = new URLSearchParams(search)
   const name = useSelector((state) => state.authentication.user.user.username)
-  console.log(name)
-  const [room, setRoom] = useState('')
+  const room = searchParams.get('room') + name
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([])
 
   useEffect(() => {
-    // const { name, room } = quertString.parse(location.search)
-
     socket = io(ENDPOINT)
-    setRoom(room)
 
     socket.emit('join', { name, room }, (error) => {
       if (error) {
@@ -47,6 +45,20 @@ const Chat = ({ location }) => {
       socket.emit('sendMessage', message, () => setMessage(''))
     }
   }
+
+  // {
+  //   name && room ? (
+  //     ''
+  //   ) : showChat ? (
+  //     <div style={{ display: 'Block' }}>
+  //       <chat />
+  //     </div>
+  //   ) : (
+  //     <div style={{ display: 'none' }}>
+  //       <chat />
+  //     </div>
+  //   )
+  // }
 
   return (
     <div className="outerContainer">

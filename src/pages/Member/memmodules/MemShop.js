@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import HashLoader from 'react-spinners/HashLoader'
 import { FaShoppingBag } from 'react-icons/fa'
 function MemShop() {
   return (

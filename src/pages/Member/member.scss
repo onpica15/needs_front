@@ -31,7 +31,7 @@ $shadow: #e7e7e7;
         margin-bottom: 30px;
         padding: 20px;
         width: 950px;
-        height: 600px;
+        min-height: 570px;
         border-radius: 10px;
         border: solid 2px $danger;
         box-shadow: 6px 5px $shadow;
@@ -196,7 +196,7 @@ $shadow: #e7e7e7;
     width: 155px;
     height: 550px;
 
-    .sticker {
+    .avatar {
         width: 130px;
         height: 130px;
         background-color: #ccc;
@@ -254,13 +254,20 @@ $shadow: #e7e7e7;
 
     .container {
         li {
+            
             margin-top: 30px;
+            margin-left: 20px;
 
             .item {
                 width: 80px;
                 height: 18px;
                 color: $font-gray;
             }
+            // input{
+            //     width: 700px;
+            //     height: 30px;
+            //     color: $font-black;
+            // }
 
             .item2 {
                 width: 100px;
@@ -343,14 +350,14 @@ $shadow: #e7e7e7;
         width: 150px;
         height: 200px;
         margin: 10px;
-        border: solid 1px black;
+        border: solid 1px $font-gray;
         border-radius: 10px;
         text-align: center;
 
         .mark {
             width: 100px;
             height: 100px;
-            border: solid 1px black;
+            border: solid 1px $font-gray;
             border-radius: 10px;
             margin: 10px auto;
         }
@@ -372,14 +379,14 @@ $shadow: #e7e7e7;
     .informbar {
         width: 850px;
         height: 60px;
-        border: solid 1px black;
+        border: solid 1px $font-gray;
         border-radius: 10px;
         margin: 10px;
 
         .sign {
             width: 40px;
             height: 40px;
-            border: solid 1px black;
+            border: solid 1px $font-gray;
             border-radius: 10px;
             margin: auto 5px;
         }
@@ -408,7 +415,7 @@ $shadow: #e7e7e7;
         width: 200px;
         height: 200px;
         margin: 10px;
-        border: solid 1px black;
+        border: solid 1px $font-gray;
         border-radius: 10px;
         text-align: center;
         box-shadow: 4px 3px $shadow;

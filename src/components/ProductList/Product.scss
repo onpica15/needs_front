@@ -21,6 +21,7 @@ $bg-light: #f0f0f0;
       position: relative;
       &:hover{
         background-color: $font-black;
+        opacity: 1;
       }
       img {
         width: 100%;

@@ -24,7 +24,7 @@ const Product = (props) => {
         className="productItem col-lg-4 col-md-6
       col-sm-6 col-xs-12"
       >
-        <Link to={`/products/${id}`}>
+        <Link to={`/products/${id}?room=${brand_name}`}>
           <div className="productPic">
             {e_points_usable ? <div className="ecoinUse">e-Coin</div> : ''}
             <div className="storeContent">詳細資訊</div>
