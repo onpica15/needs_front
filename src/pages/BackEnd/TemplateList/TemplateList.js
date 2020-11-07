@@ -26,11 +26,37 @@ function TemplateList(props) {
   const [show,setShow] = useState(false)
   const [favName,setFavName] = useState('')
   const [favOrNotBtn,setFavOrNotBtn] = useState('')
+  const [Name,setName] = useState('')
+  const [PlanType,setPlanType] = useState('')
+  const [Img,setImg] = useState('')
+  const [unItem, setUnItem] =useState('')
+ 
   
   //eventhandler
   const handleShow = () =>setShow(true)
   const handleClose = () =>setShow(false)
 
+
+  const UnFav = (unItem) => {
+    const currentFav = JSON.parse(localStorage.getItem('Fav')) || []
+    // console.log('currentFav',JSON.parse(localStorage.getItem('Fav')) );
+    // const index = currentFav.findIndex( (v) => v.Id == unItem.Id)//如果localstorage裡有點選要取消收藏的Id：>-1
+    if(unItem){
+      const arr = currentFav.filter(item => (item.Id !== unItem))
+      localStorage.setItem('Fav', JSON.stringify(arr))
+      console.log('arr',arr)
+      setShow(false)
+    }else{
+      setShow(false)
+      console.log('hi')
+    }
+    
+    // const index = currentFav.findIndex( (v) => v.Id === item.Id)
+    // console.log('index',index)
+    // if( index > -1){
+      // return
+    // }
+  }
 
   //檢查要加入的項目是否存在localStorage
   const updateFavToLocalStorage = function (item) {
@@ -38,10 +64,13 @@ function TemplateList(props) {
   console.log('currentFav',JSON.parse(localStorage.getItem('Fav')) );
   const index = currentFav.findIndex( (v) => v.Id === item.Id)
   //若存在就取消，沒有就加入（found:index ! == -1）：index為在findIndex時localstorage的currentFav.id和要加入的item.id比對，第幾筆相同（若有，會從0開始因此<0不存在）
+
     if( index > -1){
       //currentFav[index].amount++
-      setFavName('已經收藏過囉～')
-      // showDeletBtn()
+      setFavName('要取消收藏嗎？')
+      console.log('item.Id',item.Id);
+      setUnItem(item.Id)
+      // handleShowdDeletBtn(true)
       handleShow()
       return
     }else{
@@ -66,8 +95,8 @@ const messageModal = (
     </Modal.Header>
     <Modal.Body><h2>{favName}</h2></Modal.Body>
     <Modal.Footer>
-      <Button variant="light" onClick={handleClose}>
-        繼續看看
+      <Button variant="light" onClick={e=>UnFav(unItem)} >
+        確定
       </Button>
       <Button
         variant="dark"
@@ -97,21 +126,19 @@ const messageModal = (
     try{
       const response = await fetch(request)//response:fetch網址的資料
       const data = await response.json()
+      console.log('data',data[1].img)
       setTemplate(data)
-
-    // console.log('data1',data)
-    // console.log('Template1',Template)
+      setName(data[1].name)
+      setPlanType(data[1].plan_level)
+      setImg(data[1].img)
 
     }catch(error){
       setError("oops! error")
     }
 }
 
-
-//console.log這兩個
-// console.log('Template',Template[0])
-// console.log('Template',Template[0].name)
-
+console.log('name',Name)
+console.log('planType',PlanType)
 
     useEffect(() => {
       getTemplateData(type)
@@ -153,20 +180,20 @@ const messageModal = (
               <div className="row rounded d-flex align-items-center">
                 <div className="col-8">
                   <img
-                    src={Templatepic1}
+                    src={`http://localhost:5000/img/template/${Img}`}
                     className="main-small-pic"
                     alt="Responsive image"
                   ></img>
                   <img
-                    src={TemplatepicBig}
+                    src={`http://localhost:5000/img/template/${(type == 2)?'sparo_bg.png':'minimal_bg.png'}`}
                     className="img-fluid main-bg-pic"
                     alt="Responsive image"
                   ></img>
                 </div>
                 <div className="col-4 mh-100 text-adjust">
                   <div className="d-flex flex-column justify-content-around ">
-                    <h1 className="h4">name</h1>
-                    <p className="mt-2">方案：PRO</p>
+                    <h1 className="h4">{Name}</h1>
+                    <p className="mt-2">方案：{PlanType}</p>
                     <div className="pb-2">
                       <button className = "btn-bg gray mt-2" onClick={(item)=>{ updateFavToLocalStorage(item)}}
                       >
