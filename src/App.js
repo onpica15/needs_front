@@ -22,6 +22,7 @@ import ProductList from './pages/ProductList/ProductList'
 import MerchantHome from './pages/MerchantHome/merchantHome'
 import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
+import Payment from './pages/Payment'
 import Login from './pages/Login/Login'
 import SignUp from './pages/Login/SignUp'
 
@@ -39,6 +40,8 @@ import ArticleDetial from './pages/Article/ArticleDetial'
 import TestArticleDetial from './pages/Article/TestArticleDetial'
 import ProductsManagement from './pages/BackEnd/ProductsManagement'
 import Breadcrumb from './components/backend/Breadcrumb'
+import ContractsManagement from './pages/BackEnd/ContractsManagement'
+import OrdersManagement from './pages/BackEnd/OrdersManagement'
 
 //設置layout props
 const DynamicLayoutRoute = (props) => {
@@ -112,8 +115,13 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/cart"
+            path="/cart_list"
             component={Cart}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/cart_payment"
+            component={Payment}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
@@ -203,11 +211,15 @@ function App(props) {
             component={TemplateEditedPage}
             layout="BACK_END_NAV"
           />
+          {/* <Route
+            path="/customer-backend/template-edit"
+            component={EditedPage}
+          /> */}
           <DynamicLayoutRoute
             path="/customer-backend/template-list"
             component={TemplateList}
             layout="BACK_END_NAV"
-          />{' '}
+          />
           <DynamicLayoutRoute
             path="/customer-backend/sales-index"
             component={Sales}
@@ -219,8 +231,18 @@ function App(props) {
             layout="BACK_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/customer-backend/productsmanagement"
+            path="/customer-backend/products-management"
             component={ProductsManagement}
+            layout="BACK_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/customer-backend/contracts-management"
+            component={ContractsManagement}
+            layout="BACK_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/customer-backend/orders-management"
+            component={OrdersManagement}
             layout="BACK_END_NAV"
           />
         </Switch>

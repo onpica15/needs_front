@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Pagination } from 'react-bootstrap'
 
-const pagination = (props) => {
+const BackendPagination = (props) => {
   const { pageItems, currentPage, setCurrentPage, totalPages } = props
 
   const toPage = (val) => {
@@ -27,4 +27,4 @@ const pagination = (props) => {
   )
 }
 
-export default pagination
+export default BackendPagination

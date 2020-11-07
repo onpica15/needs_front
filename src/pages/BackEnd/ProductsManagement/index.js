@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux'
 import Axios from 'axios'
 import { Col, Container, Pagination } from 'react-bootstrap'
 import './ProductsManagement.scss'
-import ToolsBar from './modules/toolbar'
-import ProductsContent from './modules/productsContent'
-import BackendPagination from './modules/pagination'
+import ToolBar from './modules/ToolBar'
+import ProductsContent from './modules/ProductsContent'
+import BackendPagination from '../../../components/backend/BackendPagination'
 import History from '../../../components/history'
 
 const ProductsManagement = (props) => {
@@ -22,7 +22,7 @@ const ProductsManagement = (props) => {
 
   const toPage = (e) => {
     setCurrentPage(e)
-    History.push(`/customer-backend/productsmanagement/page=${e}`)
+    History.push(`/customer-backend/products-management/page=${e}`)
     window.scrollTo(0, 0)
   }
 
@@ -68,7 +68,7 @@ const ProductsManagement = (props) => {
       <div className="productsMng">
         <Col className="main offset-2" xs={10}>
           <Container fluid main>
-            <ToolsBar
+            <ToolBar
               type={type}
               setType={setType}
               viewType={viewType}
