@@ -11,6 +11,7 @@ import FixedButtons from './components/FixedButtons'
 
 import Home from './pages/Home'
 import MemberCard from './pages/Member/MemberCard'
+import MemberCardEdit from './pages/Member/MemberCardEdit'
 import MemberShop from './pages/Member/MemberShop'
 import MemberLike from './pages/Member/MemberLike'
 import MemberInform from './pages/Member/MemberInform'
@@ -143,6 +144,11 @@ function App(props) {
           <DynamicLayoutRoute
             path="/member/card/:userid?"
             component={MemberCard}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/member/card/edit"
+            component={MemberCardEdit}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute

@@ -7,6 +7,7 @@ import {
   withRouter,
 } from 'react-router-dom'
 import axios from 'axios'
+import HashLoader from 'react-spinners/HashLoader'
 import { useSelector } from 'react-redux' //引入redux
 import { FaCoins } from 'react-icons/fa'
 
@@ -17,7 +18,7 @@ const MemEcoin = () => {
   const isLogin = useSelector((state) => state.authentication.loggedIn) //redux判斷是否為lodin狀態
   const loginUser = useSelector((state) => state.authentication.user) //redux初始值設定為空值
 
-  const fetchPost = async (val) => {
+  const getData = async (val) => {
     setDataLoading(true)
     let url = `http://localhost:5000/member?id=${val}`
     const res = await axios.get(url).catch((err) => console.log('error'.err))
@@ -28,7 +29,7 @@ const MemEcoin = () => {
   useEffect(() => {
     if (isLogin) {
       const memId = loginUser.user.id
-      fetchPost(memId)
+      getData(memId)
     } else {
       window.location.href = '/login'
     }

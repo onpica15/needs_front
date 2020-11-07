@@ -7,6 +7,7 @@ import {
   Switch,
 } from 'react-router-dom'
 import axios from 'axios'
+import HashLoader from 'react-spinners/HashLoader'
 import { useSelector } from 'react-redux'
 
 import { BsFillBellFill } from 'react-icons/bs'
@@ -16,7 +17,7 @@ const MemInform = () => {
 
   const isLogin = useSelector((state) => state.authentication.loggedIn)
   const loginUser = useSelector((state) => state.authentication.user)
-  const fetchPosts = async (val) => {
+  const getData = async (val) => {
     setDataLoading(true)
     let url = `http://localhost:5000/inform?customer_id=${val}`
     const res = await axios.get(url).catch((err) => console.log('Error'.err))
@@ -26,7 +27,7 @@ const MemInform = () => {
   useEffect(() => {
     if (isLogin) {
       const memId = loginUser.user.id
-      fetchPosts(memId)
+      getData(memId)
     } else {
       window.location.href = '/login'
     }
