@@ -7,7 +7,16 @@ import './Product.scss'
 // import { MdFavorite } from 'react-icons/md'
 
 const Product = (props) => {
-  const { id, title, image_path, price, sale_price, addToCart } = props
+  const {
+    id,
+    title,
+    brand_name,
+    image_path,
+    e_points_usable,
+    price,
+    sale_price,
+    addToCart,
+  } = props
 
   return (
     <>
@@ -17,6 +26,8 @@ const Product = (props) => {
       >
         <Link to={`/products/${id}`}>
           <div className="productPic">
+            {e_points_usable ? <div className="ecoinUse">e-Coin</div> : ''}
+            <div className="storeContent">詳細資訊</div>
             <img
               src={`http://localhost:5000/img/products/${image_path}`}
               alt=""
@@ -24,6 +35,7 @@ const Product = (props) => {
           </div>
         </Link>
         <div className="textArea">
+          <div className="merchantName">{brand_name}</div>
           <div className="title">{title}</div>
           <div className="d-flex justify-content-center">
             <div className="priceDiscount">

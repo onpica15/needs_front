@@ -50,28 +50,7 @@ const SideFilter = (props) => {
             />
           </div>
         </div>
-        <div className="filterItem">
-          <h6 className="title">顏色分類</h6>
-          <div className="d-flex colorSelect">
-            <div className="color red" onClick={(e) => console.log('1')}></div>
-            <div
-              className="color orange"
-              onClick={(e) => console.log('2')}
-            ></div>
-            <div
-              className="color yellow"
-              onClick={(e) => console.log('3')}
-            ></div>
-            <div
-              className="color Indigo"
-              onClick={(e) => console.log('4')}
-            ></div>
-            <div
-              className="color green"
-              onClick={(e) => console.log('5')}
-            ></div>
-          </div>
-        </div>
+
         <div className="filterItem starSelect">
           <h6 className="title">評價</h6>
           <StarRating />
@@ -84,16 +63,8 @@ const SideFilter = (props) => {
               可用e幣
             </label>
           </div>
-          <div>
-            <label>
-              <input type="checkbox" />
-              尚有庫存
-            </label>
-          </div>
         </div>
       </div>
-
-      <Button variant="dark">套用搜索</Button>
     </>
   )
 }

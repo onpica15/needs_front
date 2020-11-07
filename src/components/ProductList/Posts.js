@@ -25,9 +25,6 @@ const Posts = (props) => {
     )
   }
 
-  // if (price[0] >= posts.skus[0].price || posts.skus[0].sale_price)
-  // return <></>
-
   return (
     <div className="productItems d-flex flex-wrap">
       {showPosts &&

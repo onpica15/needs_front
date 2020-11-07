@@ -57,7 +57,6 @@ const ProductList = (props) => {
       let url = 'http://localhost:5000/productlist?sort=' + sort
       const res = await axios.get(url).catch((err) => console.log('Error', err))
       setAllPosts(res.data)
-      console.log(res.data)
       setShowPosts(res.data)
       setDataLoading(false)
     }
@@ -71,12 +70,26 @@ const ProductList = (props) => {
         allposts.filter((value) => value.categories_id === selectCategory)
       )
     }
+  }, [selectCategory])
 
-    // check Ecoin can be used , 1 is can useing .if not, Getting all Ecoin
-    // ecoin
-    //   ? setShowPosts(allposts.filter((value) => value.e_points_usable === 1))
-    //   : setShowPosts(allposts)
-  }, [selectCategory, ecoin])
+  // check Ecoin can be used , 1 is can useing .if not, Getting all Ecoin
+  useEffect(() => {
+    ecoin
+      ? setShowPosts(allposts.filter((value) => value.e_points_usable === 1))
+      : setShowPosts(allposts)
+  }, [ecoin])
+
+  // set price filter
+  useEffect(() => {
+    price
+      ? setShowPosts(allposts.filter((value) => value.sale_price <= price))
+      : setShowPosts(allposts)
+  }, [price])
+
+  // if (sale_price)
+  // showPosts.sale_price
+  //   ? setShowPosts(allposts.filter((value) => value.sale_price <= price))
+  //   : setShowPosts(allposts)
 
   //get all data
   const getCategories = async () => {

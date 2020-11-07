@@ -18,16 +18,49 @@ $bg-light: #f0f0f0;
     }
     .productPic {
       max-width: 270px;
+      position: relative;
+      &:hover{
+        background-color: $font-black;
+      }
       img {
         width: 100%;
         height: 240px;
         object-fit:cover;
+        &:hover{
+          opacity: .4;
+        }
+      }
+      .ecoinUse {
+        background-color: $secondary;
+        width: 70px;
+        height: 30px;
+        text-align: center;
+        color: $white;
+        position: absolute;
+        top: 10px;
+        left: 5px;
+      }
+      .storeContent{
+        position: absolute;
+        width: 150px;
+        left: calc(25%);
+        top: 50%;
+        text-align: center;
+        color: $white;
+        border: 1px solid $white;
+        display: none;
+        &:hover{
+          display: block;
+        }
       }
     }
     .textArea {
+      .merchantName{
+        margin: 10px 0;
+        color: $font-gray;
+      }
       .title {
         font-size: 20px;
-        margin-bottom: 10px;
         height: 60px;
       }
       .priceDiscount{
@@ -68,6 +101,10 @@ $bg-light: #f0f0f0;
       flex-direction: column;
       justify-content: space-around;
       width: 480px;
+      .merchantName{
+        margin: 10px 0;
+        color: $font-gray;
+      }
       .title {
         font-size: 20px;
         margin-bottom: 10px;

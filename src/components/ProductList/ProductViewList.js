@@ -3,7 +3,16 @@ import { Button } from 'react-bootstrap'
 
 import './Product.scss'
 function ProductViewList(props) {
-  const { id, title, image_path, sale_price, price, outline, addToCart } = props
+  const {
+    id,
+    title,
+    brand_name,
+    image_path,
+    sale_price,
+    price,
+    outline,
+    addToCart,
+  } = props
   return (
     <>
       <div className="productListItem d-flex col-12">
@@ -14,6 +23,7 @@ function ProductViewList(props) {
           ></img>
         </div>
         <div className="textArea">
+          <div className="merchantName">{brand_name}</div>
           <div className="title">{title}</div>
           <div className="outline">{outline}</div>
           <div className="d-flex justify-content-center">
