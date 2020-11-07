@@ -19,17 +19,25 @@ $bg-light: #f0f0f0;
     .productPic {
       max-width: 270px;
       position: relative;
+     
       &:hover{
-        background-color: $font-black;
-        opacity: 1;
+        background-color: #000800;
+        img{
+          opacity: .5;
+          transition-delay: 0.2s;
+        }
+        .storeContent{
+          opacity: 1;
+          transition-delay: 0.2s;
+          z-index: 1;
+        }
       }
+
       img {
         width: 100%;
         height: 240px;
         object-fit:cover;
-        &:hover{
-          opacity: .4;
-        }
+
       }
       .ecoinUse {
         background-color: $secondary;
@@ -40,6 +48,7 @@ $bg-light: #f0f0f0;
         position: absolute;
         top: 10px;
         left: 5px;
+        z-index: 1;
       }
       .storeContent{
         position: absolute;
@@ -49,10 +58,7 @@ $bg-light: #f0f0f0;
         text-align: center;
         color: $white;
         border: 1px solid $white;
-        display: none;
-        &:hover{
-          display: block;
-        }
+        opacity: 0;
       }
     }
     .textArea {
