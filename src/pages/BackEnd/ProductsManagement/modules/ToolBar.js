@@ -15,7 +15,7 @@ import {
   AiOutlineSearch,
 } from 'react-icons/ai'
 
-const ToolsBar = (props) => {
+const ToolBar = (props) => {
   const { type, setType, viewType, setViewType } = props
   return (
     <>
@@ -94,4 +94,4 @@ const ToolsBar = (props) => {
   )
 }
 
-export default ToolsBar
+export default ToolBar

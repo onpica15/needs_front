@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, Form, Alert } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 import { RiShoppingCart2Line } from 'react-icons/ri'
+import { BiCheckCircle } from 'react-icons/bi'
 import './productPage.scss'
-import * as cart from './CartFunction'
+import * as storage from '../Cart/localStorage'
 
 import DetailNav from './DetailNav'
 import CarouselImage from './CarouselImage'
@@ -62,13 +63,14 @@ function ProductDetail(props) {
   }
 
   function addToCart(value) {
-    cart.addToLocalStorage(value)
+    storage.saveCartItems(storage.addCartItem(storage.getCartItems(), value))
     setShow(true)
   }
 
   useEffect(() => {
     getProductDetail()
-  }, [])
+    window.scrollTo(0, 0)
+  }, [props.match.params.id])
 
   useEffect(() => {
     if (productDetail.merchant_id) {
@@ -79,18 +81,20 @@ function ProductDetail(props) {
   useEffect(() => {
     setTimeout(() => {
       setShow(false)
-    }, 2000)
+    }, 3000)
   }, [show])
 
   return (
     <div className="product-detail">
       <Alert
+        style={{ height: '80px' }}
         show={show}
         variant="success"
         className="add-to-cart-success"
         onClose={() => setShow(false)}
         dismissible
       >
+        <BiCheckCircle className="success-icon" />
         商品已放入購物車
       </Alert>
       <DetailNav />

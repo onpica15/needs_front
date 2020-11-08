@@ -2,6 +2,7 @@ import {
   userConstants,
   roleTypes,
   alertConstants,
+  REPLACE_ORDER_ITEMS,
   ADD_TO_CART,
   UPDATE_CART_UNITS,
 } from './actiontypes'
@@ -116,6 +117,16 @@ function error(message) {
 
 function clear() {
   return { type: alertConstants.CLEAR }
+}
+
+export function replaceOrderItems(item) {
+  return (dispatch) => {
+    dispatch(replaceOrderItem(item))
+  }
+
+  function replaceOrderItem(item) {
+    return { type: REPLACE_ORDER_ITEMS, item }
+  }
 }
 
 // cart action

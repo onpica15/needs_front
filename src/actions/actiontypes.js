@@ -21,6 +21,9 @@ export const alertConstants = {
   CLEAR: 'ALERT_CLEAR',
 }
 
+// orderItems
+export const REPLACE_ORDER_ITEMS = 'REPLACE_ORDER_ITEMS'
+
 //cartActions
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const UPDATE_CART_UNITS = 'UPDATE_CART_UNITS'
