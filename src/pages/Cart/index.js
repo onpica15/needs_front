@@ -11,13 +11,12 @@ import CheckoutNav from './CheckoutNav'
 import CartItem from './CartItem'
 
 function Cart(props) {
-  // console.log('props', props)
   const [cart, setCart] = useState({})
-  const [skuId, setSkuId] = useState({})
   const [merchantCarts, setMerchantCarts] = useState([])
   const [sum, setSum] = useState(0)
   const [orderContent, setOrderContent] = useState()
-  const [delivery, setDelivery] = useState('宅配到府')
+  const [delivery, setDelivery] = useState('宅配')
+  const [deliveryPrice, setDeliveryPrice] = useState(0)
 
   function getCart() {
     return storage.getCartItems()
@@ -107,8 +106,11 @@ function Cart(props) {
         }
       })
     })
+    let deliveryPrice = 0
+    deliveryPrice = sum > 2000 ? 0 : deliveryPrice + 60
     sum = sum > 2000 ? sum : sum + 60
     setSum(sum)
+    setDeliveryPrice(deliveryPrice)
   }
 
   function changeOrderContent() {
@@ -117,6 +119,7 @@ function Cart(props) {
       delivery: delivery,
       products: [],
       merchantId: 0,
+      deliveryPrice: deliveryPrice,
     }
     merchantCarts.forEach((merchantCart) => {
       merchantCart.products.map((item) => {
@@ -132,7 +135,8 @@ function Cart(props) {
   useEffect(() => {
     getCart()
     getMerchantCarts()
-  })
+    window.scrollTo(0, 0)
+  }, [])
 
   useEffect(() => {
     calculateSum()
@@ -212,8 +216,8 @@ function Cart(props) {
                       label="宅配到府"
                       name="delivery"
                       className="mb-3"
-                      value="宅配到府"
-                      checked={delivery === '宅配到府'}
+                      value="宅配"
+                      checked={delivery === '宅配'}
                       onChange={(event) => {
                         setDelivery(event.target.value)
                       }}
@@ -223,8 +227,8 @@ function Cart(props) {
                       label="郵局配送"
                       name="delivery"
                       className="mb-3"
-                      value="atm"
-                      checked={delivery === '郵局配送'}
+                      value="郵局"
+                      checked={delivery === '郵局'}
                       onChange={(event) => {
                         setDelivery(event.target.value)
                       }}
@@ -233,8 +237,8 @@ function Cart(props) {
                       type="radio"
                       label="7-11 取貨"
                       name="delivery"
-                      value="atm"
-                      checked={delivery === '7-11 取貨'}
+                      value="7-11"
+                      checked={delivery === '7-11'}
                       onChange={(event) => {
                         setDelivery(event.target.value)
                       }}

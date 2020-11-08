@@ -12,9 +12,8 @@ import CartItems from './CartItems'
 function Payment(props) {
   console.log(props)
   const loginUser = useSelector((state) => state.authentication.user)
-  // const [products, setProducts] = useState([])
   const [userInfo, setUserInfo] = useState([])
-  const [payment, setPayment] = useState('credit')
+  const [payment, setPayment] = useState(1)
   const products = props.orderContent.products || []
 
   async function getUserInfo() {
@@ -34,6 +33,24 @@ function Payment(props) {
     console.log(data)
     data.note = ''
     setUserInfo(data)
+  }
+
+  async function creatOrder() {
+    const orderContent = props.orderContent
+    const customer_id = loginUser.user.id
+    const orderData = { customer_id, userInfo, payment, orderContent }
+    const url = `http://localhost:5000/orders`
+    const request = new Request(url, {
+      method: 'POST',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify(orderData),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log(orderData)
   }
 
   function changeUserInfo(event) {
@@ -75,7 +92,7 @@ function Payment(props) {
             <Col md={12}>收件資訊</Col>
           </Row>
           <Form className="pl-3 pt-3">
-            <Form.Group as={Row} controlId="formPlaintextEmail">
+            <Form.Group as={Row} controlId="name">
               <Form.Label column sm="2" className="item-title">
                 收件人名稱
               </Form.Label>
@@ -92,7 +109,7 @@ function Payment(props) {
                 ＊請填入收件人真實姓名，以確保順利收件
               </Col>
             </Form.Group>
-            <Form.Group as={Row} controlId="formPlaintextPassword">
+            <Form.Group as={Row} controlId="phone_number">
               <Form.Label column sm="2" className="item-title">
                 收件人電話
               </Form.Label>
@@ -109,7 +126,7 @@ function Payment(props) {
                 ＊配送人員將以此區資料聯繫
               </Col>
             </Form.Group>
-            <Form.Group as={Row} controlId="formPlaintextPassword">
+            <Form.Group as={Row} controlId="address">
               <Form.Label column sm="2" className="item-title">
                 收件人地址
               </Form.Label>
@@ -153,9 +170,9 @@ function Payment(props) {
                       name="payment_method"
                       className="mb-3"
                       value="credit"
-                      checked={payment === 'credit'}
-                      onChange={(event) => {
-                        setPayment(event.target.value)
+                      checked={payment === 1}
+                      onChange={() => {
+                        setPayment(1)
                       }}
                     />
                     <Form.Check
@@ -164,9 +181,9 @@ function Payment(props) {
                       name="payment_method"
                       className="mb-3"
                       value="atm"
-                      checked={payment === 'atm'}
-                      onChange={(event) => {
-                        setPayment(event.target.value)
+                      checked={payment === 2}
+                      onChange={() => {
+                        setPayment(2)
                       }}
                     />
                     <Form.Check
@@ -174,16 +191,23 @@ function Payment(props) {
                       label="7-11 ibon 代碼繳費"
                       name="payment_method"
                       value="711"
-                      checked={payment === '711'}
-                      onChange={(event) => {
-                        setPayment(event.target.value)
+                      checked={payment === 3}
+                      onChange={() => {
+                        setPayment(3)
                       }}
                     />
                   </Col>
                 </Form.Group>
               </fieldset>
               {/* <Link to={`/cart_list`}> */}
-              <button className="btn btn-danger w-100 mt-3">確認付款</button>
+              <button
+                className="btn btn-danger w-100 mt-3"
+                onClick={() => {
+                  creatOrder()
+                }}
+              >
+                建立訂單
+              </button>
               {/* </Link> */}
             </div>
           </Col>
