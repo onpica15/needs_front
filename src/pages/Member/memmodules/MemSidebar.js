@@ -20,6 +20,7 @@ import { MdAddAPhoto } from 'react-icons/md'
 
 const MemSidebar = () => {
   const [memsidebar, setMemsidebar] = useState([])
+  const [avatar, setAvatar] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
   const isLogin = useSelector((state) => state.authentication.loggedIn)
   const loginUser = useSelector((state) => state.authentication.user)
@@ -29,9 +30,21 @@ const MemSidebar = () => {
     let url = `http://localhost:5000/member?id=${val}`
     const res = await axios.get(url).catch((err) => console.log('Error'.err))
     setMemsidebar(res.data)
+    setAvatar(res.data[0].avatar)
     setDataLoading(false)
   }
-
+  const updateavatar = async (val) => {
+    setDataLoading(true)
+    const newData = avatar
+    let url = `http://localhost:5000/member?id=${val}`
+    const res = await axios
+    .post(url,newData)
+    .catch((err)=>console.log('Error'.err))
+    console.log('post-res',res)
+    setTimeout(()=>{
+      setDataLoading(false)
+    },2000)
+  }
   useEffect(() => {
     if (isLogin) {
       const memId = loginUser.user.id

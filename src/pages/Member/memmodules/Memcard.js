@@ -55,7 +55,7 @@ function MemCard(props) {
                 </p>
                 <p>會員資料</p>
 
-                <Link to="/member/card/edit" className="icons">
+                <Link to="/member/edit" className="icons">
                   <FaEdit />
                 </Link>
               </div>
@@ -135,7 +135,7 @@ function MemCard(props) {
     </>
   )
 
-  return dataLoading ? loading : display
+  return display
 }
 
 export default MemCard
