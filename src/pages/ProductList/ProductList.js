@@ -18,7 +18,6 @@ import HistoryList from '../../components/History/HistoryList'
 import RecommendStoreForProductListPage from '../../components/ProductList/RecommendStoreForProductListPage'
 
 import axios from 'axios'
-import { event } from 'jquery'
 
 const ProductList = (props) => {
   // getdata
@@ -41,10 +40,12 @@ const ProductList = (props) => {
   // 0 = can't use  1 = use
   const [ecoin, setEcoin] = useState(false)
   // set price filter
-  const [price, setPrice] = useState([500, 6000])
+  const [filterprice, setFilterPrice] = useState([500, 6000])
+  const [Price, setPrice] = useState([])
+  const [SalePirce, setSalePirce] = useState([])
 
   //Redux addCart
-  const { cart, addToCartAction, updateCartUnits } = props
+  const { cart, updateCartUnits } = props
 
   useEffect(() => {
     getCategories()
@@ -58,6 +59,7 @@ const ProductList = (props) => {
       const res = await axios.get(url).catch((err) => console.log('Error', err))
       setAllPosts(res.data)
       setShowPosts(res.data)
+
       setDataLoading(false)
     }
     fetchPosts()
@@ -80,11 +82,12 @@ const ProductList = (props) => {
   }, [ecoin])
 
   // set price filter
-  useEffect(() => {
-    price
-      ? setShowPosts(allposts.filter((value) => value.sale_price <= price))
-      : setShowPosts(allposts)
-  }, [price])
+  const showprice = () => {
+    showPosts.sale_price
+      ? console.log(showPosts.sale_price)
+      : console.log(showPosts.sale_price)
+  }
+  showprice()
 
   // if (sale_price)
   // showPosts.sale_price
@@ -134,8 +137,8 @@ const ProductList = (props) => {
             <SideFilter
               setEcoin={setEcoin}
               ecoin={ecoin}
-              setPrice={setPrice}
-              price={price}
+              setFilterPrice={setFilterPrice}
+              filterprice={filterprice}
             />
           </div>
           <div className="mainProductList container-fluid">
@@ -151,7 +154,6 @@ const ProductList = (props) => {
               showPosts={currentPosts}
               dataLoading={dataLoading}
               productView={productView}
-              addToCartAction={addToCartAction}
             />
 
             <Pagination
@@ -180,6 +182,6 @@ const mapStateToProps = ({ cart }) => {
   return { cart }
 }
 
-export default connect(mapStateToProps, { addToCartAction, updateCartUnits })(
-  ProductList
-)
+export default connect(mapStateToProps, {
+  updateCartUnits,
+})(ProductList)

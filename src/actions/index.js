@@ -5,6 +5,8 @@ import {
   REPLACE_ORDER_ITEMS,
   ADD_TO_CART,
   UPDATE_CART_UNITS,
+  ADD_TO_FAVORITES,
+  REMOVE_TO_FAVORITES,
 } from './actiontypes'
 import { createBrowserHistory } from 'history'
 
@@ -130,15 +132,46 @@ export function replaceOrderItems(item) {
 }
 
 // cart action
-export function addToCartAction({ id, title, image_path, price, units }) {
+export function addToCartAction({
+  id,
+  title,
+  brand_name,
+  image_path,
+  price,
+  sale_price,
+  e_points_usable,
+}) {
   return {
     type: ADD_TO_CART,
-    payload: { id, title, image_path, price, units },
+    payload: {
+      id,
+      title,
+      brand_name,
+      image_path,
+      price,
+      sale_price,
+      e_points_usable,
+    },
   }
 }
 export function updateCartUnits({ id, units, price }) {
   return {
     type: UPDATE_CART_UNITS,
     payload: { id, units, price },
+  }
+}
+
+// add Favorite
+
+export function addToFavoritesItem({ id, title, image_path, price }) {
+  return {
+    type: ADD_TO_FAVORITES,
+    payload: { id, title, image_path, price },
+  }
+}
+export function removeToFavoritesItem(id) {
+  return {
+    type: REMOVE_TO_FAVORITES,
+    payload: id,
   }
 }

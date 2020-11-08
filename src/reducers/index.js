@@ -5,6 +5,7 @@ import { handleRole } from './roleReducer'
 import { orderItems } from './orderItemsReducer'
 
 import cartReducer from './cartReducer'
+import favoritesReducer from './favoritesReducer'
 
 export const rootReducer = combineReducers({
   authentication,
@@ -12,4 +13,5 @@ export const rootReducer = combineReducers({
   alert,
   orderItems,
   cart: cartReducer,
+  favorite: favoritesReducer,
 })

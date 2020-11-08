@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
+import { useDispatch } from 'react-redux'
+import {
+  addToFavoritesItem,
+  removeToFavoritesItem,
+  addToCartAction,
+} from '../../actions/index'
+
 import './Product.scss'
-// import { GrFavorite } from 'react-icons/gr'
-// import { MdFavorite } from 'react-icons/md'
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 
 const Product = (props) => {
   const {
@@ -15,8 +21,9 @@ const Product = (props) => {
     e_points_usable,
     price,
     sale_price,
-    addToCart,
   } = props
+  const [choiceFavore, setChoiceFavore] = useState(false)
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -24,7 +31,14 @@ const Product = (props) => {
         className="productItem col-lg-4 col-md-6
       col-sm-6 col-xs-12"
       >
-        <Link to={`/products/${id}?room=${brand_name}`}>
+        <Link
+          to={`/products/${id}?room=${brand_name}`}
+          onClick={() =>
+            dispatch(
+              addToCartAction({ id, title, image_path, price, units: 1 })
+            )
+          }
+        >
           <div className="productPic">
             {e_points_usable ? <div className="ecoinUse">e-Coin</div> : ''}
             <div className="storeContent">詳細資訊</div>
@@ -48,11 +62,38 @@ const Product = (props) => {
               className="cart"
               variant="danger"
               onClick={() =>
-                addToCart({ id, title, image_path, price, units: 1 })
+                dispatch(
+                  addToCartAction({
+                    id,
+                    title,
+                    image_path,
+                    price,
+                    sale_price,
+                    units: 1,
+                  })
+                )
               }
             >
               加入購物車
             </Button>
+            <label onClick={() => setChoiceFavore(!choiceFavore)}>
+              {choiceFavore ? (
+                <AiFillHeart
+                  size={40}
+                  color="#d44f44"
+                  onClick={() => dispatch(removeToFavoritesItem(id))}
+                />
+              ) : (
+                <AiOutlineHeart
+                  size={40}
+                  onClick={() =>
+                    dispatch(
+                      addToFavoritesItem({ id, title, image_path, price })
+                    )
+                  }
+                />
+              )}
+            </label>
           </div>
         </div>
       </div>

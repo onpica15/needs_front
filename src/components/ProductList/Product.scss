@@ -11,6 +11,11 @@ $bg-light: #f0f0f0;
   margin-top: 50px;
   font-size: 16px;
 
+  label{
+    cursor: pointer;
+    transform: translateY(8px);
+  }
+
   .productItem {
     margin-bottom: 30px;
     @media (max-width:768px) {

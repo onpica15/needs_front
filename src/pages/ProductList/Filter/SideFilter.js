@@ -6,7 +6,7 @@ import 'rc-slider/assets/index.css'
 import './SideFilter.scss'
 
 const SideFilter = (props) => {
-  const { ecoin, setEcoin, price, setPrice } = props
+  const { ecoin, setEcoin, filterprice, setFilterPrice } = props
   // setting PriceRang
 
   //setting handlePrice step
@@ -24,7 +24,7 @@ const SideFilter = (props) => {
   const onSliderChange = (price) => {
     console.log(price[0])
     console.log(price[1])
-    setPrice(price)
+    setFilterPrice(price)
   }
 
   const checkUseEcoin = () => {
@@ -38,9 +38,9 @@ const SideFilter = (props) => {
           <h6 className="title">價格範圍</h6>
           <div>
             <div className="showPrice">
-              <label>{price[0]}</label>
+              <label>{filterprice[0]}</label>
               <label>-</label>
-              <label>{price[1]}</label>
+              <label>{filterprice[1]}</label>
             </div>
             <Range
               allowCross={false}
