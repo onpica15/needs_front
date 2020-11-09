@@ -1,137 +1,212 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, Form } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
-import CheckoutNav from './CheckoutNav'
-import './cart.scss'
-
 import { FaTimes } from 'react-icons/fa'
+import { connect } from 'react-redux'
+import { replaceOrderItems } from '../../actions'
+import './cart.scss'
+import * as storage from './localStorage'
+
+import CheckoutNav from './CheckoutNav'
+import CartItem from './CartItem'
 
 function Cart(props) {
+  // console.log('props', props)
+  const [cart, setCart] = useState({})
+  const [skuId, setSkuId] = useState({})
+  const [merchantCarts, setMerchantCarts] = useState([])
+  const [sum, setSum] = useState(0)
+  const [orderItems, setOrderItems] = useState()
+  const [delivery, setDelivery] = useState([])
+
+  function getCart() {
+    return storage.getCartItems()
+  }
+
+  function getSkuIdsInCart() {
+    return storage.getCartItems().map((v) => v.skuid)
+  }
+
+  async function getMerchantCarts() {
+    const url = `http://localhost:5000/products/bulk-get-product-skus`
+    const request = new Request(url, {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({
+        skuIds: getSkuIdsInCart(),
+      }),
+    })
+    const response = await fetch(request)
+    const merchantCartItems = await response.json()
+
+    const cartItemsFromStorage = storage.getCartItems()
+
+    merchantCartItems.map((cartItems) => {
+      cartItems.allChecked = false
+      cartItems.products.map((item) => {
+        item.amount = cartItemsFromStorage.find(function (i) {
+          return i.skuid === item.skuid
+        }).amount
+        item.isChecked = false
+        return item
+      })
+      return cartItems
+    })
+    merchantCartItems[0].allChecked = true
+    merchantCartItems[0].products.map((item) => {
+      item.isChecked = true
+      return item
+    })
+    setMerchantCarts(merchantCartItems)
+  }
+
+  function checkAll(merchantId, isChecked) {
+    setMerchantCarts(
+      merchantCarts.map((merchantCart) => {
+        if (merchantCart.merchant_id === merchantId) {
+          merchantCart.allChecked = isChecked
+          const products = merchantCart.products
+          console.log(products)
+          merchantCart.products.map((item) => {
+            item.isChecked = isChecked
+            return item
+          })
+        }
+        return merchantCart
+      })
+    )
+  }
+
+  function checkOne(skuId, isChecked) {
+    setMerchantCarts(
+      merchantCarts.map((merchantCart) => {
+        merchantCart.allChecked = true
+        merchantCart.products.map((item) => {
+          if (item.skuid === skuId) {
+            item.isChecked = isChecked
+          }
+          if (merchantCart.allChecked) {
+            merchantCart.allChecked = item.isChecked
+          }
+          return item
+        })
+        return merchantCart
+      })
+    )
+  }
+
+  function calculateSum() {
+    let sum = 0
+    merchantCarts.forEach((merchantCart) => {
+      merchantCart.products.map((item) => {
+        if (item.isChecked) {
+          const price = item.sale_price ? item.sale_price : item.price
+          sum += price * item.amount
+        }
+      })
+    })
+    setSum(sum)
+  }
+
+  function getOrderItems() {
+    let orderItems = []
+    merchantCarts.forEach((merchantCart) => {
+      merchantCart.products.map((item) => {
+        if (item.isChecked) {
+          orderItems.push(item)
+        }
+      })
+    })
+    orderItems.sum = sum
+    orderItems.delivery = delivery[3]
+    console.log(orderItems)
+    setOrderItems(orderItems)
+  }
+
+  function initDelivery() {
+    let delivery = [true, false, false, 1]
+    setDelivery(delivery)
+  }
+
+  function getdeliveryState(vlaue) {
+    delivery[3] = vlaue
+    setDelivery(delivery)
+  }
+
+  useEffect(() => {
+    getCart()
+    getMerchantCarts()
+    initDelivery()
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
+    calculateSum()
+  }, [merchantCarts])
+
+  useEffect(
+    () => {
+      getOrderItems()
+    },
+    [sum],
+    [delivery]
+  )
+
   return (
     <div className="cart-page">
       <Container>
         <CheckoutNav />
-        <div className="border rounded-top">
-          <Row className="cart-infobar rounded-top py-3 m-0">
-            <Col md={5}>
-              <div className="form-check">
-                <input className="form-check-input" type="checkbox" />
+        {merchantCarts &&
+          merchantCarts.map((merchantCart, index) => {
+            return (
+              <div className="border rounded-top cart-item" key={index}>
+                <Row className="cart-infobar rounded-top py-3 m-0">
+                  <Col md={5}>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        checked={merchantCart.allChecked}
+                        data-name="allChecked"
+                        onChange={(e) =>
+                          checkAll(merchantCart.merchant_id, e.target.checked)
+                        }
+                      />
+                    </div>
+                    <span className="product-titlebar ml-5">
+                      {merchantCart.brand_name}
+                    </span>
+                  </Col>
+                  <Col md={2} className="text-right pr-5">
+                    單價
+                  </Col>
+                  <Col md={3} className="text-center">
+                    數量
+                  </Col>
+                  <Col md={1} className="text-right p-0">
+                    小計
+                  </Col>
+                  <Col md={1} className="text-right">
+                    <FaTimes />
+                  </Col>
+                </Row>
+                {merchantCart.products.map((product, index) => {
+                  return (
+                    <CartItem
+                      product={product}
+                      merchantCarts={merchantCarts}
+                      setMerchantCarts={setMerchantCarts}
+                      cart={getCart()}
+                      setCart={setCart}
+                      checkOne={checkOne}
+                    />
+                  )
+                })}
               </div>
-              <span className="product-titlebar ml-5">日本雙山</span>
-            </Col>
-            <Col md={2} className="text-right pr-5">
-              單價
-            </Col>
-            <Col md={3} className="text-center">
-              數量
-            </Col>
-            <Col md={1} className="text-right">
-              小計
-            </Col>
-            <Col md={1} className="text-right">
-              <FaTimes />
-            </Col>
-          </Row>
-          <Row className="cart-item py-3 m-0">
-            <Col md={5} className="d-flex">
-              <div className="form-check align-self-center item-check">
-                <input className="form-check-input" type="checkbox" />
-              </div>
-              <div className="item-product ml-4 d-flex">
-                <img
-                  src={require('../../assets/img/products/1-paper/PT01_300x0.jpg')}
-                />
-                <div className="ml-5">
-                  <p className="item-title">南國的孩子 手寫數字章 (22個入)</p>
-                  <span>規格：單一規格</span>
-                </div>
-              </div>
-            </Col>
-            <Col
-              md={2}
-              className="text-right align-self-center font-point pr-5"
-            >
-              NT780
-            </Col>
-            <Col md={3} className="d-flex">
-              <Form.Group className="mb-0 align-self-center">
-                <div
-                  className="btn-group border rounded w-75 quantity-group"
-                  role="group"
-                  aria-label="Basic example"
-                >
-                  <button type="button" className="btn btn-sm border-right">
-                    -
-                  </button>
-                  <Form.Control
-                    type="number"
-                    placeholder="1"
-                    className="quantity border-0 rounded-0"
-                  />
-                  <button type="button" className="btn btn-sm border-left">
-                    +
-                  </button>
-                </div>
-              </Form.Group>
-            </Col>
-            <Col md={1} className="text-right align-self-center font-point">
-              NT780
-            </Col>
-            <Col md={1} className="text-right align-self-center">
-              <FaTimes />
-            </Col>
-          </Row>
-          <div className="item-hr"></div>
-          <Row className="cart-item py-3 m-0">
-            <Col md={5} className="d-flex">
-              <div className="form-check align-self-center item-check">
-                <input className="form-check-input" type="checkbox" />
-              </div>
-              <div className="item-product ml-4 d-flex">
-                <img
-                  src={require('../../assets/img/products/1-paper/PT02_300x0.jpg')}
-                />
-                <div className="ml-5">
-                  <p className="item-title">南國的孩子 手寫數字章 (22個入)</p>
-                  <span>規格：單一規格</span>
-                </div>
-              </div>
-            </Col>
-            <Col
-              md={2}
-              className="text-right align-self-center font-point pr-5"
-            >
-              NT780
-            </Col>
-            <Col md={3} className="d-flex">
-              <Form.Group className="mb-0 align-self-center">
-                <div
-                  className="btn-group border rounded w-75 quantity-group"
-                  role="group"
-                  aria-label="Basic example"
-                >
-                  <button type="button" className="btn btn-sm border-right">
-                    -
-                  </button>
-                  <Form.Control
-                    type="number"
-                    placeholder="1"
-                    className="quantity border-0 rounded-0"
-                  />
-                  <button type="button" className="btn btn-sm border-left">
-                    +
-                  </button>
-                </div>
-              </Form.Group>
-            </Col>
-            <Col md={1} className="text-right align-self-center font-point">
-              NT780
-            </Col>
-            <Col md={1} className="text-right align-self-center">
-              <FaTimes />
-            </Col>
-          </Row>
-        </div>
+            )
+          })}
         <Row className="delivery-pay-info">
           <Col md={6}>
             <div className="border rounded-top cart-infobar p-3">配送方式</div>
@@ -141,23 +216,29 @@ function Cart(props) {
                   <Col>
                     <Form.Check
                       type="radio"
-                      label="7-11 取貨"
+                      label="宅配到府"
                       name="formHorizontalRadios"
                       id="formHorizontalRadios1"
                       className="mb-3"
-                    />
-                    <Form.Check
-                      type="radio"
-                      label="宅配到府"
-                      name="formHorizontalRadios"
-                      id="formHorizontalRadios2"
-                      className="mb-3"
+                      checked={delivery[0]}
+                      onChange={() => getdeliveryState(1)}
                     />
                     <Form.Check
                       type="radio"
                       label="郵局配送"
                       name="formHorizontalRadios"
+                      id="formHorizontalRadios2"
+                      className="mb-3"
+                      checked={delivery[1]}
+                      onChange={() => getdeliveryState(1)}
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="7-11 取貨"
+                      name="formHorizontalRadios"
                       id="formHorizontalRadios3"
+                      checked={delivery[2]}
+                      onChange={() => getdeliveryState(2)}
                     />
                   </Col>
                 </Form.Group>
@@ -177,8 +258,8 @@ function Cart(props) {
                   </p>
                 </div>
                 <div className="text-right">
-                  <p>NT$1440</p>
-                  <p>NT$60</p>
+                  <p>NT${sum}</p>
+                  <p>NT${sum > 2000 ? 0 : 60}</p>
                   <p className="mb-0 font-point">- NT$0</p>
                 </div>
               </div>
@@ -188,9 +269,19 @@ function Cart(props) {
                   <p>付款總計</p>
                 </div>
                 <div className="text-right">
-                  <p className="font-point pay-total">NT$4200</p>
+                  <p className="font-point pay-total">
+                    NT${sum > 2000 ? sum : sum + 60}
+                  </p>
                 </div>
               </div>
+              <Link to={`/cart_payment`}>
+                <button
+                  className="btn btn-danger w-100 mt-3"
+                  onClick={() => props.replaceOrderItems(orderItems)}
+                >
+                  前往結帳
+                </button>
+              </Link>
             </div>
           </Col>
         </Row>
@@ -199,4 +290,10 @@ function Cart(props) {
   )
 }
 
-export default Cart
+const mapStateToProps = (store) => {
+  return { type: store.orderItems }
+}
+
+export default connect(mapStateToProps, {
+  replaceOrderItems,
+})(Cart)
