@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Row, Dropdown, Form } from 'react-bootstrap'
 import { AiOutlineEdit } from 'react-icons/ai'
 
-const productsContent = (props) => {
+const ProductsContent = (props) => {
   const { data } = props
   return (
     <>
@@ -39,7 +39,7 @@ const productsContent = (props) => {
               <div className="specification">
                 {item.specification.replace(/,/g, ',\n')}
               </div>
-              <div className="title unitPrice">{item.price}</div>
+              <div className="title unitPrice">${item.price}</div>
               <div className="title stock">{item.stocks}</div>
               <div className="title soldAmount">1</div>
               <Dropdown className="actions">
@@ -60,4 +60,4 @@ const productsContent = (props) => {
   )
 }
 
-export default productsContent
+export default ProductsContent

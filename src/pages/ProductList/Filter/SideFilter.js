@@ -4,26 +4,32 @@ import { Button } from 'react-bootstrap'
 import StarRating from '../../../components/StarRating'
 import 'rc-slider/assets/index.css'
 import './SideFilter.scss'
+import { event } from 'jquery'
 
 const SideFilter = (props) => {
+  const { ecoin, setEcoin } = props
   // setting PriceRang
-  const [price, setPrice] = useState([400, 1300])
+  const [price, setPrice] = useState([500, 6000])
 
   //setting handlePrice step
   const sliderProps = {
     min: 0,
-    max: 2000,
-    step: 50,
+    max: 10000,
+    step: 100,
     marks: {
       0: 0,
-      1000: 1000,
-      2000: 2000,
+      5000: 5000,
+      10000: 10000,
     },
   }
 
   const onSliderChange = (price) => {
     console.log(price)
     setPrice(price)
+  }
+
+  const checkUseEcoin = () => {
+    setEcoin(!ecoin)
   }
 
   return (
@@ -39,7 +45,7 @@ const SideFilter = (props) => {
             </div>
             <Range
               allowCross={false}
-              defaultValue={[400, 1300]}
+              defaultValue={[500, 6000]}
               onChange={onSliderChange}
               {...sliderProps}
             />
@@ -75,7 +81,7 @@ const SideFilter = (props) => {
           <h6 className="title">其他篩選</h6>
           <div>
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" checked={ecoin} onChange={checkUseEcoin} />
               可用e幣
             </label>
           </div>

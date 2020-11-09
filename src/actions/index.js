@@ -1,13 +1,23 @@
-import { userConstants, roleTypes, alertConstants } from './actiontypes'
+import {
+  userConstants,
+  roleTypes,
+  alertConstants,
+  REPLACE_ORDER_ITEMS,
+  ADD_TO_CART,
+  UPDATE_CART_UNITS,
+} from './actiontypes'
+import { createBrowserHistory } from 'history'
+
 import History from '../components/history'
+const history = createBrowserHistory()
 export const userActions = { login, logout }
 export const roleActions = { setMember, setMerchant, setNeeds }
 export const alertActions = { success, error, clear }
 
 // login action
-function login(username, password, currentRole) {
+function login(username, password, selectedRole) {
   return (dispatch) => {
-    checkAuth(username, password, currentRole).then((user) => {
+    checkAuth(username, password, selectedRole).then((user) => {
       if (!user.success) {
         dispatch(failure())
         dispatch(error('帳號或密碼錯誤'))
@@ -26,9 +36,8 @@ function login(username, password, currentRole) {
   }
 }
 
-const checkAuth = (username, password, currentRole) => {
-  const url = `http://122.116.38.12:5050/login-api/${currentRole}login`
-  console.log(url)
+const checkAuth = (username, password, selectedRole) => {
+  const url = `http://122.116.38.12:5050/login-api/${selectedRole}login`
   const req = new Request(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -108,4 +117,28 @@ function error(message) {
 
 function clear() {
   return { type: alertConstants.CLEAR }
+}
+
+export function replaceOrderItems(item) {
+  return (dispatch) => {
+    dispatch(replaceOrderItem(item))
+  }
+
+  function replaceOrderItem(item) {
+    return { type: REPLACE_ORDER_ITEMS, item }
+  }
+}
+
+// cart action
+export function addToCartAction({ id, title, image_path, price, units }) {
+  return {
+    type: ADD_TO_CART,
+    payload: { id, title, image_path, price, units },
+  }
+}
+export function updateCartUnits({ id, units, price }) {
+  return {
+    type: UPDATE_CART_UNITS,
+    payload: { id, units, price },
+  }
 }

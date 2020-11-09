@@ -12,7 +12,7 @@ const MerchantLogin = (props) => {
     setUsername,
     setPassword,
     handleSubmit,
-    currentRole,
+    selectedRole,
     setMember,
     setMerchant,
     setNeeds,
@@ -46,7 +46,7 @@ const MerchantLogin = (props) => {
             <Button
               variant="link"
               className={`pl-1 seperator ${
-                currentRole === 'merchant' ? 'actived' : ''
+                selectedRole === 'merchant' ? 'actived' : ''
               }`}
               onClick={setMerchant}
             >
@@ -97,15 +97,6 @@ const MerchantLogin = (props) => {
                   LOGIN
                 </Button>
               </Form>
-              {/* For Logout Test */}
-              <Button
-                variant="primary"
-                className="mt-2"
-                type="button"
-                onClick={() => logout()}
-              >
-                LOGOUT TEST
-              </Button>
             </div>
           </div>
         </div>

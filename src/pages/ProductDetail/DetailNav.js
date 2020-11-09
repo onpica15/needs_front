@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap'
 
 function DetailNav(props) {
   return (
-    <div className="detail-nav sticky-top font-s">
+    <div className="detail-nav font-s">
       <Container>
         <ul className="sticky-nav-item">
           <li>

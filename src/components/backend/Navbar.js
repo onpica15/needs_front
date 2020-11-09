@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import {
   Col,
   Container,
-  Breadcrumb,
   Nav,
   Dropdown,
   NavItem,
@@ -11,6 +10,8 @@ import {
 } from 'react-bootstrap'
 import avatar from '../../pages/BackEnd/Dashboard/images/book.jpg'
 import customer from '../../pages/BackEnd/Dashboard/images/australia-customer.jpg'
+import BreadcrumbBackend from './Breadcrumb'
+import { userActions } from '../../actions'
 
 function Navbar() {
   const openFullscreen = () => {
@@ -19,17 +20,17 @@ function Navbar() {
       elem.requestFullscreen()
     }
   }
+
+  //logout
+  const { logout } = userActions
+
   return (
     <>
       <div className="backend-navbar-wrapper">
         <Col className="main offset-2" xs={10}>
           <Container fluid className="main-bg">
             <div className="main-navbar d-flex">
-              <Breadcrumb>
-                <Breadcrumb.Item active href="#">
-                  Dashboard
-                </Breadcrumb.Item>
-              </Breadcrumb>
+              <BreadcrumbBackend />
               <Nav variant="pills" activeKey="1" onSelect={openFullscreen}>
                 <Nav.Item className="nav-icon">
                   <Nav.Link eventKey="1" href="#/home">
@@ -120,7 +121,6 @@ function Navbar() {
                 <NavItem className="staff-info">
                   <div
                     style={{
-                      padding: '0px 0.5rem 0.5rem',
                       textAlign: 'end',
                     }}
                   >
@@ -152,7 +152,12 @@ function Navbar() {
                       個人資料
                       <div className="dropdown-divider"></div>
                     </Dropdown.Item>
-                    <Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={(e) => {
+                        e.preventDefault()
+                        logout()
+                      }}
+                    >
                       <i className="fas fa-sign-out-alt pr-2" />
                       登出
                       {/* <div className="dropdown-divider"></div> */}

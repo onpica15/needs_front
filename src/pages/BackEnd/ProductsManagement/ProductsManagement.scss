@@ -27,13 +27,6 @@ $primary_focus: #7367f0;
     letter-spacing: 1.2px;
   }
 
-  .col-1,
-  .col-2,
-  .col-3,
-  .col-4 {
-    padding: 0;
-  }
-
   .btn {
     font-family: 'Noto Sans TC', sans-serif;
     font-size: 1 rem;
@@ -183,11 +176,20 @@ $primary_focus: #7367f0;
         background-color: $white;
         border-radius: 10px;
         box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        &:hover {
+          transform: translateY(-4px);
+          transition: transform 0.3s ease 0s;
+          cursor: pointer;
+        }
         .actions {
           .btn-light {
             box-shadow: none;
             border: none;
             background-color: $white;
+            &:hover {
+              transform: scale(1.2);
+              transition: transform 0.35s ease 0s;
+            }
           }
           .dropdown-menu {
             min-width: 0;

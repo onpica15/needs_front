@@ -7,8 +7,9 @@ import History from './components/history'
 //平台
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import Home from './pages/Home'
+import FixedButtons from './components/FixedButtons'
 
+import Home from './pages/Home'
 import MemberCard from './pages/Member/MemberCard'
 import MemberShop from './pages/Member/MemberShop'
 import MemberLike from './pages/Member/MemberLike'
@@ -21,6 +22,7 @@ import ProductList from './pages/ProductList/ProductList'
 import MerchantHome from './pages/MerchantHome/Narrative'
 import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
+import Payment from './pages/Payment'
 import Login from './pages/Login/Login'
 import SignUp from './pages/Login/SignUp'
 
@@ -35,7 +37,10 @@ import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEdite
 import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
 import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
 import ArticleDetial from './pages/Article/ArticleDetial'
+import TestArticleDetial from './pages/Article/TestArticleDetial'
 import ProductsManagement from './pages/BackEnd/ProductsManagement'
+import ContractsManagement from './pages/BackEnd/ContractsManagement'
+import OrdersManagement from './pages/BackEnd/OrdersManagement'
 
 
 //設置layout props
@@ -52,6 +57,7 @@ const DynamicLayoutRoute = (props) => {
       return (
         <>
           <Navbar />
+          <FixedButtons />
           {actualRouteComponent}
           <Footer />
         </>
@@ -109,8 +115,13 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/cart"
+            path="/cart_list"
             component={Cart}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/cart_payment"
+            component={Payment}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
@@ -124,6 +135,11 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
+            path="/article/:id"
+            component={TestArticleDetial}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
             path="/articledetial"
             component={ArticleDetial}
             layout="FRONT_END_NAV"
@@ -134,7 +150,7 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/member/card"
+            path="/member/card/:userid?"
             component={MemberCard}
             layout="FRONT_END_NAV"
           />
@@ -216,8 +232,18 @@ function App(props) {
             layout="BACK_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/customer-backend/productsmanagement"
+            path="/customer-backend/products-management"
             component={ProductsManagement}
+            layout="BACK_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/customer-backend/contracts-management"
+            component={ContractsManagement}
+            layout="BACK_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/customer-backend/orders-management"
+            component={OrdersManagement}
             layout="BACK_END_NAV"
           />
         </Switch>
