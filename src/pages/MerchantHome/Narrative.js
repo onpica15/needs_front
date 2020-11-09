@@ -6,23 +6,23 @@ import {
   } from 'react-bootstrap'
 import './styles/Narrative.scss'
 
-function MerchantHome(){
+function Narrative(){
 
 
     return(
         <>
           <div className="Narrative">
             
-            <div className="sec1_background"></div>
+          <div className="sec1_background"></div>
           <div className="background-color"></div>
-          <Container>
+          <Container className="p-0">
             <div className="sec1 d-flex">
-            <div className="sec1_avatar">
+            <div className="sec1_avatar m-auto">
               <div className="d-flex mx-auto">
                 <div className="d-flex ml-3">  
                 <div className="d-flex flex-column align-items-center">
                 
-                <div className="avatar rounded pb-3 ml-5"></div>
+                <div className="avatar rounded pb-3"></div>
                   <button className="store-follower-btn rounded">+關注</button>
                 </div>
                   
@@ -86,10 +86,10 @@ function MerchantHome(){
               </div>
               
             </div>
-
+{/* 
             <div className="sec3">
               商品列表
-            </div>
+            </div> */}
 
             <div className="sec4">
               {/* <div className="activities-wrapper d-flex align-items-end m-auto"> */}
@@ -111,7 +111,7 @@ function MerchantHome(){
               {/* </div> */}
             </div>
 
-            <div className="sec5 p-5">
+            <div className="sec5 pb-5">
 
             <div className="m-auto">
               <div className=" underline-wrapper">
@@ -138,4 +138,4 @@ function MerchantHome(){
         </>
     )
 }
-export default MerchantHome
+export default Narrative

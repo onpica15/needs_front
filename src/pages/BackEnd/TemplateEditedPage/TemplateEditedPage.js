@@ -9,50 +9,20 @@ import {
 
 import './styles/TemplateEditedPage.scss'
 import { GrMoreVertical } from "react-icons/gr";
-import Templatepic1 from './images/Atlanta_pro.png'
 import { BsFillEyeFill,BsFillEyeSlashFill } from "react-icons/bs";
-import { Upload, message } from 'antd';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+
+import TemplateUpload from './TemplateUpload'
+import { css } from "@emotion/core";
+import ClipLoader from "react-spinners/ClipLoader";
+import Narrative from '../../MerchantHome/Narrative'
+
+
 
 function TemplateEditedPage(props) {
 const [eyeshow,setEyeShow]= useState(true)
+const toggleEyeShow = (e) => setEyeShow(!eyeshow);
 
 // fileuplaod
-
-const [loading,setLoading] = useState(false)
-const handleChange = info => {
-  if (info.file.status === 'uploading') {
-    this.setState({ loading: true });
-    return;
-  }
-  if (info.file.status === 'done') {
-    // Get this url from response in real world.
-    getBase64(info.file.originFileObj, imageUrl =>
-      this.setState({
-        imageUrl,
-        loading: false,
-      }),
-    );
-  }
-};
-
-function getBase64(img, callback) {
-  const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result));
-  reader.readAsDataURL(img);
-}
-
-function beforeUpload(file) {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-  if (!isJpgOrPng) {
-    message.error('You can only upload JPG/PNG file!');
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
-  }
-  return isJpgOrPng && isLt2M;
-}
 
 
   return(
@@ -62,14 +32,18 @@ function beforeUpload(file) {
     <div className="container-fluid mt-2">
 
     {/* edit-bar */}
+    <Col className="xs={10} p-0">
     <div className="d-flex ">
+    <div className="space">
     <div className="edit-bar">
         <Accordion defaultActiveKey="0">
         <Card>
           <Card.Header className ="rounded">
             <div className="d-flex justify-content-start">
             {/* onClick={toggleShowHandler} */}
-              <Button variant="light" ><BsFillEyeFill/></Button>
+              <Button variant="light" onClick={toggleEyeShow}> 
+              {eyeshow?<BsFillEyeFill/>:<BsFillEyeSlashFill/>}
+              </Button>
               <Accordion.Toggle as={Button} variant="light" eventKey="0">
                   <GrMoreVertical />
                 </Accordion.Toggle>    
@@ -77,7 +51,7 @@ function beforeUpload(file) {
           </Card.Header>
           <Accordion.Collapse eventKey="0">
             <Card.Body>
-              sec1(圖＋文字＋換顏色)
+              <TemplateUpload />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -87,7 +61,9 @@ function beforeUpload(file) {
         <Card>
           <Card.Header className ="rounded">
             <div className="d-flex justify-content-start">
-              <Button variant="light"><BsFillEyeFill/></Button>
+            <Button variant="light" onClick={toggleEyeShow}> 
+              {eyeshow ? <BsFillEyeFill/>:<BsFillEyeSlashFill/>}
+              </Button>
               <Accordion.Toggle as={Button} variant="light" eventKey="1">
                   <GrMoreVertical />
                 </Accordion.Toggle>    
@@ -105,7 +81,9 @@ function beforeUpload(file) {
         <Card>
           <Card.Header className ="rounded">
             <div className="d-flex justify-content-start">
-              <Button variant="light"><BsFillEyeFill/></Button>
+            <Button variant="light" onClick={toggleEyeShow}> 
+              {eyeshow?<BsFillEyeFill/>:<BsFillEyeSlashFill/>}
+              </Button>
               <Accordion.Toggle as={Button} variant="light" eventKey="2">
                   <GrMoreVertical />
                 </Accordion.Toggle>    
@@ -123,7 +101,9 @@ function beforeUpload(file) {
         <Card>
           <Card.Header className ="rounded">
             <div className="d-flex justify-content-start">
-              <Button variant="light"><BsFillEyeFill/></Button>
+            <Button variant="light" onClick={toggleEyeShow}> 
+              {eyeshow?<BsFillEyeFill/>:<BsFillEyeSlashFill/>}
+              </Button>
               <Accordion.Toggle as={Button} variant="light" eventKey="3">
                   <GrMoreVertical />
                 </Accordion.Toggle>    
@@ -137,12 +117,15 @@ function beforeUpload(file) {
         </Card>
         </Accordion>
         </div>
+    </div>
+
         {/* change section*/}
 
-        <div className="change-section">
-
+        <div className="change-section rounded">
+            <Narrative />
         </div>
     </div>
+    </Col>
 
     </div>
     </Col>

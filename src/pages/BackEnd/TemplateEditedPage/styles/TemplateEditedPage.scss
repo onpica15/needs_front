@@ -1,8 +1,12 @@
 
 .template-editPage{
+    .space{
+        width: 300px;
+    }
     .edit-bar{
         margin-top: 30px;
-        width: 250px;
+        width: 300px;
+        position:fixed;
     }
     .main-small-pic{
         width: 200px;
@@ -12,8 +16,15 @@
 .template-editPage{
     .change-section{
         margin-top: 30px;
-        margin-left: 30px;
-        border:1px solid olive;
-        width: 600px;
+        margin-left: 10px;
+        margin-bottom: 100px;
+        border:1px solid #f0f0f0;
+        width: 1112px;
+        position: absolute;
+        left: 300px;
+    }
+    .template-upload{
+        width: 200px;
+        height: 200px;
     }
 }

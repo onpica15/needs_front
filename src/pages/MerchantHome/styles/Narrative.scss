@@ -1,5 +1,5 @@
 
-.merchantHome{
+.Narrative{
     h2,
     h4,
     h5,
@@ -28,14 +28,14 @@
     .background-color{
       background-color:#323232;
       min-height: 35vh;
-      width: 59%;
-      padding-top: 35px;
+      width: 57%;
+      padding-top: 45px;
       position: absolute;
     }
     .sec1_avatar{
       min-height: 35vh;
       width: 60%;
-      padding-top: 35px;
+      padding-top: 50px;
       position: relative;
       h2
       ,h4{
@@ -48,7 +48,7 @@
         width: 180px;
         background-image: url('../images/head_1.png');
         background-size: cover;
-        margin:1rem 3rem 1rem 5rem
+        margin:1rem 3rem 1rem 3rem
       }
       .store-follower-btn {
         margin-bottom: 1rem;
@@ -73,8 +73,8 @@
     }
     .sec1_info{
       min-height: 35vh;
-      width: 45%;
-      padding:5rem 1rem 2rem 7rem;
+      width: 43%;
+      padding:55px 0rem 0rem 7rem;
       .row1{
         margin-bottom: 2rem;
       }
@@ -84,7 +84,7 @@
     }
 }
 
-.merchantHome{
+.Narrative{
   .sec2{
     background-color: #f0f0f0;
     height: 100vh;
@@ -103,11 +103,11 @@
     }
   }
   .product-bg-pic{
-    height: 72vh;
-    width: 72vh;
+    height: 60vh;
+    width: 60vh;
     background-image: url('../images/product_bg_1.jpg');
     background-size: cover;
-    margin-right: 100px;
+    margin-right: 30px;
     
   }
   .product-sml-pic{
@@ -136,6 +136,7 @@
       height: 40vh;
       width: 60%;
       border: 3px solid #8e8e8e;
+      padding-right: 40px;
       position: relative;
     }
 
@@ -176,7 +177,7 @@
       }
     }
   .sec5{
-    height: 40vh;
+    // height: 40vh;
     width: 100%;
     background-color: #fff;
     padding-left: 100px;
