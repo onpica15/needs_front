@@ -1,14 +1,24 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { Row, Button, Form } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import Axios from 'axios'
+import { Row, Button, Form, Modal } from 'react-bootstrap'
 import { AiOutlineEdit, AiOutlineSave, AiOutlinePlus } from 'react-icons/ai'
+import { alertActions } from '../../../../actions'
 
 const OrdersContent = (props) => {
-  const { data } = props
+  const { data, merchantId, type, getData, searchType, searchInp } = props
+
+  const dispatch = useDispatch()
+  const { error, success, clear } = alertActions
+
   const [isEdited, SetIsEdited] = useState([])
   const [open, setOpen] = useState([])
-  const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({})
+  const [alertShow, setAlertShow] = useState(false)
+
+  const alerMsg = useSelector((state) => state.alert.message)
+  const alerType = useSelector((state) => state.alert.type)
 
   const mapStatus = {
     0: '待付款',
@@ -37,13 +47,16 @@ const OrdersContent = (props) => {
     const newOpen = [...open]
     newOpen[index] = !open[index]
     setOpen(newOpen)
+    console.log(open)
   }
 
   const handleEdit = (index, item) => {
     const newIsEdited = [...isEdited]
     newIsEdited[index] = !isEdited[index]
     SetIsEdited(newIsEdited)
+
     setFormData({
+      id: item.id,
       status: item.status,
       reciever: item.reciever,
       phone_number: item.phone_number,
@@ -51,14 +64,35 @@ const OrdersContent = (props) => {
     })
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setSubmitted(true)
-  }
-
   const handleSetForm = (e, key) => {
     const value = e.target.value
     setFormData({ ...formData, [key]: value })
+  }
+
+  const handleSubmit = (index) => {
+    Axios.put(
+      `http://122.116.38.12:5050/bk-orders-api/list?id=${merchantId}&filter=${type}`,
+      formData
+    ).then((res) => {
+      if (!res.data.success) {
+        setAlertShow(true)
+        setTimeout(() => {
+          dispatch(clear())
+          setAlertShow(false)
+        }, 1500)
+        return dispatch(error('修改失敗'))
+      }
+      setAlertShow(true)
+      const newArr = [...isEdited]
+      newArr[index] = !newArr[index]
+      SetIsEdited(newArr)
+      getData(merchantId, type, searchType, searchInp)
+      setTimeout(() => {
+        dispatch(clear())
+        setAlertShow(false)
+      }, 1500)
+      return dispatch(success('修改成功'))
+    })
   }
 
   return (
@@ -119,7 +153,9 @@ const OrdersContent = (props) => {
                   <Button
                     variant="light"
                     onClick={(e) => {
-                      isEdited[index] ? handleSubmit() : handleEdit(index, item)
+                      isEdited[index]
+                        ? handleSubmit(index)
+                        : handleEdit(index, item)
                     }}
                   >
                     {isEdited[index] ? (
@@ -230,9 +266,12 @@ const OrdersContent = (props) => {
             </div>
           )
         })}
+        <Modal show={alertShow} centered className="orderModal">
+          <Modal.Body className={alerType}>{alerMsg}</Modal.Body>
+        </Modal>
       </div>
     </>
   )
 }
 
-export default OrdersContent
+export default withRouter(OrdersContent)

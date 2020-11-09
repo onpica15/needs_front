@@ -289,3 +289,11 @@ $primary_focus: #7367f0;
     }
   }
 }
+
+.orderModal .modal-dialog {
+  width: 250px;
+  .modal-body {
+    text-align: center;
+    padding: 40px;
+  }
+}

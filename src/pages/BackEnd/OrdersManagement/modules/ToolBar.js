@@ -4,7 +4,21 @@ import { Row, Button, InputGroup, Form, FormControl } from 'react-bootstrap'
 import { AiOutlineSearch } from 'react-icons/ai'
 
 const ToolBar = (props) => {
-  const { type, setType, viewType, setViewType } = props
+  const {
+    merchantId,
+    type,
+    setType,
+    getData,
+    searchType,
+    setSearchType,
+    searchInp,
+    setSearchInp,
+  } = props
+
+  const handleSubmit = (merchantId, type, searchType, searchInp) => {
+    getData(merchantId, type, searchType, searchInp)
+  }
+
   return (
     <>
       <Row className="toolsSec my-3">
@@ -39,15 +53,29 @@ const ToolBar = (props) => {
           </Button>
         </div>
         <Form className="searchBar">
-          <Form.Control as="select" id="inlineFormCustomSelect" custom>
+          <Form.Control
+            as="select"
+            id="inlineFormCustomSelect"
+            custom
+            onChange={(e) => setSearchType(e.target.value)}
+          >
             <option value="0">訂單編號</option>
             <option value="1">訂購人電話</option>
-            <option value="1">訂購人姓名</option>
+            <option value="2">訂購人姓名</option>
           </Form.Control>
           <InputGroup>
-            <FormControl aria-describedby="basic-addon1" />
+            <FormControl
+              aria-describedby="basic-addon1"
+              onChange={(e) => setSearchInp(e.target.value)}
+            />
           </InputGroup>
-          <Button variant="light" className="searchbtn" type="submit">
+          <Button
+            variant="light"
+            className="searchbtn"
+            onClick={(e) =>
+              handleSubmit(merchantId, type, searchType, searchInp)
+            }
+          >
             <AiOutlineSearch size="24px" />
           </Button>
         </Form>

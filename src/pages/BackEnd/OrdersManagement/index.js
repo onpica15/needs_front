@@ -13,6 +13,9 @@ const OrdersManagement = (props) => {
   const [type, setType] = useState('all')
   const [viewType, setViewType] = useState('list')
 
+  const [searchType, setSearchType] = useState(0)
+  const [searchInp, setSearchInp] = useState('')
+
   // const merchantId = useSelector((state) => state.authentication.user.user.id)
   const [merchantId, setMerchantId] = useState(12)
   const [data, setData] = useState([])
@@ -26,10 +29,10 @@ const OrdersManagement = (props) => {
     window.scrollTo(0, 0)
   }
 
-  const getData = (merchantId, type) => {
+  const getData = (merchantId, type, searchType, searchInp) => {
     //跟server拿資料
     Axios.get(
-      `http://122.116.38.12:5050/bk-orders-api/list?id=${merchantId}&filter=${type}&page=${currentPage}`
+      `http://122.116.38.12:5050/bk-orders-api/list?id=${merchantId}&filter=${type}&page=${currentPage}&searchType=${searchType}&searchInp=${searchInp}`
     )
       .then((res) => {
         const data = res.data.rows
@@ -60,7 +63,7 @@ const OrdersManagement = (props) => {
 
   //type跟currentPage改變觸發filter
   useEffect(() => {
-    getData(merchantId, type)
+    getData(merchantId, type, searchType, searchInp)
   }, [currentPage, type])
 
   return (
@@ -69,12 +72,26 @@ const OrdersManagement = (props) => {
         <Col className="main offset-2" xs={10}>
           <Container fluid main>
             <ToolBar
+              merchantId={merchantId}
               type={type}
+              currentPage={currentPage}
               setType={setType}
               viewType={viewType}
               setViewType={setViewType}
+              searchType={searchType}
+              setSearchType={setSearchType}
+              searchInp={searchInp}
+              setSearchInp={setSearchInp}
+              getData={getData}
             />
-            <OrdersContent data={data} />
+            <OrdersContent
+              data={data}
+              merchantId={merchantId}
+              type={type}
+              searchInp={searchInp}
+              setSearchInp={setSearchInp}
+              getData={getData}
+            />
             <BackendPagination
               pageItems={pageItems}
               currentPage={currentPage}
