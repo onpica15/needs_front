@@ -3,6 +3,7 @@ import { authentication } from './authenticationReducer'
 import { alert } from './alertReducer'
 import { handleRole } from './roleReducer'
 import { orderContent } from './orderItemsReducer'
+import { orderId } from './orderIdReducer'
 
 import cartReducer from './cartReducer'
 
@@ -11,5 +12,6 @@ export const rootReducer = combineReducers({
   handleRole,
   alert,
   orderContent,
+  orderId,
   cart: cartReducer,
 })

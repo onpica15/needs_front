@@ -3,6 +3,7 @@ import {
   roleTypes,
   alertConstants,
   REPLACE_ORDER_ITEMS,
+  REPLACE_ORDER_ID,
   ADD_TO_CART,
   UPDATE_CART_UNITS,
 } from './actiontypes'
@@ -119,6 +120,7 @@ function clear() {
   return { type: alertConstants.CLEAR }
 }
 
+// orderItems
 export function replaceOrderContent(item) {
   return (dispatch) => {
     dispatch(orderContent(item))
@@ -126,6 +128,16 @@ export function replaceOrderContent(item) {
 
   function orderContent(item) {
     return { type: REPLACE_ORDER_ITEMS, item }
+  }
+}
+// orderId
+export function replaceOrderId(item) {
+  return (dispatch) => {
+    dispatch(orderId(item))
+  }
+
+  function orderId(item) {
+    return { type: REPLACE_ORDER_ID, item }
   }
 }
 

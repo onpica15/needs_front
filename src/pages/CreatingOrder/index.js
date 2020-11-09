@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, Form, Accordion, Card } from 'react-bootstrap'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter, useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { IoIosArrowDown } from 'react-icons/io'
 import { useSelector } from 'react-redux'
-import './cartPayment.scss'
+import { replaceOrderId } from '../../actions'
+import './creatingOrder.scss'
 
 import CheckoutNav from './CheckoutNav'
 import CartItems from './CartItems'
 
-function Payment(props) {
-  console.log(props)
+function CreatingOrder(props) {
+  // console.log(props)
   const loginUser = useSelector((state) => state.authentication.user)
   const [userInfo, setUserInfo] = useState([])
   const [payment, setPayment] = useState(1)
   const products = props.orderContent.products || []
+  const history = useHistory()
 
   async function getUserInfo() {
     const url = `http://localhost:5000/products/userInfo`
@@ -50,7 +52,11 @@ function Payment(props) {
     })
     const response = await fetch(request)
     const data = await response.json()
-    console.log(orderData)
+    console.log('=== creatOrder start ===')
+    console.log(data)
+    console.log('=== creatOrder end ===')
+    props.replaceOrderId(data)
+    history.push('/order_payment')
   }
 
   function changeUserInfo(event) {
@@ -69,7 +75,7 @@ function Payment(props) {
   }, [products])
 
   return (
-    <div className="cart-payment-page">
+    <div className="creating-order-page">
       <Container>
         <CheckoutNav />
         <Accordion defaultActiveKey="0" className="mb-4">
@@ -199,7 +205,7 @@ function Payment(props) {
                   </Col>
                 </Form.Group>
               </fieldset>
-              {/* <Link to={`/cart_list`}> */}
+              {/* <Link to={`/order_payment`}> */}
               <button
                 className="btn btn-danger w-100 mt-3"
                 onClick={() => {
@@ -218,7 +224,9 @@ function Payment(props) {
 }
 
 const mapStateToProps = (store) => {
-  return { orderContent: store.orderContent }
+  return { orderId: store.orderId, orderContent: store.orderContent }
 }
 
-export default connect(mapStateToProps)(Payment)
+export default connect(mapStateToProps, {
+  replaceOrderId,
+})(CreatingOrder)
