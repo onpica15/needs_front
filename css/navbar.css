@@ -1,0 +1,33 @@
+.navBlock {
+  height: 80px;
+  position: relative;
+  z-index: 10;
+}
+
+.navBlock .navbar.navbar-light {
+  width: 100%;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 300;
+  letter-spacing: 1.2px;
+  -webkit-box-shadow: 0px 3px 7px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 3px 7px 0 rgba(0, 0, 0, 0.1);
+  padding: 0 9.375%;
+}
+
+.navBlock .navbar.navbar-light .nav-logo {
+  padding: 20px 0;
+}
+
+.navBlock .navbar.navbar-light .nav-logo img {
+  width: 150px;
+  margin-top: -5px;
+}
+
+.navBlock .navbar.navbar-light .navbar-nav a {
+  color: #323232;
+}
+
+.navBlock .navbar.navbar-light .navbar-nav a .separator {
+  border-left: 1px solid #323232;
+}
+/*# sourceMappingURL=navbar.css.map */

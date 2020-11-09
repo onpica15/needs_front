@@ -36,14 +36,14 @@ const MemSidebar = () => {
   const updateavatar = async (val) => {
     setDataLoading(true)
     const newData = avatar
-    let url = `http://localhost:5000/member?id=${val}`
+    let url = `http://localhost:5000/member/edit/:id`
     const res = await axios
-    .post(url,newData)
-    .catch((err)=>console.log('Error'.err))
-    console.log('post-res',res)
-    setTimeout(()=>{
+      .post(url, newData)
+      .catch((err) => console.log('Error'.err))
+    console.log('post-res', res)
+    setTimeout(() => {
       setDataLoading(false)
-    },2000)
+    }, 2000)
   }
   useEffect(() => {
     if (isLogin) {
@@ -72,7 +72,18 @@ const MemSidebar = () => {
                 <MdAddAPhoto />
               </div>
 
-              <p className="whiteSpacePre">更換大頭貼 </p>
+              <label for="avatar" className="whiteSpacePre">
+                更換大頭貼
+              </label>
+              <input
+                ref={item.fileInput}
+                type="file"
+                class="form-control"
+                name="avatar"
+                onClick={() => {
+                  updateavatar()
+                }}
+              ></input>
             </div>
           </Link>
         </p>

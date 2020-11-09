@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap");
+.memcard .card {
+  margin-bottom: 30px;
+  padding: 20px;
+  width: 950px;
+  height: 600px;
+  border-radius: 10px;
+  border: solid 2px #d44f44;
+  -webkit-box-shadow: 6px 5px #e7e7e7;
+          box-shadow: 6px 5px #e7e7e7;
+}
+
+.memcard .wrapper .icons {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.memcard .wrapper a {
+  color: #323232;
+}
+
+.memcard .wrapper a .icons {
+  margin-top: -2px;
+  margin-left: 10px;
+}
+
+.memcard .container li {
+  margin-top: 30px;
+}
+
+.memshop .card {
+  margin-bottom: 30px;
+  padding: 20px;
+  width: 950px;
+  height: 600px;
+  border-radius: 10px;
+  border: solid 2px #d44f44;
+  -webkit-box-shadow: 6px 5px #e7e7e7;
+          box-shadow: 6px 5px #e7e7e7;
+}
+
+.memshop .wrapper .icons {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.memshop .wrapper a {
+  color: #323232;
+}
+
+.memshop .wrapper a .icons {
+  margin-top: -2px;
+  margin-left: 10px;
+}
+
+.memshop .topsidebar a.topbox:hover {
+  -webkit-box-shadow: 0 -3px #d44f44 inset;
+          box-shadow: 0 -3px #d44f44 inset;
+}
+
+.memshop .shoppinglist .listhead {
+  width: 850px;
+  height: 50px;
+  background-color: #cdcdcd;
+  margin-top: 20px;
+}
+
+.memshop .shoppinglist .box {
+  width: 90px;
+  height: 90px;
+  background-color: blue;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+/*# sourceMappingURL=member.css.map */

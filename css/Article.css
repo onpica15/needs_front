@@ -1,0 +1,42 @@
+.articleItems {
+  font-size: 16px;
+  color: #323232;
+}
+
+@media (max-width: 768px) {
+  .articleItems {
+    text-align: -webkit-center;
+  }
+}
+
+.articleItems .articleItem {
+  margin-bottom: 30px;
+}
+
+.articleItems .articleItem .articlePic {
+  max-width: 270px;
+}
+
+.articleItems .articleItem .articlePic img {
+  width: 100%;
+  height: 240px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.articleItems .articleItem .textArea .title {
+  font-size: 24px;
+  margin-bottom: 30px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.articleItems .articleItem .textArea .ctx {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+/*# sourceMappingURL=Article.css.map */
