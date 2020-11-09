@@ -11,7 +11,9 @@ $bg-light: #f0f0f0;
 .HistoryItem {
     font-size: 16px;
     margin-bottom: 30px;
-    max-width: 200px;
+    margin-right: 10px;
+    max-width: 210px;
+   
     @media (max-width:768px) {
         text-align:-webkit-center
     }

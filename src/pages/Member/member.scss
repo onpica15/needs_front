@@ -250,6 +250,17 @@ $shadow: #e7e7e7;
         a:active {
             color: $danger;
         }
+        
+        button {
+
+            margin-left: 20px;
+            
+            a{
+                color: $bg-light;
+            }
+            a:hover{
+                color: $bg-light;
+    }}
     }
 
     .container {

@@ -7,13 +7,16 @@ const Filter = (props) => {
   return (
     <>
       <div className="filter d-flex">
-        <div className="col-md-4">商品數量（ {props.totalPosts} ）</div>
-        <div className="filterRight col-md-8 d-flex justify-content-end">
-          <div className="choiceView">
+        <div className="col-4 d-flex">
+          <p className="info amountName">商品數量</p>
+          <p className="info amount">（ {props.totalPosts} ）</p>
+        </div>
+        <div className="filterRight col-8 d-flex justify-content-end">
+          <div className="choiceView mr-1">
             <MdViewComfy size={40} onClick={() => setProductView(true)} />
             <MdViewList size={40} onClick={() => setProductView(false)} />
           </div>
-          <label>排序方式:</label>
+          <label className="rightInfo">排序方式:</label>
           <select className="form-control" onChange={props.handleSort}>
             <option value="">請選擇</option>
             <option value="lastest">最新上架</option>

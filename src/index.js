@@ -13,14 +13,13 @@ function saveToLocalStorage(state) {
   try {
     // As below, It's storage all redux recode,
     // and you can open it, then check you wanna something to storage into the localStorage
+    const serializedState = JSON.stringify(state)
+    localStorage.setItem('state', serializedState)
 
-    // const serializedState = JSON.stringify(state)
-    // localStorage.setItem('state', serializedState)
-
-    const cart = JSON.stringify(state.cart)
-    localStorage.setItem('cart', cart)
-    const favorite = JSON.stringify(state.favorite)
-    localStorage.setItem('favorite', favorite)
+    // const cart = JSON.stringify(state.cart)
+    // localStorage.setItem('cart', cart)
+    // const favorite = JSON.stringify(state.favorite)
+    // localStorage.setItem('favorite', favorite)
   } catch (err) {
     console.log(err)
   }

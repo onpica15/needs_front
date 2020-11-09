@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-  withRouter,
-} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 
@@ -18,18 +12,38 @@ import { FaShoppingBag, FaStore, FaCoins } from 'react-icons/fa'
 import { RiMessage2Fill } from 'react-icons/ri'
 import { MdAddAPhoto } from 'react-icons/md'
 
-const MemSidebar = () => {
-  const [memsidebar, setMemsidebar] = useState([])
-  const [dataLoading, setDataLoading] = useState(false)
+const MemSidebar = (props) => {
+  const [avatar, setAvatar] = useState('')
+  const [uploadAvatarFile, setUploadAvatarFile] = useState('')
   const isLogin = useSelector((state) => state.authentication.loggedIn)
   const loginUser = useSelector((state) => state.authentication.user)
 
   const getData = async (val) => {
-    setDataLoading(true)
     let url = `http://localhost:5000/member?id=${val}`
     const res = await axios.get(url).catch((err) => console.log('Error'.err))
-    setMemsidebar(res.data)
-    setDataLoading(false)
+    setAvatar(res.data[0].avatar)
+    console.log(res.data[0].avatar)
+  }
+
+  const updateAvatar = async (e) => {
+    console.log(e.target.files[0])
+    setUploadAvatarFile(e.target.files[0])
+  }
+
+  const sendAvatarToNodejs = async (e) => {
+    // e.preventDefault()
+    const formData = new FormData()
+    formData.append('avatar', uploadAvatarFile)
+    let url = `http://localhost:5000/member/upload/1`
+    try {
+      await axios.post(url, formData)
+    } catch (err) {
+      if (err.response.status === 500) {
+        console.log('伺服器有點問題')
+      } else {
+        console.log(err.response.data.msg)
+      }
+    }
   }
 
   useEffect(() => {
@@ -40,28 +54,25 @@ const MemSidebar = () => {
       window.location.href = '/login'
     }
   }, [])
+
   return (
     <>
       <div className="d-flex flex-column memsidebar ">
-        {memsidebar.map((item, index) => {
-          return (
-            <img
-              className="avatar mx-auto"
-              src={`http://localhost:5000/img/avatar/${item.avatar}`}
-              alt="avatar"
-            />
-          )
-        })}
+        <img
+          className="avatar mx-auto"
+          src={`http://localhost:5000/img/avatar/${avatar}`}
+          alt="avatar"
+        />
         <p className="font-ss">
-          <Link to="#">
-            <div className="d-flex ml-5 wrapper">
-              <div className="icons">
-                <MdAddAPhoto />
-              </div>
-
-              <p className="whiteSpacePre">更換大頭貼 </p>
+          <div className="d-flex ml-5 wrapper">
+            <div className="icons">
+              <MdAddAPhoto />
             </div>
-          </Link>
+            <form onSubmit={sendAvatarToNodejs}>
+              <input type="file" onChange={updateAvatar} />
+              <input type="submit" value="uploadAvatar" />
+            </form>
+          </div>
         </p>
         <div className="sidebar mx-auto">
           <p className="font-s">

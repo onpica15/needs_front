@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios' // import memcarddata from './memcarddata.json'
 import HashLoader from 'react-spinners/HashLoader'
+import { Link } from 'react-router-dom'
 
 import { useSelector } from 'react-redux' //引入redux
 import { BsPersonFill } from 'react-icons/bs'
@@ -48,10 +49,7 @@ function MemCardEdit(props) {
       .post(url, newData) //post資料
       .catch((err) => console.log('Error'.err)) //若失敗的話
     console.log('post-res', res)
-    setTimeout(() => {
-      setDataLoading(false)
-      // alert('儲存完成')
-    }, 2000)
+
     // console.log('伺服器回傳json資料', res.data)
     // setMemcard(res.data)
   }
@@ -81,14 +79,16 @@ function MemCardEdit(props) {
                 </p>
                 <p>會員資料</p>
 
-                <button
-                  onClick={() => {
-                    updatememdata(id)
-                  }}
-                  className="btn btn-primary"
-                >
-                  儲存
-                </button>
+                <Link to="/member/card">
+                  <button
+                    onClick={() => {
+                      updatememdata(id)
+                    }}
+                    className="btn btn-primary"
+                  >
+                    儲存
+                  </button>
+                </Link>
               </div>
             </p>
             <div className="container">
@@ -220,7 +220,7 @@ function MemCardEdit(props) {
     </>
   )
 
-  return dataLoading ? loading : display
+  return display
 }
 
 export default MemCardEdit
