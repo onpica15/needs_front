@@ -40,14 +40,14 @@ const MemEcoin = () => {
     <>
       <div className="memecoin">
         <div className="maincard">
-          <p className="font-m">
+          <div className="font-m">
             <div className="d-flex wrapper">
               <p className="icons">
                 <FaCoins />
               </p>
               <p>Ｅcoin</p>
             </div>
-          </p>
+          </div>
 
           <div className="container">
             <div className="row justify-content-around align-self-center topside">

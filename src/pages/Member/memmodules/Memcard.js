@@ -48,7 +48,7 @@ function MemCard(props) {
       <div className="memcard">
         <div className="col-md-10">
           <div className="maincard">
-            <p className="font-m">
+            <div className="font-m">
               <div className="d-flex wrapper">
                 <p className="icons">
                   <BsPersonFill />
@@ -59,7 +59,7 @@ function MemCard(props) {
                   <FaEdit />
                 </Link>
               </div>
-            </p>
+            </div>
             <div className="container">
               <div className="row">
                 <div className="col-md-6">

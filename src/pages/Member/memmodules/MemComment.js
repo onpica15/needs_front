@@ -34,55 +34,56 @@ const MemComment = () => {
   }, [])
   const loading = <HashLoader size={200} color={'#0d5661'} />
   const display = (
-  <>
-    <div className="meminform">
-      <div className="maincard">
-        <p className="font-m">
-          <div className="d-flex wrapper">
-            <p className="icons">
-              <RiMessage2Fill />
-            </p>
-            <p>我的評論</p>
-          </div>
-        </p>
-
-        <div className="container">
-          <div className="row justify-content-around align-self-center topside">
-            <Link to="#" className="col-2 d-flex topsidebox">
-              <div className="m-auto">
-                <p className="font-s">歷史評論</p>
-              </div>
-            </Link>
-            <Link href="#" className="col-2 d-flex topsidebox">
-              <div className="m-auto">
-                <p className="font-s">尚未評論</p>
-              </div>
-            </Link>
-          </div>
-        </div>
-        {memcomment.map((item, index) => {
-          return (
-            <div className="informbar d-flex justify-content-center">
-            <img
-                className="sign"
-                src={`http://localhost:5000/img/brands/${item.index_img}`}
-                alt="brands"
-              />
-
-              <div className="textbox">
-                <div>
-                  <p>{item.brand_name}</p>
-                </div>
-                <div>
-                  <p>{item.buyer_message}</p>
-                </div>
-              </div>
+    <>
+      <div className="meminform">
+        <div className="maincard">
+          <p className="font-m">
+            <div className="d-flex wrapper">
+              <p className="icons">
+                <RiMessage2Fill />
+              </p>
+              <p>我的評論</p>
             </div>
-          )
-        })}
+          </p>
+
+          <div className="container">
+            <div className="row justify-content-around align-self-center topside">
+              <Link to="#" className="col-2 d-flex topsidebox">
+                <div className="m-auto">
+                  <p className="font-s">歷史評論</p>
+                </div>
+              </Link>
+              <Link href="#" className="col-2 d-flex topsidebox">
+                <div className="m-auto">
+                  <p className="font-s">尚未評論</p>
+                </div>
+              </Link>
+            </div>
+          </div>
+          {memcomment.map((item, index) => {
+            return (
+              <div className="informbar d-flex justify-content-center">
+                <img
+                  className="sign"
+                  src={`http://localhost:5000/img/brands/${item.index_img}`}
+                  alt="brands"
+                />
+
+                <div className="textbox">
+                  <div>
+                    <p>{item.brand_name}</p>
+                  </div>
+                  <div>
+                    <p>{item.buyer_message}</p>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
-    </div>
-  </>)
+    </>
+  )
   return dataLoading ? loading : display
 }
 
