@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-  withRouter,
-} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios' // import memcarddata from './memcarddata.json'
 import HashLoader from 'react-spinners/HashLoader'
 
 import { useSelector } from 'react-redux' //引入redux
 import { BsPersonFill } from 'react-icons/bs'
-import { FaEdit } from 'react-icons/fa'
+import './MemCardEdit.scss'
 
 function MemCardEdit(props) {
   const [memcard, setMemcard] = useState([])
-  const [dataLoading, setDataLoading] = useState(false)
   const [name, setName] = useState([])
   const [gender, setGender] = useState([])
   const [phone_number, setPhone] = useState([])
@@ -29,7 +22,6 @@ function MemCardEdit(props) {
   //axios get data
   //先接收資料後再判斷memid,val=memid從前端先判斷需求是否有傳到後端
   const getData = async (val) => {
-    setDataLoading(true)
     let url = `http://localhost:5000/member?id=${val}`
     const res = await axios.get(url).catch((err) => console.log('Error'.err))
     console.log('res.data', res.data)
@@ -42,11 +34,9 @@ function MemCardEdit(props) {
     setEmail(res.data[0].email)
     setAddress(res.data[0].address)
     setCredit(res.data[0].credit_card)
-    setDataLoading(false)
   }
 
   const updatememdata = async (val) => {
-    setDataLoading(true)
     const newData = { name, gender, phone_number, address, email, credit_card }
     console.log('newData', newData)
 
@@ -71,7 +61,6 @@ function MemCardEdit(props) {
     }
   }, [])
 
-  const loading = <HashLoader size={200} color={'#0d5661'} />
 
   const display = (
     <>

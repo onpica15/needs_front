@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  withRouter,
-  Switch,
-} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import HashLoader from 'react-spinners/HashLoader'
 import { useSelector } from 'react-redux'
 
 import { RiMessage2Fill } from 'react-icons/ri'
+import './MemComment.scss'
+
 const MemComment = () => {
   const [memcomment, setMemcomment] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
@@ -37,14 +33,14 @@ const MemComment = () => {
     <>
       <div className="meminform">
         <div className="maincard">
-          <p className="font-m">
+          <div  className="font-m">
             <div className="d-flex wrapper">
               <p className="icons">
                 <RiMessage2Fill />
               </p>
               <p>我的評論</p>
             </div>
-          </p>
+          </div>
 
           <div className="container">
             <div className="row justify-content-around align-self-center topside">

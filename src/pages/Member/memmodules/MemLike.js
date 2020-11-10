@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
-import HashLoader from 'react-spinners/HashLoader'
+import './MemLike.scss'
+
 import { useSelector } from 'react-redux'
 import { FaStore } from 'react-icons/fa'
 
 function MemLike() {
   const [memlike, setMemLike] = useState([])
-  const [dataLoading, setDataLoading] = useState(false)
-
   const isLogin = useSelector((state) => state.authentication.loggedIn)
   const loginUser = useSelector((state) => state.authentication.user)
   const getData = async (val) => {
-    setDataLoading(true)
     let url = `http://localhost:5000/like?customer_id=${val}`
     const res = await axios.get(url).catch((err) => console.log('Error'.err))
     setMemLike(res.data)
-    setDataLoading(false)
   }
   useEffect(() => {
     if (isLogin) {

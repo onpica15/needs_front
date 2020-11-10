@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
+import './MemShop.scss'
+
 import { useSelector } from 'react-redux'
-import HashLoader from 'react-spinners/HashLoader'
 import { FaShoppingBag } from 'react-icons/fa'
+
 function MemShop() {
   const [memshop, setMemshop] = useState([])
   const isLogin = useSelector((state) => state.authentication.loggedIn)
@@ -25,7 +27,7 @@ function MemShop() {
     <>
       <div className="memshop">
         <div className="maincard">
-          <div  className="font-m">
+          <div className="font-m">
             <div className="d-flex wrapper">
               <p className="icons">
                 <FaShoppingBag />
@@ -70,20 +72,21 @@ function MemShop() {
                   <div>訂購編號</div>
                   <div>20201006_SC4_0003816</div>
                 </div>
-                {memshop.map((item, index) => {
-                  return (
-                    <table className="table table-striped listhead">
-                      <thead>
-                        <tr>
-                          <th className="">日本雙山</th>
-                          <th className="">訂購日期</th>
-                          <th className="">單價</th>
-                          <th className="">數量</th>
-                          <th className="">小計</th>
-                          <th className="">狀態</th>
-                        </tr>
-                      </thead>
-                      <tbody bgcolor="white">
+
+                <table className="table table-striped listhead">
+                  <thead>
+                    <tr>
+                      <th className="">日本雙山</th>
+                      <th className="">訂購日期</th>
+                      <th className="">單價</th>
+                      <th className="">數量</th>
+                      <th className="">小計</th>
+                      <th className="">狀態</th>
+                    </tr>
+                  </thead>
+                  <tbody bgcolor="white">
+                    {memshop.map((item, index) => {
+                      return (
                         <tr>
                           <td className="d-flex">
                             <img
@@ -102,28 +105,10 @@ function MemShop() {
                           <td>NT$2340</td>
                           <td>Ｖ</td>
                         </tr>
-                      </tbody>
-                      <tbody bgcolor="white">
-                        <tr>
-                          <td className="d-flex">
-                            <div className="box"></div>
-                            <div className="align-self-center">
-                              <p className="font-s">
-                                南國的孩子 手寫數字章 (22個入)
-                              </p>
-                              <p className="font-s">規格：單一規格</p>
-                            </div>
-                          </td>
-                          <td>2020/10/06</td>
-                          <td>NT$780</td>
-                          <td>3</td>
-                          <td>NT$2340</td>
-                          <td>Ｖ</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  )
-                })}
+                      )
+                    })}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

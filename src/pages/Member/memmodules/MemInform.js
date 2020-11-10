@@ -1,28 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  withRouter,
-  Switch,
-} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
-import HashLoader from 'react-spinners/HashLoader'
 import { useSelector } from 'react-redux'
+import './MemInform.scss'
 
 import { BsFillBellFill } from 'react-icons/bs'
 const MemInform = () => {
   const [meminform, setMemInform] = useState([])
-  const [dataLoading, setDataLoading] = useState(false)
 
   const isLogin = useSelector((state) => state.authentication.loggedIn)
   const loginUser = useSelector((state) => state.authentication.user)
   const getData = async (val) => {
-    setDataLoading(true)
     let url = `http://localhost:5000/inform?customer_id=${val}`
     const res = await axios.get(url).catch((err) => console.log('Error'.err))
     setMemInform(res.data)
-    setDataLoading(false)
   }
   useEffect(() => {
     if (isLogin) {
