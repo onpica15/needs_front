@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Breadcrumbs from '../../components/Breadcrumbs'
 import axios from 'axios'
 import { Button } from 'react-bootstrap'
 
 import ArticleClassic from '../../components/Article/ArticleClassic'
-
-import Join from '../../components/Chat/Join'
-
 import './Article.scss'
 
 const Article = (props) => {
   const [articles, setArticles] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
+  const [SubscribeBtn, setSubscribeBtn] = useState(false)
 
   //載入資料
   useEffect(() => {
@@ -58,10 +55,8 @@ const Article = (props) => {
 
   return (
     <>
-      <Join />
-      <div className="container mt-3">
-        <Breadcrumbs />
-        <div className="topic d-flex">
+      <div className="container mt-4 ">
+        <div className="topic d-flex mb-2">
           <div className="col-6">
             <h5>精選文章</h5>
           </div>
@@ -72,20 +67,30 @@ const Article = (props) => {
 
         <ArticleClassic />
 
-        <section className="mb-5">
-          <h5>最新文章</h5>
+        <section className="mt-4 mb-5">
+          <h5 className="mb-2">最新文章</h5>
           {dataLoading ? loading : display}
           <div className="d-flex justify-content-end">
-            <Button className="search-more-btn ">探索更多 →</Button>
+            <Button className="btn btn-sm btn-secondary">探索更多 →</Button>
           </div>
         </section>
 
-        <section>
-          <h5>推薦文章</h5>
-          <Button className="search-more-btn d-flex justify-content-end">
-            探索更多 →
-          </Button>
-        </section>
+        <div className="subscribeArticle d-flex justify-content-between">
+          <div className="textInfo">
+            探索各式生活風格美學 - 實踐美好必要指南
+          </div>
+          <div>
+            {SubscribeBtn ? (
+              <Button onClick={() => setSubscribeBtn(!SubscribeBtn)}>
+                已訂閱文章
+              </Button>
+            ) : (
+              <Button onClick={() => setSubscribeBtn(!SubscribeBtn)}>
+                訂閱文章
+              </Button>
+            )}
+          </div>
+        </div>
       </div>
     </>
   )

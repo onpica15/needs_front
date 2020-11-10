@@ -4,13 +4,17 @@ import './ProductSideBar.scss'
 
 const ProductSideBar = (props) => {
   const { categories, setSelectCategory, history } = props
-  const [clickStyle, setClickStyle] = useState(false)
+  const [clickStyle, setClickStyle] = useState({ clicked: false })
 
   const toggleClassLinkStyle = (id) => {
-    const Index = categories.findIndex((p) => p.id === id)
+    const newCategories = [...categories]
+    const Index = newCategories.findIndex((p) => p.id === id)
     if (Index !== -1) {
-      setClickStyle(!clickStyle)
+      newCategories[Index].clicked = !newCategories[Index].clicked
+      console.log('Index', newCategories[Index])
+      console.log('clicked', newCategories[Index].clicked)
     }
+    setClickStyle(newCategories)
   }
 
   return (
@@ -23,7 +27,7 @@ const ProductSideBar = (props) => {
         return (
           <div className="classItem" key={index}>
             <div
-              className={clickStyle ? 'classLink active' : 'classLink'}
+              className={clickStyle.clicked ? 'classLink active' : 'classLink'}
               onClick={() => {
                 toggleClassLinkStyle(value.id)
                 setSelectCategory(index + 1)

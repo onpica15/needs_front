@@ -5,13 +5,17 @@ import MemCard from './memmodules/Memcard'
 import './member.scss'
 import './member-rwd.scss'
 
-function MemberCard() {
+function MemberCard(props) {
   return (
     <>
       <div className="container member">
         <div className="row my-3">
-          <MemSidebar />
-          <MemCard />
+          <div className="col-3">
+            <MemSidebar {...props} />
+          </div>
+          <div className="col-9">
+            <MemCard {...props} />
+          </div>
         </div>
       </div>
     </>

@@ -11,7 +11,6 @@ import {
 import { createBrowserHistory } from 'history'
 
 import History from '../components/history'
-const history = createBrowserHistory()
 export const userActions = { login, logout }
 export const roleActions = { setMember, setMerchant, setNeeds }
 export const alertActions = { success, error, clear }
@@ -168,6 +167,7 @@ export function addToFavoritesItem({ id, title, image_path, price }) {
     type: ADD_TO_FAVORITES,
     payload: { id, title, image_path, price },
   }
+  // localStorage.setItem('favorites', JSON.stringify(getState().favorites))
 }
 export function removeToFavoritesItem(id) {
   return {

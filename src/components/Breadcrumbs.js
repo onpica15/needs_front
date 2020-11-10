@@ -10,23 +10,10 @@ const Breadcrumbs = (props) => {
 
   const pathnames = pathname.split('/').filter((x) => x)
 
-  const changeName = (pathnames) => {
-    switch (pathnames) {
-      case 'productlist':
-        pathnames = '文章列表'
-        break
-      default:
-        break
-    }
-  }
-  // console.log('props', props)
-  // console.log('pathname', pathname)
-  // console.log('pathnames', pathnames)
-
   return (
     <>
       <Breadcrumb>
-        {changeName.length > 0 ? (
+        {pathnames.length > 0 ? (
           <Breadcrumb.Item onClick={() => history.push('/')}>
             首頁
           </Breadcrumb.Item>
@@ -34,7 +21,8 @@ const Breadcrumbs = (props) => {
           <Breadcrumb.Item active>首頁</Breadcrumb.Item>
         )}
         {pathnames.map((name, index) => {
-          if (name === 'productlist') return `/ 文章列表`
+          if (name === 'productlist') return `/ 所有分類`
+          if (name === 'articles') return `/ 文章列表`
           const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`
           const isLast = index === pathnames.length - 1
           return isLast ? (

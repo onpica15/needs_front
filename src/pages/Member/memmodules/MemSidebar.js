@@ -13,6 +13,7 @@ import { RiMessage2Fill } from 'react-icons/ri'
 import { MdAddAPhoto } from 'react-icons/md'
 
 const MemSidebar = (props) => {
+  // console.log(props.match.params.id)
   const [avatar, setAvatar] = useState('')
   const [uploadAvatarFile, setUploadAvatarFile] = useState('')
   const isLogin = useSelector((state) => state.authentication.loggedIn)
@@ -34,7 +35,7 @@ const MemSidebar = (props) => {
     // e.preventDefault()
     const formData = new FormData()
     formData.append('avatar', uploadAvatarFile)
-    let url = `http://localhost:5000/member/upload/1`
+    let url = `http://localhost:5000/member/upload/${props.match.params.id}`
     try {
       await axios.post(url, formData)
     } catch (err) {

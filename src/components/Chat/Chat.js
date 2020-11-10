@@ -14,7 +14,7 @@ const ENDPOINT = 'http://localhost:5000'
 
 let socket
 
-const Chat = ({ location }) => {
+const Chat = () => {
   const { search } = useLocation()
   const searchParams = new URLSearchParams(search)
   const name = useSelector((state) => state.authentication.user.user.username)
@@ -45,20 +45,6 @@ const Chat = ({ location }) => {
       socket.emit('sendMessage', message, () => setMessage(''))
     }
   }
-
-  // {
-  //   name && room ? (
-  //     ''
-  //   ) : showChat ? (
-  //     <div style={{ display: 'Block' }}>
-  //       <chat />
-  //     </div>
-  //   ) : (
-  //     <div style={{ display: 'none' }}>
-  //       <chat />
-  //     </div>
-  //   )
-  // }
 
   return (
     <div className="outerContainer">

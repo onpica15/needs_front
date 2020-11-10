@@ -5,13 +5,13 @@ import MemCardEdit from './memmodules/MemCardEdit'
 import './member.scss'
 import './member-rwd.scss'
 
-function MemberCardEdit() {
+function MemberCardEdit(props) {
   return (
     <>
       <div className="container member">
         <div className="row my-3">
-          <MemSidebar />
-          <MemCardEdit />
+          <MemSidebar {...props} />
+          <MemCardEdit {...props} />
         </div>
       </div>
     </>

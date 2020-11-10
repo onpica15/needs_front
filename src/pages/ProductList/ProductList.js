@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { addToCartAction, updateCartUnits } from '../../actions/index'
-// import { Breadcrumb } from 'react-bootstrap'
 
 import Breadcrumbs from '../../components/Breadcrumbs'
 import ForProductListCarousel from '../../components/ProductList/ForProductListCarousel'
@@ -84,12 +83,12 @@ const ProductList = (props) => {
   }, [ecoin])
 
   // set price filter
-  const showprice = () => {
-    showPosts.sale_price
-      ? console.log(showPosts.sale_price)
-      : console.log(showPosts.sale_price)
-  }
-  showprice()
+  // const showprice = () => {
+  //   showPosts.sale_price
+  //     ? console.log(showPosts.sale_price)
+  //     : console.log(showPosts.sale_price)
+  // }
+  // showprice()
 
   // if (sale_price)
   // showPosts.sale_price

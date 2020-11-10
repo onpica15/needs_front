@@ -79,7 +79,7 @@ function MemCardEdit(props) {
                 </p>
                 <p>會員資料</p>
 
-                <Link to="/member/card">
+                <Link to={`/member/card/${props.match.params.id}`}>
                   <button
                     onClick={() => {
                       updatememdata(id)

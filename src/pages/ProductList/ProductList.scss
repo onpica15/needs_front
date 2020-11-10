@@ -10,10 +10,8 @@ $shadow:#E7E7E7;
 
 .productlist{
     .breadcrumb{
-        background-color: #f5f5f5;
-        padding: 0px;
-        margin-bottom: 70px;
-
+        background-color: $bg-light;
+        margin:40px 0;
         a{
         color: $font-black;
         }
