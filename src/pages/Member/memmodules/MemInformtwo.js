@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import HashLoader from 'react-spinners/HashLoader'
 import { useSelector } from 'react-redux'
+import './MemInformthree.scss'
 
-import { RiMessage2Fill } from 'react-icons/ri'
-import './MemComment.scss'
-
-const MemComment = () => {
-  const [memcomment, setMemcomment] = useState([])
+import { BsFillBellFill } from 'react-icons/bs'
+const MemInform = () => {
+  const [meminform, setMemInform] = useState([])
 
   const isLogin = useSelector((state) => state.authentication.loggedIn)
   const loginUser = useSelector((state) => state.authentication.user)
   const getData = async (val) => {
-    let url = `http://localhost:5000/comment?customer_id=${val}`
+    let url = `http://localhost:5000/inform?customer_id=${val}`
     const res = await axios.get(url).catch((err) => console.log('Error'.err))
-    setMemcomment(res.data)
+    setMemInform(res.data)
   }
   useEffect(() => {
     if (isLogin) {
@@ -25,49 +23,56 @@ const MemComment = () => {
       window.location.href = '/login'
     }
   }, [])
-  const loading = <HashLoader size={200} color={'#0d5661'} />
-  const display = (
+
+  return (
     <>
       <div className="meminform">
         <div className="maincard">
-          <div  className="font-m">
+          <p className="font-m">
             <div className="d-flex wrapper">
               <p className="icons">
-                <RiMessage2Fill />
+                <BsFillBellFill />
               </p>
-              <p>我的評論</p>
+              <p>通知中心</p>
             </div>
-          </div>
+          </p>
 
           <div className="container">
             <div className="row justify-content-around align-self-center topside">
               <Link to="#" className="col-2 d-flex topsidebox">
                 <div className="m-auto">
-                  <p className="font-s">歷史評論</p>
+                  <p className="font-s">所有通知</p>
                 </div>
               </Link>
               <Link href="#" className="col-2 d-flex topsidebox">
                 <div className="m-auto">
-                  <p className="font-s">尚未評論</p>
+                  <p className="font-s">關注通知</p>
+                </div>
+              </Link>
+
+              <Link href="#" className="col-2 d-flex topsidebox">
+                <div className="m-auto">
+                  <p className="font-s">NEEDS公告</p>
                 </div>
               </Link>
             </div>
           </div>
-          {memcomment.map((item, index) => {
+          {meminform.map((item, index) => {
             return (
-              <div className="informbar d-flex justify-content-center">
+              <div className="informbar d-flex justify-content-start">
                 <img
                   className="sign"
                   src={`http://localhost:5000/img/brands/${item.index_img}`}
                   alt="brands"
                 />
-
                 <div className="textbox">
                   <div>
-                    <p>{item.brand_name}</p>
+                    <p>
+                      {item.brand_name}[ {item.status} ]
+                    </p>
                   </div>
                   <div>
-                    <p>{item.buyer_message}</p>
+                    <p>{item.inform}</p>
                   </div>
                 </div>
               </div>
@@ -77,7 +82,6 @@ const MemComment = () => {
       </div>
     </>
   )
-  return display
 }
 
-export default MemComment
+export default MemInform

@@ -61,152 +61,149 @@ function MemCardEdit(props) {
     }
   }, [])
 
-
   const display = (
     <>
       <div className="memcard">
-        <div className="col-md-10">
-          <div className="maincard">
-            <p className="font-m">
-              <div className="d-flex wrapper">
-                <p className="icons">
-                  <BsPersonFill />
-                </p>
-                <p>會員資料</p>
+        <div className="maincard">
+          <p className="font-m">
+            <div className="d-flex wrapper">
+              <p className="icons">
+                <BsPersonFill />
+              </p>
+              <p>會員資料</p>
 
-                <Link to="/member/card">
-                  <button
-                    onClick={() => {
-                      updatememdata(id)
-                    }}
-                    className="btn btn-primary"
-                  >
-                    儲存
-                  </button>
-                </Link>
+              <Link to="/member/card/:id">
+                <button
+                  onClick={() => {
+                    updatememdata(id)
+                  }}
+                  className="btn btn-primary"
+                >
+                  儲存
+                </button>
+              </Link>
+            </div>
+          </p>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-6">
+                {memcard.map((item, index) => {
+                  return (
+                    <ul>
+                      <li className="d-flex">
+                        <label className="item" htmlFor="exampleInputEmail1">
+                          姓名
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={name}
+                          onChange={(event) => {
+                            setName(event.target.value)
+                          }}
+                        />
+                      </li>
+                      <li className="d-flex">
+                        <label className="item" htmlFor="exampleInputEmail1">
+                          性別
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={gender}
+                          onChange={(event) => {
+                            setGender(event.target.value)
+                          }}
+                        />
+                      </li>
+                      <li className="d-flex">
+                        <div className="item">生日</div>
+                        <span>{item.birthday}</span>
+                      </li>
+                      <li className="d-flex">
+                        <div className="item">年齡</div>
+                        <span>{item.age}</span>
+                      </li>
+                      <li className="d-flex">
+                        <label className="item" htmlFor="exampleInputEmail1">
+                          地址
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={address}
+                          onChange={(event) => {
+                            setAddress(event.target.value)
+                          }}
+                        />
+                      </li>
+                      <li className="d-flex">
+                        <label className="item" htmlFor="exampleInputEmail1">
+                          電話
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={phone_number}
+                          onChange={(event) => {
+                            setPhone(event.target.value)
+                          }}
+                        />
+                      </li>
+                      <li className="d-flex">
+                        <label className="item" htmlFor="exampleInputEmail1">
+                          Ｅmail
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={email}
+                          onChange={(event) => {
+                            setEmail(event.target.value)
+                          }}
+                        />
+                      </li>
+                    </ul>
+                  )
+                })}
               </div>
-            </p>
-            <div className="container">
-              <div className="row">
-                <div className="col-md-6">
-                  {memcard.map((item, index) => {
-                    return (
-                      <ul>
-                        <li className="d-flex">
-                          <label className="item" htmlFor="exampleInputEmail1">
-                            姓名
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            value={name}
-                            onChange={(event) => {
-                              setName(event.target.value)
-                            }}
-                          />
-                        </li>
-                        <li className="d-flex">
-                          <label className="item" htmlFor="exampleInputEmail1">
-                            性別
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            value={gender}
-                            onChange={(event) => {
-                              setGender(event.target.value)
-                            }}
-                          />
-                        </li>
-                        <li className="d-flex">
-                          <div className="item">生日</div>
-                          <span>{item.birthday}</span>
-                        </li>
-                        <li className="d-flex">
-                          <div className="item">年齡</div>
-                          <span>{item.age}</span>
-                        </li>
-                        <li className="d-flex">
-                          <label className="item" htmlFor="exampleInputEmail1">
-                            地址
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            value={address}
-                            onChange={(event) => {
-                              setAddress(event.target.value)
-                            }}
-                          />
-                        </li>
-                        <li className="d-flex">
-                          <label className="item" htmlFor="exampleInputEmail1">
-                            電話
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            value={phone_number}
-                            onChange={(event) => {
-                              setPhone(event.target.value)
-                            }}
-                          />
-                        </li>
-                        <li className="d-flex">
-                          <label className="item" htmlFor="exampleInputEmail1">
-                            Ｅmail
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            value={email}
-                            onChange={(event) => {
-                              setEmail(event.target.value)
-                            }}
-                          />
-                        </li>
-                      </ul>
-                    )
-                  })}
-                </div>
 
-                <div className="col-md-6">
-                  {memcard.map((item, index) => {
-                    return (
-                      <ul>
-                        <li className="d-flex">
-                          <label className="item" htmlFor="exampleInputEmail1">
-                            信用卡
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            value={credit_card}
-                            onChange={(event) => {
-                              setCredit(event.target.value)
-                            }}
-                          />
-                        </li>
-                        <li className="d-flex">
-                          <div className="item2">e幣</div>
-                          <span>{item.e_coin}</span>
-                        </li>
-                        <li className="d-flex">
-                          <div className="item2">購物紀錄</div>
-                          <span>{item.shopping_record}</span>
-                        </li>
-                        <li className="d-flex">
-                          <div className="item2">入會時間</div>
-                          <span>{item.creat_date}</span>
-                        </li>
-                        <li className="d-flex">
-                          <div className="item2">退貨紀錄</div>
-                          <span>{item.return_product}</span>
-                        </li>
-                      </ul>
-                    )
-                  })}
-                </div>
+              <div className="col-md-6">
+                {memcard.map((item, index) => {
+                  return (
+                    <ul>
+                      <li className="d-flex">
+                        <label className="item" htmlFor="exampleInputEmail1">
+                          信用卡
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={credit_card}
+                          onChange={(event) => {
+                            setCredit(event.target.value)
+                          }}
+                        />
+                      </li>
+                      <li className="d-flex">
+                        <div className="item2">e幣</div>
+                        <span>{item.e_coin}</span>
+                      </li>
+                      <li className="d-flex">
+                        <div className="item2">購物紀錄</div>
+                        <span>{item.shopping_record}</span>
+                      </li>
+                      <li className="d-flex">
+                        <div className="item2">入會時間</div>
+                        <span>{item.creat_date}</span>
+                      </li>
+                      <li className="d-flex">
+                        <div className="item2">退貨紀錄</div>
+                        <span>{item.return_product}</span>
+                      </li>
+                    </ul>
+                  )
+                })}
               </div>
             </div>
           </div>

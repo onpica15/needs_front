@@ -10,8 +10,12 @@ function MemberCardEdit() {
     <>
       <div className="container member">
         <div className="row my-3">
-          <MemSidebar />
-          <MemCardEdit />
+          <div className="col-lg-2 col-sm-1">
+            <MemSidebar />
+          </div>
+          <div className="col-lg-10 col-sm-12">
+            <MemCardEdit />
+          </div>
         </div>
       </div>
     </>

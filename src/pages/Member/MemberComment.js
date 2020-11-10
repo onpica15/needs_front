@@ -10,9 +10,13 @@ function MemberComment() {
     <>
       <div className="container member ">
         <div className="row my-3">
-          <MemSidebar />
-          <MemComment /> 
-      </div>
+          <div className="col-lg-2 col-sm-1">
+            <MemSidebar />
+          </div>
+          <div className="col-lg-10 col-sm-12">
+            <MemComment />
+          </div>
+        </div>
       </div>
     </>
   )

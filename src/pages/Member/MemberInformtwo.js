@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import MemSidebar from './memmodules/MemSidebar'
-import MemShop from './memmodules/MemShop'
+import MemuInform from './memmodules/MemInformone'
 import './member.scss'
 import './member-rwd.scss'
 
-function MemberShop() {
+function MemberInform() {
   return (
     <>
       <div className="container member ">
@@ -14,7 +14,7 @@ function MemberShop() {
             <MemSidebar />
           </div>
           <div className="col-lg-10 col-sm-12">
-            <MemShop />
+            <MemuInform />
           </div>
         </div>
       </div>
@@ -22,4 +22,4 @@ function MemberShop() {
   )
 }
 
-export default MemberShop
+export default MemberInform

@@ -14,7 +14,9 @@ import MemberCard from './pages/Member/MemberCard'
 import MemberCardEdit from './pages/Member/MemberCardEdit'
 import MemberShop from './pages/Member/MemberShop'
 import MemberLike from './pages/Member/MemberLike'
-import MemberInform from './pages/Member/MemberInform'
+import MemberInformone from './pages/Member/MemberInformone'
+import MemberInformtwo from './pages/Member/MemberInformtwo'
+import MemberInformthree from './pages/Member/MemberInformthree'
 import MemberEcoin from './pages/Member/MemberEcoin'
 import MemberComment from './pages/Member/MemberComment'
 import Investment from './pages/Investment'
@@ -42,7 +44,6 @@ import TestArticleDetial from './pages/Article/TestArticleDetial'
 import ProductsManagement from './pages/BackEnd/ProductsManagement'
 import ContractsManagement from './pages/BackEnd/ContractsManagement'
 import OrdersManagement from './pages/BackEnd/OrdersManagement'
-
 
 //設置layout props
 const DynamicLayoutRoute = (props) => {
@@ -151,7 +152,8 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/member/card/:userid?"
+            // path="/member/card/:userid?"
+            path="/member/card/:id"
             component={MemberCard}
             layout="FRONT_END_NAV"
           />
@@ -171,8 +173,18 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/member/inform"
-            component={MemberInform}
+            path="/member/informone"
+            component={MemberInformone}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/member/informtwo"
+            component={MemberInformtwo}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/member/informthree"
+            component={MemberInformthree}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
@@ -217,16 +229,13 @@ function App(props) {
             component={TemplateEditedPage}
             layout="BACK_END_NAV"
           />
-          {/* <Route
-            path="/customer-backend/template-edit"
-            component={EditedPage}
-          /> */}
+
           <DynamicLayoutRoute
             path="/customer-backend/template-list"
             component={TemplateList}
             layout="BACK_END_NAV"
-          />  
-          />{' '}
+          />
+
           <DynamicLayoutRoute
             path="/customer-backend/sales-index"
             component={Sales}

@@ -15,7 +15,7 @@ import { MdAddAPhoto } from 'react-icons/md'
 
 const MemSidebar = (props) => {
   const [avatar, setAvatar] = useState([])
-  const [uploadAvatarFile, setUploadAvatarFile] = useState('')
+  const [uploadAvatarFile, setUploadAvatarFile] = useState({})
   const isLogin = useSelector((state) => state.authentication.loggedIn)
   const loginUser = useSelector((state) => state.authentication.user)
 
@@ -25,16 +25,20 @@ const MemSidebar = (props) => {
     setAvatar(res.data[0].avatar)
     console.log('res.data[0].avatar', res.data[0].avatar)
   }
-  const updateAvatar = async (e) => {
-    console.log(e.target.file[0])
-    setUploadAvatarFile(e.target.file[0])
+  const updateAvatar = (e) => {
+    setUploadAvatarFile(e.target.files[0])
   }
+
   const sendAvatarToNodejs = async (e) => {
-    const formData = new FormData()
-    formData.append('avatar', uploadAvatarFile)
-    let url = `http://localhost:5000/member/upload/:id`
+    // e.preventDefault()
+    // const filename = uploadAvatarFile.name
+    // const formData = { avatar: filename }
+    const formData = uploadAvatarFile
+    console.log('formData', formData)
+    console.log('props.match.params.id', props.match.params.id)
+    let url = `http://localhost:5000/member/upload/${props.match.params.id}`
     try {
-      await axios.post(url, formData)
+      await axios.post(url, formData, )
     } catch (err) {
       if (err.response.status === 500) {
         console.log('伺服器有點問題')
@@ -66,8 +70,13 @@ const MemSidebar = (props) => {
             <div className="icons">
               <MdAddAPhoto />
             </div>
-            <form onSubmit={sendAvatarToNodejs}>
-              <input type="file" onChange={updateAvatar} />
+            <form onSubmit={sendAvatarToNodejs} name="form1">
+              <input
+                type="file"
+                name="filename"
+                id="filename"
+                onChange={(e) => updateAvatar(e)}
+              />
               <input type="submit" value="uploadAvatar" />
             </form>
           </div>
@@ -75,7 +84,7 @@ const MemSidebar = (props) => {
         </div>
         <div className="sidebar mx-auto">
           <div className="font-s">
-            <Link to="/member/card">
+            <Link to="/member/card/:id">
               <div className="d-flex  wrapper ">
                 <div className="icons">
                   <BsPersonFill />

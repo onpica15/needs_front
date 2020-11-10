@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
-import './MemInform.scss'
+import './MemInformone.scss'
 
 import { BsFillBellFill } from 'react-icons/bs'
 const MemInform = () => {
