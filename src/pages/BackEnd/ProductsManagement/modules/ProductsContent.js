@@ -21,11 +21,11 @@ const ProductsContent = (props) => {
 
         {data.map((item, index) => {
           return (
-            <Row className="detailsSection">
+            <Row className="detailsSection" key={item.id}>
               <Form.Check
                 aria-label="option 1"
-                key={item.id}
                 className="checkbox"
+                key={item.id}
               />
               <div className="productImg">
                 <img

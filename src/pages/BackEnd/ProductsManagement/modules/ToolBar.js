@@ -16,7 +16,16 @@ import {
 } from 'react-icons/ai'
 
 const ToolBar = (props) => {
-  const { type, setType, viewType, setViewType } = props
+  const {
+    type,
+    setType,
+    viewType,
+    setViewType,
+    showAddProd,
+    setShowAddProd,
+    showAddCourse,
+    setShowAddCourse,
+  } = props
   return (
     <>
       <Row className="toolsSec my-3">
@@ -69,8 +78,12 @@ const ToolBar = (props) => {
             <AiOutlinePlus size="30px" />
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">實體商品</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">活動體驗</Dropdown.Item>
+            <Dropdown.Item onClick={(e) => setShowAddProd(true)}>
+              實體商品
+            </Dropdown.Item>
+            <Dropdown.Item onClick={(e) => setShowAddCourse(true)}>
+              活動體驗
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <div className="viewSelect d-flex">
