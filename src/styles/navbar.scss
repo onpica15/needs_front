@@ -25,6 +25,16 @@
       .separator {
         border-left: 1px solid #323232;
       }
+
+      .cart-icon {
+        color: #d44f44;
+        margin-top: -0.2rem;
+      }
+      .cart-amount {
+        color: #d44f44;
+        font-weight: 400;
+        padding-left: 0.5rem;
+      }
     }
   }
 }

@@ -3,6 +3,8 @@ import {
   roleTypes,
   alertConstants,
   REPLACE_ORDER_ITEMS,
+  REPLACE_ORDER_ID,
+  REPLACE_CART_AMOUNT,
   ADD_TO_CART,
   UPDATE_CART_UNITS,
   ADD_TO_FAVORITES,
@@ -120,13 +122,34 @@ function clear() {
   return { type: alertConstants.CLEAR }
 }
 
-export function replaceOrderItems(item) {
+// orderItems
+export function replaceOrderContent(item) {
   return (dispatch) => {
-    dispatch(replaceOrderItem(item))
+    dispatch(orderContent(item))
   }
 
-  function replaceOrderItem(item) {
+  function orderContent(item) {
     return { type: REPLACE_ORDER_ITEMS, item }
+  }
+}
+// orderId
+export function replaceOrderId(item) {
+  return (dispatch) => {
+    dispatch(orderId(item))
+  }
+
+  function orderId(item) {
+    return { type: REPLACE_ORDER_ID, item }
+  }
+}
+// cartAmount
+export function replaceCartAmount(value) {
+  return (dispatch) => {
+    dispatch(cartAmount(value))
+  }
+
+  function cartAmount(value) {
+    return { type: REPLACE_CART_AMOUNT, value }
   }
 }
 
@@ -167,7 +190,6 @@ export function addToFavoritesItem({ id, title, image_path, price }) {
     type: ADD_TO_FAVORITES,
     payload: { id, title, image_path, price },
   }
-  // localStorage.setItem('favorites', JSON.stringify(getState().favorites))
 }
 export function removeToFavoritesItem(id) {
   return {

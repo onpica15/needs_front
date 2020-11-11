@@ -48,7 +48,7 @@ function SerarchBox() {
         <input
           {...getInputProps()}
           className="search"
-          placeholder={singleData ? singleData : 'Search'}
+          placeholder={singleData ? singleData : '想找點什麼'}
           enterButton="Search"
         />
       </div>

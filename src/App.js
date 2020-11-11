@@ -23,7 +23,9 @@ import ProductList from './pages/ProductList/ProductList'
 import MerchantHome from './pages/MerchantHome/merchantHome'
 import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
+import CreatingOrder from './pages/CreatingOrder'
 import Payment from './pages/Payment'
+import Complete from './pages/Payment/complete'
 import Login from './pages/Login/Login'
 import SignUp from './pages/Login/SignUp'
 
@@ -121,8 +123,18 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/cart_payment"
+            path="/order_creating"
+            component={CreatingOrder}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/order_payment"
             component={Payment}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/order_complete"
+            component={Complete}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
