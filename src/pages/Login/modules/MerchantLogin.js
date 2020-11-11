@@ -97,15 +97,6 @@ const MerchantLogin = (props) => {
                   LOGIN
                 </Button>
               </Form>
-              {/* For Logout Test */}
-              <Button
-                variant="primary"
-                className="mt-2"
-                type="button"
-                onClick={() => logout()}
-              >
-                LOGOUT TEST
-              </Button>
             </div>
           </div>
         </div>

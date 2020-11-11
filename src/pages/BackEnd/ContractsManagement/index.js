@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Axios from 'axios'
 import { Col, Container, Pagination } from 'react-bootstrap'
-import './ProductsManagement.scss'
 import ToolBar from './modules/ToolBar'
-import ProductsContent from './modules/ProductsContent'
+import ContractsContent from './modules/ContractsContent'
 import BackendPagination from '../../../components/backend/BackendPagination'
 import History from '../../../components/history'
+import './ContractsManagement.scss'
+import SignForm from './modules/SignForm'
 
-const ProductsManagement = (props) => {
-  // all launched soldout unlaunched, grid list
+const ContractsManagement = (props) => {
+  // all ended, grid list
   const [type, setType] = useState('all')
   const [viewType, setViewType] = useState('list')
 
@@ -19,17 +20,22 @@ const ProductsManagement = (props) => {
   const [pageItems, setPageItems] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
+  const [showSignUp, setShowSignUp] = useState(true)
 
   const toPage = (e) => {
     setCurrentPage(e)
-    History.push(`/customer-backend/products-management/page=${e}`)
+    History.push(`/customer-backend/contracts-management/page=${e}`)
     window.scrollTo(0, 0)
+  }
+
+  const toSignUp = (e) => {
+    setShowSignUp(true)
   }
 
   const getData = (merchantId, type) => {
     //跟server拿資料
     Axios.get(
-      `http://122.116.38.12:5050/bk-products-api/list?id=${merchantId}&filter=${type}&page=${currentPage}`
+      `http://122.116.38.12:5050/bk-contracts-api/list?id=${merchantId}&filter=${type}&page=${currentPage}`
     )
       .then((res) => {
         const data = res.data.rows
@@ -65,7 +71,7 @@ const ProductsManagement = (props) => {
 
   return (
     <>
-      <div className="productsMng">
+      <div className="contractsMng">
         <Col className="main offset-2" xs={10}>
           <Container fluid main>
             <ToolBar
@@ -73,8 +79,10 @@ const ProductsManagement = (props) => {
               setType={setType}
               viewType={viewType}
               setViewType={setViewType}
+              toSignUp={toSignUp}
+              setShowSignUp={setShowSignUp}
             />
-            <ProductsContent data={data} />
+            <ContractsContent data={data} />
             <BackendPagination
               pageItems={pageItems}
               currentPage={currentPage}
@@ -83,9 +91,10 @@ const ProductsManagement = (props) => {
             />
           </Container>
         </Col>
+        <SignForm showSignUp={showSignUp} setShowSignUp={setShowSignUp} />
       </div>
     </>
   )
 }
 
-export default ProductsManagement
+export default ContractsManagement
