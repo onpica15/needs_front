@@ -96,7 +96,7 @@ const ProductList = (props) => {
     let url = 'http://localhost:5000/productlist/categories'
     const res = await axios
       .get(url)
-      .catch((err) => console.log(`'Can't get categories`))
+      .catch((err) => console.log(`Can't get categories`, err))
     setCategories(res.data)
     setDataLoading(false)
   }
