@@ -18,18 +18,22 @@ const Chat = () => {
   const { search } = useLocation()
   const searchParams = new URLSearchParams(search)
   const name = useSelector((state) => state.authentication.user.user.username)
-  const room = searchParams.get('room') + name
+  const storeName = searchParams.get('room')
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([])
+
+  // set connect room between customer and merchant
+  const room = name + storeName
 
   useEffect(() => {
     socket = io(ENDPOINT)
 
-    socket.emit('join', { name, room }, (error) => {
-      if (error) {
-        alert(error)
-      }
-    })
+    if (room ? room : '123')
+      socket.emit('join', { name, room }, (error) => {
+        if (error) {
+          alert(error)
+        }
+      })
   }, [ENDPOINT])
 
   useEffect(() => {
@@ -49,7 +53,7 @@ const Chat = () => {
   return (
     <div className="outerContainer">
       <div className="chat">
-        <InfoBar room={room} />
+        <InfoBar storeName={storeName} />
         <Messages messages={messages} name={name} />
         <Input
           message={message}

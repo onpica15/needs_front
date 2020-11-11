@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { addToCartAction, updateCartUnits } from '../../actions/index'
+import { updateCartUnits } from '../../actions/index'
 
 import Breadcrumbs from '../../components/Breadcrumbs'
 import ForProductListCarousel from '../../components/ProductList/ForProductListCarousel'
@@ -39,9 +39,7 @@ const ProductList = (props) => {
   // 0 = can't use  1 = use
   const [ecoin, setEcoin] = useState(false)
   // set price filter
-  const [filterprice, setFilterPrice] = useState([500, 6000])
-  const [Price, setPrice] = useState([])
-  const [SalePirce, setSalePirce] = useState([])
+  const [filterprice, setFilterPrice] = useState([0, 7000])
 
   //Redux addCart
   const { cart, updateCartUnits } = props
@@ -58,7 +56,6 @@ const ProductList = (props) => {
       const res = await axios.get(url).catch((err) => console.log('Error', err))
       setAllPosts(res.data)
       setShowPosts(res.data)
-
       setDataLoading(false)
     }
     fetchPosts()
@@ -83,17 +80,15 @@ const ProductList = (props) => {
   }, [ecoin])
 
   // set price filter
-  // const showprice = () => {
-  //   showPosts.sale_price
-  //     ? console.log(showPosts.sale_price)
-  //     : console.log(showPosts.sale_price)
-  // }
-  // showprice()
-
-  // if (sale_price)
-  // showPosts.sale_price
-  //   ? setShowPosts(allposts.filter((value) => value.sale_price <= price))
-  //   : setShowPosts(allposts)
+  useEffect(() => {
+    setShowPosts(
+      allposts.filter((value) =>
+        value.sale_price
+          ? value.sale_price >= filterprice[0]
+          : value.price >= filterprice[0]
+      )
+    )
+  }, [filterprice])
 
   //get all data
   const getCategories = async () => {

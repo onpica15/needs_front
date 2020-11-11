@@ -17,6 +17,7 @@ function ProductViewList(props) {
     id,
     title,
     brand_name,
+    brand_en_name,
     image_path,
     outline,
     e_points_usable,
@@ -31,7 +32,7 @@ function ProductViewList(props) {
     <>
       <div className="productListItem d-flex container-fluid">
         <Link
-          to={`/products/${id}?room=${brand_name}`}
+          to={`/products/${id}?room=${brand_en_name}`}
           onClick={() =>
             dispatch(
               addToCartAction({ id, title, image_path, price, units: 1 })

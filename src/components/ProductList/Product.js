@@ -17,6 +17,7 @@ const Product = (props) => {
     id,
     title,
     brand_name,
+    brand_en_name,
     image_path,
     e_points_usable,
     price,
@@ -32,7 +33,7 @@ const Product = (props) => {
       col-sm-6 col-xs-12"
       >
         <Link
-          to={`/products/${id}?room=${brand_name}`}
+          to={`/products/${id}?room=${brand_en_name}`}
           onClick={() =>
             dispatch(
               addToCartAction({ id, title, image_path, price, units: 1 })

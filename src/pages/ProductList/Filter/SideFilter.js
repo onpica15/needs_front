@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Range } from 'rc-slider'
-import { Button } from 'react-bootstrap'
 import StarRating from '../../../components/StarRating'
 import 'rc-slider/assets/index.css'
 import './SideFilter.scss'
@@ -12,12 +11,12 @@ const SideFilter = (props) => {
   //setting handlePrice step
   const sliderProps = {
     min: 0,
-    max: 10000,
+    max: 7000,
     step: 100,
     marks: {
       0: 0,
-      5000: 5000,
-      10000: 10000,
+      3500: 3500,
+      7000: 7000,
     },
   }
 
@@ -44,17 +43,17 @@ const SideFilter = (props) => {
             </div>
             <Range
               allowCross={false}
-              defaultValue={[500, 6000]}
+              defaultValue={[0, 7000]}
               onChange={onSliderChange}
               {...sliderProps}
             />
           </div>
         </div>
-
+        {/* 
         <div className="filterItem starSelect">
           <h6 className="title">評價</h6>
           <StarRating />
-        </div>
+        </div> */}
         <div className="filterItem">
           <h6 className="title">其他篩選</h6>
           <div>
