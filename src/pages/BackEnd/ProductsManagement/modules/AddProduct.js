@@ -28,43 +28,37 @@ const AddProduct = (props) => {
 
   const dispatch = useDispatch()
 
-  const [imgList, setImgList] = useState({ imgList: '' })
+  let imgList = []
 
   const handleSetForm = (e, key) => {
     if (key === 'file') {
       const files = e.target.files
-      const postData = new FormData()
       for (let i = 0; i < files.length; i++) {
-        postData.append('imgList[]', files[i])
-        console.log('files[0]', files[0])
-        console.log('postData', postData.getAll('imgList[]'))
+        imgList.push(files[i])
       }
-      return setFormData({ ...formData, imgList: postData })
-      //   const arr = []
-      //   for (let i = 0; i < files.length; i++) {
-      //     arr.push(files[i])
-      //   }
-      //   console.log('arr', arr)
-      //   return setImgList({ imgList: arr })
+    } else {
+      const value = e.target.value
+      setFormData({ ...formData, [key]: value })
     }
-    const value = e.target.value
-    setFormData({ ...formData, [key]: value })
-    console.log('zzz')
   }
-
-  console.log('formData', formData)
-  console.log('imgList', imgList)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // const postData = new FormData()
-    // for (let key = 0; key < 5; key++) {
-    //   const img = imgList.imgList[key]
-    //   postData.append('imgList[]', img)
-    // }
-    // console.log('postData', postData.getAll('imgList[]'))
 
-    Axios.post(`http://122.116.38.12:5050/bk-products-api`, formData).then(
+    const postData = new FormData()
+
+    //把imgList寫入postData
+    for (let i = 0; i < imgList.length; i++) {
+      const img = imgList[i]
+      postData.append('imgList', img)
+    }
+
+    //把formData寫入postData
+    for (const key of Object.keys(formData)) {
+      postData.append(key, formData[key])
+    }
+
+    Axios.post(`http://122.116.38.12:5050/bk-products-api`, postData).then(
       (res) => {
         //   if (!res.data.success) {
         //     setAlertShow(true)
@@ -109,7 +103,7 @@ const AddProduct = (props) => {
         <Modal.Header closeButton>
           <Modal.Title>實體商品上架</Modal.Title>
         </Modal.Header>
-        <Form id="myForm" onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <Modal.Body>
             <Form.Group controlId="title">
               <Form.Label>商品名稱</Form.Label>
@@ -128,8 +122,6 @@ const AddProduct = (props) => {
                 label={<FiUpload size="35px" />}
                 feedbackTooltip
                 multiple
-                // value={formData.file}
-
                 onChange={(e) => handleSetForm(e, 'file')}
               />
               <Form.Label>上傳圖片</Form.Label>
