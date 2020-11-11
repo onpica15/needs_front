@@ -14,9 +14,9 @@ import MemberCard from './pages/Member/MemberCard'
 import MemberCardEdit from './pages/Member/MemberCardEdit'
 import MemberShop from './pages/Member/MemberShop'
 import MemberLike from './pages/Member/MemberLike'
-import MemberInformone from './pages/Member/MemberInformone'
-import MemberInformtwo from './pages/Member/MemberInformtwo'
-import MemberInformthree from './pages/Member/MemberInformthree'
+import MemberInformOne from './pages/Member/MemberInformOne'
+import MemberInformTwo from './pages/Member/MemberInformTwo'
+import MemberInformThree from './pages/Member/MemberInformThree'
 import MemberEcoin from './pages/Member/MemberEcoin'
 import MemberComment from './pages/Member/MemberComment'
 import Investment from './pages/Investment'
@@ -152,8 +152,8 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            // path="/member/card/:userid?"
-            path="/member/card/:id"
+            path="/member/card"
+            // path="/member/card/:id"
             component={MemberCard}
             layout="FRONT_END_NAV"
           />
@@ -174,17 +174,17 @@ function App(props) {
           />
           <DynamicLayoutRoute
             path="/member/informone"
-            component={MemberInformone}
+            component={MemberInformOne}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
             path="/member/informtwo"
-            component={MemberInformtwo}
+            component={MemberInformTwo}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/member/informthree"
-            component={MemberInformthree}
+            path="/member/informThree"
+            component={MemberInformThree}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute

@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import React from 'react'
 import MemSidebar from './memmodules/MemSidebar'
-import MemuInform from './memmodules/MemInformone'
+import MemuInformTwo from './memmodules/MemInformTwo'
 import './member.scss'
 import './member-rwd.scss'
 
@@ -14,7 +13,7 @@ function MemberInform() {
             <MemSidebar />
           </div>
           <div className="col-lg-10 col-sm-12">
-            <MemuInform />
+            <MemuInformTwo />
           </div>
         </div>
       </div>

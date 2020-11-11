@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 import './MemSidebar.scss'
+import { Modal, Button } from 'react-bootstrap'
 
 import {
   BsPersonFill,
@@ -15,7 +16,10 @@ import { MdAddAPhoto } from 'react-icons/md'
 
 const MemSidebar = (props) => {
   const [avatar, setAvatar] = useState([])
-  const [uploadAvatarFile, setUploadAvatarFile] = useState({})
+  const [id, setId] = useState(0)
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
   const isLogin = useSelector((state) => state.authentication.loggedIn)
   const loginUser = useSelector((state) => state.authentication.user)
 
@@ -25,20 +29,21 @@ const MemSidebar = (props) => {
     setAvatar(res.data[0].avatar)
     console.log('res.data[0].avatar', res.data[0].avatar)
   }
+
+  const formData = new FormData()
+
   const updateAvatar = (e) => {
-    setUploadAvatarFile(e.target.files[0])
+    const file = e.target.files[0]
+    formData.append('avatar', file)
   }
 
-  const sendAvatarToNodejs = async (e) => {
+  const sendAvatarToNodejs = (e) => {
     // e.preventDefault()
-    // const filename = uploadAvatarFile.name
-    // const formData = { avatar: filename }
-    const formData = uploadAvatarFile
-    console.log('formData', formData)
-    console.log('props.match.params.id', props.match.params.id)
-    let url = `http://localhost:5000/member/upload/${props.match.params.id}`
+    // const formData = new FormData()
+    // console.log('props.match.params.id', props.match.params.id)
+    let url = `http://localhost:5000/member/upload?id=${id}`
     try {
-      await axios.post(url, formData, )
+      axios.post(url, formData)
     } catch (err) {
       if (err.response.status === 500) {
         console.log('伺服器有點問題')
@@ -51,6 +56,7 @@ const MemSidebar = (props) => {
     if (isLogin) {
       const memId = loginUser.user.id
       getData(memId)
+      setId(memId)
     } else {
       window.location.href = '/login'
     }
@@ -67,18 +73,54 @@ const MemSidebar = (props) => {
         <div className="font-ss">
           {/* <label for="avatar" className="whiteSpacePre btn btn-info"> */}
           <div className="d-flex ml-5 wrapper">
-            <div className="icons">
+            <Button
+              className="photoicon"
+              variant="primary"
+              onClick={handleShow}
+            >
               <MdAddAPhoto />
-            </div>
-            <form onSubmit={sendAvatarToNodejs} name="form1">
+            </Button>
+
+            <Modal show={show} onHide={handleClose} animation={false}>
+              <Modal.Header closeButton>
+                <Modal.Title>
+                  <MdAddAPhoto />
+                  快快快來張美照
+                </Modal.Title>
+              </Modal.Header>
+              <form onSubmit={(e) => sendAvatarToNodejs(e)} name="form1">
+                <Modal.Body>
+                  <input
+                    type="file"
+                    name="filename"
+                    id="filename"
+                    onChange={(e) => updateAvatar(e)}
+                  />
+                </Modal.Body>
+
+                <Modal.Footer>
+                  <Button
+                    type="file"
+                    name="filename"
+                    id="filename"
+                    variant="secondary"
+                    onClick={(e) => updateAvatar(e)}
+                  >
+                    換美美頭貼
+                  </Button>
+                </Modal.Footer>
+              </form>
+            </Modal>
+
+            {/* <form onSubmit={(e) => sendAvatarToNodejs(e)} name="form1">
               <input
                 type="file"
                 name="filename"
                 id="filename"
                 onChange={(e) => updateAvatar(e)}
               />
-              <input type="submit" value="uploadAvatar" />
-            </form>
+              <input type="submit" value="上傳美照" />
+            </form> */}
           </div>
           {/* </label> */}
         </div>
@@ -114,7 +156,7 @@ const MemSidebar = (props) => {
             </Link>
           </div>
           <div className="font-s">
-            <Link to="/member/inform">
+            <Link to="/member/informone">
               <div className="d-flex  wrapper">
                 <div className="icons">
                   <BsFillBellFill />
