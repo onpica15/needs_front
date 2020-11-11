@@ -74,9 +74,10 @@ $bg-light: #f0f0f0;
     color: $font-gray;
   }
   .product-main-info {
-    padding: 80px 15px 2.5rem 15px;
+    padding: 80px 15px 0 15px;
     .w-88 {
       width: 88%;
+      margin-bottom: 130px;
       .cover{
         object-fit: cover;
       }

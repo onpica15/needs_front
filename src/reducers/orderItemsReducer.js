@@ -1,6 +1,6 @@
 import { REPLACE_ORDER_ITEMS } from '../actions/actiontypes'
 
-export function orderItems(state = [], action) {
+export function orderContent(state = [], action) {
   switch (action.type) {
     case REPLACE_ORDER_ITEMS:
       return action.item

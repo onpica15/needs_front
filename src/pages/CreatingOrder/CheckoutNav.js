@@ -17,7 +17,7 @@ function CheckoutNav(props) {
           </div>
           <p className="mt-4">付款方式</p>
         </Col>
-        <Col md={2} className="step-wrapper p-0 active">
+        <Col md={2} className="step-wrapper p-0">
           <div className="step-item">
             <span className="text">3</span>
           </div>
