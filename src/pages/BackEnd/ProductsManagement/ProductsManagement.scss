@@ -137,6 +137,14 @@ $primary_focus: #7367f0;
           color: $white;
         }
       }
+      .dropdown-item {
+        &:focus {
+          outline: none;
+        }
+        &:active {
+          background-color: $primary_focus;
+        }
+      }
     }
 
     .productList {
@@ -194,6 +202,14 @@ $primary_focus: #7367f0;
           .dropdown-menu {
             min-width: 0;
             text-align: center;
+            .dropdown-item {
+              &:focus {
+                outline: none;
+              }
+              &:active {
+                background-color: $primary_focus;
+              }
+            }
           }
         }
         .productImg {
@@ -341,5 +357,13 @@ $primary_focus: #7367f0;
         }
       }
     }
+  }
+}
+
+.alertModal .modal-dialog {
+  width: 250px;
+  .modal-body {
+    text-align: center;
+    padding: 40px;
   }
 }

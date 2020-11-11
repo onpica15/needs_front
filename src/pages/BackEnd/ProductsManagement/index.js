@@ -19,8 +19,11 @@ const ProductsManagement = (props) => {
   // all launched soldout unlaunched, grid list
   const [type, setType] = useState('all')
   const [viewType, setViewType] = useState('list')
-  const [showAddProd, setShowAddProd] = useState(true)
+  const [showAddProd, setShowAddProd] = useState(false)
   const [showAddCourse, setShowAddCourse] = useState(false)
+
+  const [searchType, setSearchType] = useState(0)
+  const [searchInp, setSearchInp] = useState('')
 
   // const merchantId = useSelector((state) => state.authentication.user.user.id)
   const [merchantId, setMerchantId] = useState(12)
@@ -89,16 +92,38 @@ const ProductsManagement = (props) => {
         <Col className="main offset-2" xs={10}>
           <Container fluid>
             <ToolBar
+              merchantId={merchantId}
               type={type}
+              currentPage={currentPage}
               setType={setType}
               viewType={viewType}
               setViewType={setViewType}
+              searchType={searchType}
+              setSearchType={setSearchType}
+              searchInp={searchInp}
+              setSearchInp={setSearchInp}
+              getData={getData}
               showAddProd={showAddProd}
               setShowAddProd={setShowAddProd}
               showAddCourse={showAddCourse}
               setShowAddCourse={setShowAddCourse}
             />
-            <ProductsContent data={data} />
+            <ProductsContent
+              data={data}
+              merchantId={merchantId}
+              type={type}
+              getData={getData}
+              searchType={searchType}
+              searchInp={searchInp}
+              alertShow={alertShow}
+              setAlertShow={setAlertShow}
+              error={error}
+              success={success}
+              clear={clear}
+              alerMsg={alerMsg}
+              alerType={alerType}
+            />
+
             <BackendPagination
               pageItems={pageItems}
               currentPage={currentPage}
@@ -113,8 +138,8 @@ const ProductsManagement = (props) => {
               type={type}
               categories={categories}
               setCategories={setCategories}
-              formData={formData}
-              setFormData={setFormData}
+              myData={formData}
+              setMyData={setFormData}
               alertShow={alertShow}
               setAlertShow={setAlertShow}
               error={error}
@@ -130,6 +155,18 @@ const ProductsManagement = (props) => {
               getData={getData}
               merchantId={merchantId}
               type={type}
+              categories={categories}
+              setCategories={setCategories}
+              myData={formData}
+              setMyData={setFormData}
+              alertShow={alertShow}
+              setAlertShow={setAlertShow}
+              error={error}
+              success={success}
+              clear={clear}
+              alerMsg={alerMsg}
+              alerType={alerType}
+              getCategories={getCategories}
             />
           </Container>
         </Col>

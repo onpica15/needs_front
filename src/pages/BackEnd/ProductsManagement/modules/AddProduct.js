@@ -15,8 +15,8 @@ const AddProduct = (props) => {
     type,
     getCategories,
     categories,
-    formData,
-    setFormData,
+    myData,
+    setMyData,
     alertShow,
     setAlertShow,
     error,
@@ -27,58 +27,46 @@ const AddProduct = (props) => {
   } = props
 
   const dispatch = useDispatch()
-
-  let imgList = []
+  const postData = new FormData()
 
   const handleSetForm = (e, key) => {
     if (key === 'file') {
       const files = e.target.files
       for (let i = 0; i < files.length; i++) {
-        imgList.push(files[i])
+        const img = files[i]
+        postData.append('imgList', img)
       }
     } else {
       const value = e.target.value
-      setFormData({ ...formData, [key]: value })
+      // setMyData({ ...myData, [key]: value })
+      postData.set(key, value)
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const postData = new FormData()
-
-    //把imgList寫入postData
-    for (let i = 0; i < imgList.length; i++) {
-      const img = imgList[i]
-      postData.append('imgList', img)
-    }
-
-    //把formData寫入postData
-    for (const key of Object.keys(formData)) {
-      postData.append(key, formData[key])
-    }
-
-    Axios.post(`http://122.116.38.12:5050/bk-products-api`, postData).then(
-      (res) => {
-        //   if (!res.data.success) {
-        //     setAlertShow(true)
-        //     // setTimeout(() => {
-        //     //   dispatch(clear())
-        //     //   setAlertShow(false)
-        //     // }, 1500)
-        //     return dispatch(error('修改失敗'))
-        //   }
+    Axios.post(
+      `http://122.116.38.12:5050/bk-products-api?id=${merchantId}&prodType=0`,
+      postData
+    ).then((res) => {
+      if (!res.data.success) {
         setAlertShow(true)
-        setShowAddProd(false)
-        getData(merchantId, type)
-        // //   setTimeout(() => {
-        // //     dispatch(clear())
-        // //     setAlertShow(false)
-        // //   }, 1500)
-        //   return dispatch(success('修改成功'))
-        // })
+        setTimeout(() => {
+          dispatch(clear())
+          setAlertShow(false)
+        }, 1500)
+        return dispatch(error('新增失敗'))
       }
-    )
+      setAlertShow(true)
+      setShowAddProd(false)
+      getData(merchantId, type)
+      setTimeout(() => {
+        dispatch(clear())
+        setAlertShow(false)
+      }, 1500)
+      return dispatch(success('新增成功'))
+    })
   }
 
   useEffect(() => {
@@ -92,7 +80,7 @@ const AddProduct = (props) => {
         show={showAddProd}
         onHide={(e) => {
           setShowAddProd(false)
-          setFormData({})
+          setMyData({})
         }}
         backdrop="static"
         keyboard={false}
@@ -109,7 +97,7 @@ const AddProduct = (props) => {
               <Form.Label>商品名稱</Form.Label>
               <Form.Control
                 type="text"
-                value={formData.title || ''}
+                // value={formData.title || ''}
                 onChange={(e) => handleSetForm(e, 'title')}
               />
             </Form.Group>
@@ -130,7 +118,7 @@ const AddProduct = (props) => {
               <Form.Label>商品類別</Form.Label>
               <Form.Control
                 as="select"
-                value={formData.category}
+                // value={formData.category}
                 onChange={(e) => handleSetForm(e, 'category')}
               >
                 <option value="" disabled selected hidden>
@@ -169,17 +157,17 @@ const AddProduct = (props) => {
               <div className="input-group">
                 <Form.Control
                   type="text"
-                  value={formData.specification1}
+                  // value={formData.specification1}
                   onChange={(e) => handleSetForm(e, 'specification1')}
                 />
                 <Form.Control
                   type="text"
-                  value={formData.specification2}
+                  // value={formData.specification2}
                   onChange={(e) => handleSetForm(e, 'specification2')}
                 />
                 <Form.Control
                   type="text"
-                  value={formData.specification3}
+                  // value={formData.specification3}
                   onChange={(e) => handleSetForm(e, 'specification3')}
                 />
                 <FiPlusCircle size="25px" style={{ color: '#495057' }} />
@@ -192,7 +180,7 @@ const AddProduct = (props) => {
                 thousandSeparator={true}
                 prefix={'$'}
                 id="price"
-                value={formData.price}
+                // value={formData.price}
                 onChange={(e) => handleSetForm(e, 'price')}
               />
             </Form.Group>
@@ -203,7 +191,7 @@ const AddProduct = (props) => {
                 thousandSeparator={true}
                 prefix={'$'}
                 id="salePrice"
-                value={formData.salePrice}
+                // value={formData.salePrice}
                 onChange={(e) => handleSetForm(e, 'salePrice')}
               />
             </Form.Group>
@@ -211,8 +199,16 @@ const AddProduct = (props) => {
               <Form.Label>商品上架日</Form.Label>
               <Form.Control
                 type="date"
-                value={formData.launchDate}
+                // value={formData.launchDate}
                 onChange={(e) => handleSetForm(e, 'launchDate')}
+              />
+            </Form.Group>
+            <Form.Group controlId="stock">
+              <Form.Label>商品庫存</Form.Label>
+              <Form.Control
+                type="number"
+                // value={formData.launchDate}
+                onChange={(e) => handleSetForm(e, 'stock')}
               />
             </Form.Group>
             <Form.Group controlId="outline">
@@ -220,7 +216,7 @@ const AddProduct = (props) => {
               <Form.Control
                 as="textarea"
                 rows="5"
-                value={formData.outline}
+                // value={formData.outline}
                 onChange={(e) => handleSetForm(e, 'outline')}
               />
             </Form.Group>
@@ -230,7 +226,7 @@ const AddProduct = (props) => {
               variant="outline-danger"
               onClick={(e) => {
                 setShowAddProd(false)
-                setFormData({})
+                setMyData({})
               }}
             >
               取消
@@ -242,7 +238,7 @@ const AddProduct = (props) => {
           </Modal.Footer>
         </Form>
       </Modal>
-      <Modal show={alertShow} centered className="orderModal">
+      <Modal show={alertShow} centered className="alertModal">
         <Modal.Body className={alerType}>{alerMsg}</Modal.Body>
       </Modal>
     </>

@@ -266,7 +266,7 @@ const OrdersContent = (props) => {
             </div>
           )
         })}
-        <Modal show={alertShow} centered className="orderModal">
+        <Modal show={alertShow} centered className="alertModal">
           <Modal.Body className={alerType}>{alerMsg}</Modal.Body>
         </Modal>
       </div>

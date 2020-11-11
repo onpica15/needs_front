@@ -17,15 +17,23 @@ import {
 
 const ToolBar = (props) => {
   const {
+    merchantId,
     type,
     setType,
     viewType,
     setViewType,
-    showAddProd,
     setShowAddProd,
-    showAddCourse,
     setShowAddCourse,
+    searchType,
+    setSearchType,
+    searchInp,
+    setSearchInp,
+    getData,
   } = props
+
+  const handleSubmit = (merchantId, type, searchType, searchInp) => {
+    getData(merchantId, type, searchType, searchInp)
+  }
   return (
     <>
       <Row className="toolsSec my-3">
@@ -60,14 +68,29 @@ const ToolBar = (props) => {
           </Button>
         </div>
         <Form className="searchBar">
-          <Form.Control as="select" id="inlineFormCustomSelect" custom>
+          <Form.Control
+            as="select"
+            id="inlineFormCustomSelect"
+            custom
+            onChange={(e) => setSearchType(e.target.value)}
+          >
             <option value="0">商品名稱</option>
             <option value="1">商品類別</option>
           </Form.Control>
           <InputGroup>
-            <FormControl aria-describedby="basic-addon1" />
+            <FormControl
+              aria-describedby="basic-addon1"
+              onChange={(e) => setSearchInp(e.target.value)}
+            />
           </InputGroup>
-          <Button variant="light" className="searchbtn" type="submit">
+          <Button
+            variant="light"
+            className="searchbtn"
+            type="submit"
+            onClick={(e) =>
+              handleSubmit(merchantId, type, searchType, searchInp)
+            }
+          >
             <AiOutlineSearch size="24px" />
           </Button>
         </Form>
