@@ -1,0 +1,25 @@
+$primary: #243a6e;
+$secondary: #0d5661;
+$danger: #d44f44;
+$dark: #6c757d;
+$font-black: #323232;
+$font-gray: #787878;
+$bg-gray: #cdcdcd;
+$bg-light: #f0f0f0;
+$shadow:#E7E7E7;
+
+.searchContent{
+    position: absolute;
+    top:80px;
+    background-color: $bg-light;
+    list-style: none;
+    li{
+        border: 1px solid rgba(0,0,0,.1);
+    }
+    p{
+        font-size: 16px;
+        padding: 5px;
+        margin-bottom: 10px;
+        font-weight: 400;
+    }
+}

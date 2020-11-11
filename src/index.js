@@ -7,12 +7,23 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { rootReducer } from './reducers/index'
+import { loadState, saveState } from './localStorage'
+
+const persistedState = loadState()
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   rootReducer /* preloadedState, */,
+  persistedState,
   composeEnhancers(applyMiddleware(thunk))
 )
+
+store.subscribe(() => {
+  saveState({
+    cart: store.getState().cart,
+    favorite: store.getState().favorite,
+  })
+})
 
 ReactDOM.render(
   <React.StrictMode>

@@ -5,6 +5,8 @@ import { RiShoppingCart2Line } from 'react-icons/ri'
 import { BiCheckCircle } from 'react-icons/bi'
 import './productPage.scss'
 import * as storage from '../Cart/localStorage'
+import { connect } from 'react-redux'
+import { replaceCartAmount } from '../../actions'
 
 import DetailNav from './DetailNav'
 import CarouselImage from './CarouselImage'
@@ -14,8 +16,10 @@ import Review from './Review'
 import MerchantOtherProducts from './MerchantOtherProducts'
 import History from './History'
 
+import FixedButtons from '../../components/FixedButtons'
+
 function ProductDetail(props) {
-  console.log('--- invoke function component ---')
+  // console.log('--- invoke function component ---')
   const [productDetail, setProductDetail] = useState([])
   const [merchantInfo, setMerchantInfo] = useState([])
   const [quantity, setQuantity] = useState(1)
@@ -28,7 +32,7 @@ function ProductDetail(props) {
       method: 'GET',
       headers: new Headers({
         Accept: 'application/json',
-        'Content-Type': 'appliaction/json',
+        'Content-Type': 'application/json',
       }),
     })
     const response = await fetch(request)
@@ -46,7 +50,7 @@ function ProductDetail(props) {
       method: 'GET',
       headers: new Headers({
         Accept: 'application/json',
-        'Content-Type': 'appliaction/json',
+        'Content-Type': 'application/json',
       }),
     })
     const response = await fetch(request)
@@ -65,6 +69,16 @@ function ProductDetail(props) {
   function addToCart(value) {
     storage.saveCartItems(storage.addCartItem(storage.getCartItems(), value))
     setShow(true)
+    updateCartAmount()
+  }
+
+  function updateCartAmount() {
+    let amount = 0
+    let cart = [...JSON.parse(localStorage.getItem('cart') || '[]')]
+    cart.forEach((item) => {
+      amount += item.amount
+    })
+    props.replaceCartAmount(amount)
   }
 
   useEffect(() => {
@@ -234,8 +248,17 @@ function ProductDetail(props) {
         <History />
         <div className="mb-5"></div>
       </Container>
+      <FixedButtons />
     </div>
   )
 }
 
-export default ProductDetail
+const mapStateToProps = (store) => {
+  return {
+    cartAmount: store.cartAmount,
+  }
+}
+
+export default connect(mapStateToProps, {
+  replaceCartAmount,
+})(ProductDetail)

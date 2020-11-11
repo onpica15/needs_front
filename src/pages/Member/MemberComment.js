@@ -11,8 +11,8 @@ function MemberComment() {
       <div className="container member ">
         <div className="row my-3">
           <MemSidebar />
-          <MemComment /> 
-      </div>
+          <MemComment />
+        </div>
       </div>
     </>
   )

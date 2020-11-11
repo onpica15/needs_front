@@ -1,25 +1,21 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import MemSidebar from './memmodules/MemSidebar'
-import MemCard from './memmodules/Memcard'
+import MemCardEdit from './memmodules/MemCardEdit'
 import './member.scss'
 import './member-rwd.scss'
 
-function MemberCard(props) {
+function MemberCardEdit(props) {
   return (
     <>
       <div className="container member">
         <div className="row my-3">
-          <div className="col-3">
-            <MemSidebar {...props} />
-          </div>
-          <div className="col-9">
-            <MemCard {...props} />
-          </div>
+          <MemSidebar {...props} />
+          <MemCardEdit {...props} />
         </div>
       </div>
     </>
   )
 }
 
-export default MemberCard
+export default MemberCardEdit

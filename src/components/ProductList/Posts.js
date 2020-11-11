@@ -1,27 +1,10 @@
-import React, { useState } from 'react'
-import { GrFavorite } from 'react-icons/gr'
-import { MdFavorite } from 'react-icons/md'
-
+import React from 'react'
 import Product from './Product'
 import ProductViewList from './ProductViewList'
 
 const Posts = (props) => {
-  const {
-    selectCategory,
-    ecoin,
-    posts,
-    dataLoading,
-    productView,
-    addToCartAction,
-  } = props
-  const [favore, setFavore] = useState(false)
+  const { showPosts, dataLoading, productView } = props
 
-  const addToCart = (product) => {
-    addToCartAction(product)
-  }
-  const changeFavoreIcon = () => {
-    setFavore((value) => !value)
-  }
   if (dataLoading) {
     return (
       <div className="d-flex justify-content-center">
@@ -34,17 +17,14 @@ const Posts = (props) => {
 
   return (
     <div className="productItems d-flex flex-wrap">
-      {posts &&
-        posts.map((posts, index) => {
-          if (selectCategory && selectCategory !== posts.categories_id)
-            return <></>
-          if (!ecoin === false && posts.e_points_usable === 0) return <></>
+      {showPosts &&
+        showPosts.map((posts, index) => {
           return productView ? (
             <>
-              <Product key={posts.id} {...posts} addToCart={addToCart} />
+              <Product key={posts.id} {...posts} />
             </>
           ) : (
-            <ProductViewList key={index} {...posts} addToCart={addToCart} />
+            <ProductViewList key={index} {...posts} />
           )
         })}
     </div>
