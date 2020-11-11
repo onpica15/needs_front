@@ -7,7 +7,7 @@ import {
 } from 'react-icons/ai'
 
 // Chat component
-import Chat from './Chat/Chat'
+// import Chat from './Chat/Chat'
 import './Chat/Chat.scss'
 
 const FixedButtons = () => {
@@ -26,7 +26,7 @@ const FixedButtons = () => {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           />
         </div>
-        <div className="toCart">
+        {/* <div className="toCart">
           <AiOutlineShoppingCart size="28px" />
         </div>
         <div className="toSupport">
@@ -34,9 +34,9 @@ const FixedButtons = () => {
             onClick={() => showChatToggle(showChatToggle)}
             size="28px"
           />
-        </div>
+        </div> */}
       </div>
-      {showChat ? (
+      {/* {showChat ? (
         <div style={{ display: 'Block' }}>
           <Chat />
         </div>
@@ -44,7 +44,7 @@ const FixedButtons = () => {
         <div style={{ display: 'none' }}>
           <Chat />
         </div>
-      )}
+      )} */}
     </>
   )
 }
