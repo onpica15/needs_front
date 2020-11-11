@@ -4,6 +4,7 @@ import { alert } from './alertReducer'
 import { handleRole } from './roleReducer'
 import { orderContent } from './orderItemsReducer'
 import { orderId } from './orderIdReducer'
+import { cartAmount } from './cartAmountReducer'
 
 import cartReducer from './cartReducer'
 
@@ -13,5 +14,6 @@ export const rootReducer = combineReducers({
   alert,
   orderContent,
   orderId,
+  cartAmount,
   cart: cartReducer,
 })

@@ -4,6 +4,7 @@ import {
   alertConstants,
   REPLACE_ORDER_ITEMS,
   REPLACE_ORDER_ID,
+  REPLACE_CART_AMOUNT,
   ADD_TO_CART,
   UPDATE_CART_UNITS,
 } from './actiontypes'
@@ -138,6 +139,16 @@ export function replaceOrderId(item) {
 
   function orderId(item) {
     return { type: REPLACE_ORDER_ID, item }
+  }
+}
+// cartAmount
+export function replaceCartAmount(value) {
+  return (dispatch) => {
+    dispatch(cartAmount(value))
+  }
+
+  function cartAmount(value) {
+    return { type: REPLACE_CART_AMOUNT, value }
   }
 }
 

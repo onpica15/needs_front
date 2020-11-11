@@ -11,7 +11,9 @@ function CartItem(props) {
     setMerchantCarts,
     cart,
     setCart,
+    cartItemDelete,
     checkOne,
+    updateCartAmount,
   } = props
 
   function updateSkuAmount(skuId, increment) {
@@ -62,6 +64,7 @@ function CartItem(props) {
         return cartItems
       })
     )
+    updateCartAmount()
   }
 
   return (
@@ -151,7 +154,10 @@ function CartItem(props) {
             : product.price * product.amount}
         </Col>
         <Col md={1} className="text-right align-self-center">
-          <FaTimes />
+          <FaTimes
+            style={{ cursor: 'pointer' }}
+            onClick={() => cartItemDelete(product.skuid)}
+          />
         </Col>
       </Row>
       <div className="item-hr"></div>

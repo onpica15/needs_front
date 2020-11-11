@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, Form, Accordion, Card } from 'react-bootstrap'
-import { Link, withRouter, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { IoIosArrowDown } from 'react-icons/io'
 import { useSelector } from 'react-redux'
 import { replaceOrderId } from '../../actions'
+import { replaceCartAmount } from '../../actions'
 import './creatingOrder.scss'
+import * as storage from '../Cart/localStorage'
 
 import CheckoutNav from './CheckoutNav'
 import CartItems from './CartItems'
@@ -17,6 +19,7 @@ function CreatingOrder(props) {
   const [payment, setPayment] = useState(1)
   const products = props.orderContent.products || []
   const history = useHistory()
+  const skuIds = products.map((v) => v.skuid)
 
   async function getUserInfo() {
     const url = `http://localhost:5000/products/userInfo`
@@ -32,7 +35,7 @@ function CreatingOrder(props) {
     })
     const response = await fetch(request)
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
     data.note = ''
     setUserInfo(data)
   }
@@ -56,7 +59,25 @@ function CreatingOrder(props) {
     console.log(data)
     console.log('=== creatOrder end ===')
     props.replaceOrderId(data)
+
+    skuIds.forEach((skuid) => {
+      let cart = storage.getCartItems()
+      let newCartItem = cart.filter((item, index) => item.skuid !== skuid)
+      storage.saveCartItems(newCartItem)
+    })
+
+    updateCartAmount()
+
     history.push('/order_payment')
+  }
+
+  function updateCartAmount() {
+    let amount = 0
+    let cart = [...JSON.parse(localStorage.getItem('cart') || '[]')]
+    cart.forEach((item) => {
+      amount += item.amount
+    })
+    props.replaceCartAmount(amount)
   }
 
   function changeUserInfo(event) {
@@ -224,9 +245,14 @@ function CreatingOrder(props) {
 }
 
 const mapStateToProps = (store) => {
-  return { orderId: store.orderId, orderContent: store.orderContent }
+  return {
+    orderId: store.orderId,
+    orderContent: store.orderContent,
+    cartAmount: store.cartAmount,
+  }
 }
 
 export default connect(mapStateToProps, {
   replaceOrderId,
+  replaceCartAmount,
 })(CreatingOrder)

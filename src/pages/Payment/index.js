@@ -13,7 +13,7 @@ function Payment(props) {
   const order_number = props.orderId.order_number || []
 
   async function getTradeInfo() {
-    const url = `http://localhost:5000/payments/106/trade/info`
+    const url = `http://localhost:5000/payments/${payment_insertId}/trade/info`
     const request = new Request(url, {
       method: 'GET',
       headers: new Headers({
@@ -45,7 +45,7 @@ function Payment(props) {
               method="POST"
               action="https://ccore.spgateway.com/MPG/mpg_gateway"
             >
-              <div className="">
+              <div className="d-none">
                 <Form.Row>
                   <Col>
                     <Form.Control

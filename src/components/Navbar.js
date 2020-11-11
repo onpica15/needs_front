@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom'
 import { Navbar, Nav, NavDropdown, Container, Row } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { AiOutlineShoppingCart, AiOutlineSearch } from 'react-icons/ai'
+import { connect } from 'react-redux'
 
 import { userActions } from '../actions'
 import '../styles/navbar.scss'
 import logo from '../images/logo.png'
 
-function HomeNavbar() {
+function HomeNavbar(props) {
   //從actions中引入登出函式
   const { logout } = userActions
 
@@ -95,23 +96,20 @@ function HomeNavbar() {
             <Nav>{isLogin === true ? logoutBtn() : ''}</Nav>
             <Nav>
               {isLogin === false ? (
-                <Link to={`/login`}>
-                  <AiOutlineShoppingCart
-                    size="30px"
-                    style={{ color: '#d44f44', marginTop: '0.5rem' }}
-                  />
+                <Link to={`/login`} className="mx-3 text-decoration-none">
+                  <AiOutlineShoppingCart size="20px" className="cart-icon" />
+                  <span className="cart-amount">{props.cartAmount || 0}</span>
                 </Link>
               ) : (
-                <Link to={`/cart_list`}>
-                  <AiOutlineShoppingCart
-                    size="30px"
-                    style={{ color: '#d44f44', marginTop: '0.5rem' }}
-                  />
+                <Link to={`/cart_list`} className="mx-3 text-decoration-none">
+                  <AiOutlineShoppingCart size="20px" className="cart-icon" />
+                  <span className="cart-amount">{props.cartAmount || 0}</span>
                 </Link>
               )}
-
+            </Nav>
+            <Nav>
               <Nav.Link href="#link">
-                <AiOutlineSearch size="30px" />
+                <AiOutlineSearch size="20px" />
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -122,4 +120,9 @@ function HomeNavbar() {
   )
 }
 
-export default HomeNavbar
+const mapStateToProps = (store) => {
+  return { cartAmount: store.cartAmount }
+}
+
+// export default HomeNavbar
+export default connect(mapStateToProps)(HomeNavbar)
