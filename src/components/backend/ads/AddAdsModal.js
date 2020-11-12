@@ -11,10 +11,10 @@ function AddAdsModal() {
   const sendData = () => {
     const d = {
       title: document.form1.title.value,
-      budget: document.form1.title.budget,
-      bid: document.form1.title.bid,
-      startdate: document.form1.title.startdate,
-      enddate: document.form1.title.enddate,
+      budget: document.form1.budget.value,
+      bid: document.form1.bid.value,
+      start_date: document.form1.start_date.value,
+      end_date: document.form1.end_date.value,
     }
     Axios.post('http://localhost:5000/dashboard/addnewads', d).then(
       (response) => {
@@ -30,10 +30,8 @@ function AddAdsModal() {
       <Modal className="ads-modal-wrapper" show={show} onHide={handleClose}>
         <Form
           name="form1"
-          method="post"
           onSubmit={() => {
             sendData()
-            return false
           }}
         >
           <Modal.Header closeButton>
@@ -83,11 +81,11 @@ function AddAdsModal() {
                 </Form.Group>
                 <Form.Group controlId="forStartDate">
                   <Form.Label>起始時間</Form.Label>
-                  <Form.Control type="date" placeholder="" name="startdate" />
+                  <Form.Control type="date" placeholder="" name="start_date" />
                 </Form.Group>
                 <Form.Group controlId="forEndDate">
                   <Form.Label>結束時間</Form.Label>
-                  <Form.Control type="date" placeholder="" name="enddate" />
+                  <Form.Control type="date" placeholder="" name="end_date" />
                 </Form.Group>
               </Col>
             </Row>
