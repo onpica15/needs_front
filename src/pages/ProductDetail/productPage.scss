@@ -77,7 +77,7 @@ $bg-light: #f0f0f0;
     padding: 80px 15px 0 15px;
     .w-88 {
       width: 88%;
-      margin-bottom: 130px;
+      margin-bottom: 145px;
       .cover{
         object-fit: cover;
       }
@@ -181,11 +181,14 @@ $bg-light: #f0f0f0;
     }
   }
   .product-detail-content{
-    max-height: 600px;
+    // max-height: 600px;
     overflow: hidden;
     position: relative;
   }
-  .product-detail-content:before {
+  .maxH-600{
+    max-height: 600px;
+  }
+  .maxH-600:before {
     content: '';
     display: block;
     width: auto;

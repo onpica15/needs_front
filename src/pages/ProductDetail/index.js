@@ -3,6 +3,7 @@ import { Container, Row, Col, Form, Alert } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 import { RiShoppingCart2Line } from 'react-icons/ri'
 import { BiCheckCircle } from 'react-icons/bi'
+import { FiChevronDown } from 'react-icons/fi'
 import './productPage.scss'
 import * as storage from '../Cart/localStorage'
 import { connect } from 'react-redux'
@@ -79,9 +80,33 @@ function ProductDetail(props) {
     props.replaceCartAmount(amount)
   }
 
+  function moreProductDetail() {
+    document.querySelector('#productDetailContent').classList.remove('maxH-600')
+    document.querySelector('#moreProductDetail').classList.add('d-none')
+  }
+
+  function initMoreProductDetail() {
+    function hasClass(element, cls) {
+      return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1
+    }
+
+    if (hasClass(document.querySelector('#productDetailContent'), 'maxH-600')) {
+      return
+    } else {
+      document.querySelector('#productDetailContent').classList.add('maxH-600')
+    }
+
+    if (hasClass(document.querySelector('#moreProductDetail'), 'd-none')) {
+      document.querySelector('#moreProductDetail').classList.remove('d-none')
+    } else {
+      return
+    }
+  }
+
   useEffect(() => {
     getProductDetail()
     window.scrollTo(0, 0)
+    initMoreProductDetail()
   }, [props.match.params.id])
 
   useEffect(() => {
@@ -95,6 +120,62 @@ function ProductDetail(props) {
       setShow(false)
     }, 3000)
   }, [show])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      let posY = window.scrollY
+
+      function getPosition(element) {
+        let y = 0
+        while (element) {
+          y += element.offsetTop - element.scrollLeft + element.clientTop
+          element = element.offsetParent
+        }
+        return y
+      }
+
+      let productDetail_posY =
+        getPosition(document.querySelector('#productDetail')) - 155
+      let deliveryPayment_posY =
+        getPosition(document.querySelector('#deliveryPayment')) - 155
+      let review_posY = getPosition(document.querySelector('#review')) - 155
+      let merchantOtherProducts_posY =
+        getPosition(document.querySelector('#merchantOtherProducts')) - 155
+
+      const scrollToProductDetail = document.querySelector(
+        '#scrollToProductDetail'
+      )
+      const scrollToDeliveryPayment = document.querySelector(
+        '#scrollToDeliveryPayment'
+      )
+      const scrollToReview = document.querySelector('#scrollToReview')
+
+      if (posY > productDetail_posY && posY < deliveryPayment_posY) {
+        scrollToProductDetail.classList.add('active')
+        scrollToDeliveryPayment.classList.remove('active')
+        scrollToReview.classList.remove('active')
+      } else if (posY > deliveryPayment_posY && posY < review_posY) {
+        scrollToProductDetail.classList.remove('active')
+        scrollToDeliveryPayment.classList.add('active')
+        scrollToReview.classList.remove('active')
+      } else if (posY > review_posY && posY < merchantOtherProducts_posY) {
+        scrollToProductDetail.classList.remove('active')
+        scrollToDeliveryPayment.classList.remove('active')
+        scrollToReview.classList.add('active')
+      } else if (
+        posY < productDetail_posY ||
+        posY > merchantOtherProducts_posY
+      ) {
+        scrollToProductDetail.classList.remove('active')
+        scrollToDeliveryPayment.classList.remove('active')
+        scrollToReview.classList.remove('active')
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <div className="product-detail">
@@ -225,20 +306,40 @@ function ProductDetail(props) {
       </Container>
       <MerchantInfo merchantInfo={merchantInfo} />
       <Container>
-        <h5 className="mt-4">商品介紹</h5>
+        <h5 className="mt-5" id="productDetail">
+          商品介紹
+        </h5>
         <hr />
-        <div className="product-detail-content d-flex justify-content-center">
+        <div
+          className="product-detail-content maxH-600 d-flex justify-content-center"
+          id="productDetailContent"
+        >
           <div
             dangerouslySetInnerHTML={{ __html: productDetail.description }}
           ></div>
         </div>
-        <h5 className="mt-5">運費與其他資訊</h5>
+        <div className="text-center mt-3" id="moreProductDetail">
+          <button
+            className="btn btn-sm btn-outline-secondary"
+            onClick={() => moreProductDetail()}
+          >
+            閱讀更多
+            <FiChevronDown />
+          </button>
+        </div>
+        <h5 className="mt-5" id="deliveryPayment">
+          運費與其他資訊
+        </h5>
         <hr />
         <DeliveryPaymentInfo />
-        <h5 className="mt-5">購買評價</h5>
+        <h5 className="mt-5" id="review">
+          購買評價
+        </h5>
         <hr />
         <Review />
-        <h5 className="mt-5">店家其他商品</h5>
+        <h5 className="mt-5" id="merchantOtherProducts">
+          店家其他商品
+        </h5>
         <hr />
         <MerchantOtherProducts merchantInfo={merchantInfo} />
         <h5 className="mt-5">最近預覽</h5>
