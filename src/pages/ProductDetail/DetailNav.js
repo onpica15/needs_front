@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Container } from 'react-bootstrap'
 
 function DetailNav(props) {
@@ -14,7 +14,7 @@ function DetailNav(props) {
   function scrollTo(element) {
     let elemant = document.querySelector(element)
     let y = getPosition(elemant) - 145
-    window.scrollTo(0, y)
+    window.scrollTo({ top: y, behavior: 'smooth' })
   }
   return (
     <div className="detail-nav font-s">

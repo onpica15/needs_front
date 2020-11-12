@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Row, Col, Form, Alert } from 'react-bootstrap'
-import { Link, withRouter } from 'react-router-dom'
+import { Container, Row, Col, Form } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { RiShoppingCart2Line } from 'react-icons/ri'
-import { BiCheckCircle } from 'react-icons/bi'
 import { FiChevronDown } from 'react-icons/fi'
 import './productPage.scss'
 import * as storage from '../Cart/localStorage'
@@ -16,16 +15,19 @@ import DeliveryPaymentInfo from './DeliveryPaymentInfo'
 import Review from './Review'
 import MerchantOtherProducts from './MerchantOtherProducts'
 import History from './History'
+import SuccessModal from './SuccessModal'
+import FixedAddToCartBtn from './FixedAddToCartBtn'
 
+import { AiOutlineMessage } from 'react-icons/ai'
 import FixedButtons from '../../components/FixedButtons'
 
 function ProductDetail(props) {
-  // console.log('--- invoke function component ---')
   const [productDetail, setProductDetail] = useState([])
   const [merchantInfo, setMerchantInfo] = useState([])
   const [quantity, setQuantity] = useState(1)
   const [sku, setSku] = useState({})
-  const [show, setShow] = useState(false)
+  const [successModalShow, setSuccessModalShow] = useState(false)
+  const [modalShow, setModalShow] = useState(false)
 
   async function getProductDetail() {
     const url = `http://localhost:5000/products/${props.match.params.id}`
@@ -69,8 +71,9 @@ function ProductDetail(props) {
 
   function addToCart(value) {
     storage.saveCartItems(storage.addCartItem(storage.getCartItems(), value))
-    setShow(true)
     updateCartAmount()
+    setSuccessModalShow(true)
+    setModalShow(false)
   }
 
   function updateCartAmount() {
@@ -119,9 +122,9 @@ function ProductDetail(props) {
 
   useEffect(() => {
     setTimeout(() => {
-      setShow(false)
-    }, 3000)
-  }, [show])
+      setSuccessModalShow(false)
+    }, 2000)
+  }, [successModalShow])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -143,6 +146,8 @@ function ProductDetail(props) {
       let review_posY = getPosition(document.querySelector('#review')) - 155
       let merchantOtherProducts_posY =
         getPosition(document.querySelector('#merchantOtherProducts')) - 155
+      let mainInfoCartBtn =
+        getPosition(document.querySelector('#mainInfoCartBtn')) - 85
 
       const scrollToProductDetail = document.querySelector(
         '#scrollToProductDetail'
@@ -172,6 +177,12 @@ function ProductDetail(props) {
         scrollToDeliveryPayment.classList.remove('active')
         scrollToReview.classList.remove('active')
       }
+
+      if (posY > mainInfoCartBtn) {
+        document.querySelector('#fixedAddToCartBtn').classList.remove('d-none')
+      } else {
+        document.querySelector('#fixedAddToCartBtn').classList.add('d-none')
+      }
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -181,17 +192,10 @@ function ProductDetail(props) {
 
   return (
     <div className="product-detail">
-      <Alert
-        style={{ height: '80px' }}
-        show={show}
-        variant="success"
-        className="add-to-cart-success"
-        onClose={() => setShow(false)}
-        dismissible
-      >
-        <BiCheckCircle className="success-icon" />
-        商品已放入購物車
-      </Alert>
+      <SuccessModal
+        show={successModalShow}
+        onHide={() => setSuccessModalShow(false)}
+      />
       <DetailNav />
       <Container className="product-main-info">
         <Row>
@@ -288,6 +292,7 @@ function ProductDetail(props) {
               <button
                 className="btn btn-danger mt-3 w-100"
                 type="button"
+                id="mainInfoCartBtn"
                 onClick={() => {
                   addToCart({
                     id: productDetail.id,
@@ -349,7 +354,24 @@ function ProductDetail(props) {
         <History />
         <div className="mb-5"></div>
       </Container>
-      <FixedButtons />
+      <FixedAddToCartBtn
+        productDetail={productDetail}
+        sku={sku}
+        setSku={setSku}
+        getSku={getSku}
+        quantity={quantity}
+        setQuantity={setQuantity}
+        addToCart={addToCart}
+        modalShow={modalShow}
+        setModalShow={setModalShow}
+      />
+      {/* 聊天室 button 卡位用，正式版聊天室請自行替這個位置 */}
+      <div className="CartBtn">
+        <button className="btn btn-primary">
+          <AiOutlineMessage size="28px" />
+        </button>
+      </div>
+      {/* <FixedButtons /> */}
     </div>
   )
 }

@@ -8,7 +8,7 @@ $bg-gray: #cdcdcd;
 $bg-light: #f0f0f0;
 
 .product-detail {
-  background-color: #fff;
+  // background-color: #fff;
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -35,6 +35,7 @@ $bg-light: #f0f0f0;
     border-bottom: 1px solid $bg-gray;
     z-index: 1020;
     position: fixed;
+    cursor: pointer;
   }
   .detail-nav-item:visited {
     color: #787878;
@@ -78,7 +79,7 @@ $bg-light: #f0f0f0;
     .w-88 {
       width: 88%;
       margin-bottom: 145px;
-      .cover{
+      .cover {
         object-fit: cover;
       }
     }
@@ -180,12 +181,12 @@ $bg-light: #f0f0f0;
       background-color: $font-black;
     }
   }
-  .product-detail-content{
+  .product-detail-content {
     // max-height: 600px;
     overflow: hidden;
     position: relative;
   }
-  .maxH-600{
+  .maxH-600 {
     max-height: 600px;
   }
   .maxH-600:before {
@@ -198,7 +199,11 @@ $bg-light: #f0f0f0;
     left: 0;
     right: 0;
     z-index: 1;
-    background-image: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #fff 90%);
+    background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      #fff 90%
+    );
     background-position: center top;
     background-size: 100% 100%;
   }
@@ -231,7 +236,7 @@ $bg-light: #f0f0f0;
   }
   .product-s {
     height: 160px;
-    .cover{
+    .cover {
       object-fit: cover;
     }
     img {
@@ -243,27 +248,82 @@ $bg-light: #f0f0f0;
   .product-s-title {
     color: $font-black;
   }
-  .minh-66{
+  .minh-66 {
     height: 66px;
     overflow: hidden;
   }
-  .form-control:disabled, .form-control[readonly] {
+  .minh-73 {
+    height: 73px;
+    overflow: hidden;
+  }
+  .form-control:disabled,
+  .form-control[readonly] {
     background-color: #fff;
     opacity: 1;
   }
-  .add-to-cart-success{
+  .add-to-cart-success {
     text-align: center;
     position: fixed;
     padding: 25px 0px;
-    top:0;
+    top: 0;
     width: 100%;
     z-index: 299;
     .close {
       padding: 25px 1.25rem;
     }
   }
-  .success-icon{
-    margin-bottom: 3px;
-    margin-right: 10px;
+  .success-icon {
+    font-size: 80px;
+    color: #28a745;
+  }
+  .fixedBtnC {
+    position: fixed;
+    right: 30px;
+    bottom: 180px;
+    z-index: 10;
+    button {
+      width: 50px;
+      height: 50px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      cursor: pointer;
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+    }
+  }
+  .product-m {
+    height: 360px;
+    .cover {
+      object-fit: cover;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.25rem;
+    }
+  }
+  // 聊天室 css 暫時卡位用，正式版聊天室請自行替這個位置
+  .CartBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 115px;
+    z-index: 10;
+    button {
+      width: 50px;
+      height: 50px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      cursor: pointer;
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+    }
   }
 }
