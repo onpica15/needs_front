@@ -124,7 +124,6 @@ $primary_focus: #7367f0;
           text-align: center;
           width: 80px;
           border-radius: 50px;
-          //   background-color: $warning_color;
           line-height: 2;
         }
         .actions {
@@ -172,7 +171,7 @@ $primary_focus: #7367f0;
   }
 }
 
-.modal-dialog .modal-content {
+.contractsModal .modal-dialog .modal-content {
   padding: 80px 10%;
   // font-family: 'Noto Sans TC', sans-serif;
   line-height: 1.75;

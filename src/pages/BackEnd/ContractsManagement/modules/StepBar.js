@@ -1,6 +1,5 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Row, Dropdown, Form } from 'react-bootstrap'
 
 const StepBar = (props) => {
   const { stepIndex, setStepIndex } = props

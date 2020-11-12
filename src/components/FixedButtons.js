@@ -34,9 +34,9 @@ const FixedButtons = (props) => {
           />
         </div>
       </div>
-      <div style={{ display: showChat ? 'block' : 'none' }}>
+      {/* <div style={{ display: showChat ? 'block' : 'none' }}>
         <Chat showChatToggle={showChatToggle} />
-      </div>
+      </div> */}
     </>
   )
 }

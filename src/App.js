@@ -60,7 +60,7 @@ const DynamicLayoutRoute = (props) => {
       return (
         <>
           <Navbar />
-          {/* <FixedButtons /> */}
+          <FixedButtons />
           {actualRouteComponent}
           <Footer />
         </>

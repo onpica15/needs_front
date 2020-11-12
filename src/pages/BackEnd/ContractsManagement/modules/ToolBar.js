@@ -1,19 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import {
-  Row,
-  Button,
-  Dropdown,
-  InputGroup,
-  Form,
-  FormControl,
-} from 'react-bootstrap'
-import {
-  AiOutlinePlus,
-  AiOutlineAppstore,
-  AiOutlineBars,
-  AiOutlineSearch,
-} from 'react-icons/ai'
+import { Row, Button } from 'react-bootstrap'
+import { AiOutlinePlus, AiOutlineAppstore, AiOutlineBars } from 'react-icons/ai'
 
 const ToolBar = (props) => {
   const { type, setType, viewType, setViewType, toSignUp } = props
