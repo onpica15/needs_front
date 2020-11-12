@@ -1,4 +1,3 @@
-import { Block } from '@material-ui/icons'
 import React, { useState } from 'react'
 import {
   AiOutlineVerticalAlignTop,
@@ -10,9 +9,8 @@ import {
 import Chat from './Chat/Chat'
 import './Chat/Chat.scss'
 
-const FixedButtons = () => {
+const FixedButtons = (props) => {
   const [showChat, setShowChat] = useState(false)
-
   const showChatToggle = () => {
     showChat ? setShowChat(false) : setShowChat(true)
   }
@@ -36,15 +34,9 @@ const FixedButtons = () => {
           />
         </div>
       </div>
-      {showChat ? (
-        <div style={{ display: 'Block' }}>
-          <Chat />
-        </div>
-      ) : (
-        <div style={{ display: 'none' }}>
-          <Chat />
-        </div>
-      )}
+      <div style={{ display: showChat ? 'block' : 'none' }}>
+        <Chat showChatToggle={showChatToggle} />
+      </div>
     </>
   )
 }

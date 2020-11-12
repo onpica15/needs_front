@@ -5,7 +5,6 @@ import ArticleRecomment from '../../components/Article/ArticleRecomment'
 import ArticleRecommentProduct from '../../components/Article/ArticleRecommentProduct'
 
 const TestArticleDetial = (props) => {
-  const { showHTML } = props
   const [getDetial, setGetDetial] = useState('')
 
   useEffect(() => {
@@ -15,6 +14,7 @@ const TestArticleDetial = (props) => {
       setGetDetial(res.data)
     }
     fetchPosts()
+    window.scrollTo(0, 0)
   }, [])
 
   return (
