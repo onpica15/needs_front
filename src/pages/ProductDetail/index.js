@@ -17,6 +17,8 @@ import Review from './Review'
 import MerchantOtherProducts from './MerchantOtherProducts'
 import History from './History'
 
+import FixedButtons from '../../components/FixedButtons'
+
 function ProductDetail(props) {
   // console.log('--- invoke function component ---')
   const [productDetail, setProductDetail] = useState([])
@@ -347,6 +349,7 @@ function ProductDetail(props) {
         <History />
         <div className="mb-5"></div>
       </Container>
+      <FixedButtons />
     </div>
   )
 }

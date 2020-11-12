@@ -7,6 +7,7 @@ import { orderId } from './orderIdReducer'
 import { cartAmount } from './cartAmountReducer'
 
 import cartReducer from './cartReducer'
+import favoritesReducer from './favoritesReducer'
 
 export const rootReducer = combineReducers({
   authentication,
@@ -16,4 +17,5 @@ export const rootReducer = combineReducers({
   orderId,
   cartAmount,
   cart: cartReducer,
+  favorite: favoritesReducer,
 })

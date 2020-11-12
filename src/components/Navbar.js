@@ -9,6 +9,8 @@ import { userActions } from '../actions'
 import '../styles/navbar.scss'
 import logo from '../images/logo.png'
 
+import SerarchBox from './SearchBox/SerarchBox'
+
 function HomeNavbar(props) {
   //從actions中引入登出函式
   const { logout } = userActions
@@ -108,9 +110,13 @@ function HomeNavbar(props) {
               )}
             </Nav>
             <Nav>
-              <Nav.Link href="#link">
-                <AiOutlineSearch size="20px" />
-              </Nav.Link>
+              <div className="d-flex">
+                <AiOutlineSearch
+                  size="20px"
+                  style={{ transform: 'translateY(8px)' }}
+                />
+                <SerarchBox />
+              </div>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

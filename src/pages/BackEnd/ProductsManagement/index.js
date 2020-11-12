@@ -6,12 +6,24 @@ import './ProductsManagement.scss'
 import ToolBar from './modules/ToolBar'
 import ProductsContent from './modules/ProductsContent'
 import BackendPagination from '../../../components/backend/BackendPagination'
+import AddProduct from './modules/AddProduct'
+import AddCourse from './modules/AddCourse'
 import History from '../../../components/history'
+import { alertActions } from '../../../actions'
 
 const ProductsManagement = (props) => {
+  const { error, success, clear } = alertActions
+  const alerMsg = useSelector((state) => state.alert.message)
+  const alerType = useSelector((state) => state.alert.type)
+
   // all launched soldout unlaunched, grid list
   const [type, setType] = useState('all')
   const [viewType, setViewType] = useState('list')
+  const [showAddProd, setShowAddProd] = useState(false)
+  const [showAddCourse, setShowAddCourse] = useState(false)
+
+  const [searchType, setSearchType] = useState(0)
+  const [searchInp, setSearchInp] = useState('')
 
   // const merchantId = useSelector((state) => state.authentication.user.user.id)
   const [merchantId, setMerchantId] = useState(12)
@@ -20,10 +32,21 @@ const ProductsManagement = (props) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
 
+  const [categories, setCategories] = useState([])
+  const [formData, setFormData] = useState({})
+  const [alertShow, setAlertShow] = useState(false)
+
   const toPage = (e) => {
     setCurrentPage(e)
     History.push(`/customer-backend/products-management/page=${e}`)
     window.scrollTo(0, 0)
+  }
+
+  const getCategories = () => {
+    Axios.get(`http://122.116.38.12:5050/get-categories-api`).then((res) => {
+      const data = res.data
+      setCategories(data)
+    })
   }
 
   const getData = (merchantId, type) => {
@@ -67,19 +90,83 @@ const ProductsManagement = (props) => {
     <>
       <div className="productsMng">
         <Col className="main offset-2" xs={10}>
-          <Container fluid main>
+          <Container fluid>
             <ToolBar
+              merchantId={merchantId}
               type={type}
+              currentPage={currentPage}
               setType={setType}
               viewType={viewType}
               setViewType={setViewType}
+              searchType={searchType}
+              setSearchType={setSearchType}
+              searchInp={searchInp}
+              setSearchInp={setSearchInp}
+              getData={getData}
+              showAddProd={showAddProd}
+              setShowAddProd={setShowAddProd}
+              showAddCourse={showAddCourse}
+              setShowAddCourse={setShowAddCourse}
             />
-            <ProductsContent data={data} />
+            <ProductsContent
+              data={data}
+              merchantId={merchantId}
+              type={type}
+              getData={getData}
+              searchType={searchType}
+              searchInp={searchInp}
+              alertShow={alertShow}
+              setAlertShow={setAlertShow}
+              error={error}
+              success={success}
+              clear={clear}
+              alerMsg={alerMsg}
+              alerType={alerType}
+            />
+
             <BackendPagination
               pageItems={pageItems}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
               totalPages={totalPages}
+            />
+            <AddProduct
+              showAddProd={showAddProd}
+              setShowAddProd={setShowAddProd}
+              getData={getData}
+              merchantId={merchantId}
+              type={type}
+              categories={categories}
+              setCategories={setCategories}
+              myData={formData}
+              setMyData={setFormData}
+              alertShow={alertShow}
+              setAlertShow={setAlertShow}
+              error={error}
+              success={success}
+              clear={clear}
+              alerMsg={alerMsg}
+              alerType={alerType}
+              getCategories={getCategories}
+            />
+            <AddCourse
+              showAddCourse={showAddCourse}
+              setShowAddCourse={setShowAddCourse}
+              getData={getData}
+              merchantId={merchantId}
+              type={type}
+              categories={categories}
+              setCategories={setCategories}
+              myData={formData}
+              setMyData={setFormData}
+              alertShow={alertShow}
+              setAlertShow={setAlertShow}
+              error={error}
+              success={success}
+              clear={clear}
+              alerMsg={alerMsg}
+              alerType={alerType}
+              getCategories={getCategories}
             />
           </Container>
         </Col>

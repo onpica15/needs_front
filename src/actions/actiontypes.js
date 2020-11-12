@@ -33,3 +33,7 @@ export const REPLACE_CART_AMOUNT = 'REPLACE_CART_AMOUNT'
 //cartActions
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const UPDATE_CART_UNITS = 'UPDATE_CART_UNITS'
+
+//favoritesActions
+export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES'
+export const REMOVE_TO_FAVORITES = 'REMOVE_TO_FAVORITES'

@@ -1,7 +1,38 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  withRouter,
+  Switch,
+} from 'react-router-dom'
+import axios from 'axios'
+import HashLoader from 'react-spinners/HashLoader'
+import { useSelector } from 'react-redux'
+
 import { BsFillBellFill } from 'react-icons/bs'
-function MemInform() {
+const MemInform = () => {
+  const [meminform, setMemInform] = useState([])
+  const [dataLoading, setDataLoading] = useState(false)
+
+  const isLogin = useSelector((state) => state.authentication.loggedIn)
+  const loginUser = useSelector((state) => state.authentication.user)
+  const getData = async (val) => {
+    setDataLoading(true)
+    let url = `http://localhost:5000/inform?customer_id=${val}`
+    const res = await axios.get(url).catch((err) => console.log('Error'.err))
+    setMemInform(res.data)
+    setDataLoading(false)
+  }
+  useEffect(() => {
+    if (isLogin) {
+      const memId = loginUser.user.id
+      getData(memId)
+    } else {
+      window.location.href = '/login'
+    }
+  }, [])
+
   return (
     <>
       <div className="meminform">
@@ -35,18 +66,27 @@ function MemInform() {
               </Link>
             </div>
           </div>
-
-          <div className="informbar d-flex justify-content-start">
-            <div className="sign"></div>
-            <div className="textbox">
-              <div>
-                <p>一分之一工作室</p>
+          {meminform.map((item, index) => {
+            return (
+              <div className="informbar d-flex justify-content-start">
+                <img
+                  className="sign"
+                  src={`http://localhost:5000/img/brands/${item.index_img}`}
+                  alt="brands"
+                />
+                <div className="textbox">
+                  <div>
+                    <p>
+                      {item.brand_name}[ {item.status} ]
+                    </p>
+                  </div>
+                  <div>
+                    <p>{item.inform}</p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <p>*****</p>
-              </div>
-            </div>
-          </div>
+            )
+          })}
         </div>
       </div>
     </>
