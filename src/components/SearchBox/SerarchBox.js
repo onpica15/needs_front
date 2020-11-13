@@ -49,7 +49,6 @@ function SerarchBox() {
           {...getInputProps()}
           className="search"
           placeholder={singleData ? singleData : '想找點什麼'}
-          enterButton="Search"
         />
       </div>
       <ul {...getMenuProps()} className="searchContent">
@@ -66,7 +65,9 @@ function SerarchBox() {
                 }
               >
                 <Link to={`/products/${item.id}?room=${item.brand_en_name}`}>
+                  {/* <a href={`/products/${item.id}?room=${item.brand_en_name}`}> */}
                   <p>{item.title}</p>
+                  {/* </a> */}
                 </Link>
               </li>
             </span>
