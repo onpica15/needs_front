@@ -2,7 +2,6 @@ import React from 'react'
 import MemSidebar from './memmodules/MemSidebar'
 import MemLike from './memmodules/MemLike'
 import './member.scss'
-import './member-rwd.scss'
 
 function MemberLike() {
   return (

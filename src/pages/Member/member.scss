@@ -9,6 +9,7 @@ $bg-light: #f0f0f0;
 $shadow: #e7e7e7;
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
+@import '~bootstrap/scss/bootstrap.scss';
 
 .member {
     .font-ss {
@@ -27,6 +28,15 @@ $shadow: #e7e7e7;
         font-size: 2rem;
     }
 
+    .collaspse {
+        @media screen and (min-width:481px) and (max-width:768px) {
+           
+        }
+    }
+.hidebtn{
+    width: 50px;
+    height: 50px;
+}
     .maincard {
         margin-bottom: 30px;
         padding: 20px;
@@ -35,6 +45,10 @@ $shadow: #e7e7e7;
         border-radius: 10px;
         border: solid 2px $danger;
         box-shadow: 6px 5px $shadow;
+        @media screen and (min-width:481px) and (max-width:768px) {
+            width: 450px;
+            min-height: 800px;
+        }
     }
 
     //---memshop topbar
@@ -190,4 +204,3 @@ $shadow: #e7e7e7;
         text-decoration: none;
     }
 }
-

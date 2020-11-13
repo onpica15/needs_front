@@ -8,13 +8,15 @@ import { FaStore } from 'react-icons/fa'
 
 function MemLike() {
   const [memlike, setMemLike] = useState([])
+  const [type, setType] = useState('brands')
   const isLogin = useSelector((state) => state.authentication.loggedIn)
   const loginUser = useSelector((state) => state.authentication.user)
   const getData = async (val) => {
-    let url = `http://localhost:5000/like?customer_id=${val}`
+    let url = `http://localhost:5000/like?customer_id=${val}&filter=${type}`
     const res = await axios.get(url).catch((err) => console.log('Error'.err))
-    setMemLike(res.data)
+    setMemLike(res.data.rows)
   }
+
   useEffect(() => {
     if (isLogin) {
       const memId = loginUser.user.id
@@ -22,7 +24,7 @@ function MemLike() {
     } else {
       window.location.href = '/login'
     }
-  }, [])
+  }, [type])
 
   return (
     <>
@@ -40,12 +42,12 @@ function MemLike() {
           <div className="container">
             <div className="row justify-content-around align-self-center topside">
               <Link href="#" className="col-2 d-flex topsidebox">
-                <div className="m-auto">
+                <div className="m-auto" onClick={(e) => setType('brands')}>
                   <p className="font-s">關注商家</p>
                 </div>
               </Link>
               <Link href="#" className="col-2 d-flex topsidebox">
-                <div className="m-auto">
+                <div className="m-auto" onClick={(e) => setType('product')}>
                   <p className="font-s">關注商品</p>
                 </div>
               </Link>

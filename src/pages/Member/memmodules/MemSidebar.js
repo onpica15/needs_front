@@ -70,49 +70,44 @@ const MemSidebar = (props) => {
           alt="avatar"
         />
 
-        <div className="font-ss">
-          {/* <label for="avatar" className="whiteSpacePre btn btn-info"> */}
-          <div className="d-flex ml-5 wrapper">
-            <Button
-              className="photoicon"
-              variant="primary"
-              onClick={handleShow}
-            >
-              <MdAddAPhoto />
-            </Button>
+        <div className="d-flex justify-content-end mr-3 mt-1">
+          <Button className="photoicon" variant="primary" onClick={handleShow}>
+            <MdAddAPhoto />
+            更換頭貼
+          </Button>
 
-            <Modal show={show} onHide={handleClose} animation={false}>
-              <Modal.Header closeButton>
-                <Modal.Title>
-                  <MdAddAPhoto />
-                  快快快來張美照
-                </Modal.Title>
-              </Modal.Header>
-              <form onSubmit={(e) => sendAvatarToNodejs(e)} name="form1">
-                <Modal.Body>
-                  <input
-                    type="file"
-                    name="filename"
-                    id="filename"
-                    onChange={(e) => updateAvatar(e)}
-                  />
-                </Modal.Body>
+          <Modal show={show} onHide={handleClose} animation={false}>
+            <Modal.Header closeButton>
+              <Modal.Title>
+                <MdAddAPhoto />
+                快快快來張美照
+              </Modal.Title>
+            </Modal.Header>
+            <form onSubmit={(e) => sendAvatarToNodejs(e)} name="form1">
+              <Modal.Body>
+                <input
+                  type="file"
+                  name="filename"
+                  id="filename"
+                  onChange={(e) => updateAvatar(e)}
+                />
+              </Modal.Body>
 
-                <Modal.Footer>
-                  <Button
-                    type="file"
-                    name="filename"
-                    id="filename"
-                    variant="secondary"
-                    onClick={(e) => updateAvatar(e)}
-                  >
-                    換美美頭貼
-                  </Button>
-                </Modal.Footer>
-              </form>
-            </Modal>
+              <Modal.Footer>
+                <Button
+                  type="file"
+                  name="filename"
+                  id="filename"
+                  variant="secondary"
+                  onClick={(e) => updateAvatar(e)}
+                >
+                  換美美頭貼
+                </Button>
+              </Modal.Footer>
+            </form>
+          </Modal>
 
-            {/* <form onSubmit={(e) => sendAvatarToNodejs(e)} name="form1">
+          {/* <form onSubmit={(e) => sendAvatarToNodejs(e)} name="form1">
               <input
                 type="file"
                 name="filename"
@@ -121,8 +116,6 @@ const MemSidebar = (props) => {
               />
               <input type="submit" value="上傳美照" />
             </form> */}
-          </div>
-          {/* </label> */}
         </div>
         <div className="sidebar mx-auto">
           <div className="font-s">

@@ -19,11 +19,16 @@ $shadow: #e7e7e7;
     }
 
     .informbar {
-        width: 850px;
+        width: 350px;
         height: 60px;
         border: solid 1px $font-gray;
         border-radius: 10px;
         margin: 10px;
+        @media screen and (min-width:481px) and (max-width:768px) {
+            width: 430;
+            min-height: 60px;
+
+        }
 
         .sign {
             width: 40px;

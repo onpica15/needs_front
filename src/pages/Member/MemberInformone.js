@@ -2,7 +2,6 @@ import React from 'react'
 import MemSidebar from './memmodules/MemSidebar'
 import MemInformOne from './memmodules/MemInformOne'
 import './member.scss'
-import './member-rwd.scss'
 
 function MemberInformOne() {
   return (
