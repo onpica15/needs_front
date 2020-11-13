@@ -79,7 +79,7 @@ const ProductsContent = (props) => {
               </div>
               <div className="title unitPrice">${item.price}</div>
               <div className="title stock">{item.stocks}</div>
-              <div className="title soldAmount">1</div>
+              <div className="title soldAmount">{item.sold_quantity || 0}</div>
               <Dropdown className="actions">
                 <Dropdown.Toggle id="dropdown-basic" variant="light">
                   <AiOutlineEdit size="24px" />

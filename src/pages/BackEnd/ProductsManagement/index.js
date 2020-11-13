@@ -34,6 +34,8 @@ const ProductsManagement = (props) => {
 
   const [categories, setCategories] = useState([])
   const [formData, setFormData] = useState({})
+  const [imgList, setImgList] = useState([])
+  const [preview, setPreview] = useState([])
   const [alertShow, setAlertShow] = useState(false)
 
   const toPage = (e) => {
@@ -138,8 +140,12 @@ const ProductsManagement = (props) => {
               type={type}
               categories={categories}
               setCategories={setCategories}
-              myData={formData}
-              setMyData={setFormData}
+              formData={formData}
+              setFormData={setFormData}
+              imgList={imgList}
+              setImgList={setImgList}
+              preview={preview}
+              setPreview={setPreview}
               alertShow={alertShow}
               setAlertShow={setAlertShow}
               error={error}
@@ -157,8 +163,12 @@ const ProductsManagement = (props) => {
               type={type}
               categories={categories}
               setCategories={setCategories}
-              myData={formData}
-              setMyData={setFormData}
+              formData={formData}
+              setFormData={setFormData}
+              imgList={imgList}
+              setImgList={setImgList}
+              preview={preview}
+              setPreview={setPreview}
               alertShow={alertShow}
               setAlertShow={setAlertShow}
               error={error}
