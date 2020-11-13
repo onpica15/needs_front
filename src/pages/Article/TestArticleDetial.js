@@ -17,8 +17,17 @@ const TestArticleDetial = (props) => {
     window.scrollTo(0, 0)
   }, [])
 
+  const DeleteBtn = async () => {
+    const url = `http://localhost:5000/article/${props.match.params.id}`
+    const data = await axios
+      .delete(url)
+      .catch((err) => console.log('ErrDelete', err))
+    console.log('delete', data)
+  }
+
   return (
     <>
+      <button onClick={DeleteBtn}>DeleteBtn</button>
       <div className="container">
         <div className="d-flex flex-lg-row flex-md-column mt-4">
           <div className="articleDetial col-lg-8 col-md-12">

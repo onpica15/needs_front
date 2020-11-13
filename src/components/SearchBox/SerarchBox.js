@@ -64,11 +64,11 @@ function SerarchBox() {
                   highlightedIndex === index ? { background: '#cdcdcd' } : {}
                 }
               >
-                <Link to={`/products/${item.id}?room=${item.brand_en_name}`}>
-                  {/* <a href={`/products/${item.id}?room=${item.brand_en_name}`}> */}
+                {/* <Link to={`/products/${item.id}?room=${item.brand_en_name}`}> */}
+                <a href={`/products/${item.id}?room=${item.brand_en_name}`}>
                   <p>{item.title}</p>
-                  {/* </a> */}
-                </Link>
+                </a>
+                {/* </Link> */}
               </li>
             </span>
           ))}

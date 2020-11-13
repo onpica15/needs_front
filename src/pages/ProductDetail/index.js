@@ -18,7 +18,6 @@ import History from './History'
 import SuccessModal from './SuccessModal'
 import FixedAddToCartBtn from './FixedAddToCartBtn'
 
-import { AiOutlineMessage } from 'react-icons/ai'
 import FixedButtons from '../../components/FixedButtons'
 
 function ProductDetail(props) {
@@ -367,11 +366,11 @@ function ProductDetail(props) {
       />
       {/* 聊天室 button 卡位用，正式版聊天室請自行替這個位置 */}
       <div className="CartBtn">
-        <button className="btn btn-primary">
+        {/* <button className="btn btn-primary">
           <AiOutlineMessage size="28px" />
-        </button>
+        </button> */}
       </div>
-      {/* <FixedButtons /> */}
+      <FixedButtons />
     </div>
   )
 }
