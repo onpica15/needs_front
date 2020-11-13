@@ -17,9 +17,7 @@ import MerchantOtherProducts from './MerchantOtherProducts'
 import History from './History'
 import SuccessModal from './SuccessModal'
 import FixedAddToCartBtn from './FixedAddToCartBtn'
-
-import { AiOutlineMessage } from 'react-icons/ai'
-import FixedButtons from '../../components/FixedButtons'
+import HistoryList from '../../components/History/HistoryList'
 
 function ProductDetail(props) {
   const [productDetail, setProductDetail] = useState([])
@@ -366,6 +364,7 @@ function ProductDetail(props) {
         <MerchantOtherProducts merchantInfo={merchantInfo} />
         <h5 className="mt-5">最近預覽</h5>
         <hr />
+        {/* <HistoryList /> */}
         <History />
         <div className="mb-5"></div>
       </Container>
@@ -380,13 +379,6 @@ function ProductDetail(props) {
         modalShow={modalShow}
         setModalShow={setModalShow}
       />
-      {/* 聊天室 button 卡位用，正式版聊天室請自行替這個位置 */}
-      <div className="CartBtn">
-        <button className="btn btn-primary">
-          <AiOutlineMessage size="28px" />
-        </button>
-      </div>
-      {/* <FixedButtons /> */}
     </div>
   )
 }

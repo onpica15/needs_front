@@ -310,24 +310,4 @@ $bg-light: #f0f0f0;
       border-radius: 0.25rem;
     }
   }
-  // 聊天室 css 暫時卡位用，正式版聊天室請自行替這個位置
-  .CartBtn {
-    position: fixed;
-    right: 30px;
-    bottom: 115px;
-    z-index: 10;
-    button {
-      width: 50px;
-      height: 50px;
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      cursor: pointer;
-      &:not(:last-child) {
-        margin-bottom: 20px;
-      }
-    }
-  }
 }
