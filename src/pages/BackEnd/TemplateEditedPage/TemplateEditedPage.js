@@ -8,9 +8,10 @@ import {
 } from 'react-bootstrap'
 
 import TemplateUpload from './TemplateUpload'
+import TemplateStoryUpload from './TemplateStoryUpload'
 import './styles/TemplateEditedPage.scss'
 import TextEditor from './TextEditor'
-import Selector from './selector'
+// import Selector from './selector'
 
 // 選擇的模板
 import Narrative from '../Templates/Narrative'
@@ -23,27 +24,70 @@ import { TwitterPicker } from 'react-color';
 
 
 function TemplateEditedPage(props) {
+
+const [text, setText] = useState(''); 
 const [show,setShow]= useState(true)
 const toggleShow = (e) => setShow(!show);
+const [show1,setShow1]= useState(true)
+const toggleShow1 = (e) => setShow1(!show1);
+// const toggleShow2 = (e) => setShow(!show1);
+// const [show2,setShow2]= useState(true)
+// const toggleShow3 = (e) => setShow(!show2);
+// const [show3,setShow3]= useState(true)
+// const toggleShow4 = (e) => setShow(!show3);
+// const [show4,setShow4]= useState(true)
+// const toggleShow5 = (e) => setShow(!show4);
 
 
 // fileuplaod
 const [bgImg, setBgImg] = useState('')
+const [storyImg,setStoryImg] = useState('')
 const [color,setColor] = useState('#323232')
+//data-from-server
 const [thisMerchantProduct,setThisMerchantProduct] = useState([])
 const [ products,setProducts ] = useState([])
 const [ activities,setActivities ] = useState([])
 
+const [ selectedProduct,setSelectedProduct ] = useState(0) 
+const [ selectedActivities,setSelectedActivities ] = useState(0) 
+console.log('selectedProduct',selectedProduct)
+
 const [error,setError] = useState(null)
+
+
 //以下包成form寫入
 //圖片
-const sendImgToNode = async () => {
+const sendBgImgToNode = async () => {
   await axios
     .put('http://localhost:5000/template/editpage?merchantid=12', [bgImg])
     .catch((error) => {
       console.log('Error', error)
     })
 }
+
+const sendDataToNode = (e) => {
+  // e.preventDefault()
+  // const formData = new FormData()
+  // formData.set('selectedProductId', selectedProduct)
+  // formData.set('selectedActivitiesId', selectedActivities)  
+  // formData.set('bg_color', color)
+  // formData.set('story_text', JSON.stringify(text))
+
+  axios
+    .post('http://localhost:5000/template/editpage/changeData?id=12', [text,color,selectedActivities,selectedProduct])
+    .catch((error) => {
+      console.log('Error', error)
+    })
+}
+
+const sendStoryImgToNode = async () => {
+  await axios
+    .put('http://localhost:5000/template/postStoryImg?merchantid=12', [storyImg])
+    .catch((error) => {
+      console.log('Error', error)
+    })
+}
+
 //顏色//商品//商品列表//活動//圖片故事
 
 //一開始就要get:商家info、哪些商品、活動
@@ -95,7 +139,7 @@ useEffect(() => {
     <div className="d-flex justify-content-start align-items-center">
     <Button className="mt-2 mr-2 btn-light">
     預覽</Button>
-    <Button className="mt-2 btn-light">
+    <Button className="mt-2 btn-light" onClick = { (e) => { sendDataToNode(e)} }>
     儲存</Button>
     </div>
     <hr />
@@ -141,8 +185,8 @@ useEffect(() => {
           <Card.Header className ="rounded">
           <div className="d-flex justify-content-end align-items-center">
             主打商品
-            <Button variant="light" onClick={toggleShow}> 
-              {show?<BsFillEyeFill/>:<BsFillEyeSlashFill/>}
+            <Button variant="light" onClick={toggleShow1}> 
+              {show1?<BsFillEyeFill/>:<BsFillEyeSlashFill/>}
               </Button>
               <Accordion.Toggle as={Button} variant="light" eventKey="1">
                   <GrMoreVertical />
@@ -153,16 +197,18 @@ useEffect(() => {
             <Card.Body>
               <h6>選擇主打商品</h6>
                 <div>
-                        <select className="browser-default custom-select">
+                        <select className="browser-default custom-select" onChange={(e)=>setSelectedProduct(e.target.value)}>
                         <option> --請選擇-- </option>
                         {products[0] && products[0].map((products, index) => {
                       console.log('products', products.title)
                   return(
-                        <option value="1" key={index}> {products.title} 
+                        <option value={products.id} key={index} >
+                        {products.title}
                         </option>
                   )
                   })}
                         </select>
+
                 </div>
             </Card.Body>
           </Accordion.Collapse>
@@ -184,11 +230,11 @@ useEffect(() => {
                 </Accordion.Toggle>    
             </div>
           </Card.Header>
-          <Accordion.Collapse eventKey="2">
+          {/* <Accordion.Collapse eventKey="2">
             <Card.Body>
-                <h6>選擇主打活動</h6>
+              
             </Card.Body>
-          </Accordion.Collapse>
+          </Accordion.Collapse> */}
         </Card>
         </Accordion>
 
@@ -210,11 +256,13 @@ useEffect(() => {
             <Card.Body>
                 <h6>選擇主打活動</h6>
                 <div>
-                        <select className="browser-default custom-select">
+                        <select className="browser-default custom-select"
+                        onChange={(e)=>setSelectedActivities(e.target.value)}>
                         <option> --請選擇-- </option>
-                        {activities[1] && activities[1].map((activities, index) => {
+                        {activities[0] && activities[0].map((activities, index) => {
+                        console.log('activities', activities.title)
                   return(
-                        <option value="1" key={index}> {activities.title} 
+                        <option value={activities.id} key={index}> {activities.title} 
                         </option>
                   )
                   })}
@@ -243,10 +291,10 @@ useEffect(() => {
             <Card.Body>
               <div className="d-flex flex-column ">
               <h6>上傳故事圖片</h6>
-              <TemplateUpload />
+              <TemplateStoryUpload setStoryImg={setStoryImg} />
               <div className="mt-3">
               <h6>輸入品牌故事</h6>
-              <TextEditor />
+              <TextEditor setText={setText}/>
               </div>
             </div>
             </Card.Body>
@@ -259,7 +307,13 @@ useEffect(() => {
         {/* change section*/}
 
         <div className="change-section rounded">
-            <Narrative color={color} bgImg={bgImg}/>
+            <Narrative
+            color={color} 
+            bgImg={bgImg} 
+            storyImg={storyImg} 
+            products={products}
+            activities={activities}
+            selectedProduct={selectedProduct} selectedActivities={selectedActivities}/>
         </div>
     </div>
     </Col>

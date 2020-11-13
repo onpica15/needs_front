@@ -1,13 +1,13 @@
 
 .template-editPage{
-    .space{
-        width: 300px;
-    }
     .edit-bar{
         margin-top: 30px;
         width: 315px;
-        position:fixed;
+        position:-webkit-sticky;
+        position: sticky;
+        top: 0;
     }
+
     .main-small-pic{
         width: 200px;
     }

@@ -12,10 +12,24 @@ import { SignalCellularNullSharp } from '@material-ui/icons';
 
 function Narrative(props){
 
-const { color, bgImg } = props
+const { color,
+       bgImg ,
+       storyImg,
+       products,
+       activities,
+       selectedProduct,
+       selectedActivities,
+      } = props
 
 const [ displayBgImg , setDisplayBgImg ] = useState(props.bgImg)
+const [ displayStoryImg , setDisplaStoryImg ] = useState(props.storyImg)
 
+
+
+// const findProduct = props.products.id.find =(function(item, index, array){
+//   return item.id === props.selectedProduct;  // 取得陣列 like === '蘿蔔泥'
+// });
+// console.log(findProduct);
 
 // let noUpload = './images/default-background.png'
 
@@ -41,12 +55,15 @@ useEffect(() => {
   // handledisplay()
   // setDisplayBgImg( bgImg? upload : noUpload)
   setDisplayBgImg(props.bgImg)
+  setDisplaStoryImg(props.storyImg)
+  // findProduct()
 
-},[props.bgImg])
+},[props.bgImg , props.storyImg , ])
 
 
 useEffect(() => {
   setDisplayBgImg('/static/media/default-background.35858da7.png')
+  setDisplaStoryImg('/static/media/default-img.54333d00.png')
 },[])
 
 
@@ -125,15 +142,19 @@ return(
             
             <div className="sec2">
               <div className="d-flex justify-content-between m-auto">
-              <div className="product-bg-pic"></div>
-              <div className="d-flex flex-column wrapper">
-              <h2>本週主打</h2>
-              <h4>巴川紙68磅筆記本</h4>
-              <div className="product-sml-pic"></div>
-              <p className="sml">台灣製造安心有保障，精選68磅優良米色巴川紙，紙質不易透，可適用於鋼筆書寫攤平書寫更便利，典雅燙金點綴，是手帳愛好者不可錯過的內頁之一。</p>
-              <h2>NT$780</h2>
-              <button className="btn">加入購物車</button>
-              </div>
+              {products.filter(product => product.id.includes(selectedProduct)).map(selectedproduct)=>(
+                  <>
+                  <div className="product-bg-pic"></div>
+                  <div className="d-flex flex-column wrapper">
+                  <h2>本週主打</h2>
+                  <h4>巴川紙68磅筆記本</h4>
+                  <div className="product-sml-pic"></div>
+                  <p className="sml">台灣製造安心有保障，精選68磅優良米色巴川紙，紙質不易透，可適用於鋼筆書寫攤平書寫更便利，典雅燙金點綴，是手帳愛好者不可錯過的內頁之一。</p>
+                  <h2>NT$780</h2>
+                  <button className="btn">加入購物車</button>
+                  </div>
+                  </>
+                ))}
               </div>
               
             </div>
@@ -172,7 +193,7 @@ return(
               </div>
 
               <div className="d-flex adjust">
-              <div className="brandStory_img"></div>
+              <div className="brandStory_img" style={{ backgroundImage : `url(${displayStoryImg})`}}></div>
               <div className=" col-6 text-wrapper ml-5">
               <h4>
                 愛治文具房-充滿文具的房間 愛治是我奶奶的名字。

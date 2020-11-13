@@ -5,9 +5,30 @@ import {
     Row
   } from 'react-bootstrap'
 import '../BackEnd/Templates/styles/Narrative.scss'
+import TemplateProductList from '../ProductList/TemplateProductList'
+import axios from 'axios'
 
-function aiyabungu(){
+const Aiyabungu = (props) =>{
+  const [posts, setPosts] = useState([])
+    //set page
+    const [currentPage, setCurrentPage] = useState(1)
+    const [postsPerPage] = useState(6)
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      let url = 'http://localhost:5000/productlist'
+      const res = await axios.get(url).catch((err) => console.log('Error', err))
+      setPosts(res.data)
+    }
+    fetchPosts()
+  }, [])
+
+
+
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage
+  const indexOfFirstPost = indexOfLastPost - postsPerPage
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
 
     return(
         <>
@@ -87,8 +108,9 @@ function aiyabungu(){
               
             </div>
 
-            <div className="sec3">
-              商品列表
+            <div className="sec3 mt-5 mb-5">
+            <TemplateProductList />
+          
             </div>
 
             <div className="sec4">
@@ -138,4 +160,4 @@ function aiyabungu(){
         </>
     )
 }
-export default aiyabungu
+export default Aiyabungu
