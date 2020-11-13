@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import HashLoader from 'react-spinners/HashLoader'
 import { useSelector } from 'react-redux'
 
 import { RiMessage2Fill } from 'react-icons/ri'
@@ -25,7 +24,6 @@ const MemComment = () => {
       window.location.href = '/login'
     }
   }, [])
-  const loading = <HashLoader size={200} color={'#0d5661'} />
   const display = (
     <>
       <div className="meminform">
@@ -58,8 +56,8 @@ const MemComment = () => {
               <div className="informbar d-flex justify-content-center">
                 <img
                   className="sign"
-                  src={`http://localhost:5000/img/brands/${item.index_img}`}
-                  alt="brands"
+                  src={`http://localhost:5000/img/products/${item.image_path}`}
+                  alt="products"
                 />
 
                 <div className="textbox">
