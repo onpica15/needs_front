@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter,useHistory} from 'react-router-dom'
+// import { useSelector } from 'react-redux'
 
 import { Col, Container, Card, CardDeck, Row , Modal ,Button } from 'react-bootstrap'
 
@@ -21,6 +22,8 @@ const [unItem, setUnItem] =useState('')
 
 const handleShow = () =>setShow(true)
 const handleClose = () =>setShow(false)
+
+// const whosLogin = useSelector((state) => state.authentication.loggedIn)
 
 const UnFav = (unItem) => {
   const currentFav = JSON.parse(localStorage.getItem('Fav')) || []

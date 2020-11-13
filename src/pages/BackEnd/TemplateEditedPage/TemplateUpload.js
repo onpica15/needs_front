@@ -1,27 +1,38 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Component } from 'react'
+import axios from 'axios'
 import { Upload, message } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css'
 
 
-const TemplateUpload = (props) =>{
+const TemplateUpload = (props) => {
 
+    const { setBgImg } = props
+    // console.log(props)
     const [loading,setLoading] = useState(false)
     const [imageUrl,setImgUrl] = useState('');
-
+    // console.log(imageUrl)
+    
     const handleChange = info => {
         if (info.file.status === 'uploading') {
+          // sendEdit()
           setLoading(true)
           return;
         }
         if (info.file.status === 'done') {
           // Get this url from response in real world.
           getBase64(info.file.originFileObj, imageUrl =>
-            setLoading(true)
+            {
+              setImgUrl(imageUrl)//用base64顯示在縮圖
+              setLoading(false)
+              console.log('obj',info.file.originFileObj)
+              console.log('name1',info.file.response.url)
+              setBgImg(info.file.response.url)//傳回網址給editpage
+          }
           );
         }
       };
-
+      
     function getBase64(img, callback) {
         const reader = new FileReader();
         reader.addEventListener('load', () => callback(reader.result));
@@ -51,11 +62,11 @@ const TemplateUpload = (props) =>{
    return(
        <>
         <Upload
-          name="avatar"
+          name="image"
           listType="picture-card"
           className="avatar-uploader"
           showUploadList={false}
-          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+          action="http://localhost:5000/template/editpage?merchantid=12"
           beforeUpload={beforeUpload}
           onChange={handleChange}>
           {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}

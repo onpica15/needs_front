@@ -22,11 +22,11 @@
     .sec1_background{
         min-height: calc(65vh - 60px);
         width: 100%;
-        background-image: url('../images/background_2.jpg');
+        background-image: url('../images/default-background.png');
         background-size: cover;
     }
     .background-color{
-      background-color:#323232;
+      // background-color:#323232;
       min-height: 35vh;
       width: 57%;
       padding-top: 45px;
@@ -46,7 +46,7 @@
       .avatar{
         height: 180px;
         width: 180px;
-        background-image: url('../images/head_1.png');
+        background-image: url('../images/pommedepin111_300x300.jpg');
         background-size: cover;
         margin:1rem 3rem 1rem 3rem
       }
@@ -105,7 +105,7 @@
   .product-bg-pic{
     height: 60vh;
     width: 60vh;
-    background-image: url('../images/product_bg_1.jpg');
+    background-image: url('../images/default-img.png');
     background-size: cover;
     margin-right: 30px;
     
@@ -113,7 +113,7 @@
   .product-sml-pic{
     height: 300px;
     width: 300px;
-    background-image: url('../images/product_bg_1.jpg');
+    background-image: url('../images/default-img.png');
     background-size: cover;
     // margin-left: 5rem;
     display: flex;
@@ -143,7 +143,7 @@
     .activities-img{
       width: 35vh;
       height: 35vh;
-      background-image: url('../images/active_pic.jpg');
+      background-image: url('../images/default-img.png');
       background-size: cover;   
       position: absolute;
       left: -150px;
@@ -191,7 +191,7 @@
       width: 30vh;
       border-radius: 50%;
       background-size: cover;
-      background-image: url('../images/about_pic.jpg');
+      background-image: url('../images/default-img.png');
   }
   .underline{
     border-bottom:3px solid  #d44f44;

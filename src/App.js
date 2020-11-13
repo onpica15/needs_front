@@ -19,12 +19,12 @@ import MemberComment from './pages/Member/MemberComment'
 import Investment from './pages/Investment'
 import Article from './pages/Article/Article'
 import ProductList from './pages/ProductList/ProductList'
-import MerchantHome from './pages/MerchantHome/Narrative'
 import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
 import Payment from './pages/Payment'
 import Login from './pages/Login/Login'
 import SignUp from './pages/Login/SignUp'
+import aiyabungu from './pages/MerchantHome/aiyabungu'
 
 //商家後台
 import BackEndSidebar from './components/backend/Sidebar'
@@ -33,7 +33,7 @@ import BackEndDashboard from './pages/BackEnd/Dashboard'
 import Sales from './pages/BackEnd/Sales'
 import Ads from './pages/BackEnd/Ads'
 import CreateArticle from './pages/Article/CreateArticle'
-import TemplateEditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEditedPage'
+import EditedPage from './pages/BackEnd/TemplateEditedPage/TemplateEditedPage'
 import TemplateHome from './pages/BackEnd/TemplateHome/TemplateHome'
 import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
 import ArticleDetial from './pages/Article/ArticleDetial'
@@ -180,8 +180,9 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/homepage"
-            component={MerchantHome}
+            // exact
+            path="/homepage/:merchantid?"
+            component={aiyabungu}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
@@ -208,13 +209,9 @@ function App(props) {
           />
           <DynamicLayoutRoute
             path="/customer-backend/template-edit"
-            component={TemplateEditedPage}
+            component={EditedPage}
             layout="BACK_END_NAV"
           />
-          {/* <Route
-            path="/customer-backend/template-edit"
-            component={EditedPage}
-          /> */}
           <DynamicLayoutRoute
             path="/customer-backend/template-list"
             component={TemplateList}

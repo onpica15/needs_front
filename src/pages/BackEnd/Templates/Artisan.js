@@ -5,16 +5,22 @@ import {
     Row
   } from 'react-bootstrap'
 import './styles/Narrative.scss'
+import { GiPositionMarker } from 'react-icons/gi';
 
-function Narrative(){
 
+function Narrative(props){
+
+const {color} = props
+console.log(props)
 
     return(
         <>
           <div className="Narrative">
             
           <div className="sec1_background"></div>
-          <div className="background-color"></div>
+          <div className="background-color" style={{
+            backgroundColor:props.color,
+          }}></div>
           <Container className="p-0">
             <div className="sec1 d-flex">
             <div className="sec1_avatar m-auto">
@@ -31,7 +37,7 @@ function Narrative(){
                   <div className="mt-3">
                   <h4>aiyabungu</h4>
                   <h4>電話：0975-875120</h4>
-                  <h4>地址：彰化縣彰化市長安街76巷7-2號1樓</h4>
+                  <h4><GiPositionMarker/>地址：彰化縣彰化市長安街76巷7-2號1樓</h4>
                   </div>
               </div>
                   </div>
@@ -111,7 +117,7 @@ function Narrative(){
               {/* </div> */}
             </div>
 
-            <div className="sec5 pb-5">
+            <div className="sec5 py-5">
 
             <div className="m-auto">
               <div className=" underline-wrapper">
