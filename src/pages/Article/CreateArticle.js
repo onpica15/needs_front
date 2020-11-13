@@ -1,18 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
+
+import ArticleShowInfo from '../../components/Article/ShowBTnInfo/ArticleShowInfo'
 
 import axios from 'axios'
 import EditorJs from 'react-editor-js'
 import { EDITOR_JS_TOOLS } from './constants'
 import { Button } from 'react-bootstrap'
-import TestArticleDetial from './TestArticleDetial'
+import './CreateArticle.scss'
 
 const CreateArticle = (props) => {
+  //record and send to the nodejs
   const [title, setTitle] = useState('')
   const [outline, setOutline] = useState('')
   const [image, setImage] = useState('')
   const [contentDetial, setContentDetial] = useState({})
+  //record the Editor
   const [showHTML, setShowHTML] = useState('')
   const instanceRef = React.useRef(null)
+  //Show the Information when clicking Btn.
+  const [showInfo, setShowInfo] = useState(false)
 
   let articleHTML = ''
 
@@ -23,6 +29,8 @@ const CreateArticle = (props) => {
     setContentDetial(savedData)
   }
   const saveToHtml = () => {
+    setShowInfo(true)
+
     contentDetial.blocks.map((obj) => {
       switch (obj.type) {
         case 'paragraph':
@@ -109,7 +117,6 @@ const CreateArticle = (props) => {
   }
 
   const sendContent = async () => {
-    console.log(title)
     await axios
       .post('http://localhost:5000/article', [title, image, outline, showHTML])
       .catch((error) => {
@@ -118,17 +125,42 @@ const CreateArticle = (props) => {
   }
 
   const sendEmail = async () => {
-    const data = <div dangerouslySetInnerHTML={{ __html: showHTML }} />
-    const email = '123@yac.com'
+    const data = { __html: showHTML }
+    // const email = 'deri19911010@gmail.com'
     await axios
-      .post('http://localhost:5000/article/email', [title, email, data])
+      .post('http://localhost:5000/article/email', [title, image, data])
       .catch((error) => {
         console.log('Error', error)
       })
   }
 
+  useEffect(() => {
+    setTimeout(() => {
+      setShowInfo(false)
+    }, 3000)
+  }, [handleSave])
+
+  const closeHandler = () => setShowInfo(false)
+
   return (
     <>
+      {showInfo ? (
+        <div
+          onClick={closeHandler}
+          className="back-drop"
+          style={{
+            background: '#cdcdcd',
+            height: '100%',
+            position: 'fixed',
+            transition: 'all 1.3s',
+            width: '100%',
+          }}
+        ></div>
+      ) : null}
+      {showInfo ? (
+        <ArticleShowInfo showInfo={showInfo} closeHandler={closeHandler} />
+      ) : null}
+
       <EditorJs
         onChange={handleSave}
         instanceRef={(instance) => (instanceRef.current = instance)}
@@ -137,6 +169,7 @@ const CreateArticle = (props) => {
       />
       <div className="d-flex justify-content-center">
         <Button onClick={saveToHtml}>儲存</Button>
+
         <Button className="" onClick={sendContent}>
           送出
         </Button>

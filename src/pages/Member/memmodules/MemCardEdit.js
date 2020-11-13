@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
+<<<<<<< HEAD
 import { Link } from 'react-router-dom'
+=======
+>>>>>>> origin/master
 import axios from 'axios' // import memcarddata from './memcarddata.json'
 import HashLoader from 'react-spinners/HashLoader'
+import { Link } from 'react-router-dom'
 
 import { useSelector } from 'react-redux' //引入redux
 import { BsPersonFill } from 'react-icons/bs'

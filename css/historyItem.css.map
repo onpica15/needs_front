@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,YAAY,CAAA;EACR,SAAS,EAAE,IAAI;EACf,MAAM,EAAE,MAAM;EACd,SAAS,EAAE,KAAK;CASnB;;AAZD,AAKQ,YALI,CAIR,QAAQ,CACJ,GAAG,CAAA;EACC,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;EACb,UAAU,EAAE,KAAK;CACpB",
-    "sources": [
-        "../src/components/History/historyItem.scss"
-    ],
-    "names": [],
-    "file": "historyItem.css"
-}

@@ -4,7 +4,7 @@ import MemSidebar from './memmodules/MemSidebar'
 import MemCardEdit from './memmodules/MemCardEdit'
 import './member.scss'
 
-function MemberCardEdit() {
+function MemberCardEdit(props) {
   return (
     <>
       <div className="container member">

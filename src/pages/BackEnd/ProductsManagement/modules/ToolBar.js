@@ -16,7 +16,24 @@ import {
 } from 'react-icons/ai'
 
 const ToolBar = (props) => {
-  const { type, setType, viewType, setViewType } = props
+  const {
+    merchantId,
+    type,
+    setType,
+    viewType,
+    setViewType,
+    setShowAddProd,
+    setShowAddCourse,
+    searchType,
+    setSearchType,
+    searchInp,
+    setSearchInp,
+    getData,
+  } = props
+
+  const handleSubmit = (merchantId, type, searchType, searchInp) => {
+    getData(merchantId, type, searchType, searchInp)
+  }
   return (
     <>
       <Row className="toolsSec my-3">
@@ -51,14 +68,29 @@ const ToolBar = (props) => {
           </Button>
         </div>
         <Form className="searchBar">
-          <Form.Control as="select" id="inlineFormCustomSelect" custom>
+          <Form.Control
+            as="select"
+            id="inlineFormCustomSelect"
+            custom
+            onChange={(e) => setSearchType(e.target.value)}
+          >
             <option value="0">商品名稱</option>
             <option value="1">商品類別</option>
           </Form.Control>
           <InputGroup>
-            <FormControl aria-describedby="basic-addon1" />
+            <FormControl
+              aria-describedby="basic-addon1"
+              onChange={(e) => setSearchInp(e.target.value)}
+            />
           </InputGroup>
-          <Button variant="light" className="searchbtn" type="submit">
+          <Button
+            variant="light"
+            className="searchbtn"
+            type="submit"
+            onClick={(e) =>
+              handleSubmit(merchantId, type, searchType, searchInp)
+            }
+          >
             <AiOutlineSearch size="24px" />
           </Button>
         </Form>
@@ -69,8 +101,12 @@ const ToolBar = (props) => {
             <AiOutlinePlus size="30px" />
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">實體商品</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">活動體驗</Dropdown.Item>
+            <Dropdown.Item onClick={(e) => setShowAddProd(true)}>
+              實體商品
+            </Dropdown.Item>
+            <Dropdown.Item onClick={(e) => setShowAddCourse(true)}>
+              活動體驗
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <div className="viewSelect d-flex">

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, Form } from 'react-bootstrap'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { FaTimes } from 'react-icons/fa'
 import { connect } from 'react-redux'
-import { replaceOrderItems } from '../../actions'
+import { replaceOrderContent } from '../../actions'
+import { replaceCartAmount } from '../../actions'
 import './cart.scss'
 import * as storage from './localStorage'
 
@@ -11,16 +12,24 @@ import CheckoutNav from './CheckoutNav'
 import CartItem from './CartItem'
 
 function Cart(props) {
-  // console.log('props', props)
+  const history = useHistory()
   const [cart, setCart] = useState({})
-  const [skuId, setSkuId] = useState({})
   const [merchantCarts, setMerchantCarts] = useState([])
   const [sum, setSum] = useState(0)
-  const [orderItems, setOrderItems] = useState()
-  const [delivery, setDelivery] = useState([])
+  const [orderContent, setOrderContent] = useState()
+  const [delivery, setDelivery] = useState('宅配')
+  const [deliveryPrice, setDeliveryPrice] = useState(0)
 
   function getCart() {
     return storage.getCartItems()
+  }
+
+  function cartItemDelete(skuid) {
+    const cart = getCart()
+    const newCartItem = cart.filter((item, index) => item.skuid !== skuid)
+    storage.saveCartItems(newCartItem)
+    setCart(getCart())
+    updateCartAmount()
   }
 
   function getSkuIdsInCart() {
@@ -107,40 +116,49 @@ function Cart(props) {
         }
       })
     })
+    let deliveryPrice = 0
+    deliveryPrice = sum > 2000 ? 0 : deliveryPrice + 60
+    sum = sum > 2000 ? sum : sum + 60
     setSum(sum)
+    setDeliveryPrice(deliveryPrice)
   }
 
-  function getOrderItems() {
-    let orderItems = []
+  function changeOrderContent() {
+    let orderContent = {
+      sum: sum,
+      delivery: delivery,
+      products: [],
+      merchantId: 0,
+      deliveryPrice: deliveryPrice,
+    }
     merchantCarts.forEach((merchantCart) => {
       merchantCart.products.map((item) => {
         if (item.isChecked) {
-          orderItems.push(item)
+          orderContent.products.push(item)
+          orderContent.merchantId = merchantCart.merchant_id
         }
       })
     })
-    orderItems.sum = sum
-    orderItems.delivery = delivery[3]
-    console.log(orderItems)
-    setOrderItems(orderItems)
+    setOrderContent(orderContent)
   }
 
-  function initDelivery() {
-    let delivery = [true, false, false, 1]
-    setDelivery(delivery)
-  }
-
-  function getdeliveryState(vlaue) {
-    delivery[3] = vlaue
-    setDelivery(delivery)
+  function updateCartAmount() {
+    let amount = 0
+    let cart = [...JSON.parse(localStorage.getItem('cart') || '[]')]
+    cart.forEach((item) => {
+      amount += item.amount
+    })
+    props.replaceCartAmount(amount)
   }
 
   useEffect(() => {
-    getCart()
-    getMerchantCarts()
-    initDelivery()
+    setCart(getCart())
     window.scrollTo(0, 0)
   }, [])
+
+  useEffect(() => {
+    getMerchantCarts()
+  }, [cart])
 
   useEffect(() => {
     calculateSum()
@@ -148,13 +166,13 @@ function Cart(props) {
 
   useEffect(
     () => {
-      getOrderItems()
+      changeOrderContent()
     },
     [sum],
     [delivery]
   )
 
-  return (
+  const display = (
     <div className="cart-page">
       <Container>
         <CheckoutNav />
@@ -195,12 +213,15 @@ function Cart(props) {
                 {merchantCart.products.map((product, index) => {
                   return (
                     <CartItem
+                      key={index}
                       product={product}
                       merchantCarts={merchantCarts}
                       setMerchantCarts={setMerchantCarts}
                       cart={getCart()}
                       setCart={setCart}
+                      cartItemDelete={cartItemDelete}
                       checkOne={checkOne}
+                      updateCartAmount={updateCartAmount()}
                     />
                   )
                 })}
@@ -217,28 +238,34 @@ function Cart(props) {
                     <Form.Check
                       type="radio"
                       label="宅配到府"
-                      name="formHorizontalRadios"
-                      id="formHorizontalRadios1"
+                      name="delivery"
                       className="mb-3"
-                      checked={delivery[0]}
-                      onChange={() => getdeliveryState(1)}
+                      value="宅配"
+                      checked={delivery === '宅配'}
+                      onChange={(event) => {
+                        setDelivery(event.target.value)
+                      }}
                     />
                     <Form.Check
                       type="radio"
                       label="郵局配送"
-                      name="formHorizontalRadios"
-                      id="formHorizontalRadios2"
+                      name="delivery"
                       className="mb-3"
-                      checked={delivery[1]}
-                      onChange={() => getdeliveryState(1)}
+                      value="郵局"
+                      checked={delivery === '郵局'}
+                      onChange={(event) => {
+                        setDelivery(event.target.value)
+                      }}
                     />
                     <Form.Check
                       type="radio"
                       label="7-11 取貨"
-                      name="formHorizontalRadios"
-                      id="formHorizontalRadios3"
-                      checked={delivery[2]}
-                      onChange={() => getdeliveryState(2)}
+                      name="delivery"
+                      value="7-11"
+                      checked={delivery === '7-11'}
+                      onChange={(event) => {
+                        setDelivery(event.target.value)
+                      }}
                     />
                   </Col>
                 </Form.Group>
@@ -269,15 +296,13 @@ function Cart(props) {
                   <p>付款總計</p>
                 </div>
                 <div className="text-right">
-                  <p className="font-point pay-total">
-                    NT${sum > 2000 ? sum : sum + 60}
-                  </p>
+                  <p className="font-point pay-total">NT${sum}</p>
                 </div>
               </div>
-              <Link to={`/cart_payment`}>
+              <Link to={`/order_creating`}>
                 <button
                   className="btn btn-danger w-100 mt-3"
-                  onClick={() => props.replaceOrderItems(orderItems)}
+                  onClick={() => props.replaceOrderContent(orderContent)}
                 >
                   前往結帳
                 </button>
@@ -288,12 +313,38 @@ function Cart(props) {
       </Container>
     </div>
   )
+
+  const empty = (
+    <div className="cart-empty-page">
+      <Container>
+        <div className="mb-5">
+          <img src={require(`./cart_empty.png`)} alt="" />
+        </div>
+        <p className="point">您的購物車目前沒有商品！</p>
+        <div>
+          <button
+            className="btn btn-outline-danger mt-3 mr-3 px-4"
+            onClick={() => history.goBack()}
+          >
+            繼續選購
+          </button>
+          <button className="btn btn-outline-danger mt-3 px-4">我的收藏</button>
+        </div>
+      </Container>
+    </div>
+  )
+
+  return props.cartAmount == 0 ? empty : display
 }
 
 const mapStateToProps = (store) => {
-  return { type: store.orderItems }
+  return {
+    orderContent: store.orderContent,
+    cartAmount: store.cartAmount,
+  }
 }
 
 export default connect(mapStateToProps, {
-  replaceOrderItems,
+  replaceOrderContent,
+  replaceCartAmount,
 })(Cart)

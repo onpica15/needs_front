@@ -52,6 +52,7 @@ const MemSidebar = (props) => {
       }
     }
   }
+
   useEffect(() => {
     if (isLogin) {
       const memId = loginUser.user.id
@@ -61,6 +62,7 @@ const MemSidebar = (props) => {
       window.location.href = '/login'
     }
   }, [])
+
   return (
     <>
       <div className="d-flex flex-column memsidebar ">

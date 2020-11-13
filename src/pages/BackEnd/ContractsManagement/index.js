@@ -73,7 +73,7 @@ const ContractsManagement = (props) => {
     <>
       <div className="contractsMng">
         <Col className="main offset-2" xs={10}>
-          <Container fluid main>
+          <Container fluid>
             <ToolBar
               type={type}
               setType={setType}

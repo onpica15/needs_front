@@ -5,15 +5,16 @@
 
 import { ADD_TO_CART, UPDATE_CART_UNITS } from '../actions/actiontypes'
 
-const initialState = [
-  {
-    id: 1,
-    title: 'LABAN CAMBRIDGE 劍橋鋼筆',
-    image_path: 'ST01_300x0.jpg',
-    price: 100,
-    units: 2,
-  },
-]
+// const initialState = [
+//   {
+//     id: 1,
+//     title: 'LABAN CAMBRIDGE 劍橋鋼筆',
+//     image_path: 'ST01_300x0.jpg',
+//     price: 100,
+//     sale_price: 99,
+//     units: 2,
+//   },
+// ]
 
 export default function cartReducer(state = [], action = {}) {
   switch (action.type) {

@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AACA,AACI,kBADc,CACd,SAAS,CAAA;EACL,UAAU,EAAE,IAAI;EAChB,KAAK,EAAE,KAAK;CACf;;AAJL,AAKI,kBALc,CAKd,eAAe,CAAA;EACX,KAAK,EAAE,KAAK;CACf",
-    "sources": [
-        "../src/pages/BackEnd/TemplateEditedPage/styles/TemplateEditedPage.scss"
-    ],
-    "names": [],
-    "file": "TemplateEditedPage.css"
-}

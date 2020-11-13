@@ -31,7 +31,7 @@ function MerchantInfo(props) {
             <p>
               評價：
               <span className="text-point">
-                {merchantInfo.review} ({merchantInfo.review_amount}個評價)
+                {merchantInfo.review} ( {merchantInfo.review_amount} 個評價 )
               </span>
             </p>
             <p className="m-0">

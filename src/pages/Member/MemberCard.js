@@ -1,6 +1,6 @@
 import React from 'react'
 import MemSidebar from './memmodules/MemSidebar'
-import MemCard from './memmodules/MemCard'
+import MemCard from './memmodules/Memcard'
 import './member.scss'
 
 function MemberCard(props) {

@@ -25,7 +25,9 @@ import ProductList from './pages/ProductList/ProductList'
 import MerchantHome from './pages/MerchantHome/merchantHome'
 import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
+import CreatingOrder from './pages/CreatingOrder'
 import Payment from './pages/Payment'
+import Complete from './pages/Payment/complete'
 import Login from './pages/Login/Login'
 import SignUp from './pages/Login/SignUp'
 
@@ -42,6 +44,7 @@ import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
 import ArticleDetial from './pages/Article/ArticleDetial'
 import TestArticleDetial from './pages/Article/TestArticleDetial'
 import ProductsManagement from './pages/BackEnd/ProductsManagement'
+import Breadcrumb from './components/backend/Breadcrumb'
 import ContractsManagement from './pages/BackEnd/ContractsManagement'
 import OrdersManagement from './pages/BackEnd/OrdersManagement'
 
@@ -122,12 +125,22 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/cart_payment"
+            path="/order_creating"
+            component={CreatingOrder}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/order_payment"
             component={Payment}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/article"
+            path="/order_complete"
+            component={Complete}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/articles"
             component={Article}
             layout="FRONT_END_NAV"
           />
@@ -142,7 +155,7 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/articledetial"
+            path="/articleClassic"
             component={ArticleDetial}
             layout="FRONT_END_NAV"
           />
@@ -158,17 +171,18 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/member/edit"
+            path="/member/edit/:id"
             component={MemberCardEdit}
             layout="FRONT_END_NAV"
           />
+
           <DynamicLayoutRoute
-            path="/member/shop"
+            path="/member/shop/:id"
             component={MemberShop}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/member/like"
+            path="/member/like/:id"
             component={MemberLike}
             layout="FRONT_END_NAV"
           />
@@ -235,7 +249,6 @@ function App(props) {
             component={TemplateList}
             layout="BACK_END_NAV"
           />
-
           <DynamicLayoutRoute
             path="/customer-backend/sales-index"
             component={Sales}
