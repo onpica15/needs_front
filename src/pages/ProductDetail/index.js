@@ -28,6 +28,7 @@ function ProductDetail(props) {
   const [sku, setSku] = useState({})
   const [successModalShow, setSuccessModalShow] = useState(false)
   const [modalShow, setModalShow] = useState(false)
+  const [review, setReview] = useState([])
 
   async function getProductDetail() {
     const url = `http://localhost:5000/products/${props.match.params.id}`
@@ -40,7 +41,6 @@ function ProductDetail(props) {
     })
     const response = await fetch(request)
     const data = await response.json()
-    console.log(data)
     setProductDetail(data)
     setSku(data.skus[0])
   }
@@ -59,6 +59,20 @@ function ProductDetail(props) {
     const response = await fetch(request)
     const data = await response.json()
     setMerchantInfo(data)
+  }
+
+  async function getReview() {
+    const url = `http://localhost:5000/products/review/${props.match.params.id}`
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    setReview(data)
   }
 
   function getSku(e) {
@@ -110,6 +124,7 @@ function ProductDetail(props) {
 
   useEffect(() => {
     getProductDetail()
+    getReview()
     window.scrollTo(0, 0)
     initMoreProductDetail()
   }, [props.match.params.id])
@@ -343,7 +358,7 @@ function ProductDetail(props) {
           購買評價
         </h5>
         <hr />
-        <Review />
+        <Review merchantInfo={merchantInfo} review={review} />
         <h5 className="mt-5" id="merchantOtherProducts">
           店家其他商品
         </h5>
