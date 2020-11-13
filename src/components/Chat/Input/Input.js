@@ -1,11 +1,10 @@
 import React from 'react'
-
 import './Input.scss'
 import { RiSendPlaneFill } from 'react-icons/ri'
 import { AiOutlinePicture } from 'react-icons/ai'
 
 const Input = (props) => {
-  const { setMessage, sendMessage, message } = props
+  const { setMessage, sendMessage, message, uploadImage } = props
 
   return (
     <>

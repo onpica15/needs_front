@@ -1,4 +1,3 @@
-import { Block } from '@material-ui/icons'
 import React, { useState } from 'react'
 import {
   AiOutlineVerticalAlignTop,
@@ -7,12 +6,11 @@ import {
 } from 'react-icons/ai'
 
 // Chat component
-// import Chat from './Chat/Chat'
+import Chat from './Chat/Chat'
 import './Chat/Chat.scss'
 
-const FixedButtons = () => {
+const FixedButtons = (props) => {
   const [showChat, setShowChat] = useState(false)
-
   const showChatToggle = () => {
     showChat ? setShowChat(false) : setShowChat(true)
   }
@@ -26,7 +24,7 @@ const FixedButtons = () => {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           />
         </div>
-        {/* <div className="toCart">
+        <div className="toCart">
           <AiOutlineShoppingCart size="28px" />
         </div>
         <div className="toSupport">
@@ -34,17 +32,11 @@ const FixedButtons = () => {
             onClick={() => showChatToggle(showChatToggle)}
             size="28px"
           />
-        </div> */}
+        </div>
       </div>
-      {/* {showChat ? (
-        <div style={{ display: 'Block' }}>
-          <Chat />
-        </div>
-      ) : (
-        <div style={{ display: 'none' }}>
-          <Chat />
-        </div>
-      )} */}
+      {/* <div style={{ display: showChat ? 'block' : 'none' }}>
+        <Chat showChatToggle={showChatToggle} />
+      </div> */}
     </>
   )
 }
