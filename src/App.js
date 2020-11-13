@@ -171,18 +171,18 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/member/edit/:id"
+            path="/member/edit"
             component={MemberCardEdit}
             layout="FRONT_END_NAV"
           />
 
           <DynamicLayoutRoute
-            path="/member/shop/:id"
+            path="/member/shop"
             component={MemberShop}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/member/like/:id"
+            path="/member/like"
             component={MemberLike}
             layout="FRONT_END_NAV"
           />
