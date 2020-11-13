@@ -5,48 +5,38 @@ import Axios from 'axios'
 
 function AddAdsModal() {
   const [show, setShow] = useState(false)
-  const handleClose = () => {
-    setShow(false)
-    setImgPre('')
-  }
+  const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
-  const [imgPre, setImgPre] = useState('')
-  const postData = new FormData()
 
-  const handleSetForm = (e, key) => {
-    if (key === 'file') {
-      let imgPre
-      const file = e.target.files[0]
-      postData.append('file', file)
-      // imgPre = URL.createObjectURL(file)
-      // setImgPre(imgPre)
-      const img = document.createElement('img')
-      img.src = URL.createObjectURL(file)
-      img.height = 60
-      document.querySelector('.imgPre').appendChild(img)
-    } else {
-      const value = e.target.value
-      // setMyData({ ...myData, [key]: value })
-      postData.set(key, value)
+  const sendData = () => {
+    const d = {
+      title: document.form1.title.value,
+      budget: document.form1.budget.value,
+      bid: document.form1.bid.value,
+      start_date: document.form1.start_date.value,
+      end_date: document.form1.end_date.value,
     }
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    handleClose()
-    Axios.post(`http://localhost:5000/dashboard/addnewads`, postData).then(
+    Axios.post('http://localhost:5000/dashboard/addnewads', d).then(
       (response) => {
-        console.log(response.data.url)
+        console.log(response.data)
       }
     )
   }
+
   return (
     <>
       <Button className="btn-primary" onClick={handleShow}>
         <div className="addAds">新增廣告</div>
       </Button>
       <Modal className="ads-modal-wrapper" show={show} onHide={handleClose}>
-        <Form name="form1" method="post" onSubmit={handleSubmit}>
+        <Form
+          name="form1"
+          method="post"
+          onSubmit={() => {
+            sendData()
+            return false
+          }}
+        >
           <Modal.Header closeButton>
             <Modal.Title>新增首頁廣告</Modal.Title>
           </Modal.Header>
@@ -58,17 +48,17 @@ function AddAdsModal() {
                   <Col xs={6}>
                     <Form.Group>
                       <Form.Label className="w-100">
-                        <Form.File
-                          id="file"
-                          label="file"
-                          name="file"
-                          className="d-none"
-                          onChange={(e) => handleSetForm(e, 'file')}
-                        ></Form.File>
-                        <div className="upload-ads-img">
-                          <AiOutlinePlusCircle size={60} color="#787878" />
-                          <div className="imgPre"></div>
-                        </div>
+                        <Form.File id="cover" label="cover">
+                          <Form.Control
+                            type="file"
+                            id="cover"
+                            className="d-none"
+                            name="cover"
+                          />
+                          <div className="upload-ads-img">
+                            <AiOutlinePlusCircle size={60} color="#787878" />
+                          </div>
+                        </Form.File>
                       </Form.Label>
                     </Form.Group>
                   </Col>
@@ -76,12 +66,7 @@ function AddAdsModal() {
                 </Row>
                 <Form.Group controlId="forTitle">
                   <Form.Label>廣告名稱</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="發大財"
-                    name="title"
-                    onChange={(e) => handleSetForm(e, 'title')}
-                  />
+                  <Form.Control type="text" placeholder="發大財" name="title" />
                   {/* <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
                   </Form.Text> */}
@@ -92,7 +77,6 @@ function AddAdsModal() {
                     type="number"
                     placeholder="最少1000"
                     name="budget"
-                    onChange={(e) => handleSetForm(e, 'budget')}
                   />
                 </Form.Group>
                 <Form.Group controlId="forBid">
@@ -101,26 +85,15 @@ function AddAdsModal() {
                     type="number"
                     placeholder="決定你在首頁出現順序"
                     name="bid"
-                    onChange={(e) => handleSetForm(e, 'bid')}
                   />
                 </Form.Group>
                 <Form.Group controlId="forStartDate">
                   <Form.Label>起始時間</Form.Label>
-                  <Form.Control
-                    type="date"
-                    placeholder=""
-                    name="startdate"
-                    onChange={(e) => handleSetForm(e, 'start_date')}
-                  />
+                  <Form.Control type="date" placeholder="" name="startdate" />
                 </Form.Group>
                 <Form.Group controlId="forEndDate">
                   <Form.Label>結束時間</Form.Label>
-                  <Form.Control
-                    type="date"
-                    placeholder=""
-                    name="enddate"
-                    onChange={(e) => handleSetForm(e, 'end_date')}
-                  />
+                  <Form.Control type="date" placeholder="" name="enddate" />
                 </Form.Group>
               </Col>
             </Row>

@@ -53,10 +53,10 @@ function Ads() {
                   getCtrData(data[i].sid)
                 }}
               >
-                <td>{data[i].order_number}</td>
-                <td>{data[i].campaign}</td>
-                <td>{data[i].status}</td>
-                <td>{data[i].campaign_style}</td>
+                {/* <td>{data[i].order_number}</td> */}
+                <td>{data[i].title}</td>
+                {/* <td>{data[i].status}</td>
+                <td>{data[i].campaign_style}</td> */}
                 <td>{startDateArray[i]}</td>
                 <td>{endDateArray[i]}</td>
                 <td>{durationDaysArray[i]}</td>
