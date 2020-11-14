@@ -22,7 +22,7 @@
     .sec1_background{
         min-height: calc(65vh - 60px);
         width: 100%;
-        background-image: url('../images/default-background.png');
+        // background-image: url('../images/default-background.png');
         background-size: cover;
     }
  
@@ -106,7 +106,7 @@
   .product-bg-pic{
     height: 60vh;
     width: 60vh;
-    background-image: url('../images/default-img.png');
+    // background-image: url('../images/default-img.png');
     background-size: cover;
     margin-right: 30px;
     
@@ -114,12 +114,12 @@
   .product-sml-pic{
     height: 300px;
     width: 300px;
-    background-image: url('../images/default-img.png');
+    // background-image: url('../images/default-img.png');
     background-size: cover;
     // margin-left: 5rem;
     display: flex;
     align-items: center;
-    box-shadow: 7px 7px 7px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 7px 7px 7px 2px rgba(148, 142, 142, 0.2);
   }
   .sec3{
     // height: 100vh;
@@ -140,7 +140,6 @@
       padding-right: 40px;
       position: relative;
     }
-
     .activities-img{
       width: 35vh;
       height: 35vh;
@@ -192,7 +191,7 @@
       width: 30vh;
       border-radius: 50%;
       background-size: cover;
-      background-image: url('../images/default-img.png');
+      // background-image: url('../images/default-img.png');
   }
   .underline{
     border-bottom:3px solid  #d44f44;

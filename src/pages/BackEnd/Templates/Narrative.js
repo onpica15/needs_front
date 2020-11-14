@@ -5,10 +5,12 @@ import {
     Row
   } from 'react-bootstrap'
 import './styles/Narrative.scss'
-import { GiPositionMarker } from 'react-icons/gi';
-import { AiTwotoneShop,AiTwotonePhone } from "react-icons/ai";
-import { SignalCellularNullSharp } from '@material-ui/icons';
 
+
+//component
+import Sec1BrandInfo from './NarrativeComponent/Sec1BrandInfo'
+import Sec2MainProduct from './NarrativeComponent/Sec2MainProduct'
+// import Sec1BrandInfo from './NarrativeComponent/Sec1BrandInfo'
 
 function Narrative(props){
 
@@ -19,18 +21,15 @@ const { color,
        activities,
        selectedProduct,
        selectedActivities,
+       thisMerchantBrandInfo,
       } = props
 
 const [ displayBgImg , setDisplayBgImg ] = useState(props.bgImg)
 const [ displayStoryImg , setDisplaStoryImg ] = useState(props.storyImg)
-
-
-
-// const findProduct = props.products.id.find =(function(item, index, array){
-//   return item.id === props.selectedProduct;  // 取得陣列 like === '蘿蔔泥'
-// });
-// console.log(findProduct);
-
+const [ displayMainImg , setDisplaMainImg ] = useState(props.selectedProduct)
+const [ displayActImg , setDisplaActImg ] = useState(props.selectedActivities)
+console.log('selectedProduct',selectedProduct)
+const [displayProductId,setDisplayProductId] = useState(props.selectedProduct)
 // let noUpload = './images/default-background.png'
 
 // const handledisplay = () => {
@@ -56,14 +55,17 @@ useEffect(() => {
   // setDisplayBgImg( bgImg? upload : noUpload)
   setDisplayBgImg(props.bgImg)
   setDisplaStoryImg(props.storyImg)
+  // setDisplaMainImg(props.selectedProduct)
   // findProduct()
 
-},[props.bgImg , props.storyImg , ])
+},[props.bgImg , props.storyImg , props.selectedProduct])
 
 
 useEffect(() => {
   setDisplayBgImg('/static/media/default-background.35858da7.png')
   setDisplaStoryImg('/static/media/default-img.54333d00.png')
+  setDisplaMainImg('/static/media/default-img.54333d00.png')
+  setDisplaActImg('/static/media/default-img.54333d00.png')
 },[])
 
 
@@ -75,86 +77,54 @@ useEffect(() => {
 //     backgroundImage: `url('http://localhost:5000/BackgroundImg/4ba827cb-a7ea-45f4-8849-28f919659d04.jpeg')`
 //   }
   // var ifBgImg = displayBgImg ? {upload} : {noUpload}
-
+  
 return(
         <>
           <div className="Narrative">
-          <div className="sec1_background" style={{ backgroundImage : `url(${displayBgImg})`}}></div>
-          <div className="background-color" style={{
-            backgroundColor:props.color,
-          }}></div>
-          <Container className="p-0">
-            <div className="sec1 d-flex">
-            <div className="sec1_avatar m-auto">
-              <div className="d-flex mx-auto">
-                <div className="d-flex ml-3">  
-                <div className="d-flex flex-column align-items-center">
-                
-                <div className="avatar rounded pb-3"></div>
-                  <button className="store-follower-btn rounded">+關注</button>
-                </div>
-                  
-                  <div className="d-flex flex-column">
-                <h2 className="h4">愛治文具房</h2>
-                  <div className="mt-3">
-                  <h4><AiTwotoneShop/> aiyabungu</h4>
-                  <h4><AiTwotonePhone/> 0975-875120</h4>
-                  <h4><GiPositionMarker/> 彰化縣彰化市長安街76巷7-2號1樓</h4>
-                  </div>
-              </div>
-                  </div>
         
-              </div>
-            </div>  
-
-            <div className="sec1_info">
-              <Row className="row1 mx-auto">
-                  <Col>
-                  <h4>評價</h4>
-                  <h4 className="red">尚無評價</h4>
-                  </Col>
-                  <Col>
-                  <h4>粉絲</h4>
-                  <h4 className="red">0</h4>
-                  </Col>
-                  <Col>
-                  <h4>商品</h4>
-                  <h4 className="red">106</h4>
-                  </Col>
-                </Row>
-                <Row className="mx-auto">
-                  <Col>
-                    <h4>加入時間</h4>
-                    <h4>2019/10/05</h4>
-                    </Col>
-                    <Col>
-                    <h4>回應速度</h4>
-                    <h4>尚無評價</h4>
-                    </Col>
-                    <Col>
-                    <h4>出貨速度</h4>
-                    <h4>尚無評價</h4>
-                    </Col>
-                </Row> 
-            </div>
-            </div>
-            </Container>
+            <Sec1BrandInfo 
+              displayBgImg={displayBgImg}
+              color={color}
+            />
             
+            {/* {              
+              books && books
+                .filter(book => book.shelf === shelf)
+                .map((book, index)
+                 => {
+                  return (
+                    <Book
+                      key={book && book.id ? book.id : index}
+                      changeShelf={this.props.changeShelf}
+                      book={book} />
+                  );
+                })
+            } */}
+
+            {/* .filter(product => product.id === selectedProduct) */}
+            {/* background-image: url(http://localhost:5000/BackgroundImg/992d392d-8b38-4f33-ba52-08060edfea74.jpeg);} */}
             <div className="sec2">
               <div className="d-flex justify-content-between m-auto">
-              {products.filter(product => product.id.includes(selectedProduct)).map(selectedproduct)=>(
-                  <>
-                  <div className="product-bg-pic"></div>
-                  <div className="d-flex flex-column wrapper">
-                  <h2>本週主打</h2>
-                  <h4>巴川紙68磅筆記本</h4>
-                  <div className="product-sml-pic"></div>
-                  <p className="sml">台灣製造安心有保障，精選68磅優良米色巴川紙，紙質不易透，可適用於鋼筆書寫攤平書寫更便利，典雅燙金點綴，是手帳愛好者不可錯過的內頁之一。</p>
-                  <h2>NT$780</h2>
-                  <button className="btn">加入購物車</button>
-                  </div>
-                  </>
-                ))}
+                    {products && products.filter(product => product.id == selectedProduct)
+                    .map((product, index) => {
+                      return (
+                              <>
+                                <div className="product-bg-pic" style={{ backgroundImage : `url(${displayMainImg})`}}></div>
+                                <div className="d-flex flex-column wrapper">
+                                <h2>本週主打</h2>
+                                <h4>selectedProduct?{product.title}:請選擇商品</h4>
+                                <div className="product-sml-pic" style={{ backgroundImage : `url(${displayMainImg})`}} ></div>
+                                <p className="sml">{product.outline}</p>
+                                <h2>NT$780</h2>
+                                <button className="btn">加入購物車</button>
+                                </div>
+                              </>
+                            );
+                          })
+                      }
+
+                    {/* <Sec2MainProduct displayMainImg={displayMainImg}/> */}
+              
               </div>
               
             </div>
@@ -164,10 +134,8 @@ return(
             </div> */}
 
             <div className="sec4">
-              {/* <div className="activities-wrapper d-flex align-items-end m-auto"> */}
-                
               <div className="activities-wrapper d-flex align-items-end m-auto">
-              <div className="activities-img"></div>
+              <div className="activities-img" style={{ backgroundImage : `url(${setDisplaActImg})`}}></div>
                 <div className="text d-flex flex-column justify-content-between my-auto">
                       <h2>玩浮水畫 縫中式冊子【 1 人成團】</h2>
                       <h4>課程日期：</h4>
@@ -180,7 +148,6 @@ return(
                     </div>
               </div>
                   
-              {/* </div> */}
             </div>
 
             <div className="sec5 py-5">
@@ -208,6 +175,6 @@ return(
             </div>
           </div>
         </>
-    )
+ )
 }
 export default Narrative

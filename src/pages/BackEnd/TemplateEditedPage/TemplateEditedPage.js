@@ -43,14 +43,18 @@ const toggleShow1 = (e) => setShow1(!show1);
 const [bgImg, setBgImg] = useState('')
 const [storyImg,setStoryImg] = useState('')
 const [color,setColor] = useState('#323232')
+
 //data-from-server
+// :products
 const [thisMerchantProduct,setThisMerchantProduct] = useState([])
 const [ products,setProducts ] = useState([])
 const [ activities,setActivities ] = useState([])
+// :brand_info
+const [thisMerchantBrandInfo,setThisMerchantBrandInfo] = useState
+([])
 
-const [ selectedProduct,setSelectedProduct ] = useState(0) 
-const [ selectedActivities,setSelectedActivities ] = useState(0) 
-console.log('selectedProduct',selectedProduct)
+const [ selectedProduct,setSelectedProduct ] = useState('') 
+const [ selectedActivities,setSelectedActivities ] = useState('') 
 
 const [error,setError] = useState(null)
 
@@ -92,9 +96,10 @@ const sendStoryImgToNode = async () => {
 
 //一開始就要get:商家info、哪些商品、活動
 //put後馬上get:
-//server-data
-async function getMerchantProduct(){
 
+//server-data
+// -- get product --
+async function getMerchantProduct(){
   // setDataLoading(true)
   // console.log('type',type)
   const url =`http://localhost:5000/Template/merchant_product?merchant_id=12`
@@ -110,13 +115,9 @@ async function getMerchantProduct(){
     const thisproduct = await response.json()
     
     setThisMerchantProduct(thisproduct)
-    setProducts(thisproduct.products)
+    setProducts(thisproduct.products[0])
     setActivities(thisproduct.activities)
-    console.log('thisproduct',thisproduct)
-    console.log('products',thisproduct.products)
-    console.log('activities',thisproduct.activities)
-    // console.log('activities',thisproduct[0].activities)
-    // setTimeout(()=>setDataLoading(false),500)
+    console.log('products[0]',products)
 
   }catch(error){
     setError("oops! error")
@@ -124,8 +125,35 @@ async function getMerchantProduct(){
   }
 }
 
+// -- get brand_info --
+async function getBrandInfo(){
+  // setDataLoading(true)
+  // console.log('type',type)
+  const url =`http://localhost:5000/Template/merchant_info?merchants=12`
+  const request = new Request(url, {
+      method:'GET',
+      headers:new Headers({
+          Accept:'application/json',
+          'Content-Type':'application/json'
+      }),
+  })
+  try{
+    const response = await fetch(request)//response:fetch網址的資料
+    const thisMerchantBrandInfo = await response.json()
+    
+    setThisMerchantBrandInfo(thisMerchantBrandInfo)
+    console.log('thisMerchantBrandInfo',thisMerchantBrandInfo)
+    // // setTimeout(()=>setDataLoading(false),500)
+  }catch(error){
+    setError("oops! error")
+    // setTimeout(()=>setDataLoading(false),500)
+  }
+}
+
+
 useEffect(() => {
   getMerchantProduct()
+  getBrandInfo()
 }, [])
 
   return(
@@ -199,11 +227,11 @@ useEffect(() => {
                 <div>
                         <select className="browser-default custom-select" onChange={(e)=>setSelectedProduct(e.target.value)}>
                         <option> --請選擇-- </option>
-                        {products[0] && products[0].map((products, index) => {
-                      console.log('products', products.title)
+                        {products && products.map((product, index) => {
+                      console.log('product', product.title)
                   return(
-                        <option value={products.id} key={index} >
-                        {products.title}
+                        <option value={product.id} key={index} >
+                        {product.title}
                         </option>
                   )
                   })}
@@ -313,7 +341,10 @@ useEffect(() => {
             storyImg={storyImg} 
             products={products}
             activities={activities}
-            selectedProduct={selectedProduct} selectedActivities={selectedActivities}/>
+            selectedProduct={selectedProduct}
+            selectedActivities={selectedActivities}
+            thisMerchantBrandInfo={thisMerchantBrandInfo}  
+            />
         </div>
     </div>
     </Col>

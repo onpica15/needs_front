@@ -9,18 +9,67 @@ import TemplateProductList from '../ProductList/TemplateProductList'
 import axios from 'axios'
 
 const Aiyabungu = (props) =>{
+  const [error,setError] = useState(null)
   const [posts, setPosts] = useState([])
-    //set page
-    const [currentPage, setCurrentPage] = useState(1)
-    const [postsPerPage] = useState(6)
+  //set page
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage] = useState(6)
 
-  useEffect(() => {
+  //set Merchantpage_info
+  const [thisMerchantProduct,setThisMerchantProduct] = useState([])
+  const [ products,setProducts ] = useState([])
+  const [ activities,setActivities ] = useState([])
+  // const [ bgImg,setBgImg ] = 
+
+  //server-data
+    
+
+    async function getMerchantProduct(){
+      // setDataLoading(true)
+      // console.log('type',type)
+      const url =`http://localhost:5000/Template/merchant_product?merchant_id=12`
+      const request = new Request(url, {
+          method:'GET',
+          headers:new Headers({
+              Accept:'application/json',
+              'Content-Type':'application/json'
+          }),
+      })
+      try{
+        const response = await fetch(request)//response:fetch網址的資料
+        const thisproduct = await response.json()
+        
+        setThisMerchantProduct(thisproduct)
+        setProducts(thisproduct.products)
+        setActivities(thisproduct.activities)
+        console.log('thisproduct',thisproduct)
+        console.log('products',thisproduct.products)
+        console.log('activities',thisproduct.activities)
+        // console.log('activities',thisproduct[0].activities)
+        // setTimeout(()=>setDataLoading(false),500)
+
+      }catch(error){
+        setError("oops! error")
+        // setTimeout(()=>setDataLoading(false),500)
+      }
+    }
+
+
+    useEffect(() => {
     const fetchPosts = async () => {
       let url = 'http://localhost:5000/productlist'
       const res = await axios.get(url).catch((err) => console.log('Error', err))
       setPosts(res.data)
     }
+
     fetchPosts()
+    const fetchMerchantAllData = async () =>{
+      let url = 'http://localhost:5000/productlist'
+      const res = await axios.get(url).catch((err) => console.log('Error', err))
+      setPosts(res.data)
+    }
+
+    getMerchantProduct()
   }, [])
 
 
