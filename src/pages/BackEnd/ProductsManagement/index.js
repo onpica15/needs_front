@@ -33,6 +33,7 @@ const ProductsManagement = (props) => {
   const [totalPages, setTotalPages] = useState(0)
 
   const [categories, setCategories] = useState([])
+  const [specCount, setSpecCount] = useState({ count: 1 })
   const [formData, setFormData] = useState({})
   const [imgList, setImgList] = useState([])
   const [preview, setPreview] = useState([])
@@ -54,7 +55,8 @@ const ProductsManagement = (props) => {
   const getData = (merchantId, type) => {
     //跟server拿資料
     Axios.get(
-      `http://122.116.38.12:5050/bk-products-api/list?id=${merchantId}&filter=${type}&page=${currentPage}`
+      `http://122.116.38.12:5050/bk-products-api/list?id=${merchantId}&filter=${type}&page=${currentPage}
+      &searchType=${searchType}&searchInp=${searchInp}`
     )
       .then((res) => {
         const data = res.data.rows
@@ -83,9 +85,13 @@ const ProductsManagement = (props) => {
       })
   }
 
+  const createSpec = () => {
+    setSpecCount({ count: specCount.count + 1 })
+  }
+
   //type跟currentPage改變觸發filter
   useEffect(() => {
-    getData(merchantId, type)
+    getData(merchantId, type, searchType, searchInp)
   }, [currentPage, type])
 
   return (
@@ -109,6 +115,7 @@ const ProductsManagement = (props) => {
               setShowAddProd={setShowAddProd}
               showAddCourse={showAddCourse}
               setShowAddCourse={setShowAddCourse}
+              categories={categories}
             />
             <ProductsContent
               data={data}
@@ -154,6 +161,8 @@ const ProductsManagement = (props) => {
               alerMsg={alerMsg}
               alerType={alerType}
               getCategories={getCategories}
+              specCount={specCount}
+              createSpec={createSpec}
             />
             <AddCourse
               showAddCourse={showAddCourse}
@@ -177,6 +186,8 @@ const ProductsManagement = (props) => {
               alerMsg={alerMsg}
               alerType={alerType}
               getCategories={getCategories}
+              specCount={specCount}
+              createSpec={createSpec}
             />
           </Container>
         </Col>
