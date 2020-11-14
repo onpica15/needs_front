@@ -225,14 +225,14 @@ $bg-light: #f0f0f0;
     height: 80px;
   }
   .review-desc {
-    width: 80%;
+    width: 75%;
   }
   .reply {
-    padding: 16px 0px 16px 130px;
+    padding: 16px 0px 16px 120px;
     background-color: $bg-light;
   }
   .reply-desc {
-    width: 90%;
+    width: 83%;
   }
   .product-s {
     height: 160px;
@@ -272,6 +272,10 @@ $bg-light: #f0f0f0;
       padding: 25px 1.25rem;
     }
   }
+  .maxH-270 {
+    max-height: 270px;
+    overflow: hidden;
+  }
   .success-icon {
     font-size: 80px;
     color: #28a745;
@@ -304,26 +308,6 @@ $bg-light: #f0f0f0;
       width: 100%;
       height: auto;
       border-radius: 0.25rem;
-    }
-  }
-  // 聊天室 css 暫時卡位用，正式版聊天室請自行替這個位置
-  .CartBtn {
-    position: fixed;
-    right: 30px;
-    bottom: 115px;
-    z-index: 10;
-    button {
-      width: 50px;
-      height: 50px;
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      cursor: pointer;
-      &:not(:last-child) {
-        margin-bottom: 20px;
-      }
     }
   }
 }

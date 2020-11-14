@@ -28,7 +28,7 @@ $primary_focus: #7367f0;
   }
 
   .btn {
-    font-family: 'Noto Sans TC', sans-serif;
+    // font-family: 'Noto Sans TC', sans-serif;
     font-size: 1 rem;
     line-height: 1.75;
     letter-spacing: 1.2px;
@@ -157,12 +157,14 @@ $primary_focus: #7367f0;
       }
       .productTitle {
         width: 35%;
+        padding-right: 16px;
       }
       .specification {
         width: 20%;
       }
       .title {
         width: 8%;
+        padding-right: 16px;
       }
       .actions {
         text-align: center;
@@ -226,6 +228,7 @@ $primary_focus: #7367f0;
           -webkit-line-clamp: 3;
           overflow: hidden;
           white-space: pre-line;
+          padding-right: 16px;
         }
       }
     }
@@ -273,7 +276,7 @@ $primary_focus: #7367f0;
       border-color: #212529;
 
       .btn {
-        font-family: 'Noto Sans TC', sans-serif;
+        // font-family: 'Noto Sans TC', sans-serif;
         font-size: 1 rem;
         line-height: 1.75;
         letter-spacing: 1.2px;
@@ -323,21 +326,54 @@ $primary_focus: #7367f0;
       }
       .uploadImg {
         color: $primary_color;
-        height: 400px;
+        height: 330px;
         border: 1px dashed $primary_color;
         margin-bottom: 1rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        text-align: center;
-        .form-file-label {
-          margin-bottom: 1rem;
+        .form-label {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          position: relative;
+          svg {
+            margin-bottom: 1rem;
+          }
+          .preBox {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            img {
+              display: block;
+              width: calc(25% - 24px);
+              margin: 12px 12px;
+              flex: 0;
+              height: auto;
+              box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.32);
+              border-radius: 6px;
+            }
+            .removebtn {
+              position: relative;
+              left: -25px;
+              top: 0px;
+              background-color: #fdeded;
+              padding: 3px;
+              border-radius: 100%;
+              box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.32);
+            }
+          }
         }
         label:hover {
           cursor: pointer;
         }
-
         input[type='file' i] {
           display: none;
         }

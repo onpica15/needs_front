@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form, Modal, Button } from 'react-bootstrap'
 import Axios from 'axios'
 import NumberFormat from 'react-number-format'
-import { FiUpload, FiPlusCircle } from 'react-icons/fi'
-// import { alertActions } from '../../../../actions'
+import { FiUpload, FiPlusCircle, FiX } from 'react-icons/fi'
 
 const AddProduct = (props) => {
   const {
@@ -15,8 +14,12 @@ const AddProduct = (props) => {
     type,
     getCategories,
     categories,
-    myData,
-    setMyData,
+    formData,
+    setFormData,
+    imgList,
+    setImgList,
+    preview,
+    setPreview,
     alertShow,
     setAlertShow,
     error,
@@ -27,24 +30,51 @@ const AddProduct = (props) => {
   } = props
 
   const dispatch = useDispatch()
-  const postData = new FormData()
+
+  //清除已選擇按鈕
+  const removeSelected = (e, index) => {
+    e.preventDefault()
+    const preArr = [...preview]
+    const selectedArr = [...imgList]
+    preArr.splice(index, 1)
+    selectedArr.splice(index, 1)
+    setPreview(preArr)
+    setImgList(selectedArr)
+  }
 
   const handleSetForm = (e, key) => {
     if (key === 'file') {
       const files = e.target.files
+
+      //先把img透過for迴圈寫入imgRow物件
+      const imgRow = []
+      const imgPre = []
       for (let i = 0; i < files.length; i++) {
         const img = files[i]
-        postData.append('imgList', img)
+        imgRow.push(img)
+        imgPre.push(URL.createObjectURL(img))
       }
+      //將imgRow物件set進ImgList State中
+      setImgList(imgRow)
+      setPreview(imgPre)
     } else {
       const value = e.target.value
-      // setMyData({ ...myData, [key]: value })
-      postData.set(key, value)
+      setFormData({ ...formData, [key]: value })
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    const postData = new FormData()
+
+    //把files state append進postData
+    imgList.forEach((img) => {
+      postData.append('imgList', img)
+    })
+
+    //把文字formData set進postData
+    postData.set('formData', JSON.stringify(formData))
 
     Axios.post(
       `http://122.116.38.12:5050/bk-products-api?id=${merchantId}&prodType=0`,
@@ -80,7 +110,8 @@ const AddProduct = (props) => {
         show={showAddProd}
         onHide={(e) => {
           setShowAddProd(false)
-          setMyData({})
+          setFormData({})
+          setPreview([])
         }}
         backdrop="static"
         keyboard={false}
@@ -97,28 +128,45 @@ const AddProduct = (props) => {
               <Form.Label>商品名稱</Form.Label>
               <Form.Control
                 type="text"
-                // value={formData.title || ''}
                 onChange={(e) => handleSetForm(e, 'title')}
               />
             </Form.Group>
             <Form.Label>商品圖片</Form.Label>
             <Form.Group controlId="file" className="uploadImg">
+              <Form.Label>
+                <FiUpload size="35px" />
+                上傳圖片
+                <div className="preBox">
+                  {preview.map((item, index) => {
+                    return (
+                      <>
+                        <img src={item} />
+                        <FiX
+                          size="24px"
+                          color="#ea5455"
+                          className="removebtn"
+                          onClick={(e) => removeSelected(e, index)}
+                        />
+                      </>
+                    )
+                  })}
+                </div>
+              </Form.Label>
               <Form.File
                 className="position-relative"
                 required
                 name="file"
-                label={<FiUpload size="35px" />}
                 feedbackTooltip
                 multiple
-                onChange={(e) => handleSetForm(e, 'file')}
+                onChange={(e) => {
+                  handleSetForm(e, 'file')
+                }}
               />
-              <Form.Label>上傳圖片</Form.Label>
             </Form.Group>
             <Form.Group controlId="category">
               <Form.Label>商品類別</Form.Label>
               <Form.Control
                 as="select"
-                // value={formData.category}
                 onChange={(e) => handleSetForm(e, 'category')}
               >
                 <option value="" disabled selected hidden>
@@ -157,17 +205,14 @@ const AddProduct = (props) => {
               <div className="input-group">
                 <Form.Control
                   type="text"
-                  // value={formData.specification1}
                   onChange={(e) => handleSetForm(e, 'specification1')}
                 />
                 <Form.Control
                   type="text"
-                  // value={formData.specification2}
                   onChange={(e) => handleSetForm(e, 'specification2')}
                 />
                 <Form.Control
                   type="text"
-                  // value={formData.specification3}
                   onChange={(e) => handleSetForm(e, 'specification3')}
                 />
                 <FiPlusCircle size="25px" style={{ color: '#495057' }} />
@@ -180,7 +225,6 @@ const AddProduct = (props) => {
                 thousandSeparator={true}
                 prefix={'$'}
                 id="price"
-                // value={formData.price}
                 onChange={(e) => handleSetForm(e, 'price')}
               />
             </Form.Group>
@@ -191,7 +235,6 @@ const AddProduct = (props) => {
                 thousandSeparator={true}
                 prefix={'$'}
                 id="salePrice"
-                // value={formData.salePrice}
                 onChange={(e) => handleSetForm(e, 'salePrice')}
               />
             </Form.Group>
@@ -199,7 +242,6 @@ const AddProduct = (props) => {
               <Form.Label>商品上架日</Form.Label>
               <Form.Control
                 type="date"
-                // value={formData.launchDate}
                 onChange={(e) => handleSetForm(e, 'launchDate')}
               />
             </Form.Group>
@@ -207,7 +249,6 @@ const AddProduct = (props) => {
               <Form.Label>商品庫存</Form.Label>
               <Form.Control
                 type="number"
-                // value={formData.launchDate}
                 onChange={(e) => handleSetForm(e, 'stock')}
               />
             </Form.Group>
@@ -216,7 +257,6 @@ const AddProduct = (props) => {
               <Form.Control
                 as="textarea"
                 rows="5"
-                // value={formData.outline}
                 onChange={(e) => handleSetForm(e, 'outline')}
               />
             </Form.Group>
@@ -226,7 +266,8 @@ const AddProduct = (props) => {
               variant="outline-danger"
               onClick={(e) => {
                 setShowAddProd(false)
-                setMyData({})
+                setFormData({})
+                setPreview([])
               }}
             >
               取消
