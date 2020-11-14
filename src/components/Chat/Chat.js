@@ -77,5 +77,5 @@ const Chat = (props) => {
     </div>
   )
 }
-
+// ((window.location.href = '/login'))
 export default Chat

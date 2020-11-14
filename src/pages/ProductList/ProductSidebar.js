@@ -4,11 +4,13 @@ import './ProductSideBar.scss'
 
 const ProductSideBar = (props) => {
   const { categories, setSelectCategory, history } = props
+  const [isActive, setIsActive] = useState({ CateIndex: null })
 
-  const toggleClassLinkStyle = (e) => {
-    console.log(e.target.value)
+  const toggleClassLinkStyle = (index) => {
+    setIsActive({ CateIndex: index })
   }
-  // style.color = '#7f7f7f'
+  console.log(isActive)
+
   return (
     <>
       <div className="allCategories" onClick={() => setSelectCategory('')}>
@@ -17,11 +19,17 @@ const ProductSideBar = (props) => {
       {categories.map((value, index) => {
         if (value.id <= 8) return
         return (
-          <div className="classItem" key={index}>
+          <div
+            className="classItem"
+            key={index}
+            style={{
+              fontWeight: isActive.CateIndex === index ? '500' : '400',
+              color: isActive.CateIndex === index ? ' #d44f44' : '#212529',
+            }}
+          >
             <div
-              onClick={(e) => {
-                e.target.style.color = 'blue'
-                toggleClassLinkStyle(e)
+              onClick={() => {
+                toggleClassLinkStyle(index)
                 setSelectCategory(index + 1)
                 history.push(`/productlist/${value.name}`)
               }}

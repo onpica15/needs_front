@@ -26,7 +26,7 @@ const MemComment = () => {
   }, [])
   const display = (
     <>
-      <div className="meminform">
+      <div className="memComment">
         <div className="maincard">
           <div  className="font-m">
             <div className="d-flex wrapper">

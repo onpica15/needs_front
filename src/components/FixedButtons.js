@@ -1,5 +1,6 @@
-import React, { useState, useSelector } from 'react'
+import React, { useState, useEffect } from 'react'
 import { AiOutlineVerticalAlignTop, AiOutlineMessage } from 'react-icons/ai'
+import { useSelector } from 'react-redux'
 
 // Chat component
 import Chat from './Chat/Chat'
@@ -15,13 +16,9 @@ const FixedButtons = (props) => {
   }
 
   // useEffect(() => {
-  //   if (isLogin) {
-  //     const memId = loginUser.user.id
-  //     getData(memId)
-  //   } else {
-  //     window.location.href = '/login'
+  //     showChat ? setShowChat(false) : setShowChat(true)
   //   }
-  // }, [])
+  // }, [showChat])
 
   return (
     <>
@@ -35,6 +32,7 @@ const FixedButtons = (props) => {
         <div className="toSupport">
           <AiOutlineMessage
             onClick={() => showChatToggle(showChatToggle)}
+            to={`/products/`}
             size="25px"
           />
         </div>
@@ -42,7 +40,8 @@ const FixedButtons = (props) => {
       {/* <div style={{ display: showChat ? 'block' : 'none' }}>
         <Chat showChatToggle={showChatToggle} />
       </div> */}
-      <div>{showChat ? <Chat showChatToggle={showChatToggle} /> : ''}</div>
+
+      <div>{showChat ? <Chat showChatToggle={showChatToggle} /> : null}</div>
     </>
   )
 }

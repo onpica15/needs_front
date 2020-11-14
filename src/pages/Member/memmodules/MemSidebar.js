@@ -181,7 +181,7 @@ const MemSidebar = (props) => {
             </Link>
           </div>
           <div className="font-s">
-            <Link to="#">
+            <Link to="/member/QA">
               <div className="d-flex  wrapper">
                 <div className="icons">
                   <BsQuestionSquareFill />

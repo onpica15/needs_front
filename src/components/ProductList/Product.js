@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
@@ -27,13 +27,11 @@ const Product = (props) => {
   const [choiceFavore, setChoiceFavore] = useState(false)
   const dispatch = useDispatch()
 
-  const data = JSON.parse(localStorage.getItem('state'))
-  // ? JSON.parse(localStorage.getItem('state[1]'))
-  // : {
-  //     favorite: [],
-  //   }
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('state'))
+    console.log(data.favorite)
+  }, [])
 
-  console.log(data.favorite)
   return (
     <>
       <div

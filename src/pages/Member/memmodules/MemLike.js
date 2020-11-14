@@ -69,42 +69,40 @@ function MemLike() {
                   <p className="font-s">關注商品</p>
                 </div>
               </Link>
-
-              <Link href="#" className="col-2 d-flex topsidebox">
-                <div className="m-auto">
-                  <p className="font-s">歷史關注</p>
-                </div>
-              </Link>
             </div>
           </div>
-          <div className="d-flex">
+          <div className="d-flex flex-wrap">
             {memlike.map((item, index) => {
               return (
-                <div className="likecard">
+                <div>
                   {type === 'brands' ? (
                     <>
-                      <img
-                        className="mark"
-                        src={`http://localhost:5000/img/brands/${item.index_img}`}
-                        alt="brands"
-                      />
+                      <div className="likecard">
+                        <img
+                          className="likemark"
+                          src={`http://localhost:5000/img/brands/${item.index_img}`}
+                          alt="brands"
+                        />
 
-                      <p className="font-s">{item.brand_name}</p>
-                      <p className="font-s">*****</p>
-                      <div className="d-flex justify-content-center">
-                        <p className="font-s">粉絲數量</p>
-                        <p className="font-s">267</p>
+                        <p className="font-s">{item.brand_name}</p>
+                        <p className="font-s">*****</p>
+                        <div className="d-flex justify-content-center">
+                          <p className="font-s">粉絲數量</p>
+                          <p className="font-s">267</p>
+                        </div>
                       </div>
                     </>
                   ) : (
                     <>
-                      <img
-                        className="mark"
-                        src={`http://localhost:5000/img/products/${item.image_path}`}
-                        alt="products"
-                      />
+                      <div className="likecard2">
+                        <img
+                          className="likemark"
+                          src={`http://localhost:5000/img/products/${item.image_path}`}
+                          alt="products"
+                        />
 
-                      <p className="font-s">{item.title}</p>
+                        <p className="font-s">{item.title}</p>
+                      </div>
                     </>
                   )}
                 </div>

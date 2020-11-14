@@ -1,18 +1,18 @@
 import React from 'react'
 import MemSidebar from './memmodules/MemSidebar'
-import MemShop from './memmodules/MemShop'
+import MemCard from './memmodules/Memcard'
 import './member.scss'
 
-function MemberShop() {
+function MemberCard(props) {
   return (
     <>
-      <div className="container member ">
+      <div className="container member">
         <div className="row my-3">
           <div className="col-lg-2 col-sm-1">
-            <MemSidebar />
+            <MemSidebar {...props} />
           </div>
           <div className="col-lg-10 col-sm-12">
-            <MemShop />
+            <MemCard {...props} />
           </div>
         </div>
       </div>
@@ -20,4 +20,4 @@ function MemberShop() {
   )
 }
 
-export default MemberShop
+export default MemberCard
