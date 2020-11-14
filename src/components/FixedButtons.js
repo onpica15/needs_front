@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
-import {
-  AiOutlineVerticalAlignTop,
-  AiOutlineShoppingCart,
-  AiOutlineMessage,
-} from 'react-icons/ai'
+import { AiOutlineVerticalAlignTop, AiOutlineMessage } from 'react-icons/ai'
 
 // Chat component
 import Chat from './Chat/Chat'
@@ -24,13 +20,10 @@ const FixedButtons = (props) => {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           />
         </div>
-        <div className="toCart">
-          <AiOutlineShoppingCart size="28px" />
-        </div>
         <div className="toSupport">
           <AiOutlineMessage
             onClick={() => showChatToggle(showChatToggle)}
-            size="28px"
+            size="25px"
           />
         </div>
       </div>

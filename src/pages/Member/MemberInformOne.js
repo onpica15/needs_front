@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import React from 'react'
 import MemSidebar from './memmodules/MemSidebar'
-import MemComment from './memmodules/MemComment'
+import MemInformOne from './memmodules/MemInformOne'
 import './member.scss'
 
-function MemberComment() {
+function MemberInformOne() {
   return (
     <>
       <div className="container member ">
@@ -13,7 +12,7 @@ function MemberComment() {
             <MemSidebar />
           </div>
           <div className="col-lg-10 col-sm-12">
-            <MemComment />
+            <MemInformOne />
           </div>
         </div>
       </div>
@@ -21,4 +20,4 @@ function MemberComment() {
   )
 }
 
-export default MemberComment
+export default MemberInformOne

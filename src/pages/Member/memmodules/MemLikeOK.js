@@ -9,35 +9,17 @@ import { FaStore } from 'react-icons/fa'
 function MemLike() {
   const [memlike, setMemLike] = useState([])
   const [type, setType] = useState('brands')
-  const [photo, setPhoto] = useState([])
-  const [title, setTitle] = useState([])
   const isLogin = useSelector((state) => state.authentication.loggedIn)
   const loginUser = useSelector((state) => state.authentication.user)
   const getData = async (val) => {
     let url = `http://localhost:5000/like?customer_id=${val}&filter=${type}`
     const res = await axios.get(url).catch((err) => console.log('Error'.err))
     setMemLike(res.data.rows)
-    console.log('res.data.rows', res.data.rows)
-    // getlike()
   }
-  // function getlike() {
-  //   switch (type) {
-  //     case 'brands':
-  //       setPhoto('{`http://localhost:5000/img/brands/${item.index_img}`}')
-  //       setTitle('{item.brand_name}')
-  //       break
-  //     case 'product':
-  //       setPhoto('{`http://localhost:5000/img/brands/${item.img_path}`}')
-  //       setTitle('{item.title}')
-  //       break
-  //     default:
-  //       break
-  //   }
-  // }
+
   useEffect(() => {
     if (isLogin) {
       const memId = loginUser.user.id
-      console.log('aa')
       getData(memId)
     } else {
       window.location.href = '/login'
@@ -81,32 +63,19 @@ function MemLike() {
             {memlike.map((item, index) => {
               return (
                 <div className="likecard">
-                  {type === 'brands' ? (
-                    <>
-                      <img
-                        className="mark"
-                        src={`http://localhost:5000/img/brands/${item.index_img}`}
-                        alt="brands"
-                      />
+                  <img
+                    className="mark"
+                    src={`http://localhost:5000/img/brands/${item.index_img}`}
+                    alt="brands"
+                  />
 
-                      <p className="font-s">{item.brand_name}</p>
-                      <p className="font-s">*****</p>
-                      <div className="d-flex justify-content-center">
-                        <p className="font-s">粉絲數量</p>
-                        <p className="font-s">267</p>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <img
-                        className="mark"
-                        src={`http://localhost:5000/img/products/${item.image_path}`}
-                        alt="products"
-                      />
+                  <p className="font-s">{item.brand_name}</p>
 
-                      <p className="font-s">{item.title}</p>
-                    </>
-                  )}
+                  <p className="font-s">*****</p>
+                  <div className="d-flex justify-content-center">
+                    <p className="font-s">粉絲數量</p>
+                    <p className="font-s">267</p>
+                  </div>
                 </div>
               )
             })}
