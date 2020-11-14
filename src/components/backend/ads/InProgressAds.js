@@ -21,6 +21,7 @@ function InProgressAds(props) {
                     <th>廣告名稱</th>
                     {/* <th>狀態</th>
                     <th>廣告格式</th> */}
+                    <th>點擊出價</th>
                     <th>起始時間</th>
                     <th>結束時間</th>
                     <th>活動天數</th>

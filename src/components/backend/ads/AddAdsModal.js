@@ -1,32 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Col, Row, Button, Modal, Form } from 'react-bootstrap'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 import Axios from 'axios'
 
 function AddAdsModal() {
   const [show, setShow] = useState(false)
+  const [titleOption, setTitleOption] = useState('')
   const handleClose = () => {
     setShow(false)
-    setImgPre('')
   }
   const handleShow = () => setShow(true)
-  const [imgPre, setImgPre] = useState('')
   const postData = new FormData()
 
   const handleSetForm = (e, key) => {
     if (key === 'file') {
-      let imgPre
       const file = e.target.files[0]
       postData.append('file', file)
-      // imgPre = URL.createObjectURL(file)
-      // setImgPre(imgPre)
       const img = document.createElement('img')
       img.src = URL.createObjectURL(file)
-      img.height = 60
+      img.width = 220
       document.querySelector('.imgPre').appendChild(img)
+      document.querySelector('.upload-ads-img').style.display = 'none'
+      document.querySelector('.imgPre-container').style.display = 'block'
     } else {
       const value = e.target.value
-      // setMyData({ ...myData, [key]: value })
       postData.set(key, value)
     }
   }
@@ -40,6 +37,28 @@ function AddAdsModal() {
       }
     )
   }
+
+  const getTitle = () => {
+    Axios.get('http://localhost:5000/dashboard/adsproduct').then((response) => {
+      const data = response.data
+      let productTitleArray = []
+      for (let i = 0; i < data.length; i++) {
+        productTitleArray.push(data[i].title)
+      }
+      let titleOption = []
+      for (let i = 0; i < productTitleArray.length; i++) {
+        titleOption.push(
+          <>
+            <option value={data[i].id}>{productTitleArray[i]}</option>
+          </>
+        )
+      }
+      setTitleOption(titleOption)
+    })
+  }
+  useEffect(() => {
+    getTitle()
+  }, [])
   return (
     <>
       <Button className="btn-primary" onClick={handleShow}>
@@ -67,6 +86,15 @@ function AddAdsModal() {
                         ></Form.File>
                         <div className="upload-ads-img">
                           <AiOutlinePlusCircle size={60} color="#787878" />
+                        </div>
+                        <div
+                          className="imgPre-container"
+                          style={{
+                            width: '220px',
+                            height: '220px',
+                            display: 'none',
+                          }}
+                        >
                           <div className="imgPre"></div>
                         </div>
                       </Form.Label>
@@ -94,6 +122,42 @@ function AddAdsModal() {
                     name="budget"
                     onChange={(e) => handleSetForm(e, 'budget')}
                   />
+                </Form.Group>
+                <Form.Group controlId="forBudget">
+                  <Form.Label>選擇商品1</Form.Label>
+                  <Form.Control
+                    as="select"
+                    onChange={(e) => handleSetForm(e, 'productid1')}
+                  >
+                    <option value="" selected disabled>
+                      --請選擇--
+                    </option>
+                    {titleOption}
+                  </Form.Control>
+                </Form.Group>
+                <Form.Group controlId="forBudget">
+                  <Form.Label>選擇商品2</Form.Label>
+                  <Form.Control
+                    as="select"
+                    onChange={(e) => handleSetForm(e, 'productid2')}
+                  >
+                    <option value="" selected disabled>
+                      --請選擇--
+                    </option>
+                    {titleOption}
+                  </Form.Control>
+                </Form.Group>
+                <Form.Group controlId="forBudget">
+                  <Form.Label>選擇商品3</Form.Label>
+                  <Form.Control
+                    as="select"
+                    onChange={(e) => handleSetForm(e, 'productid3')}
+                  >
+                    <option value="" selected disabled>
+                      --請選擇--
+                    </option>
+                    {titleOption}
+                  </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="forBid">
                   <Form.Label>點擊出價</Form.Label>
