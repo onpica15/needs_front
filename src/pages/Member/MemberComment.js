@@ -5,6 +5,8 @@ import MemComment from './memmodules/MemComment'
 import './member.scss'
 
 function MemberComment() {
+  // const [changeComment,setChangeComment] = false
+
   return (
     <>
       <div className="container member ">

@@ -9,9 +9,9 @@ $bg-light: #f0f0f0;
 $shadow: #e7e7e7;
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
-@import '~bootstrap/scss/bootstrap.scss';
 
 .member {
+    p{margin: 0px;}
     .font-ss {
         font-size: 0.87rem;
     }
@@ -28,25 +28,24 @@ $shadow: #e7e7e7;
         font-size: 2rem;
     }
 
-    .collaspse {
-        @media screen and (min-width:481px) and (max-width:768px) {
-           
+    .hiddenBtn {
+        display: none;
+
+        @media (max-width:768px) {
+            display: block;
         }
     }
-.hidebtn{
-    width: 50px;
-    height: 50px;
-}
+    
+
     .maincard {
         margin-bottom: 30px;
         padding: 20px;
-        width: 950px;
         min-height: 570px;
         border-radius: 10px;
         border: solid 2px $danger;
         box-shadow: 6px 5px $shadow;
-        @media screen and (min-width:481px) and (max-width:768px) {
-            width: 450px;
+
+        @media (max-width:1000px) {
             min-height: 800px;
         }
     }
@@ -67,140 +66,5 @@ $shadow: #e7e7e7;
             color: $danger;
             box-shadow: 0 -2px $danger inset;
         }
-    }
-
-    html,
-    body,
-    div,
-    span,
-    applet,
-    object,
-    iframe,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p,
-    blockquote,
-    pre,
-    a,
-    abbr,
-    acronym,
-    address,
-    big,
-    cite,
-    code,
-    del,
-    dfn,
-    em,
-    img,
-    ins,
-    kbd,
-    q,
-    s,
-    samp,
-    small,
-    strike,
-    strong,
-    sub,
-    sup,
-    tt,
-    var,
-    b,
-    u,
-    i,
-    center,
-    dl,
-    dt,
-    dd,
-    ol,
-    ul,
-    li,
-    fieldset,
-    form,
-    label,
-    legend,
-    table,
-    caption,
-    tbody,
-    tfoot,
-    thead,
-    tr,
-    th,
-    td,
-    article,
-    aside,
-    canvas,
-    details,
-    embed,
-    figure,
-    figcaption,
-    footer,
-    header,
-    hgroup,
-    menu,
-    nav,
-    output,
-    ruby,
-    section,
-    summary,
-    time,
-    mark,
-    audio,
-    video {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-size: 100%;
-        font: inherit;
-    }
-
-    /* HTML5 display-role reset for older browsers */
-    article,
-    aside,
-    details,
-    figcaption,
-    figure,
-    footer,
-    header,
-    hgroup,
-    menu,
-    nav,
-    section {
-        display: block;
-    }
-
-    body {
-        line-height: 1;
-    }
-
-    ol,
-    ul {
-        list-style: none;
-    }
-
-    blockquote,
-    q {
-        quotes: none;
-    }
-
-    blockquote:before,
-    blockquote:after,
-    q:before,
-    q:after {
-        content: '';
-        content: none;
-    }
-
-    table {
-        border-collapse: collapse;
-        border-spacing: 0;
-        margin: 0;
-    }
-
-    a {
-        text-decoration: none;
     }
 }

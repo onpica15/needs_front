@@ -1,6 +1,6 @@
 import React from 'react'
 import MemSidebar from './memmodules/MemSidebar'
-import MemShop from './memmodules/MemShop'
+import MemQA from './memmodules/MemQA'
 import './member.scss'
 
 function MemberShop() {
@@ -12,7 +12,7 @@ function MemberShop() {
             <MemSidebar />
           </div>
           <div className="col-lg-10 col-sm-12">
-            <MemShop />
+            <MemQA />
           </div>
         </div>
       </div>

@@ -34,7 +34,7 @@ function MemCard(props) {
 
   const display = (
     <>
-      <div className="memcard">
+      <div className="memcard container-fluid">
         <div className="maincard">
           <div className="font-m">
             <div className="d-flex wrapper">
@@ -53,7 +53,7 @@ function MemCard(props) {
           </div>
           <div className="container">
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-lg-6 col-md-12">
                 {memcard.map((item, index) => {
                   return (
                     <ul>
@@ -90,7 +90,7 @@ function MemCard(props) {
                 })}
               </div>
 
-              <div className="col-md-6">
+              <div className="col-lg-6 col-md-12">
                 {memcard.map((item, index) => {
                   return (
                     <ul>
