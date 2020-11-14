@@ -34,6 +34,7 @@ import SignUp from './pages/Login/SignUp'
 //商家後台
 import BackEndSidebar from './components/backend/Sidebar'
 import BackEndNavbar from './components/backend/Navbar'
+import BgContainer from './components/backend/BgContainer'
 import BackEndDashboard from './pages/BackEnd/Dashboard'
 import Sales from './pages/BackEnd/Sales'
 import Ads from './pages/BackEnd/Ads'
@@ -71,6 +72,7 @@ const DynamicLayoutRoute = (props) => {
     case 'BACK_END_NAV': {
       return (
         <>
+          <BgContainer />
           <BackEndNavbar />
           <BackEndSidebar />
           {actualRouteComponent}
