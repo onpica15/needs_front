@@ -8,6 +8,7 @@ import { FaStore } from 'react-icons/fa'
 
 function MemLike() {
   const [memlike, setMemLike] = useState([])
+  const [favoriteItems, setfavoriteItems] = useState([])
   const [type, setType] = useState('brands')
   const [photo, setPhoto] = useState([])
   const [title, setTitle] = useState([])
@@ -17,7 +18,7 @@ function MemLike() {
     let url = `http://localhost:5000/like?customer_id=${val}&filter=${type}`
     const res = await axios.get(url).catch((err) => console.log('Error'.err))
     setMemLike(res.data.rows)
-    console.log('res.data.rows', res.data.rows)
+    console.log(res.data.rows)
     // getlike()
   }
   // function getlike() {
@@ -34,6 +35,12 @@ function MemLike() {
   //       break
   //   }
   // }
+
+  useEffect(() => {
+    const favoriteItem = JSON.parse(localStorage.getItem('state'))
+    setfavoriteItems(favoriteItem.favorite)
+  }, [])
+
   useEffect(() => {
     if (isLogin) {
       const memId = loginUser.user.id
@@ -44,6 +51,38 @@ function MemLike() {
     }
   }, [type])
 
+  const LikeDisplay = memlike.map((item, index) => (
+    <div key={item}>
+      <div className="likecard">
+        <img
+          className="likemark"
+          src={`http://localhost:5000/img/brands/${item.index_img}`}
+          alt="brands"
+        />
+        <p className="font-s">{item.brand_name}</p>
+        <p className="font-s">*****</p>
+        <div className="d-flex justify-content-center">
+          <p className="font-s">粉絲數量</p>
+          <p className="font-s">267</p>
+        </div>
+      </div>
+    </div>
+  ))
+
+  const favDisplay = favoriteItems.map((item) => (
+    <div key={item}>
+      <div className="likecard2">
+        <img
+          className="likemark"
+          src={`http://localhost:5000/img/products/${item.image_path}`}
+          alt="products"
+        />
+        <p className="font-s">{item.title}</p>
+        <p className="font-s">{item.price}</p>
+      </div>
+    </div>
+  ))
+  console.log(type)
   return (
     <>
       <div className="memlike">
@@ -72,42 +111,7 @@ function MemLike() {
             </div>
           </div>
           <div className="d-flex flex-wrap">
-            {memlike.map((item, index) => {
-              return (
-                <div>
-                  {type === 'brands' ? (
-                    <>
-                      <div className="likecard">
-                        <img
-                          className="likemark"
-                          src={`http://localhost:5000/img/brands/${item.index_img}`}
-                          alt="brands"
-                        />
-
-                        <p className="font-s">{item.brand_name}</p>
-                        <p className="font-s">*****</p>
-                        <div className="d-flex justify-content-center">
-                          <p className="font-s">粉絲數量</p>
-                          <p className="font-s">267</p>
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="likecard2">
-                        <img
-                          className="likemark"
-                          src={`http://localhost:5000/img/products/${item.image_path}`}
-                          alt="products"
-                        />
-
-                        <p className="font-s">{item.title}</p>
-                      </div>
-                    </>
-                  )}
-                </div>
-              )
-            })}
+            {type === 'brands' ? LikeDisplay : favDisplay}
           </div>
         </div>
       </div>
