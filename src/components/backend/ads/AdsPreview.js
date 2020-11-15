@@ -47,8 +47,6 @@ function AdsPreview(props) {
                         <Card.Text>
                           活動廣告的主頁照片，於首頁展示三樣欲曝光商品，增加點閱率。
                           <br />
-                          <br />
-                          可點選輪播查看展示之商品，並從圓餅圖中判斷商品個別點擊率之比例。
                         </Card.Text>
                       </Card.Body>
                     </Col>

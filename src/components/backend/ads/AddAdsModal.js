@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Col, Row, Button, Modal, Form } from 'react-bootstrap'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
+import AdsCalendar from '../../../components/backend/dashboard/AdsCalendar'
 import Axios from 'axios'
 
 function AddAdsModal() {
   const [show, setShow] = useState(false)
   const [titleOption, setTitleOption] = useState('')
+  const [fcTitle, setFcTitle] = useState('')
+
   const handleClose = () => {
     setShow(false)
   }
@@ -27,10 +30,14 @@ function AddAdsModal() {
       postData.set(key, value)
     }
   }
+  const refreshPage = () => {
+    window.location.reload()
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     handleClose()
+    refreshPage()
     Axios.post(`http://localhost:5000/dashboard/addnewads`, postData).then(
       (response) => {
         console.log(response.data.url)
@@ -198,6 +205,9 @@ function AddAdsModal() {
             </Button>
           </Modal.Footer>
         </Form>
+        <div className="d-none">
+          <AdsCalendar fcTitle={fcTitle} />
+        </div>
       </Modal>
     </>
   )

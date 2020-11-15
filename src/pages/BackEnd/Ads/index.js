@@ -33,6 +33,8 @@ function Ads() {
   const [productOutline3, setProductOutline3] = useState('')
   const [productImg3, setProductImg3] = useState('')
 
+
+
   const getDataTable = () => {
     Axios.get('http://localhost:5000/dashboard/adsinprogress').then(
       (response) => {
@@ -265,7 +267,7 @@ function Ads() {
                 <Card>
                   <Card.Body>
                     <Card.Title className="mb-3">活動日期</Card.Title>
-                    <AdsCalendar></AdsCalendar>
+                    <AdsCalendar />
                   </Card.Body>
                 </Card>
               </Col>
