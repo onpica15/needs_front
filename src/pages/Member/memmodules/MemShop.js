@@ -80,9 +80,7 @@ function MemShop() {
                           <td>{item.created_at}</td>
                           <td>{item.unit_price}</td>
                           <td>{item.quantity}</td>
-                          <td>
-                            {{item.unit_price}*{item.quantity}}
-                          </td>
+                          <td>{item.unit_price * item.quantity}</td>
                           <td>Ｖ</td>
                         </tr>
                       </tbody>

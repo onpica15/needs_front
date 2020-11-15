@@ -2,25 +2,29 @@ import React, { useState } from 'react'
 import MemSidebar from './memmodules/MemSidebar'
 import MemCard from './memmodules/MemCard'
 import './member.scss'
-
+import '../../../src/assets/img/member/arrow.png'
 function MemberCard(props) {
   const [showsidebar, setShowsidebar] = useState(false)
   const hiddenSidebar = () => {
     setShowsidebar(!showsidebar)
+    
   }
 
   return (
     <>
-      <button claccName="hiddenBtn" onClick={hiddenSidebar}>
-        >>>>>>>>>>>>
-      </button>
+      <img
+        src={require('../../../src/assets/img/member/arrow.png')}
+        className="hiddenBtn"
+        onClick={hiddenSidebar}
+      ></img>
+
       <div className="container member">
         <div className="row my-3 d-flex">
           <div
-            className="col-lg-2"
+            className="col-lg-2 hiddenBar"
             style={{
               transition: 'all .3s ease',
-              transform: showsidebar ? 'translateX(-500px)' : 'translateX(0px)',
+              transform: showsidebar ? 'translateX(-300px)' : 'translateX(0px)',
             }}
           >
             <MemSidebar {...props} />

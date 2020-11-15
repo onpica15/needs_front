@@ -9,8 +9,6 @@ import { FaStore } from 'react-icons/fa'
 function MemLike() {
   const [memlike, setMemLike] = useState([])
   const [type, setType] = useState('brands')
-  const [photo, setPhoto] = useState([])
-  const [title, setTitle] = useState([])
   const isLogin = useSelector((state) => state.authentication.loggedIn)
   const loginUser = useSelector((state) => state.authentication.user)
   const getData = async (val) => {
@@ -20,20 +18,6 @@ function MemLike() {
     console.log('res.data.rows', res.data.rows)
     // getlike()
   }
-  // function getlike() {
-  //   switch (type) {
-  //     case 'brands':
-  //       setPhoto('{`http://localhost:5000/img/brands/${item.index_img}`}')
-  //       setTitle('{item.brand_name}')
-  //       break
-  //     case 'product':
-  //       setPhoto('{`http://localhost:5000/img/brands/${item.img_path}`}')
-  //       setTitle('{item.title}')
-  //       break
-  //     default:
-  //       break
-  //   }
-  // }
   useEffect(() => {
     if (isLogin) {
       const memId = loginUser.user.id
