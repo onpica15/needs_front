@@ -27,7 +27,7 @@ const MemSidebar = (props) => {
     let url = `http://localhost:5000/member?id=${val}`
     const res = await axios.get(url).catch((err) => console.log('Error'.err))
     setAvatar(res.data[0].avatar)
-    console.log('res.data[0].avatar', res.data[0].avatar)
+    // console.log('res.data[0].avatar', res.data[0].avatar)
   }
 
   const formData = new FormData()
