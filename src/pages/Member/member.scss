@@ -45,29 +45,20 @@ $shadow: #e7e7e7;
         margin: 0px;
     }
 
-    .font-ss {
-        font-size: 0.87rem;
-    }
 
-    .font-s {
-        font-size: 1rem;
-    }
+  .font-s {
+    font-size: 1rem;
+  }
 
-    .font-m {
-        font-size: 1.5rem;
-    }
+  .font-m {
+    font-size: 1.5rem;
+  }
 
-    .font-l {
-        font-size: 2rem;
-    }
+  .font-l {
+    font-size: 2rem;
+  }
 
-    .hiddenBtn {
-        display: none;
 
-        @media (max-width:768px) {
-            display: block;
-        }
-    }
 
 
     .maincard {
