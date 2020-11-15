@@ -10,11 +10,41 @@ $shadow: #e7e7e7;
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
 
-.member {
-    p{margin: 0px;}
-    .font-ss {
-        font-size: 0.87rem;
+
+.hiddenBar {
+    @media (min-width:995px) {
+        
+        transform: translateX(300px);
     }
+    
+    @media (max-width:995px) {
+        z-index: 2;
+        position: absolute;
+        transform: translate(-300px);
+        background-color: $bg-light;
+        max-width: 160px;
+        height: 480px;
+        border-radius: 10px;
+        box-shadow: 1px 1px 150px 2px #aba9a9;
+
+    }
+}
+
+.hiddenBtn {
+    width: 100px;
+    display: none;
+
+    @media (max-width:995px) {
+        display: grid;
+    }
+}
+
+
+.member {
+    p {
+        margin: 0px;
+    }
+
 
   .font-s {
     font-size: 1rem;
@@ -28,14 +58,8 @@ $shadow: #e7e7e7;
     font-size: 2rem;
   }
 
-    .hiddenBtn {
-        display: none;
 
-        @media (max-width:768px) {
-            display: block;
-        }
-    }
-    
+
 
     .maincard {
         margin-bottom: 30px;
@@ -56,6 +80,7 @@ $shadow: #e7e7e7;
         .topsidebox {
             width: 150px;
             height: 50px;
+            cursor: point;
         }
 
         a:hover {

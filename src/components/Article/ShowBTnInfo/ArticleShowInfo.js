@@ -7,7 +7,7 @@ function ArticleShowInfo(props) {
   const { showInfo, closeHandler } = props
   return (
     <div
-      className="ArticleShowSendInfo wrapper"
+      className="ArticleShowInfo wrapper"
       style={{
         transform: showInfo ? 'translateY(0vh)' : 'translateY(-100vh)',
         opacity: showInfo ? '1' : '0',

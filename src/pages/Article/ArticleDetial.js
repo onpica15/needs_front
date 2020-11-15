@@ -16,7 +16,7 @@ function ArticleDetial() {
     <>
       <div className="container">
         {/* <Breadcrumbs /> */}
-        <div className="d-flex flex-lg-row flex-md-column mt-4">
+        <div className="d-flex flex-lg-row flex-column mt-4">
           <div className="articleDetial col-lg-8 col-md-12">
             <section>
               <h5>精選五款人氣筆記本推薦</h5>

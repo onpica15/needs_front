@@ -163,7 +163,6 @@ const CreateArticle = (props) => {
       {showInfo ? (
         <ArticleShowInfo showInfo={showInfo} closeHandler={closeHandler} />
       ) : null}
-
       <EditorJs
         onChange={handleSave}
         instanceRef={(instance) => (instanceRef.current = instance)}
