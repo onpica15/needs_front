@@ -8,25 +8,32 @@ import { GiPositionMarker } from 'react-icons/gi';
 import { AiTwotoneShop,AiTwotonePhone } from "react-icons/ai";
 // import { SignalCellularNullSharp } from '@material-ui/icons';
 
-function Sec1BrandInfo(props){
-  const { displayBgImg, color ,thisMerchantBrandInfo } = props
+function Sec1Info(props){
+  const {  bgColor ,thisMerchantBrandInfo } = props
   console.log('thisMerchantBrandInfo',thisMerchantBrandInfo)
     return(
         <>
             <div className="Narrative">
-<div className="sec1_background" style={{ backgroundImage : `url(${displayBgImg})`}}></div>
-          <div className="background-color" style={{
-            backgroundColor:props.color,
-          }}></div>
-          <Container className="p-0">
-          {/* {Object.keys(subjects).map((keyName, i) => (
-    <li className="travelcompany-input" key={i}>
-        <span className="input-label">key: {i} Name: {subjects[keyName]}</span>
-    </li>
-))} */}
-          {[thisMerchantBrandInfo].map((merchantInfos,i)=>
+            {[thisMerchantBrandInfo].map((merchantInfos,i)=>
           
           (
+          <div className="Narrative">
+          
+            {merchantInfos.bg_img ? (
+              <img
+                className="sec1_background"
+                src={`http://localhost:5000/BackgroundImg/${merchantInfos.bg_img}`}
+                alt=""
+              />
+            ) : (
+              ''
+            )}
+
+          <div className="background-color" style={{
+            backgroundColor: bgColor,
+          }}></div>
+          <Container className="p-0">
+          
             <div className="sec1 d-flex" key={i}>
             <div className="sec1_avatar m-auto">
               <div className="d-flex mx-auto">
@@ -89,12 +96,14 @@ function Sec1BrandInfo(props){
                 </Row> 
             </div>
             </div>
-                  )
-                )}
+                
             
             </Container>
+</div>
+           )
+                )}
 </div>
         </>
     )
 }
-export default Sec1BrandInfo 
+export default Sec1Info 

@@ -22,7 +22,7 @@
     .sec1_background{
         min-height: calc(65vh - 60px);
         width: 100%;
-        // background-image: url('../images/default-background.png');
+        background-image: url('../images/default-background.png');
         background-size: cover;
     }
  
@@ -127,22 +127,23 @@
     background-color: #fff;
   }
   .sec4{
-    height: 60vh;
+    // height: 60vh;
     width: 100%;
     padding-top: 80px;
+    padding-bottom: 80px;
     padding-left: 100px;
     background-color: #f0f0f0;
 
     .activities-wrapper{
-      height: 40vh;
+      height: 400px;
       width: 60%;
       border: 3px solid #8e8e8e;
       padding-right: 40px;
       position: relative;
     }
     .activities-img{
-      width: 35vh;
-      height: 35vh;
+      width: 350px;
+      height: 350px;
       background-image: url('../images/default-img.png');
       background-size: cover;   
       position: absolute;

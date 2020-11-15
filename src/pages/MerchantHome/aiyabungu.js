@@ -5,12 +5,22 @@ import {
     Row
   } from 'react-bootstrap'
 import '../BackEnd/Templates/styles/Narrative.scss'
-import TemplateProductList from '../ProductList/TemplateProductList'
+
 import axios from 'axios'
+import { GiPositionMarker } from 'react-icons/gi';
+import { AiTwotoneShop,AiTwotonePhone } from "react-icons/ai";
+
+//components
+import Sec1Info from './component/Sec1Info'
+import Sec2MainPro from './component/Sec2MainPro'
+import Sec3ProductList from './component/Sec3ProductList'
+import Sec4Activities from './component/Sec4Activities'
+import Sec5Story from './component/Sec5Story'
 
 const Aiyabungu = (props) =>{
   const [error,setError] = useState(null)
   const [posts, setPosts] = useState([])
+
   //set page
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(6)
@@ -19,43 +29,114 @@ const Aiyabungu = (props) =>{
   const [thisMerchantProduct,setThisMerchantProduct] = useState([])
   const [ products,setProducts ] = useState([])
   const [ activities,setActivities ] = useState([])
-  // const [ bgImg,setBgImg ] = 
+  //brand_info
+  const [thisMerchantBrandInfo,setThisMerchantBrandInfo] = useState([])
+  const [ bgColor,setBgColor ]= useState('')
+  const [ mainProductId,setMainProductId ]= useState('')
+  const [ mainActivitiesId,setMainActivitiesId ]= useState('')
+  // console.log(mainProductId)
+
+  // ---Get current posts
+  const indexOfLastPost = currentPage * postsPerPage
+  const indexOfFirstPost = indexOfLastPost - postsPerPage
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
+
+
 
   //server-data
-    
-
-    async function getMerchantProduct(){
-      // setDataLoading(true)
-      // console.log('type',type)
-      const url =`http://localhost:5000/Template/merchant_product?merchant_id=12`
-      const request = new Request(url, {
-          method:'GET',
-          headers:new Headers({
-              Accept:'application/json',
-              'Content-Type':'application/json'
-          }),
-      })
-      try{
-        const response = await fetch(request)//response:fetch網址的資料
-        const thisproduct = await response.json()
+    // async function getMerchantProduct(){
+    //   // setDataLoading(true)
+    //   // console.log('type',type)
+    //   const url =`http://localhost:5000/Template/merchant_product?merchant_id=12`
+    //   const request = new Request(url, {
+    //       method:'GET',
+    //       headers:new Headers({
+    //           Accept:'application/json',
+    //           'Content-Type':'application/json'
+    //       }),
+    //   })
+    //   try{
+    //     const response = await fetch(request)//response:fetch網址的資料
+    //     const thisproduct = await response.json()
         
-        setThisMerchantProduct(thisproduct)
-        setProducts(thisproduct.products)
-        setActivities(thisproduct.activities)
-        console.log('thisproduct',thisproduct)
-        console.log('products',thisproduct.products)
-        console.log('activities',thisproduct.activities)
-        // console.log('activities',thisproduct[0].activities)
-        // setTimeout(()=>setDataLoading(false),500)
+    //     setThisMerchantProduct(thisproduct)
+    //     setProducts(thisproduct.products)
+    //     setActivities(thisproduct.activities)
+    //     console.log('thisproduct',thisproduct)
+    //     console.log('products',thisproduct.products)
+    //     console.log('activities',thisproduct.activities)
+    //     // console.log('activities',thisproduct[0].activities)
+    //     // setTimeout(()=>setDataLoading(false),500)
 
-      }catch(error){
-        setError("oops! error")
-        // setTimeout(()=>setDataLoading(false),500)
-      }
+    //   }catch(error){
+    //     setError("oops! error")
+    //     // setTimeout(()=>setDataLoading(false),500)
+    //   }
+    // }
+
+
+  //---get brand_info and thismerchant
+  async function getMerchantProduct(){
+    // setDataLoading(true)
+    // console.log('type',type)
+    const url =`http://localhost:5000/Template/merchant_product?merchant_id=12`
+    const request = new Request(url, {
+        method:'GET',
+        headers:new Headers({
+            Accept:'application/json',
+            'Content-Type':'application/json'
+        }),
+    })
+    try{
+      const response = await fetch(request)//response:fetch網址的資料
+      const thisproduct = await response.json()
+      
+      setThisMerchantProduct(thisproduct)
+      setProducts(thisproduct.products[0])
+      setActivities(thisproduct.activities[0])
+      console.log('products[0]',products)
+  
+    }catch(error){
+      setError("oops! error")
+      // setTimeout(()=>setDataLoading(false),500)
     }
-
-
-    useEffect(() => {
+  }
+  
+  // -- get brand_info --
+  async function getBrandInfo(){
+    // setDataLoading(true)
+    // console.log('type',type)
+    const url =`http://localhost:5000/Template/merchant_info?merchants=12`
+    const request = new Request(url, {
+        method:'GET',
+        headers:new Headers({
+            Accept:'application/json',
+            'Content-Type':'application/json'
+        }),
+    })
+    try{
+      const response = await fetch(request)//response:fetch網址的資料
+      const thisMerchantBrandInfo = await response.json()
+      
+      setThisMerchantBrandInfo(thisMerchantBrandInfo)
+      setBgColor(thisMerchantBrandInfo.bg_color)
+      setMainProductId(thisMerchantBrandInfo.main_productId)
+      setMainActivitiesId(thisMerchantBrandInfo.main_activitiesId)
+      console.log('thisMerchantBrandInfo',thisMerchantBrandInfo)
+      // // setTimeout(()=>setDataLoading(false),500)
+    }catch(error){
+      setError("oops! error")
+      // setTimeout(()=>setDataLoading(false),500)
+    }
+  }
+  
+  
+  // useEffect(() => {
+  //   getMerchantProduct()
+  //   getBrandInfo()
+  // }, [])
+  
+  useEffect(() => {
     const fetchPosts = async () => {
       let url = 'http://localhost:5000/productlist'
       const res = await axios.get(url).catch((err) => console.log('Error', err))
@@ -70,79 +151,22 @@ const Aiyabungu = (props) =>{
     }
 
     getMerchantProduct()
+    getBrandInfo()
   }, [])
 
-
-
-  // Get current posts
-  const indexOfLastPost = currentPage * postsPerPage
-  const indexOfFirstPost = indexOfLastPost - postsPerPage
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
 
     return(
         <>
           <div className="Narrative">
             
-            <div className="sec1_background"></div>
-          <div className="background-color"></div>
-          <Container>
-            <div className="sec1 d-flex">
-            <div className="sec1_avatar">
-              <div className="d-flex mx-auto">
-                <div className="d-flex ml-3">  
-                <div className="d-flex flex-column align-items-center">
-                
-                <div className="avatar rounded pb-3 ml-5"></div>
-                  <button className="store-follower-btn rounded">+關注</button>
-                </div>
-                  
-                  <div className="d-flex flex-column">
-                <h2 className="h4">愛治文具房</h2>
-                  <div className="mt-3">
-                  <h4>aiyabungu</h4>
-                  <h4>電話：0975-875120</h4>
-                  <h4>地址：彰化縣彰化市長安街76巷7-2號1樓</h4>
-                  </div>
-              </div>
-                  </div>
-        
-              </div>
-            </div>  
+            <Sec1Info
+              bgColor={bgColor}
+              thisMerchantBrandInfo={thisMerchantBrandInfo}
+            />
 
-            <div className="sec1_info">
-              <Row className="row1 mx-auto">
-                  <Col>
-                  <h4>評價</h4>
-                  <h4 className="red">尚無評價</h4>
-                  </Col>
-                  <Col>
-                  <h4>粉絲</h4>
-                  <h4 className="red">0</h4>
-                  </Col>
-                  <Col>
-                  <h4>商品</h4>
-                  <h4 className="red">106</h4>
-                  </Col>
-                </Row>
-                <Row className="mx-auto">
-                  <Col>
-                    <h4>加入時間</h4>
-                    <h4>2019/10/05</h4>
-                    </Col>
-                    <Col>
-                    <h4>回應速度</h4>
-                    <h4>尚無評價</h4>
-                    </Col>
-                    <Col>
-                    <h4>出貨速度</h4>
-                    <h4>尚無評價</h4>
-                    </Col>
-                </Row> 
-            </div>
-            </div>
-            </Container>
+
             
-            <div className="sec2">
+            {/* <div className="sec2">
               <div className="d-flex justify-content-between m-auto">
               <div className="product-bg-pic"></div>
               <div className="d-flex flex-column wrapper">
@@ -155,15 +179,17 @@ const Aiyabungu = (props) =>{
               </div>
               </div>
               
-            </div>
+            </div> */}
 
-            <div className="sec3 mt-5 mb-5">
-            <TemplateProductList />
+            <Sec2MainPro 
+              products={products}
+              mainProductId={mainProductId}
+            />
+
+            <Sec3ProductList />
           
-            </div>
 
-            <div className="sec4">
-              {/* <div className="activities-wrapper d-flex align-items-end m-auto"> */}
+            {/* <div className="sec4">
                 
               <div className="activities-wrapper d-flex align-items-end m-auto">
               <div className="activities-img"></div>
@@ -178,11 +204,13 @@ const Aiyabungu = (props) =>{
                       <button className="activity-btn rounded">立即報名</button>
                     </div>
               </div>
-                  
-              {/* </div> */}
-            </div>
+            </div> */}
+            <Sec4Activities
+            mainActivitiesId={mainActivitiesId}
+            activities={activities}
+             />
 
-            <div className="sec5 p-5">
+            {/* <div className="sec5 p-5">
 
             <div className="m-auto">
               <div className=" underline-wrapper">
@@ -204,7 +232,11 @@ const Aiyabungu = (props) =>{
               </div>
               </div>
 
-            </div>
+            </div> */}
+            <Sec5Story 
+            thisMerchantBrandInfo={thisMerchantBrandInfo}
+            
+            />
           </div>
         </>
     )

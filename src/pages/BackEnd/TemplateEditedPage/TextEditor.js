@@ -11,5 +11,27 @@ function TextEditor(props) {
     </>
   );
 }
-
 export default TextEditor
+
+
+// import React, { useState, useEffect } from 'react';
+// import { Input } from 'antd';
+
+// function TextEditor(props) {
+//   const {setText} = props
+//   const { TextArea } = Input;
+//   const onChange = e => {
+//     console.log(e);
+//     setText(onChange)
+//   };
+//   console.log('onchangeText',onChange)
+ 
+//   return (
+//     <>
+//     <TextArea placeholder="請輸入品牌故事" allowClear onChange={onChange} />
+//     </>
+//   );
+// }
+
+// export default TextEditor
+

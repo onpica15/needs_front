@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { addToCartAction, updateCartUnits } from '../../actions/index'
+import { addToCartAction, updateCartUnits } from '../../../actions/index'
 import { Breadcrumb } from 'react-bootstrap'
 
-import ForProductListCarousel from '../../components/ProductList/ForProductListCarousel'
-import Posts from '../../components/ProductList/Posts'
-import Pagination from '../../components/ProductList/Pagination'
-import ProductSideBar from './ProductSidebar'
-import Filter from './Filter/Filter'
-import SideFilter from './Filter/SideFilter'
+import ForProductListCarousel from '../../../components/ProductList/ForProductListCarousel'
+import Posts from '../../../components/ProductList/Posts'
+import Pagination from '../../../components/ProductList/Pagination'
+import ProductSideBar from '../../ProductList/ProductSidebar'
+import Filter from '../../ProductList/Filter/Filter'
+import SideFilter from '../../ProductList/Filter/SideFilter'
 
-import './ProductList.scss'
+import '../../ProductList/ProductList.scss'
 
 //test
-import HistoryList from '../../components/History/HistoryList'
-import RecommendStoreForProductListPage from '../../components/ProductList/RecommendStoreForProductListPage'
+import HistoryList from '../../../components/History/HistoryList'
+import RecommendStoreForProductListPage from '../../../components/ProductList/RecommendStoreForProductListPage'
 
 import axios from 'axios'
 
-const ProductList = (props) => {
+const Sec3ProductList = (props) => {
   // getdata
   const [posts, setPosts] = useState([])
   const [categories, setCategories] = useState([])
@@ -97,7 +97,7 @@ const ProductList = (props) => {
   return (
     <>
 
-      <div className="container productlist">
+      <div className="container productlist sec3 mt-5 mb-5">
  
         {/* Filter */}
         <div className="d-flex">
@@ -143,5 +143,5 @@ const mapStateToProps = ({ cart }) => {
 }
 
 export default connect(mapStateToProps, { addToCartAction, updateCartUnits })(
-  ProductList
+  Sec3ProductList
 )

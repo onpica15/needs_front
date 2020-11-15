@@ -50,11 +50,10 @@ const [thisMerchantProduct,setThisMerchantProduct] = useState([])
 const [ products,setProducts ] = useState([])
 const [ activities,setActivities ] = useState([])
 // :brand_info
-const [thisMerchantBrandInfo,setThisMerchantBrandInfo] = useState
-([])
+const [thisMerchantBrandInfo,setThisMerchantBrandInfo] = useState([])
 
-const [ selectedProduct,setSelectedProduct ] = useState('') 
-const [ selectedActivities,setSelectedActivities ] = useState('') 
+const [ selectedProduct,setSelectedProduct ] = useState(0) 
+const [ selectedActivities,setSelectedActivities ] = useState(0) 
 
 const [error,setError] = useState(null)
 
@@ -78,7 +77,7 @@ const sendDataToNode = (e) => {
   // formData.set('story_text', JSON.stringify(text))
 
   axios
-    .post('http://localhost:5000/template/editpage/changeData?id=12', [text,color,selectedActivities,selectedProduct])
+    .post('http://localhost:5000/template/editpage/changeData?id=12', [text,color,selectedProduct,selectedActivities])
     .catch((error) => {
       console.log('Error', error)
     })
@@ -91,11 +90,6 @@ const sendStoryImgToNode = async () => {
       console.log('Error', error)
     })
 }
-
-//顏色//商品//商品列表//活動//圖片故事
-
-//一開始就要get:商家info、哪些商品、活動
-//put後馬上get:
 
 //server-data
 // -- get product --
@@ -116,7 +110,7 @@ async function getMerchantProduct(){
     
     setThisMerchantProduct(thisproduct)
     setProducts(thisproduct.products[0])
-    setActivities(thisproduct.activities)
+    setActivities(thisproduct.activities[0])
     console.log('products[0]',products)
 
   }catch(error){
@@ -287,7 +281,7 @@ useEffect(() => {
                         <select className="browser-default custom-select"
                         onChange={(e)=>setSelectedActivities(e.target.value)}>
                         <option> --請選擇-- </option>
-                        {activities[0] && activities[0].map((activities, index) => {
+                        {activities && activities.map((activities, index) => {
                         console.log('activities', activities.title)
                   return(
                         <option value={activities.id} key={index}> {activities.title} 
