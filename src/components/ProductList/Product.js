@@ -22,15 +22,9 @@ const Product = (props) => {
     e_points_usable,
     price,
     sale_price,
-    // addWishListBtn,
   } = props
   const [choiceFavore, setChoiceFavore] = useState(false)
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem('state'))
-    console.log(data.favorite)
-  }, [])
 
   return (
     <>

@@ -38,6 +38,8 @@ function MemLike() {
 
   useEffect(() => {
     const favoriteItem = JSON.parse(localStorage.getItem('state'))
+      ? JSON.parse(localStorage.getItem('state'))
+      : null
     setfavoriteItems(favoriteItem.favorite)
   }, [])
 
@@ -82,7 +84,7 @@ function MemLike() {
       </div>
     </div>
   ))
-  console.log(type)
+
   return (
     <>
       <div className="memlike">
@@ -98,16 +100,18 @@ function MemLike() {
 
           <div className="container">
             <div className="row justify-content-around align-self-center topside">
-              <Link href="#" className="col-2 d-flex topsidebox">
-                <div className="m-auto" onClick={(e) => setType('brands')}>
-                  <p className="font-s">關注商家</p>
-                </div>
-              </Link>
-              <Link href="#" className="col-2 d-flex topsidebox">
-                <div className="m-auto" onClick={(e) => setType('product')}>
-                  <p className="font-s">關注商品</p>
-                </div>
-              </Link>
+              <div
+                className="m-auto selectLike"
+                onClick={() => setType('brands')}
+              >
+                關注商家
+              </div>
+              <div
+                className="m-auto selectLike"
+                onClick={() => setType('product')}
+              >
+                關注商品
+              </div>
             </div>
           </div>
           <div className="d-flex flex-wrap">

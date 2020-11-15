@@ -16,7 +16,8 @@ function SerarchBox() {
       const res = await axios
         .get(url)
         .catch((err) => console.log('Serarch Err', err))
-      setGetAllData(res.data)
+
+      if (res.data) return setGetAllData(res.data)
     }
     AllData()
   }, [])

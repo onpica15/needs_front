@@ -381,13 +381,6 @@ function ProductDetail(props) {
         modalShow={modalShow}
         setModalShow={setModalShow}
       />
-      {/* 聊天室 button 卡位用，正式版聊天室請自行替這個位置 */}
-      <div className="CartBtn">
-        {/* <button className="btn btn-primary">
-          <AiOutlineMessage size="28px" />
-        </button> */}
-      </div>
-      <FixedButtons />
     </div>
   )
 }

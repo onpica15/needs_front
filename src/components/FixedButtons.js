@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { AiOutlineVerticalAlignTop, AiOutlineMessage } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
 
@@ -6,19 +6,13 @@ import { useSelector } from 'react-redux'
 import Chat from './Chat/Chat'
 import './Chat/Chat.scss'
 
-const FixedButtons = (props) => {
+const FixedButtons = () => {
   const isLogin = useSelector((state) => state.authentication.loggedIn)
-  const loginUser = useSelector((state) => state.authentication.user)
 
   const [showChat, setShowChat] = useState(false)
   const showChatToggle = () => {
     showChat ? setShowChat(false) : setShowChat(true)
   }
-
-  // useEffect(() => {
-  //     showChat ? setShowChat(false) : setShowChat(true)
-  //   }
-  // }, [showChat])
 
   return (
     <>
@@ -29,18 +23,16 @@ const FixedButtons = (props) => {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           />
         </div>
-        <div className="toSupport">
-          <AiOutlineMessage
-            onClick={() => showChatToggle(showChatToggle)}
-            to={`/products/`}
-            size="25px"
-          />
-        </div>
+        {isLogin ? (
+          <div className="toSupport">
+            <AiOutlineMessage
+              onClick={() => showChatToggle(showChatToggle)}
+              to={`/products/`}
+              size="25px"
+            />
+          </div>
+        ) : null}
       </div>
-      {/* <div style={{ display: showChat ? 'block' : 'none' }}>
-        <Chat showChatToggle={showChatToggle} />
-      </div> */}
-
       <div>{showChat ? <Chat showChatToggle={showChatToggle} /> : null}</div>
     </>
   )
