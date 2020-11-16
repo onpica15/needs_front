@@ -18,6 +18,7 @@ function AddAdsModal() {
   const handleSetForm = (e, key) => {
     if (key === 'file') {
       const file = e.target.files[0]
+      console.log(file)
       postData.append('file', file)
       const img = document.createElement('img')
       img.src = URL.createObjectURL(file)
