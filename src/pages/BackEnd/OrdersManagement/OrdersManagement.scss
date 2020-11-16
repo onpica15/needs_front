@@ -13,25 +13,22 @@ $primary_focus: #7367f0;
 .ordersMng {
   @keyframes CollapseShow {
     from {
-      opacity: 0;
       max-height: 0px;
-      // transform-origin: top;
-      // transform: scaleY(0);
+      opacity: 0;
     }
     to {
-      opacity: 1;
       max-height: 1000px;
-      // transform: scaleY(1);
+      opacity: 1;
     }
   }
   @keyframes CollapseHide {
     from {
+      height: 1000px;
       opacity: 1;
-      height: 40px;
     }
     to {
+      max-height: 0px;
       opacity: 0;
-      height: 0px;
     }
   }
 
@@ -52,7 +49,7 @@ $primary_focus: #7367f0;
   }
 
   .btn {
-    font-family: 'Noto Sans TC', sans-serif;
+    // font-family: 'Noto Sans TC', sans-serif;
     font-size: 1 rem;
     line-height: 1.75;
     letter-spacing: 1.2px;
@@ -134,6 +131,8 @@ $primary_focus: #7367f0;
     .orderList {
       .title {
         width: 13%;
+        display: flex;
+        justify-content: center;
         &:first-child {
           padding-left: 20px;
         }
@@ -152,14 +151,6 @@ $primary_focus: #7367f0;
       //內容
       .detailsSec {
         margin: 30px 0;
-
-        // &:hover {
-        //   transform: translateY(-4px);
-        //   transition: transform 0.3s ease 0s;
-        //   cursor: pointer;
-        //   position: relative;
-        //   z-index: 1;
-        // }
         .main {
           height: 60px;
           flex-wrap: nowrap;
@@ -181,10 +172,14 @@ $primary_focus: #7367f0;
               box-shadow: none;
               border: none;
               background-color: $white;
-              &:hover {
-                // transform: scale(1.2);
-                // transition: transform 0.35s ease 0s;
-              }
+            }
+          }
+          .custom-select {
+            width: 60%;
+            &:focus {
+              border-color: $primary_color;
+              box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+                0 0 8px $primary-focus;
             }
           }
         }
@@ -192,15 +187,16 @@ $primary_focus: #7367f0;
           margin-top: 16px;
           padding: 0 20px;
           font-size: 0.875rem;
-          //   display: flex;
           p:hover {
             color: $info_color;
             text-decoration: underline;
             cursor: pointer;
           }
           .orderDetails {
-            animation-name: CollapseShow;
-            animation-duration: 1000ms;
+            &.collapseshow {
+              animation-name: CollapseShow;
+              animation-duration: 1000ms;
+            }
             .card {
               box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
               .card-header {
@@ -211,20 +207,17 @@ $primary_focus: #7367f0;
               .card-title {
                 line-height: 1.75;
                 letter-spacing: 1.2px;
-                // margin: 0;
                 padding: 8px 0px;
                 margin: 8px 20px;
                 border-bottom: 1px solid #ccc;
-                .blankBox {
-                  width: 130px;
-                  padding: 0 15px;
-                  background-color: $white;
-                }
+                text-align: center;
               }
               .card-body {
                 line-height: 1.75;
                 letter-spacing: 1.2px;
                 padding: 16px 20px;
+                text-align: center;
+
                 .productImg {
                   width: 130px;
                   height: 100px;
@@ -233,12 +226,28 @@ $primary_focus: #7367f0;
                     width: 100%;
                   }
                 }
+                .delivery {
+                  display: flex;
+                  width: 100%;
+                  .form-control {
+                    text-align: center;
+                    &:focus {
+                      border-color: $primary_color;
+                      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+                        0 0 8px $primary-focus;
+                    }
+                  }
+                }
+              }
+              .card-title,
+              .card-body {
+                .blankBox {
+                  width: 130px;
+                  padding: 0 15px;
+                  background-color: $white;
+                }
               }
             }
-          }
-          .collapsehide {
-            animation-name: CollapseHide;
-            animation-duration: 350ms;
           }
         }
       }
@@ -268,5 +277,13 @@ $primary_focus: #7367f0;
         border-radius: 5px;
       }
     }
+  }
+}
+
+.alertModal .modal-dialog {
+  width: 250px;
+  .modal-body {
+    text-align: center;
+    padding: 40px;
   }
 }

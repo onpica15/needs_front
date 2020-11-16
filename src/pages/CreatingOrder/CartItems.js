@@ -24,8 +24,8 @@ function CartItems(props) {
       {products &&
         products.map((product, index) => {
           return (
-            <>
-              <Row className="py-3 m-0" key={index}>
+            <div key={index}>
+              <Row className="py-3 m-0">
                 <Col md={5} className="d-flex">
                   <div className="item-product d-flex">
                     <img
@@ -60,7 +60,7 @@ function CartItems(props) {
                 </Col>
               </Row>
               <div className="item-hr"></div>
-            </>
+            </div>
           )
         })}
     </div>

@@ -1,5 +1,5 @@
 export function getCartItems() {
-  return [...JSON.parse(localStorage.getItem('cart') || [])]
+  return [...JSON.parse(localStorage.getItem('cart') || '[]')]
 }
 
 export function addCartItem(cartItems, newCartItem) {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import quertString from 'query-string'
 import io from 'socket.io-client'
 
 import './Chat.scss'
@@ -8,24 +7,29 @@ import InfoBar from './InfoBar/InfoBar'
 import Input from './Input/Input'
 import Messages from './Messages/Messages'
 
-import { useDispatch, useSelector } from 'react-redux'
+import Axios from 'axios'
+import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 
 const ENDPOINT = 'http://localhost:5000'
 
 let socket
 
-const Chat = ({ location }) => {
+const Chat = (props) => {
+  const { showChatToggle } = props
+  const { search } = useLocation()
+  const searchParams = new URLSearchParams(search)
   const name = useSelector((state) => state.authentication.user.user.username)
-  console.log(name)
-  const [room, setRoom] = useState('')
+  const storeName = searchParams.get('room')
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([])
+  const [image, setImage] = useState('')
+
+  // set connect room between customer and merchant
+  const room = storeName
 
   useEffect(() => {
-    // const { name, room } = quertString.parse(location.search)
-
     socket = io(ENDPOINT)
-    setRoom(room)
 
     socket.emit('join', { name, room }, (error) => {
       if (error) {
@@ -48,19 +52,34 @@ const Chat = ({ location }) => {
     }
   }
 
+  const uploadImage = async (e) => {
+    const files = e.target.files
+    const data = new FormData()
+    data.append('file', files[0])
+    const url = 'http://localhost:5000'
+    const res = await Axios.post(url, data).catch((err) =>
+      console.log('sendImg', err)
+    )
+  }
+
   return (
     <div className="outerContainer">
       <div className="chat">
-        <InfoBar room={room} />
-        <Messages messages={messages} name={name} />
+        <InfoBar storeName={storeName} showChatToggle={showChatToggle} />
+        <Messages
+          messages={messages}
+          name={name}
+          storeName={storeName}
+          image={image}
+        />
         <Input
           message={message}
           setMessage={setMessage}
           sendMessage={sendMessage}
+          uploadImage={uploadImage}
         />
       </div>
     </div>
   )
 }
-
 export default Chat

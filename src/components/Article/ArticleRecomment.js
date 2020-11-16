@@ -29,8 +29,12 @@ const ArticleRecomment = (props) => {
   return (
     <>
       {data.map((value, id) => (
-        <Link to="/articles" className="articleRecomment text-decoration-none">
-          <div key={value.id} className="picture mr-1">
+        <Link
+          key={id}
+          to="/articles"
+          className="articleRecomment text-decoration-none"
+        >
+          <div className="picture mr-1">
             <img src={value.img} alt=""></img>
           </div>
           <div className="">{value.title}</div>

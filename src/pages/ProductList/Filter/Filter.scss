@@ -2,16 +2,28 @@
   background-color: #f0f0f0;
   align-items: center;
 
+  .info{
+    transform: translateY(10px);
+  }
+  .amountName{
+    @media (max-width:1091px) {
+      display: none;
+  }
+  }
   .filterRight {
     align-items: flex-end;
+    cursor: pointer;
     .choiceView {
       transform: translateY(-4px);
     }
     label {
       width: 90px;
+      @media (max-width:1091px) {
+        display: none;
+    }
     }
     select {
-      width: 170px;
+      width: 130px;
     }
   }
 }

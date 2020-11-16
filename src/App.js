@@ -11,17 +11,23 @@ import FixedButtons from './components/FixedButtons'
 
 import Home from './pages/Home'
 import MemberCard from './pages/Member/MemberCard'
+import MemberCardEdit from './pages/Member/MemberCardEdit'
 import MemberShop from './pages/Member/MemberShop'
 import MemberLike from './pages/Member/MemberLike'
-import MemberInform from './pages/Member/MemberInform'
+import MemberInformOne from './pages/Member/MemberInformOne'
+import MemberInformTwo from './pages/Member/MemberInformTwo'
+import MemberInformThree from './pages/Member/MemberInformThree'
 import MemberEcoin from './pages/Member/MemberEcoin'
 import MemberComment from './pages/Member/MemberComment'
+import MemberQA from './pages/Member/MemberQA'
 import Investment from './pages/Investment'
 import Article from './pages/Article/Article'
 import ProductList from './pages/ProductList/ProductList'
 import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
+import CreatingOrder from './pages/CreatingOrder'
 import Payment from './pages/Payment'
+import Complete from './pages/Payment/complete'
 import Login from './pages/Login/Login'
 import SignUp from './pages/Login/SignUp'
 import aiyabungu from './pages/MerchantHome/aiyabungu'
@@ -29,6 +35,7 @@ import aiyabungu from './pages/MerchantHome/aiyabungu'
 //商家後台
 import BackEndSidebar from './components/backend/Sidebar'
 import BackEndNavbar from './components/backend/Navbar'
+import BgContainer from './components/backend/BgContainer'
 import BackEndDashboard from './pages/BackEnd/Dashboard'
 import Sales from './pages/BackEnd/Sales'
 import Ads from './pages/BackEnd/Ads'
@@ -39,9 +46,9 @@ import TemplateList from './pages/BackEnd/TemplateList/TemplateList'
 import ArticleDetial from './pages/Article/ArticleDetial'
 import TestArticleDetial from './pages/Article/TestArticleDetial'
 import ProductsManagement from './pages/BackEnd/ProductsManagement'
+import Breadcrumb from './components/backend/Breadcrumb'
 import ContractsManagement from './pages/BackEnd/ContractsManagement'
 import OrdersManagement from './pages/BackEnd/OrdersManagement'
-
 
 //設置layout props
 const DynamicLayoutRoute = (props) => {
@@ -66,6 +73,7 @@ const DynamicLayoutRoute = (props) => {
     case 'BACK_END_NAV': {
       return (
         <>
+          <BgContainer />
           <BackEndNavbar />
           <BackEndSidebar />
           {actualRouteComponent}
@@ -120,12 +128,22 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/cart_payment"
+            path="/order_creating"
+            component={CreatingOrder}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/order_payment"
             component={Payment}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/article"
+            path="/order_complete"
+            component={Complete}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/articles"
             component={Article}
             layout="FRONT_END_NAV"
           />
@@ -140,7 +158,7 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/articledetial"
+            path="/articleClassic"
             component={ArticleDetial}
             layout="FRONT_END_NAV"
           />
@@ -150,10 +168,17 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/member/card/:userid?"
+            path="/member/card"
+            // path="/member/card/:id"
             component={MemberCard}
             layout="FRONT_END_NAV"
           />
+          <DynamicLayoutRoute
+            path="/member/edit"
+            component={MemberCardEdit}
+            layout="FRONT_END_NAV"
+          />
+
           <DynamicLayoutRoute
             path="/member/shop"
             component={MemberShop}
@@ -165,8 +190,18 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
-            path="/member/inform"
-            component={MemberInform}
+            path="/member/informone"
+            component={MemberInformOne}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/member/informtwo"
+            component={MemberInformTwo}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            path="/member/informThree"
+            component={MemberInformThree}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
@@ -216,8 +251,7 @@ function App(props) {
             path="/customer-backend/template-list"
             component={TemplateList}
             layout="BACK_END_NAV"
-          />  
-          />{' '}
+          />
           <DynamicLayoutRoute
             path="/customer-backend/sales-index"
             component={Sales}

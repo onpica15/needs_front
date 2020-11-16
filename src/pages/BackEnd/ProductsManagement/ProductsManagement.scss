@@ -28,7 +28,7 @@ $primary_focus: #7367f0;
   }
 
   .btn {
-    font-family: 'Noto Sans TC', sans-serif;
+    // font-family: 'Noto Sans TC', sans-serif;
     font-size: 1 rem;
     line-height: 1.75;
     letter-spacing: 1.2px;
@@ -137,6 +137,14 @@ $primary_focus: #7367f0;
           color: $white;
         }
       }
+      .dropdown-item {
+        &:focus {
+          outline: none;
+        }
+        &:active {
+          background-color: $primary_focus;
+        }
+      }
     }
 
     .productList {
@@ -149,12 +157,14 @@ $primary_focus: #7367f0;
       }
       .productTitle {
         width: 35%;
+        padding-right: 16px;
       }
       .specification {
         width: 20%;
       }
       .title {
         width: 8%;
+        padding-right: 16px;
       }
       .actions {
         text-align: center;
@@ -194,6 +204,14 @@ $primary_focus: #7367f0;
           .dropdown-menu {
             min-width: 0;
             text-align: center;
+            .dropdown-item {
+              &:focus {
+                outline: none;
+              }
+              &:active {
+                background-color: $primary_focus;
+              }
+            }
           }
         }
         .productImg {
@@ -210,6 +228,7 @@ $primary_focus: #7367f0;
           -webkit-line-clamp: 3;
           overflow: hidden;
           white-space: pre-line;
+          padding-right: 16px;
         }
       }
     }
@@ -237,5 +256,150 @@ $primary_focus: #7367f0;
         }
       }
     }
+  }
+}
+
+.addProdModal {
+  .modal-dialog .modal-content {
+    padding: 80px 10%;
+    line-height: 1.75;
+    letter-spacing: 1.2px;
+    border-radius: 0;
+    .modal-header {
+      padding-top: 0;
+      border-color: #212529;
+      font-weight: 500;
+    }
+    .modal-footer {
+      padding: 30px 0 0 0;
+      justify-content: center;
+      border-color: #212529;
+
+      .btn {
+        // font-family: 'Noto Sans TC', sans-serif;
+        font-size: 1 rem;
+        line-height: 1.75;
+        letter-spacing: 1.2px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        width: 120px;
+        height: 48px;
+      }
+
+      .btn-primary {
+        color: $white;
+        background-color: $primary_color;
+        border-color: $primary_color;
+        margin-left: 20px;
+        &:hover {
+          box-shadow: 0 8px 25px -8px $primary_color;
+        }
+      }
+      .btn-outline-danger {
+        color: $danger_color;
+        border-color: $danger_color;
+        &:hover {
+          color: $white;
+          background-color: $danger_color;
+          box-shadow: 0 8px 25px -8px $danger_color;
+        }
+      }
+      .btn-secondary {
+        color: $white;
+        background-color: $warning_color;
+        border-color: $warning_color;
+        margin-left: 20px;
+        &:hover {
+          box-shadow: 0 8px 25px -8px $warning_color;
+        }
+      }
+    }
+    .modal-body {
+      padding: 40px 0;
+      .form-control {
+        &:focus {
+          border-color: $primary_color;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+            0 0 8px $primary-focus;
+        }
+      }
+      .uploadImg {
+        color: $primary_color;
+        height: 330px;
+        border: 1px dashed $primary_color;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .form-label {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          position: relative;
+          svg {
+            margin-bottom: 1rem;
+          }
+          .preBox {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            img {
+              display: block;
+              width: calc(25% - 24px);
+              margin: 12px 12px;
+              flex: 0;
+              height: auto;
+              box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.32);
+              border-radius: 6px;
+            }
+            .removebtn {
+              position: relative;
+              left: -25px;
+              top: 0px;
+              background-color: #fdeded;
+              padding: 3px;
+              border-radius: 100%;
+              box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.32);
+            }
+          }
+        }
+        label:hover {
+          cursor: pointer;
+        }
+        input[type='file' i] {
+          display: none;
+        }
+      }
+      .parentCat {
+        background-color: #f5f5f5;
+        color: $primary_color;
+        font-weight: 500;
+        font-size: 17px;
+      }
+
+      .input-group {
+        align-items: center;
+        .form-control {
+          margin-right: 10px;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}
+
+.alertModal .modal-dialog {
+  width: 250px;
+  .modal-body {
+    text-align: center;
+    padding: 40px;
   }
 }

@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
-function ArticleClassic(props) {
+function ArticleClassic() {
   const classicData = [
     {
       title: '精選5款人氣筆記本套推薦',
@@ -36,7 +36,7 @@ function ArticleClassic(props) {
       <div className=" articleItems d-flex flex-wrap">
         {classicData.map((value, index) => (
           <Link
-            to="/articledetial"
+            to="/articleClassic/4"
             key={index}
             className="articleItem col-lg-3 col-md-6 col-sm-12 text-decoration-none"
             style={{ color: '#323232' }}

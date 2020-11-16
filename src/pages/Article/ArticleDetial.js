@@ -1,23 +1,22 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ArticleRecomment from '../../components/Article/ArticleRecomment'
 import ArticleRecommentProduct from '../../components/Article/ArticleRecommentProduct'
 import './ArticleDetial.scss'
 
-import { Breadcrumb } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 function ArticleDetial() {
-  //   const articleData = {
-  //     h5: '精選五款人氣筆記本推薦',
-  //   }
+  const [SubscribeBtn, setSubscribeBtn] = useState(false)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <>
       <div className="container">
-        <Breadcrumb>
-          <Breadcrumb.Item href="#">首頁</Breadcrumb.Item>
-          <Breadcrumb.Item href="/articles">文章列表</Breadcrumb.Item>
-          <Breadcrumb.Item active>精選5款人氣筆記本套推薦</Breadcrumb.Item>
-        </Breadcrumb>
-        <div className="d-flex flex-lg-row flex-md-column mt-4">
+        {/* <Breadcrumbs /> */}
+        <div className="d-flex flex-lg-row flex-column mt-4">
           <div className="articleDetial col-lg-8 col-md-12">
             <section>
               <h5>精選五款人氣筆記本推薦</h5>
@@ -92,9 +91,27 @@ function ArticleDetial() {
                 </li>
               </ul>
             </section>
+            <section>
+              <div className="subscribeArticle d-flex justify-content-between">
+                <div className="textInfo">
+                  探索各式生活風格美學 - 實踐美好必要指南
+                </div>
+                <div>
+                  {SubscribeBtn ? (
+                    <Button onClick={() => setSubscribeBtn(!SubscribeBtn)}>
+                      已訂閱文章
+                    </Button>
+                  ) : (
+                    <Button onClick={() => setSubscribeBtn(!SubscribeBtn)}>
+                      訂閱文章
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </section>
           </div>
           <div className="col-lg-4 col-md-12">
-            <div style={{ 'margin-bottom': '200px' }}>
+            <div style={{ marginBottom: '200px' }}>
               <h5 className="mb-4">推薦文章</h5>
               <ArticleRecomment />
             </div>

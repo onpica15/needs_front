@@ -1,19 +1,46 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
+
+import { useSelector } from 'react-redux' //引入redux
+import './MemEcoin.scss'
+
 import { FaCoins } from 'react-icons/fa'
-function MemEcoin() {
+
+const MemEcoin = () => {
+  const [memecoin, setMemEcoin] = useState([])
+
+  const isLogin = useSelector((state) => state.authentication.loggedIn) //redux判斷是否為lodin狀態
+  const loginUser = useSelector((state) => state.authentication.user) //redux初始值設定為空值
+
+  const getData = async (val) => {
+    let url = `http://localhost:5000/member?id=${val}`
+    const res = await axios.get(url).catch((err) => console.log('error'.err))
+    setMemEcoin(res.data)
+  }
+
+  useEffect(() => {
+    if (isLogin) {
+      const memId = loginUser.user.id
+      getData(memId)
+    } else {
+      window.location.href = '/login'
+    }
+  }, [])
+  // }
+  // function MemEcoin() {
   return (
     <>
       <div className="memecoin">
         <div className="maincard">
-          <p className="font-m">
+          <div className="font-m">
             <div className="d-flex wrapper">
               <p className="icons">
                 <FaCoins />
               </p>
               <p>Ｅcoin</p>
             </div>
-          </p>
+          </div>
 
           <div className="container">
             <div className="row justify-content-around align-self-center topside">
@@ -29,27 +56,30 @@ function MemEcoin() {
               </Link>
             </div>
           </div>
-
-          <div className="container d-flex justify-content-around">
-            <div className="row coincard ">
-              <div className="m-auto one">
-                <p className="font-m my-3">代幣查詢</p>
-                <p className="font-m my-3">10</p>
+          {memecoin.map((item, index) => {
+            return (
+              <div className="container d-flex justify-content-around">
+                <div className="row coincard ">
+                  <div className="m-auto one">
+                    <p className="font-m my-3">代幣查詢</p>
+                    <p className="font-m my-3">{item.e_coin}</p>
+                  </div>
+                </div>
+                <div className="row  justify-content-around coincard ">
+                  <div className="m-auto two">
+                    <p className="font-m my-3">待發放</p>
+                    <p className="font-m my-3">{item.fe_coin}</p>
+                  </div>
+                </div>
+                <div className="row  justify-content-around coincard ">
+                  <div className="m-auto three">
+                    <p className="font-m my-3">即將到期</p>
+                    <p className="font-m my-3">{item.me_coin}</p>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="row  justify-content-around coincard ">
-              <div className="m-auto two">
-                <p className="font-m my-3">待發放</p>
-                <p className="font-m my-3">50</p>
-              </div>
-            </div>
-            <div className="row  justify-content-around coincard ">
-              <div className="m-auto three">
-                <p className="font-m my-3">即將到期</p>
-                <p className="font-m my-3">0</p>
-              </div>
-            </div>
-          </div>
+            )
+          })}
           <div className="explain">
             <p className="font-m">
               E coin說明
