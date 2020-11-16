@@ -6,6 +6,8 @@ import {
 } from 'react-bootstrap'
 import { GiPositionMarker } from 'react-icons/gi';
 import { AiTwotoneShop,AiTwotonePhone } from "react-icons/ai";
+import Texty from 'rc-texty';
+import 'rc-texty/assets/index.css';
 // import { SignalCellularNullSharp } from '@material-ui/icons';
 
 function Sec1Info(props){
@@ -29,17 +31,32 @@ function Sec1Info(props){
               ''
             )}
 
-          <div className="background-color" style={{
-            backgroundColor: bgColor,
-          }}></div>
-          <Container className="p-0">
+            <div className="bg-text">
+            <Texty 
+            className="bg-font" 
+            type="mask-bottom"
+            animatingClassName="tween-one-entering"
+            appear="false"
+            duration="777"
+            >
+            {merchantInfos.brand_name}</Texty>
+            </div>
+            
+            <div className="background-color" style={{
+              backgroundColor: bgColor,
+            }}></div>
+            <Container className="p-0">
           
             <div className="sec1 d-flex" key={i}>
             <div className="sec1_avatar m-auto">
               <div className="d-flex mx-auto">
                 <div className="d-flex ml-3">  
                 <div className="d-flex flex-column align-items-center">
-                
+                    {/* ReactDOM.render((
+                      <div className="texty-demo" style={{ marginTop: 64 }}>
+                        <Texty>{merchantInfos.brand_name}</Texty>
+                      </div>
+                    ), mountNode); */}
                 {/* <div className="avatar rounded pb-3" ></div> */}
                 {merchantInfos.index_img ? (
               <img
@@ -107,3 +124,4 @@ function Sec1Info(props){
     )
 }
 export default Sec1Info 
+

@@ -17,12 +17,10 @@ function Sec5BrandStory(props){
             <div className="d-flex adjust">
             <div className="brandStory_img" style={{ backgroundImage : `url(${displayStoryImg})`}}></div>
 
-            <div className=" col-6 text-wrapper ml-5">
-                    <>
-                    StoryHTML+=`{merchantInfos.brand_story}`
-                    </>
-            </div>
-        
+            <div 
+                className=" col-6 text-wrapper ml-5"
+                dangerouslySetInnerHTML={{ __html: merchantInfos.brand_story}}
+                ></div>
 
             </div>
             </div>

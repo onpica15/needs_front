@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Parallax } from 'rc-scroll-anim';
 function Sec2MainPro(props){
     const { mainProductId , products } = props
     console.log('mainProductId',mainProductId)
@@ -7,7 +8,14 @@ function Sec2MainPro(props){
         <>
             <div className="sec2">
               <div className="d-flex justify-content-between m-auto">
-             
+              <div>
+                <Parallax
+                  animation={{ x: 0, opacity: 1, playScale: [0.5, 0.8] }}
+                  style={{ transform: 'translateX(-100px)', opacity: 0 }}
+                  className="code-box-shape"
+                />
+                </div>
+
                 {products.filter(product => product.id == mainProductId)
                     .map((product, index) => {
                       return (
@@ -33,3 +41,4 @@ function Sec2MainPro(props){
     )
 }
 export default Sec2MainPro
+

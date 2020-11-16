@@ -11,7 +11,7 @@ import TemplateUpload from './TemplateUpload'
 import TemplateStoryUpload from './TemplateStoryUpload'
 import './styles/TemplateEditedPage.scss'
 import TextEditor from './TextEditor'
-// import Selector from './selector'
+import Editbar from './Editbar'
 
 // 選擇的模板
 import Narrative from '../Templates/Narrative'
@@ -325,7 +325,7 @@ useEffect(() => {
         </Accordion>
         </div>
     </div>
-
+   
         {/* change section*/}
 
         <div className="change-section rounded">
@@ -340,6 +340,9 @@ useEffect(() => {
             thisMerchantBrandInfo={thisMerchantBrandInfo}  
             />
         </div>
+
+        {/* <Editbar/> */}
+
     </div>
     </Col>
 

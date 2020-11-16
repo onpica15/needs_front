@@ -24,6 +24,19 @@
         width: 100%;
         background-image: url('../images/default-background.png');
         background-size: cover;
+        // position: absolute;
+    }
+
+    .bg-text{
+      // background-color:#323232;
+      // opacity: .8;
+      position: absolute;
+      top: 450px;
+      left: 210px;
+    }
+    .bg-font{
+      color:white;
+      font-size:120px;
     }
  
     .background-color{

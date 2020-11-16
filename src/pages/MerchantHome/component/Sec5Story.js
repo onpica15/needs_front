@@ -19,20 +19,17 @@ function Sec5Story(props){
             {merchantInfos.brandStory_img ? (
               <img
                 className="brandStory_img"
-                src={`http://localhost:5000/BackgroundImg/${merchantInfos.brandStory_img}`}
+                src={`http://localhost:5000/BrandStoryImg/${merchantInfos.brandStory_img}`}
                 alt=""
               />
             ) : (
               ''
             )}
             {/* http://localhost:5000/BrandStoryImg/ */}
-            <div className=" col-6 text-wrapper ml-5">
-                    <>
-                    StoryHTML+=`{merchantInfos.brand_story}`
-                    </>
-            </div>
-        
-
+            <div 
+                className=" col-6 text-wrapper ml-5"
+                dangerouslySetInnerHTML={{ __html: merchantInfos.brand_story}}
+                ></div>
             </div>
             </div>
             )

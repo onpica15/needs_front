@@ -66,7 +66,7 @@ const TemplateUpload = (props) => {
           listType="picture-card"
           className="avatar-uploader"
           showUploadList={false}
-          action="http://localhost:5000/template/editpage?merchantid=12"
+          action="http://localhost:5000/template/postStoryImg?merchantid=12"
           beforeUpload={beforeUpload}
           onChange={handleChange}>
           {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
