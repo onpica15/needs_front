@@ -49,6 +49,7 @@ const AddProduct = (props) => {
     stock: 20,
     outline:
       'IWI Concision簡約鋼珠筆/鋼筆使用極簡主義的設計語言，以一體式結構的上下黃銅筆管完成具有獨特性與原創性的線條；傾斜的頂端與尾部設計，點綴富有彈性的筆夾，輔以簡單的色彩，適合喜愛純粹極簡生活風格的你。',
+    description: `<div class="ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred" lang="zh" dir="ltr" role="textbox" aria-label="豐富文字編輯器，main" contenteditable="true"><p>#粉絲專屬限定&nbsp;11月感恩回饋</p><p>購買指定商品享有免費刻字服務~（市價$100/支）</p><p>#限Pinkoi平台</p><p>只要是以下社群的IWI粉粉們</p><p>Facebook、Instagram、Twitter</p><p>皆享有指定商品免費刻字服務！</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>指定商品有：</p><p>Fusion&nbsp;融合系列</p><p>Concision&nbsp;簡約系列</p><p>Essential&nbsp;基礎全系列</p><p>&nbsp;Multi611&nbsp;貝多芬紀念版</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>參加辦法：</p><p>將指定商品加入購物車後，</p><p>點選結帳時會出現&nbsp;#給設計師的訊息或建議，</p><p>在上方留言：已按讚或追蹤，名稱或帳號是@__，刻字內容____</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>小編示範：已追蹤！IG帳號是@iwi_writing，刻字內容：用心寫的，最溫暖</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>*各商品的刻字詳細說明請至商品頁面的「加購刻字服務」連結內查看喔！</p><p><br data-cke-filler="true"></p><p><br data-cke-filler="true"></p><img scr="https://static.wixstatic.com/media/00ae17_9a0dd9c5c2664584a00f3d9c861d23d3~mv2.jpg" alt="" /><p>※&nbsp;如需刻字服務請將商品與下方連結一同加入購物車內，</p><p>加購刻字服務(NT$100/支)→&nbsp;www.pinkoi.com/product/mUhYuXfQ</p><p>點選結帳時，會出現"給設計師的訊息"中留言您欲刻字的內容即可</p><p>請先行付款才能進行下單製作，煩請配合！</p><p>※刻字商品大約需7~10個工作天，煩請耐心等候。</p><p>※中港澳地區下單收件地址請填寫中文，以配合順豐速運系統辨識，謝謝~</p><p><br><br data-cke-filler="true"></p><p>加購墨水→&nbsp;www.pinkoi.com/store/iwic?category=...</p><p>加購吸墨器→&nbsp;www.pinkoi.com/product/rfuThwmC</p><p>加購卡水→&nbsp;www.pinkoi.com/product/q87uJ4Nt</p><p><br><br data-cke-filler="true"></p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IWI&nbsp;Concision簡約鋼珠筆/鋼筆使用極簡主義的設計語言，以一體式結構的上下黃銅筆管完成具有獨特性與原創性的線條；傾斜的頂端與尾部設計，點綴富有彈性的筆夾，輔以簡單的色彩，適合喜愛純粹極簡生活風格的你。</p><p><br><br data-cke-filler="true"></p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;鋼珠筆採用德國史密特SCHMIDT原裝888F細字0.6mm鋼珠筆芯；鋼筆則採用德國原裝進口的PETER&nbsp;BOCK極細EF鋼筆尖以及歐洲進口墨水，將優質良好的書寫性最大化。</p><p><br><br data-cke-filler="true"></p><p>全系列隨附專用收納鐵盒。</p><p><br><br data-cke-filler="true"></p><p>&nbsp;材質：銅管電鍍</p><p>&nbsp;尺寸：總長約&nbsp;H138.8mm&nbsp;W13.5mm&nbsp;D10.6mm</p><p>&nbsp;重量：約&nbsp;21.2&nbsp;g(含卡水)</p><p>筆尖：德製三件式EF極細鋼筆尖</p><p>歐洲進口墨水：黑色</p><p><br><br data-cke-filler="true"></p><p>※商品為單支販售，照片為情境圖，僅供參考。</p><p><br data-cke-filler="true"></p><p>加購卡水→&nbsp;www.pinkoi.com/product/q87uJ4Nt</p><p>&nbsp;加購刻字服務(NT$100/支)→&nbsp;www.pinkoi.com/product/mUhYuXfQ</p></div>`
   }
 
   //清除已選擇按鈕
@@ -335,7 +336,7 @@ const AddProduct = (props) => {
                 商品詳細介紹<span className="redStar">*</span>
               </Form.Label>
               <CKEditor
-                data="<p>開始新增商品介紹吧...</p>"
+                data={defaultData.description}
                 editor={ClassicEditor}
                 config={{
                   language: 'zh',
