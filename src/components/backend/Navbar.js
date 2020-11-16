@@ -10,7 +10,10 @@ import {
 } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import avatar from '../../pages/BackEnd/Dashboard/images/book.jpg'
-import customer from '../../pages/BackEnd/Dashboard/images/australia-customer.jpg'
+import customer1 from '../../pages/BackEnd/Dashboard/images/customer1.jpg'
+import customer2 from '../../pages/BackEnd/Dashboard/images/customer2.jpg'
+import customer3 from '../../pages/BackEnd/Dashboard/images/customer3.jpg'
+import customer4 from '../../pages/BackEnd/Dashboard/images/customer4.jpg'
 import BreadcrumbBackend from './Breadcrumb'
 import { userActions } from '../../actions'
 
@@ -58,15 +61,13 @@ function Navbar() {
                         <Link to="#">
                           <div className="media d-flex align-items-start">
                             <div className="media-user">
-                              <img src={customer} alt="" />
+                              <img src={customer1} alt="" />
                             </div>
                             <div className="media-body">
-                              <div className="media-heading">奧客</div>
-                              <div className="media-text">
-                                太陽餅裡面沒太陽！我要退貨！！
-                              </div>
+                              <div className="media-heading">david1234</div>
+                              <div className="media-text">請問還有沒有存貨</div>
                             </div>
-                            <small className="media-time">9小時之前</small>
+                            <small className="media-time">1小時之前</small>
                           </div>
                         </Link>
                       </Dropdown.Item>
@@ -74,15 +75,13 @@ function Navbar() {
                         <Link to="#">
                           <div className="media d-flex align-items-start">
                             <div className="media-user">
-                              <img src={customer} alt="" />
+                              <img src={customer2} alt="" />
                             </div>
                             <div className="media-body">
-                              <div className="media-heading">奧客</div>
-                              <div className="media-text">
-                                太陽餅裡面沒太陽！我要退貨！！
-                              </div>
+                              <div className="media-heading">sherry11</div>
+                              <div className="media-text">還沒收到商品</div>
                             </div>
-                            <small className="media-time">9小時之前</small>
+                            <small className="media-time">3小時之前</small>
                           </div>
                         </Link>
                       </Dropdown.Item>
@@ -90,15 +89,13 @@ function Navbar() {
                         <Link to="#">
                           <div className="media d-flex align-items-start">
                             <div className="media-user">
-                              <img src={customer} alt="" />
+                              <img src={customer3} alt="" />
                             </div>
                             <div className="media-body">
-                              <div className="media-heading">奧客</div>
-                              <div className="media-text">
-                                太陽餅裡面沒太陽！我要退貨！！
-                              </div>
+                              <div className="media-heading">black5927</div>
+                              <div className="media-text">商品品質超棒</div>
                             </div>
-                            <small className="media-time">9小時之前</small>
+                            <small className="media-time">4小時之前</small>
                           </div>
                         </Link>
                       </Dropdown.Item>
@@ -106,15 +103,13 @@ function Navbar() {
                         <Link to="#">
                           <div className="media d-flex align-items-start">
                             <div className="media-user">
-                              <img src={customer} alt="" />
+                              <img src={customer4} alt="" />
                             </div>
                             <div className="media-body">
-                              <div className="media-heading">奧客</div>
-                              <div className="media-text">
-                                太陽餅裡面沒太陽！我要退貨！！
-                              </div>
+                              <div className="media-heading">chill338</div>
+                              <div className="media-text">如何辦理退貨？</div>
                             </div>
-                            <small className="media-time">9小時之前</small>
+                            <small className="media-time">7小時之前</small>
                           </div>
                         </Link>
                       </Dropdown.Item>
