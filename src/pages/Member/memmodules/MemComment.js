@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 
@@ -75,16 +77,16 @@ const MemComment = () => {
 
           <div className="container">
             <div className="row justify-content-around align-self-center topside">
-              <div className="col-2 d-flex topsidebox">
+              <Link href="#" className="col-2 d-flex topsidebox">
                 <div className="m-auto" onClick={(e) => setType('already')}>
                   <p className="font-s">歷史評論</p>
                 </div>
-              </div>
-              <div className="col-2 d-flex topsidebox">
+              </Link>
+              <Link href="#" className="col-2 d-flex topsidebox">
                 <div className="m-auto" onClick={(e) => setType('notyet')}>
                   <p className="font-s">尚未評論</p>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
           {memcomment.map((item, index) => {

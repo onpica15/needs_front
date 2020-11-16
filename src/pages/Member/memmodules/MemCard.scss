@@ -11,10 +11,7 @@ $shadow: #e7e7e7;
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap');
 
 .member {
-    .font-ss {
-        font-size: 0.87rem;
-    }
-
+    
     .font-s {
         font-size: 1rem;
     }
@@ -34,6 +31,10 @@ $shadow: #e7e7e7;
         border-radius: 10px;
         border: solid 2px $danger;
         box-shadow: 6px 5px $shadow;
+
+        a {
+            color: $primary;
+        }
     }
 
     //---memshop topbar
