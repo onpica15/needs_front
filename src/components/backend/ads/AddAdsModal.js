@@ -7,7 +7,6 @@ import Axios from 'axios'
 function AddAdsModal() {
   const [show, setShow] = useState(false)
   const [titleOption, setTitleOption] = useState('')
-  const [fcTitle, setFcTitle] = useState('')
 
   const handleClose = () => {
     setShow(false)
@@ -45,6 +44,18 @@ function AddAdsModal() {
         console.log(response.data.url)
       }
     )
+
+    const fcData = {
+      title: document.form1.title.value,
+      start: document.form1.startdate.value,
+      end: document.form1.enddate.value,
+    }
+    console.log('fcdata', fcData)
+    Axios.post(`http://localhost:5000/dashboard/fcpost`, fcData).then(
+      (response) => {
+        console.log(response.data.url)
+      }
+    )
   }
 
   const getTitle = () => {
@@ -66,10 +77,6 @@ function AddAdsModal() {
     })
   }
 
-  const getFcTitle = () => {
-    console.log(document.form1.title.value)
-    setFcTitle(document.form1.title.value)
-  }
   useEffect(() => {
     getTitle()
   }, [])
@@ -124,7 +131,6 @@ function AddAdsModal() {
                     name="title"
                     onChange={(e) => {
                       handleSetForm(e, 'title')
-                      getFcTitle()
                     }}
                   />
                   {/* <Form.Text className="text-muted">
@@ -215,9 +221,6 @@ function AddAdsModal() {
             </Button>
           </Modal.Footer>
         </Form>
-        <div className="d-none">
-          <AdsCalendar fcTitle={fcTitle} />
-        </div>
       </Modal>
     </>
   )
