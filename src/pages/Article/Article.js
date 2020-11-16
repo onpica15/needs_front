@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Button } from 'react-bootstrap'
@@ -7,6 +8,9 @@ import ArticleClassic from '../../components/Article/ArticleClassic'
 import './Article.scss'
 
 const Article = (props) => {
+  const isLogin = useSelector((state) => state.authentication.loggedIn)
+  const loginRole = useSelector((state) => state.authentication.user.user)
+  const [userRole, setUserRole] = useState('')
   const [articles, setArticles] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
   const [SubscribeBtn, setSubscribeBtn] = useState(false)
@@ -23,6 +27,14 @@ const Article = (props) => {
     fetchPosts()
   }, [])
 
+  //get role ,and show the add/delete Btn
+  useEffect(() => {
+    if (isLogin) {
+      const role = loginRole.role
+      setUserRole(role)
+    }
+  }, [])
+
   const loading = (
     <>
       <div className="d-flex justify-content-center">
@@ -36,19 +48,21 @@ const Article = (props) => {
   const display = (
     <div className=" articleItems d-flex flex-wrap">
       {articles.map((value, index) => (
-        <Link
-          key={value.id}
-          to={`/article/${value.id}`}
-          className="articleItem col-lg-3 col-md-6 col-sm-12 text-decoration-none"
-        >
-          <div className="articlePic">
-            <img src={value.image} alt=""></img>
-          </div>
-          <div className="textArea">
-            <div className="title">{value.title}</div>
-            <div className="ctx">{value.outline}</div>
-          </div>
-        </Link>
+        <>
+          <Link
+            key={value.id}
+            to={`/article/${value.id}`}
+            className="articleItem col-lg-3 col-md-6 col-sm-12 text-decoration-none"
+          >
+            <div className="articlePic">
+              <img src={value.image} alt=""></img>
+            </div>
+            <div className="textArea">
+              <div className="title">{value.title}</div>
+              <div className="ctx">{value.outline}</div>
+            </div>
+          </Link>
+        </>
       ))}
     </div>
   )
@@ -60,9 +74,11 @@ const Article = (props) => {
           <div className="col-6">
             <h5>精選文章</h5>
           </div>
-          <div className="col-6 d-flex justify-content-end">
-            <Link to="/createArticle">新增文章</Link>
-          </div>
+          {userRole === 'needs' ? (
+            <div className="col-6 d-flex justify-content-end">
+              <Link to="/createArticle">新增文章</Link>
+            </div>
+          ) : null}
         </div>
 
         <ArticleClassic />

@@ -23,6 +23,7 @@ function MemShop() {
       window.location.href = '/login'
     }
   }, [])
+
   return (
     <>
       <div className="memshop">

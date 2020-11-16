@@ -66,7 +66,12 @@ const Chat = (props) => {
     <div className="outerContainer">
       <div className="chat">
         <InfoBar storeName={storeName} showChatToggle={showChatToggle} />
-        <Messages messages={messages} name={name} image={image} />
+        <Messages
+          messages={messages}
+          name={name}
+          storeName={storeName}
+          image={image}
+        />
         <Input
           message={message}
           setMessage={setMessage}
@@ -77,5 +82,4 @@ const Chat = (props) => {
     </div>
   )
 }
-
 export default Chat

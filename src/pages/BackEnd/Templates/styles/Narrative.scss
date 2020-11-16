@@ -1,5 +1,5 @@
 
-.merchantHome{
+.Narrative{
     h2,
     h4,
     h5,
@@ -22,20 +22,34 @@
     .sec1_background{
         min-height: calc(65vh - 60px);
         width: 100%;
-        background-image: url('../images/background_2.jpg');
+        background-image: url('../images/default-background.png');
         background-size: cover;
+        // position: absolute;
     }
+
+    .bg-text{
+      // background-color:#323232;
+      // opacity: .8;
+      position: absolute;
+      top: 450px;
+      left: 210px;
+    }
+    .bg-font{
+      color:white;
+      font-size:120px;
+    }
+ 
     .background-color{
-      background-color:#323232;
+      // background-color:#323232;
       min-height: 35vh;
-      width: 59%;
-      padding-top: 35px;
+      width: 57%;
+      padding-top: 45px;
       position: absolute;
     }
     .sec1_avatar{
       min-height: 35vh;
       width: 60%;
-      padding-top: 35px;
+      padding-top: 50px;
       position: relative;
       h2
       ,h4{
@@ -46,9 +60,9 @@
       .avatar{
         height: 180px;
         width: 180px;
-        background-image: url('../images/head_1.png');
+        background-image: url('../images/pommedepin111_300x300.jpg');
         background-size: cover;
-        margin:1rem 3rem 1rem 5rem
+        margin:1rem 3rem 1rem 3rem
       }
       .store-follower-btn {
         margin-bottom: 1rem;
@@ -73,8 +87,8 @@
     }
     .sec1_info{
       min-height: 35vh;
-      width: 45%;
-      padding:5rem 1rem 2rem 7rem;
+      width: 43%;
+      padding:55px 0rem 0rem 7rem;
       .row1{
         margin-bottom: 2rem;
       }
@@ -84,7 +98,7 @@
     }
 }
 
-.merchantHome{
+.Narrative{
   .sec2{
     background-color: #f0f0f0;
     height: 100vh;
@@ -103,46 +117,47 @@
     }
   }
   .product-bg-pic{
-    height: 72vh;
-    width: 72vh;
-    background-image: url('../images/product_bg_1.jpg');
+    height: 60vh;
+    width: 60vh;
+    // background-image: url('../images/default-img.png');
     background-size: cover;
-    margin-right: 100px;
+    margin-right: 30px;
     
   }
   .product-sml-pic{
     height: 300px;
     width: 300px;
-    background-image: url('../images/product_bg_1.jpg');
+    // background-image: url('../images/default-img.png');
     background-size: cover;
     // margin-left: 5rem;
     display: flex;
     align-items: center;
-    box-shadow: 7px 7px 7px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 7px 7px 7px 2px rgba(148, 142, 142, 0.2);
   }
   .sec3{
-    height: 100vh;
+    // height: 100vh;
     width: 100%;
     background-color: #fff;
   }
   .sec4{
-    height: 60vh;
+    // height: 60vh;
     width: 100%;
     padding-top: 80px;
+    padding-bottom: 80px;
     padding-left: 100px;
     background-color: #f0f0f0;
 
     .activities-wrapper{
-      height: 40vh;
+      height: 400px;
       width: 60%;
       border: 3px solid #8e8e8e;
+      padding-right: 40px;
       position: relative;
     }
-
     .activities-img{
-      width: 35vh;
-      height: 35vh;
-      background-image: url('../images/active_pic.jpg');
+      width: 350px;
+      height: 350px;
+      background-image: url('../images/default-img.png');
       background-size: cover;   
       position: absolute;
       left: -150px;
@@ -176,7 +191,7 @@
       }
     }
   .sec5{
-    height: 40vh;
+    // height: 40vh;
     width: 100%;
     background-color: #fff;
     padding-left: 100px;
@@ -190,7 +205,7 @@
       width: 30vh;
       border-radius: 50%;
       background-size: cover;
-      background-image: url('../images/about_pic.jpg');
+      // background-image: url('../images/default-img.png');
   }
   .underline{
     border-bottom:3px solid  #d44f44;

@@ -16,7 +16,8 @@ function SerarchBox() {
       const res = await axios
         .get(url)
         .catch((err) => console.log('Serarch Err', err))
-      setGetAllData(res.data)
+
+      if (res.data) return setGetAllData(res.data)
     }
     AllData()
   }, [])
@@ -64,11 +65,11 @@ function SerarchBox() {
                   highlightedIndex === index ? { background: '#cdcdcd' } : {}
                 }
               >
-                <Link to={`/products/${item.id}?room=${item.brand_en_name}`}>
-                  {/* <a href={`/products/${item.id}?room=${item.brand_en_name}`}> */}
+                {/* <Link to={`/products/${item.id}?room=${item.brand_en_name}`}> */}
+                <a href={`/products/${item.id}?room=${item.brand_en_name}`}>
                   <p>{item.title}</p>
-                  {/* </a> */}
-                </Link>
+                </a>
+                {/* </Link> */}
               </li>
             </span>
           ))}
