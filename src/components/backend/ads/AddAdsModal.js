@@ -19,6 +19,7 @@ function AddAdsModal() {
     if (key === 'file') {
       const file = e.target.files[0]
       postData.append('file', file)
+      console.log(file)
       const img = document.createElement('img')
       img.src = URL.createObjectURL(file)
       img.width = 220
@@ -30,6 +31,7 @@ function AddAdsModal() {
       postData.set(key, value)
     }
   }
+
   const refreshPage = () => {
     window.location.reload()
   }
@@ -62,6 +64,11 @@ function AddAdsModal() {
       }
       setTitleOption(titleOption)
     })
+  }
+
+  const getFcTitle = () => {
+    console.log(document.form1.title.value)
+    setFcTitle(document.form1.title.value)
   }
   useEffect(() => {
     getTitle()
@@ -115,7 +122,10 @@ function AddAdsModal() {
                     type="text"
                     placeholder="發大財"
                     name="title"
-                    onChange={(e) => handleSetForm(e, 'title')}
+                    onChange={(e) => {
+                      handleSetForm(e, 'title')
+                      getFcTitle()
+                    }}
                   />
                   {/* <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
