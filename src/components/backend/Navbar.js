@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Col,
@@ -15,6 +15,7 @@ import BreadcrumbBackend from './Breadcrumb'
 import { userActions } from '../../actions'
 
 function Navbar() {
+  const isLogin = useSelector((state) => state.authentication.loggedIn)
   const loginUser = useSelector((state) => state.authentication.user)
 
   //logout
@@ -26,6 +27,10 @@ function Navbar() {
       elem.requestFullscreen()
     }
   }
+
+  useEffect(() => {
+    if (!isLogin) window.location.href = '/login'
+  }, [])
 
   return (
     <>
@@ -127,7 +132,7 @@ function Navbar() {
                       textAlign: 'end',
                     }}
                   >
-                    {loginUser.user.username}
+                    {isLogin ? loginUser.user.username : 'Book33'}
                   </div>
                   <div
                     className="staff-status"
@@ -140,14 +145,24 @@ function Navbar() {
                   <Dropdown.Toggle as={NavLink}>
                     <div className="staff-avatar">
                       <img
-                        src={`http://122.116.38.12:5050/img/brands/${loginUser.user.brand_img}`}
+                        src={
+                          isLogin
+                            ? `http://122.116.38.12:5050/img/brands/${loginUser.user.brand_img}`
+                            : avatar
+                        }
                       />
                     </div>
                   </Dropdown.Toggle>
                   <Dropdown.Menu className="dropdown-staff dropdown-menu-right">
                     <Dropdown.Item>
                       <Link to="/">
-                        <i class="fas fa-home pr-2"></i>回到首頁
+                        <i class="fas fa-shopping-bag pr-2"></i>NEEDS首頁
+                      </Link>
+                    </Dropdown.Item>
+                    <div className="dropdown-divider"> </div>
+                    <Dropdown.Item>
+                      <Link to={`/${loginUser.user.brand_en_name}`}>
+                        <i class="fas fa-home pr-2"></i>品牌首頁
                       </Link>
                     </Dropdown.Item>
                     <div className="dropdown-divider"> </div>
