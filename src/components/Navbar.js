@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Navbar, Nav, NavDropdown, Container, Row } from 'react-bootstrap'
+import { Navbar, Nav } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { AiOutlineShoppingCart, AiOutlineSearch } from 'react-icons/ai'
-import { FaStore, FaUserAlt, FaSignOutAlt } from 'react-icons/fa'
 import { connect } from 'react-redux'
 
 import { userActions } from '../actions'
 import '../styles/navbar.scss'
 import logo from '../images/logo.png'
-
 import SerarchBox from './SearchBox/SerarchBox'
+import NavProdCat from './NavPordCat'
 
 function HomeNavbar(props) {
   //從actions中引入登出函式
@@ -141,8 +140,13 @@ function HomeNavbar(props) {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="">
+              <div className="prodList">
+                <Nav.Link href="/productlist">所有分類</Nav.Link>
+                <NavProdCat />
+              </div>
+            </Nav>
             <Nav className="mr-auto">
-              <Nav.Link href="/productlist">所有分類</Nav.Link>
               <Nav.Link href="/articles">文章列表</Nav.Link>
               <Nav.Link href="/investment">成為商家</Nav.Link>
             </Nav>

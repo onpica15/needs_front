@@ -1,3 +1,27 @@
+@keyframes growDown {
+  0% {
+    transform: scaleY(0);
+  }
+  80% {
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes growItem {
+  0% {
+    transform: scaleX(0);
+  }
+  // 80% {
+  //   transform: scaleX(1.1);
+  // }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
 .navBlock {
   height: 80px;
   position: relative;
@@ -20,18 +44,6 @@
     }
 
     .navbar-nav {
-      @keyframes growDown {
-        0% {
-          transform: scaleY(0);
-        }
-        80% {
-          transform: scaleY(1.1);
-        }
-        100% {
-          transform: scaleY(1);
-        }
-      }
-
       a {
         color: #323232;
 
@@ -116,6 +128,74 @@
             display: block;
             animation: growDown 350ms ease-in-out forwards;
             transform-origin: top center;
+          }
+        }
+      }
+    }
+  }
+}
+
+.navbar-nav {
+  .prodList {
+    position: relative;
+    &:hover {
+      .nav-prod {
+        display: flex;
+        // animation: growDown 400ms ease-in-out forwards;
+        // transform-origin: top center;
+      }
+    }
+    .nav-prod {
+      font-family: 'Noto Sans TC', sans-serif;
+      letter-spacing: 1.2px;
+      line-height: 1.75;
+      flex-wrap: wrap;
+      padding: 32px 32px 16px 32px;
+      width: 70%;
+      box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.1);
+      border: 1px solid #f0f0f0;
+      border-radius: 5px;
+      background-color: #fff;
+      position: absolute;
+      left: 0;
+      // display: none;
+      display: flex;
+      width: 800%;
+      .catItem {
+        list-style: none;
+        width: 25%;
+        margin-bottom: 16px;
+        .parentCat {
+          color: #0d5661;
+          font-weight: 400;
+        }
+        .childCat {
+          a {
+            color: #323232;
+            font-weight: 300;
+            font-size: 0.875rem;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 100%;
+            background-position: 100%;
+            background: linear-gradient(
+              to right,
+              #d44f44,
+              #d44f44 50%,
+              #323232 50%
+            );
+            transition: background-position 275ms ease;
+            text-decoration: none;
+
+            &:hover {
+              // color: #d44f44;
+              // border-bottom: 1px solid #d44f44;
+              background-position: 0 100%;
+            }
           }
         }
       }

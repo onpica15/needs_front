@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Axios from 'axios'
 
 const NavProdCat = () => {
   const [categories, setCategories] = useState([])
@@ -21,19 +22,23 @@ const NavProdCat = () => {
           const arr = item.category.split(',')
           return (
             <>
-              <ul key={item.id}>
+              <div key={item.id} className="catItem">
                 <div className="parentCat">{item.parentCategory}</div>
 
                 {arr.map((itm, idx) => {
                   return (
                     itm && (
                       <>
-                        <li className="childCat">{itm.split(':')[1]}</li>
+                        {/* <div className="childCat"> */}
+                        <a href={`/productlist/${itm.split(':')[1]}`}>
+                          {itm.split(':')[1]}
+                        </a>
+                        {/* </div> */}
                       </>
                     )
                   )
                 })}
-              </ul>
+              </div>
             </>
           )
         })}
