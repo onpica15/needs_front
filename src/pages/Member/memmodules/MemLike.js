@@ -23,7 +23,7 @@ function MemLike() {
     const favoriteItem = JSON.parse(localStorage.getItem('state'))
       ? JSON.parse(localStorage.getItem('state'))
       : null
-    setfavoriteItems(favoriteItem.favorite)
+    if (favoriteItem) setfavoriteItems(favoriteItem.favorite)
   }, [])
 
   useEffect(() => {

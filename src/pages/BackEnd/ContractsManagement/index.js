@@ -20,7 +20,7 @@ const ContractsManagement = (props) => {
   const [pageItems, setPageItems] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
-  const [showSignUp, setShowSignUp] = useState(true)
+  const [showSignUp, setShowSignUp] = useState(false)
 
   const toPage = (e) => {
     setCurrentPage(e)
