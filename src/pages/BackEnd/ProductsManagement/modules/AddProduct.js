@@ -128,7 +128,7 @@ const AddProduct = (props) => {
     postData.set('formData', JSON.stringify(formData))
 
     Axios.post(
-      `http://122.116.38.12:5050/bk-products-api?id=${merchantId}&prodType=0`,
+      `http://localhost:5000/bk-products-api?id=${merchantId}&prodType=0`,
       postData
     ).then((res) => {
       if (!res.data.success) {
