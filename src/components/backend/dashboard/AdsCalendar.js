@@ -20,7 +20,7 @@ export default class AdsCalendar extends React.Component {
         }}
         events={[
           {
-            title: '居家換季 收納質感',
+            title: '2021手帳展',
             start: '2020-11-12',
             end: '2020-11-15',
             extendedProps: {
@@ -28,6 +28,33 @@ export default class AdsCalendar extends React.Component {
               id: 4,
             },
           },
+          {
+            title: '雙11購物節',
+            start: '2020-11-10',
+            end: '2020-11-12',
+            extendedProps: {
+              status: 'done',
+              id: 3,
+            },
+          },
+          {
+            title: '聖誕狂歡',
+            start: '2020-12-24',
+            end: '2020-12-31',
+            extendedProps: {
+              status: 'done',
+              id: 2,
+            },
+          },
+          // {
+          //   title: this.props.fcTitle,
+          //   start: '2020-11-24',
+          //   end: '2020-11-31',
+          //   extendedProps: {
+          //     status: 'done',
+          //     id: 5,
+          //   },
+          // },
         ]}
         eventDidMount={function (info) {
           if (info.event.extendedProps.status === 'done') {
