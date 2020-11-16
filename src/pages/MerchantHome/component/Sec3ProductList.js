@@ -20,7 +20,8 @@ import axios from 'axios'
 
 const Sec3ProductList = (props) => {
   // getdata
-  const [posts, setPosts] = useState([])
+  const [allposts, setAllPosts] = useState([])
+  const [showPosts, setShowPosts] = useState([])
   const [categories, setCategories] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
 
@@ -34,6 +35,9 @@ const Sec3ProductList = (props) => {
 
   //set select Index to filter of Category
   const [selectCategory, setSelectCategory] = useState('')
+  // set price filter
+  const [filterprice, setFilterPrice] = useState([0, 7000])
+
   // 0 = can't use  1 = use
   const [ecoin, setEcoin] = useState(false)
   //Redux addCart
@@ -47,14 +51,14 @@ const Sec3ProductList = (props) => {
   useEffect(() => {
     const fetchPosts = async () => {
       setDataLoading(true)
-      let url = 'http://localhost:5000/productlist' + sort
+      let url = 'http://localhost:5000/productlist?sort=' + sort
       const res = await axios.get(url).catch((err) => console.log('Error', err))
-      setPosts(res.data)
+      setAllPosts(res.data)
+      setShowPosts(res.data)
       setDataLoading(false)
     }
     fetchPosts()
   }, [sort])
-
   //get all data
 
   const getCategories = async () => {
@@ -70,7 +74,7 @@ const Sec3ProductList = (props) => {
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage
   const indexOfFirstPost = indexOfLastPost - postsPerPage
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
+  const currentPosts = showPosts.slice(indexOfFirstPost, indexOfLastPost)
 
   // Change page
   const paginate = (pageNumber) => {
@@ -83,7 +87,7 @@ const Sec3ProductList = (props) => {
     console.log(event.target.value)
     setSort(event.target.value)
 
-    const sortRes = posts.sort((a, b) => {
+    const sortRes = allposts.sort((a, b) => {
       if (sort === '-price') {
         return a.skus[0].sale_price < b.skus[0].sale_price ? 1 : -1
       }
@@ -91,7 +95,7 @@ const Sec3ProductList = (props) => {
         return a.skus[0].sale_price > b.skus[0].sale_price ? 1 : -1
       }
     })
-    setPosts(sortRes)
+    setAllPosts(sortRes)
   }
 
   return (
@@ -106,11 +110,12 @@ const Sec3ProductList = (props) => {
               categories={categories}
               setSelectCategory={setSelectCategory}
             />
-            <SideFilter setEcoin={setEcoin} ecoin={ecoin} />
+            <SideFilter setEcoin={setEcoin} ecoin={ecoin}               setFilterPrice={setFilterPrice}
+              filterprice={filterprice}/>
           </div>
           <div className="mainProductList">
             <Filter
-              totalPosts={posts.length}
+              totalPosts={showPosts.length}
               handleSort={handleSort}
               setSort={setSort}
               setProductView={setProductView}
@@ -118,17 +123,14 @@ const Sec3ProductList = (props) => {
 
             {/* dataView */}
             <Posts
-              posts={currentPosts}
+              showPosts={currentPosts}
               dataLoading={dataLoading}
               productView={productView}
-              addToCartAction={addToCartAction}
-              ecoin={ecoin}
-              selectCategory={selectCategory}
             />
 
             <Pagination
               postsPerPage={postsPerPage}
-              totalPosts={posts.length}
+              totalPosts={showPosts.length}
               paginate={paginate}
             />
           </div>
