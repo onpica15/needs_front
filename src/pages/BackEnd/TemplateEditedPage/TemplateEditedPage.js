@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux' //引入redux
+
 import {
   Col,
   Container,
@@ -24,6 +26,11 @@ import { TwitterPicker } from 'react-color';
 
 
 function TemplateEditedPage(props) {
+
+  const isLogin = useSelector((state) => state.authentication.loggedIn) //redux判斷是否為login狀態
+  const loginUser = useSelector((state) => state.authentication.user) //redux初始值設定為空值
+
+
 
 const [text, setText] = useState(''); 
 const [show,setShow]= useState(true)
@@ -149,6 +156,12 @@ useEffect(() => {
   getMerchantProduct()
   getBrandInfo()
 }, [])
+
+// useEffect(() => {
+//   if (!isLogin) return
+//     window.location.href = '/login' //若非login狀態則跳轉至login畫面
+  
+// }, [])
 
   return(
     <>
