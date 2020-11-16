@@ -43,9 +43,18 @@ export default class AdsCalendar extends React.Component {
             end: '2020-12-31',
             extendedProps: {
               status: 'done',
-              id: 5,
+              id: 2,
             },
           },
+          // {
+          //   title: this.props.fcTitle,
+          //   start: '2020-11-24',
+          //   end: '2020-11-31',
+          //   extendedProps: {
+          //     status: 'done',
+          //     id: 5,
+          //   },
+          // },
         ]}
         eventDidMount={function (info) {
           if (info.event.extendedProps.status === 'done') {
