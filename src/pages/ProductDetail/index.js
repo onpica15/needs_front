@@ -364,8 +364,8 @@ function ProductDetail(props) {
         <MerchantOtherProducts merchantInfo={merchantInfo} />
         <h5 className="mt-5">最近預覽</h5>
         <hr />
-        {/* <HistoryList /> */}
-        <History />
+        <HistoryList />
+        {/* <History /> */}
         <div className="mb-5"></div>
       </Container>
       <FixedAddToCartBtn

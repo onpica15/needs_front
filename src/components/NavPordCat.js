@@ -29,11 +29,11 @@ const NavProdCat = () => {
                   return (
                     itm && (
                       <>
-                        {/* <div className="childCat"> */}
-                        <a href={`/productlist/${itm.split(':')[1]}`}>
-                          {itm.split(':')[1]}
-                        </a>
-                        {/* </div> */}
+                        <div className="childCat">
+                          <a href={`/productlist/${itm.split(':')[1]}`}>
+                            {itm.split(':')[1]}
+                          </a>
+                        </div>
                       </>
                     )
                   )

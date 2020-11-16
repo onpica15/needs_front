@@ -10,18 +10,6 @@
   }
 }
 
-@keyframes growItem {
-  0% {
-    transform: scaleX(0);
-  }
-  // 80% {
-  //   transform: scaleX(1.1);
-  // }
-  100% {
-    transform: scaleX(1);
-  }
-}
-
 .navBlock {
   height: 80px;
   position: relative;
@@ -141,8 +129,8 @@
     &:hover {
       .nav-prod {
         display: flex;
-        // animation: growDown 400ms ease-in-out forwards;
-        // transform-origin: top center;
+        animation: growDown 400ms ease-in-out forwards;
+        transform-origin: top center;
       }
     }
     .nav-prod {
@@ -151,19 +139,20 @@
       line-height: 1.75;
       flex-wrap: wrap;
       padding: 32px 32px 16px 32px;
-      width: 70%;
       box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.1);
       border: 1px solid #f0f0f0;
       border-radius: 5px;
       background-color: #fff;
       position: absolute;
       left: 0;
-      // display: none;
-      display: flex;
-      width: 800%;
+      // top: 80px;
+      display: none;
+      grid-gap: 12px;
+      min-width: 584px;
       .catItem {
         list-style: none;
-        width: 25%;
+        // width: 25%;
+        flex: 1 1 120px;
         margin-bottom: 16px;
         .parentCat {
           color: #0d5661;
@@ -171,30 +160,12 @@
         }
         .childCat {
           a {
-            color: #323232;
-            font-weight: 300;
             font-size: 0.875rem;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% 100%;
-            background-position: 100%;
-            background: linear-gradient(
-              to right,
-              #d44f44,
-              #d44f44 50%,
-              #323232 50%
-            );
-            transition: background-position 275ms ease;
+            color: #323232;
             text-decoration: none;
-
             &:hover {
-              // color: #d44f44;
-              // border-bottom: 1px solid #d44f44;
-              background-position: 0 100%;
+              color: #d44f44;
+              border-bottom: 1px solid #d44f44;
             }
           }
         }
