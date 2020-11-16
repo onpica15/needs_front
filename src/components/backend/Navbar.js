@@ -156,7 +156,13 @@ function Navbar() {
                   <Dropdown.Menu className="dropdown-staff dropdown-menu-right">
                     <Dropdown.Item>
                       <Link to="/">
-                        <i class="fas fa-home pr-2"></i>回到首頁
+                        <i class="fas fa-shopping-bag pr-2"></i>NEEDS首頁
+                      </Link>
+                    </Dropdown.Item>
+                    <div className="dropdown-divider"> </div>
+                    <Dropdown.Item>
+                      <Link to={`/${loginUser.user.brand_en_name}`}>
+                        <i class="fas fa-home pr-2"></i>品牌首頁
                       </Link>
                     </Dropdown.Item>
                     <div className="dropdown-divider"> </div>

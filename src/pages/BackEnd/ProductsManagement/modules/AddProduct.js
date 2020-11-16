@@ -198,7 +198,7 @@ const AddProduct = (props) => {
                   {preview.map((item, index) => {
                     return (
                       <>
-                        <img src={item} />
+                        <img src={item} alt="" />
                         <FiX
                           size="24px"
                           color="#ea5455"

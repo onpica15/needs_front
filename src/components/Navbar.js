@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { Navbar, Nav } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
@@ -29,6 +29,7 @@ function HomeNavbar(props) {
               <div className="memberAvatar">
                 <img
                   src={`http://localhost:5000/img/avatar/${loginUser.user.avatar}`}
+                  alt=""
                 />
               </div>
               <div className="actionsList">
@@ -67,6 +68,7 @@ function HomeNavbar(props) {
               <div className="merchantAvatar">
                 <img
                   src={`http://localhost:5000/img/brands/${loginUser.user.brand_img}`}
+                  alt=""
                 />
               </div>
               <div className="actionsList">

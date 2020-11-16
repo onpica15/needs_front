@@ -10,7 +10,6 @@ import {
   ADD_TO_FAVORITES,
   REMOVE_TO_FAVORITES,
 } from './actiontypes'
-import { createBrowserHistory } from 'history'
 
 import History from '../components/history'
 export const userActions = { login, logout }
