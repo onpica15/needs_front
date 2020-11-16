@@ -13,7 +13,7 @@ import {
 import { FiHeart } from 'react-icons/fi'
 import { Radio } from 'antd'
 
-import './styles/TemplateList.scss'
+import './Styles/TemplateList.scss'
 import '../../../styles/Backend/_backend.scss'
 import TemplateCard from './TemplateCard'
 import { Handle } from 'rc-slider'

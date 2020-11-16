@@ -12,11 +12,8 @@ $shadow: #e7e7e7;
 
 
 .hiddenBar {
-    @media (min-width:995px) {
-        
-        transform: translateX(300px);
-    }
     
+        
     @media (max-width:995px) {
         z-index: 2;
         position: absolute;
@@ -38,7 +35,9 @@ $shadow: #e7e7e7;
         display: grid;
     }
 }
-
+.mirrorRotateLevel {
+  transform: rotateY(180deg);   /* 水平镜像翻转 */
+}
 
 .member {
     p {
