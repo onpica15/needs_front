@@ -14,11 +14,8 @@ function SerarchBox() {
   useEffect(() => {
     const AllData = async () => {
       let url = 'http://localhost:5000/productlist'
-      const res = await axios
-        .get(url)
-        .catch((err) => console.log('Serarch Err', err))
-
-      if (res.data) return setGetAllData(res.data)
+      const res = await axios.get(url)
+      if (res) setGetAllData(res.data)
     }
     AllData()
   }, [])

@@ -8,24 +8,19 @@ $font-gray: #787878;
 $bg-gray: #cdcdcd;
 $bg-light: #f0f0f0;
 
-
-
 .articleIcons{
-
   .lastestAritcle .classAritcle{
     border-bottom: 1px solid $secondary;
   }
   .aritcleItem{
     cursor: pointer;
- 
   }
-
 }
-
 
 .articleItems{
   font-size: 16px;
   color: #323232;
+
   @media (max-width:768px) {
     text-align:-webkit-center
   }
@@ -34,20 +29,35 @@ $bg-light: #f0f0f0;
   padding-bottom: 30px;
   border-radius: 0.375rem;
   border-bottom: 0.125rem solid #ebebeb;
-  // box-shadow: 0 30px 40px -10px rgba(0,0,0,0.1);
+  &:hover{
+    .title{
+      transition: all .3s ease;
+      color: $danger;
+    }
+    .img{
+      transition: all .3s ease;
+      opacity: 0.9;
+    }
+  }
 
   .articlePic {
-    max-width: 240px;
     img {
-      width: 100%;
+      width: 240px;
       height: 200px;
       object-fit:cover;
+      @media (max-width:768px) {
+        width: 150px;
+        height: 150px;
+      }
     }
   }
 
   .textArea {
-    max-width: 440px;
+    max-width: 400px;
     padding-top: 20px;
+    @media (max-width:768px) {
+      max-width: 250px;
+    }
     .title {
       font-size: 20px;
       height: 60px;
@@ -60,13 +70,16 @@ $bg-light: #f0f0f0;
     }
       .ctx{
         font-size: 16px;
-        text-indent:32px;
-        line-height: 2;
-        letter-spacing: 1.5px;
+        text-indent:34px;
+        line-height: 1.75;
+        letter-spacing: 1.2px;
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 3;
         overflow: hidden;
+        @media (max-width:768px) {
+          -webkit-line-clamp: 2;
+        }
       }
     
   }

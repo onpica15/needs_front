@@ -19,8 +19,8 @@ const Article = (props) => {
   useEffect(() => {
     const fetchPosts = async () => {
       const url = 'http://localhost:5000/article'
-      const res = await axios.get(url).catch((err) => console.log('Error', err))
-      setArticles(res.data)
+      const res = await axios.get(url)
+      if (res) setArticles(res.data)
     }
     fetchPosts()
   }, [])
@@ -52,15 +52,15 @@ const Article = (props) => {
 
   return (
     <>
-      <div className="topic d-flex mt-4">
+      <div className="topic mt-4">
         {userRole === 'needs' ? (
           <div className="col-6 d-flex justify-content-end">
             <Link to="/createArticle">新增文章</Link>
           </div>
         ) : null}
       </div>
-      <div className="container d-flex articleIcons ">
-        <div className="mt-4 col-8">
+      <div className="container d-flex flex-lg-row flex-column articleIcons ">
+        <div className="mt-4 col-lg-8 col-md-12">
           <section className="mb-5">
             <div className="d-flex justify-content-around mb-4 changItem">
               <div className="lastestAritcle">
@@ -112,7 +112,7 @@ const Article = (props) => {
             </div>
           </div>
         </div>
-        <div className="mt-4 col-4">
+        <div className="mt-4 col-lg-4 col-md-12">
           <section className="mb-5">
             <h5 className="">推薦商品</h5>
             <ArticleRecommentProduct />
