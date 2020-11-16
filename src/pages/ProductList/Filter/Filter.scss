@@ -14,10 +14,10 @@
     align-items: flex-end;
     cursor: pointer;
     .choiceView {
-      transform: translateY(-4px);
+      transform: translateY(-7px);
     }
     label {
-      width: 90px;
+      width: 70px;
       @media (max-width:1091px) {
         display: none;
     }
