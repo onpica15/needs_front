@@ -72,13 +72,6 @@ function SerarchBox() {
                     : {}
                 }
               >
-<<<<<<< HEAD
-                {/* <Link to={`/products/${item.id}?room=${item.brand_en_name}`}> */}
-                <a href={`/products/${item.id}?room=${item.brand_en_name}`}>
-                  <p>{item.title}</p>
-                </a>
-                {/* </Link> */}
-=======
                 <a href={`/products/${item.id}?room=${item.brand_en_name}`}>
                   <div className="prodImg">
                     <img
@@ -96,7 +89,6 @@ function SerarchBox() {
                     <p>{item.title}</p>
                   </OverlayTrigger>
                 </a>
->>>>>>> elivia
               </li>
             </span>
           ))}
