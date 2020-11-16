@@ -14,7 +14,7 @@ function MemberComment() {
     <>
       <img
         src={require('../../../src/assets/img/member/arrow.png')}
-        className="hiddenBtn"
+        className={showsidebar ? 'hiddenBtn' : 'hiddenBtn mirrorRotateLevel'}
         onClick={hiddenSidebar}
       ></img>
 
