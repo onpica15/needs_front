@@ -213,7 +213,7 @@ useEffect(() => {
     首頁模板</Button>
     </div>
     {/* <hr /> */}
-    <div className="d-flex">
+    <div className="d-flex w-100">
     <div className="space">
     <div className="edit-bar">
     

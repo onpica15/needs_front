@@ -169,7 +169,7 @@ const CreateArticle = (props) => {
         tools={EDITOR_JS_TOOLS}
         data={contentDetial}
       />
-      <div className="d-flex justify-content-center ArticleEditor">
+      <div className="d-flex justify-content-center ArticleEditor mb-5">
         <Button className="sendBtn" onClick={saveToHtml}>
           儲存
         </Button>
