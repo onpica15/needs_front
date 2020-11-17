@@ -13,7 +13,7 @@ import {
 import { FiHeart } from 'react-icons/fi'
 import { Radio } from 'antd'
 
-import './styles/TemplateList.scss'
+import './Styles/TemplateList.scss'
 import '../../../styles/Backend/_backend.scss'
 import TemplateCard from './TemplateCard'
 import { Handle } from 'rc-slider'
@@ -88,14 +88,13 @@ function TemplateList(props) {
       setMyFav(currentFav)
       handleShow()
     }
-
     //設定加入
   }
 
   const override = css`
     display: block;
     margin: 300px auto;
-    border-color: ＃7367f0;
+    border-color: #7367f0;
   `
 
   const loading = (

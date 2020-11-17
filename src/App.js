@@ -30,7 +30,10 @@ import Payment from './pages/Payment'
 import Complete from './pages/Payment/complete'
 import Login from './pages/Login/Login'
 import SignUp from './pages/Login/SignUp'
-import aiyabungu from './pages/MerchantHome/aiyabungu'
+import Pommedepin111 from './pages/MerchantHome/Pommedepin111'
+import Annieeinna_hs from './pages/MerchantHome/annieeinna_hs'
+import ToolsLiveBy3 from './pages/MerchantHome/ToolsLiveBy3'
+import LittleMountain from './pages/MerchantHome/小山坡'
 
 //商家後台
 import BackEndSidebar from './components/backend/Sidebar'
@@ -215,9 +218,32 @@ function App(props) {
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
+            path="/member/QA"
+            component={MemberQA}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
             // exact
-            path="/homepage/:merchantid?"
-            component={aiyabungu}
+            path="/homepage/pommedepin111/12"
+            component={Pommedepin111}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            // exact
+            path="/homepage/Annieeinna_hs"
+            component={Annieeinna_hs}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            // exact
+            path="/homepage/ToolsLiveBy/3"
+            component={ToolsLiveBy3}
+            layout="FRONT_END_NAV"
+          />
+          <DynamicLayoutRoute
+            // exact
+            path="/homepage/LittleMountain"
+            component={LittleMountain}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute

@@ -16,7 +16,7 @@ function Sec2MainProduct(props){
                             {/* <div className="product-sml-pic" style={{ backgroundImage : `url(${displayMainImg})`}} ></div> */}
                             <img className="product-sml-pic" src={`http://localhost:5000/img/products/${product.image_path.split(',')[1]}`} />
                             <p className="sml">{product.outline}</p>
-                            <h2>NT$780</h2>
+                            <h2>NT${product.price}</h2>
                             <button className="btn">加入購物車</button>
                             </div>
                         </>

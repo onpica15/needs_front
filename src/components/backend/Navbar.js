@@ -142,7 +142,7 @@ function Navbar() {
                       <img
                         src={
                           isLogin
-                            ? `http://122.116.38.12:5050/img/brands/${loginUser.user.brand_img}`
+                            ? `http://localhost:5000/img/brands/${loginUser.user.brand_img}`
                             : avatar
                         }
                       />
@@ -156,7 +156,13 @@ function Navbar() {
                     </Dropdown.Item>
                     <div className="dropdown-divider"> </div>
                     <Dropdown.Item>
-                      <Link to={`/${loginUser.user.brand_en_name}`}>
+                      <Link
+                        to={
+                          isLogin
+                            ? `/homepage/${loginUser.user.brand_en_name}/${loginUser.user.id}`
+                            : ''
+                        }
+                      >
                         <i class="fas fa-home pr-2"></i>品牌首頁
                       </Link>
                     </Dropdown.Item>

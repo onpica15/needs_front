@@ -19,7 +19,7 @@ const MemberLogin = (props) => {
     login,
     alertMsg,
   } = props
-  console.log('login', login)
+
   return (
     <>
       <div className="memberLogin container-fluid">

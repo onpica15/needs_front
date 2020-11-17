@@ -44,7 +44,7 @@ function login(username, password, selectedRole) {
 }
 
 const checkAuth = (username, password, selectedRole) => {
-  const url = `http://122.116.38.12:5050/login-api/${selectedRole}login`
+  const url = `http://localhost:5000/login-api/${selectedRole}login`
   const req = new Request(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
