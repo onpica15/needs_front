@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import ScrollParallax from 'rc-scroll-anim/lib/ScrollParallax';
+import { Container } from 'react-bootstrap'
+
 function Sec5Story(props){
     const { displayStoryImg , thisMerchantBrandInfo } = props
     let StoryHTML = ''
     return(
-        <>
-            <div className="sec5 py-5">
+        <> 
+        <Container>
+        <div className="sec5 py-5">
             {[thisMerchantBrandInfo].map((merchantInfos,i)=>
           (
             <div className="m-auto">
@@ -37,7 +40,7 @@ function Sec5Story(props){
                             duration={1000}
                             > 
             <div 
-                className=" col-6 text-wrapper ml-5"
+                className=" text-wrapper ml-5 px-5"
                 dangerouslySetInnerHTML={{ __html: merchantInfos.brand_story}}
                 >
             
@@ -49,6 +52,8 @@ function Sec5Story(props){
             )
                 )}  
             </div>
+        </Container>
+           
         </>
     )
 }
