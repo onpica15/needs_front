@@ -17,7 +17,7 @@ import Sec3ProductList from './component/Sec3ProductList'
 import Sec4Activities from './component/Sec4Activities'
 import Sec5Story from './component/Sec5Story'
 
-const Pommedepin111 = (props) =>{
+const ToolsLiveBy3 = (props) =>{
   const [error,setError] = useState(null)
   const [posts, setPosts] = useState([])
 
@@ -79,7 +79,7 @@ const Pommedepin111 = (props) =>{
   async function getMerchantProduct(){
     // setDataLoading(true)
     // console.log('type',type)
-    const url =`http://localhost:5000/Template/merchant_product?merchant_id=11`
+    const url =`http://localhost:5000/Template/merchant_product?merchant_id=3`
     const request = new Request(url, {
         method:'GET',
         headers:new Headers({
@@ -106,7 +106,7 @@ const Pommedepin111 = (props) =>{
   async function getBrandInfo(){
     // setDataLoading(true)
     // console.log('type',type)
-    const url =`http://localhost:5000/Template/merchant_info?merchants=11`
+    const url =`http://localhost:5000/Template/merchant_info?merchants=3`
     const request = new Request(url, {
         method:'GET',
         headers:new Headers({
@@ -241,4 +241,4 @@ const Pommedepin111 = (props) =>{
         </>
     )
 }
-export default Pommedepin111
+export default ToolsLiveBy3
