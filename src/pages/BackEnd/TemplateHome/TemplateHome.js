@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 import { Col, Container, Card, CardDeck, Row , Modal ,Button } from 'react-bootstrap'
 
 import TemplatepicBig from './images/minimal_pro.png'
-import './styles/TemplateHome.scss'
+import './Styles/TemplateHome.scss'
 import '../../../styles/Backend/_backend.scss'
 
 import { MdVisibility, MdVisibilityOff, MdEdit } from 'react-icons/md'
