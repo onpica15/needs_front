@@ -17,6 +17,8 @@ import MerchantOtherProducts from './MerchantOtherProducts'
 import History from './History'
 import SuccessModal from './SuccessModal'
 import FixedAddToCartBtn from './FixedAddToCartBtn'
+
+import FixedButtons from '../../components/FixedButtons'
 import HistoryList from '../../components/History/HistoryList'
 
 function ProductDetail(props) {
