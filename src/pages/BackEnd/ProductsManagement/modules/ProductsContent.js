@@ -24,9 +24,8 @@ const ProductsContent = (props) => {
   const dispatch = useDispatch()
 
   const handleUnlanch = (index) => {
-    console.log('index', index)
     Axios.put(
-      `http://122.116.38.12:5050/bk-products-api/unlaunch?id=${index}`
+      `http://localhost:5000/bk-products-api/unlaunch?id=${index}`
     ).then((res) => {
       if (!res.data.success) {
         setAlertShow(true)
@@ -70,7 +69,7 @@ const ProductsContent = (props) => {
               />
               <div className="productImg">
                 <img
-                  src={`http://122.116.38.12:5050/img/products/${
+                  src={`http://localhost:5000/img/products/${
                     item.image_path.split(',')[0]
                   }`}
                   alt={item.title}

@@ -22,6 +22,12 @@ function BreadcrumbBackend(props) {
     case '/customer-backend/template-home':
       path = '首頁主題'
       break
+    case '/customer-backend/sales-index':
+      path = '銷售指標'
+      break
+    case '/customer-backend/ads':
+      path = '投放概覽'
+      break
     default:
       path = ''
   }

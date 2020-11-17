@@ -25,8 +25,9 @@ const ProductsManagement = (props) => {
   const [searchType, setSearchType] = useState(0)
   const [searchInp, setSearchInp] = useState('')
 
-  // const merchantId = useSelector((state) => state.authentication.user.user.id)
-  const [merchantId, setMerchantId] = useState(12)
+  const isLogin = useSelector((state) => state.authentication.loggedIn)
+  const merchantId = useSelector((state) => state.authentication.user.user.id)
+  // const [merchantId, setMerchantId] = useState(12)
   const [data, setData] = useState([])
   const [pageItems, setPageItems] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
@@ -46,7 +47,7 @@ const ProductsManagement = (props) => {
   }
 
   const getCategories = () => {
-    Axios.get(`http://122.116.38.12:5050/get-categories-api`).then((res) => {
+    Axios.get(`http://localhost:5000/get-categories-api`).then((res) => {
       const data = res.data
       setCategories(data)
     })
@@ -55,7 +56,7 @@ const ProductsManagement = (props) => {
   const getData = (merchantId, type) => {
     //跟server拿資料
     Axios.get(
-      `http://122.116.38.12:5050/bk-products-api/list?id=${merchantId}&filter=${type}&page=${currentPage}
+      `http://localhost:5000/bk-products-api/list?id=${merchantId}&filter=${type}&page=${currentPage}
       &searchType=${searchType}&searchInp=${searchInp}`
     )
       .then((res) => {
@@ -91,6 +92,7 @@ const ProductsManagement = (props) => {
 
   //type跟currentPage改變觸發filter
   useEffect(() => {
+    if (!isLogin) return (window.location.href = '/login')
     getData(merchantId, type, searchType, searchInp)
   }, [currentPage, type])
 
