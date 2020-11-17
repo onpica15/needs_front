@@ -15,7 +15,6 @@ function ArticleDetial() {
   return (
     <>
       <div className="container">
-        {/* <Breadcrumbs /> */}
         <div className="d-flex flex-lg-row flex-column mt-4">
           <div className="articleDetial col-lg-8 col-md-12">
             <section>

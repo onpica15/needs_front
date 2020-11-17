@@ -1,9 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form, Modal, Button } from 'react-bootstrap'
+import { CKEditor } from '@ckeditor/ckeditor5-react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import '@ckeditor/ckeditor5-build-classic/build/translations/zh'
 import Axios from 'axios'
 import NumberFormat from 'react-number-format'
-import { FiUpload, FiPlusCircle, FiX } from 'react-icons/fi'
+import { FiUpload, FiX } from 'react-icons/fi'
+import Spec from './Spec'
+import SpecItem from './SpecItem'
 
 const AddProduct = (props) => {
   const {
@@ -14,6 +19,8 @@ const AddProduct = (props) => {
     type,
     getCategories,
     categories,
+    specCount,
+    createSpec,
     formData,
     setFormData,
     imgList,
@@ -31,6 +38,19 @@ const AddProduct = (props) => {
 
   const dispatch = useDispatch()
 
+  const defaultData = {
+    title: '【IWI】 Concision 簡約鋼筆',
+    category: 22,
+    specification0: '霧黑',
+    specification1: '霧銀',
+    price: '600',
+    salePrice: '540',
+    launchDate: '2020-11-16',
+    stock: 20,
+    outline:
+      'IWI Concision簡約鋼珠筆/鋼筆使用極簡主義的設計語言，以一體式結構的上下黃銅筆管完成具有獨特性與原創性的線條；傾斜的頂端與尾部設計，點綴富有彈性的筆夾，輔以簡單的色彩，適合喜愛純粹極簡生活風格的你。',
+  }
+
   //清除已選擇按鈕
   const removeSelected = (e, index) => {
     e.preventDefault()
@@ -42,25 +62,56 @@ const AddProduct = (props) => {
     setImgList(selectedArr)
   }
 
-  const handleSetForm = (e, key) => {
-    if (key === 'file') {
-      const files = e.target.files
+  const handleSetForm = (e, key, data) => {
+    switch (key) {
+      case 'file':
+        const files = e.target.files
 
-      //先把img透過for迴圈寫入imgRow物件
-      const imgRow = []
-      const imgPre = []
-      for (let i = 0; i < files.length; i++) {
-        const img = files[i]
-        imgRow.push(img)
-        imgPre.push(URL.createObjectURL(img))
-      }
-      //將imgRow物件set進ImgList State中
-      setImgList(imgRow)
-      setPreview(imgPre)
-    } else {
-      const value = e.target.value
-      setFormData({ ...formData, [key]: value })
+        //先把img透過for迴圈寫入imgRow物件
+        const imgRow = []
+        const imgPre = []
+        for (let i = 0; i < files.length; i++) {
+          const img = files[i]
+          imgRow.push(img)
+          imgPre.push(URL.createObjectURL(img))
+        }
+        //將imgRow物件set進ImgList State中
+        setImgList(imgRow)
+        setPreview(imgPre)
+        break
+
+      case 'description':
+        setFormData({ ...formData, [key]: data })
+        break
+
+      default:
+        const value = e.target.value
+        setFormData({ ...formData, [key]: value })
+        break
     }
+    // if (key === 'file') {
+    //   const files = e.target.files
+
+    //   //先把img透過for迴圈寫入imgRow物件
+    //   const imgRow = []
+    //   const imgPre = []
+    //   for (let i = 0; i < files.length; i++) {
+    //     const img = files[i]
+    //     imgRow.push(img)
+    //     imgPre.push(URL.createObjectURL(img))
+    //   }
+    //   //將imgRow物件set進ImgList State中
+    //   setImgList(imgRow)
+    //   setPreview(imgPre)
+    // } else {
+    //   const value = e.target.value
+    //   setFormData({ ...formData, [key]: value })
+    // }
+  }
+
+  const specItemArr = []
+  for (let i = 0; i <= specCount.count; i++) {
+    specItemArr.push(<SpecItem key={i} index={i} />)
   }
 
   const handleSubmit = (e) => {
@@ -120,14 +171,21 @@ const AddProduct = (props) => {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>實體商品上架</Modal.Title>
+          <Modal.Title onClick={() => setFormData(defaultData)}>
+            實體商品上架
+          </Modal.Title>
         </Modal.Header>
         <Form onSubmit={handleSubmit}>
           <Modal.Body>
             <Form.Group controlId="title">
-              <Form.Label>商品名稱</Form.Label>
+              <p className="warningInfo">*為必填欄位</p>
+              <Form.Label>
+                商品名稱<span className="redStar">*</span>
+              </Form.Label>
               <Form.Control
                 type="text"
+                required
+                value={formData.title}
                 onChange={(e) => handleSetForm(e, 'title')}
               />
             </Form.Group>
@@ -140,7 +198,7 @@ const AddProduct = (props) => {
                   {preview.map((item, index) => {
                     return (
                       <>
-                        <img src={item} />
+                        <img src={item} alt="" />
                         <FiX
                           size="24px"
                           color="#ea5455"
@@ -164,9 +222,13 @@ const AddProduct = (props) => {
               />
             </Form.Group>
             <Form.Group controlId="category">
-              <Form.Label>商品類別</Form.Label>
+              <Form.Label>
+                商品類別<span className="redStar">*</span>
+              </Form.Label>
               <Form.Control
                 as="select"
+                value={formData.category}
+                required
                 onChange={(e) => handleSetForm(e, 'category')}
               >
                 <option value="" disabled selected hidden>
@@ -200,31 +262,26 @@ const AddProduct = (props) => {
                 })}
               </Form.Control>
             </Form.Group>
-            <Form.Group controlId="specification">
-              <Form.Label>商品規格</Form.Label>
-              <div className="input-group">
-                <Form.Control
-                  type="text"
-                  onChange={(e) => handleSetForm(e, 'specification1')}
-                />
-                <Form.Control
-                  type="text"
-                  onChange={(e) => handleSetForm(e, 'specification2')}
-                />
-                <Form.Control
-                  type="text"
-                  onChange={(e) => handleSetForm(e, 'specification3')}
-                />
-                <FiPlusCircle size="25px" style={{ color: '#495057' }} />
-              </div>
-            </Form.Group>
+
+            <Spec
+              formData={formData}
+              handleSetForm={handleSetForm}
+              specCount={specCount}
+              createSpec={createSpec}
+            >
+              {specItemArr}
+            </Spec>
             <Form.Group>
-              <Form.Label htmlFor="price">商品定價</Form.Label>
+              <Form.Label htmlFor="price">
+                商品定價<span className="redStar">*</span>
+              </Form.Label>
               <NumberFormat
                 className="form-control"
                 thousandSeparator={true}
                 prefix={'$'}
                 id="price"
+                required
+                value={formData.price}
                 onChange={(e) => handleSetForm(e, 'price')}
               />
             </Form.Group>
@@ -235,29 +292,61 @@ const AddProduct = (props) => {
                 thousandSeparator={true}
                 prefix={'$'}
                 id="salePrice"
+                value={formData.salePrice}
                 onChange={(e) => handleSetForm(e, 'salePrice')}
               />
             </Form.Group>
             <Form.Group controlId="launchDate">
-              <Form.Label>商品上架日</Form.Label>
+              <Form.Label>
+                商品上架日<span className="redStar">*</span>
+              </Form.Label>
               <Form.Control
                 type="date"
+                required
+                value={formData.launchDate}
                 onChange={(e) => handleSetForm(e, 'launchDate')}
               />
             </Form.Group>
             <Form.Group controlId="stock">
-              <Form.Label>商品庫存</Form.Label>
+              <Form.Label>
+                商品庫存<span className="redStar">*</span>
+              </Form.Label>
               <Form.Control
                 type="number"
+                required
+                value={formData.stock}
                 onChange={(e) => handleSetForm(e, 'stock')}
               />
             </Form.Group>
             <Form.Group controlId="outline">
-              <Form.Label>商品摘要</Form.Label>
+              <Form.Label>
+                商品摘要<span className="redStar">*</span>
+              </Form.Label>
               <Form.Control
                 as="textarea"
                 rows="5"
+                required
+                value={formData.outline}
                 onChange={(e) => handleSetForm(e, 'outline')}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>
+                商品詳細介紹<span className="redStar">*</span>
+              </Form.Label>
+              <CKEditor
+                data="<p>開始新增商品介紹吧...</p>"
+                editor={ClassicEditor}
+                config={{
+                  language: 'zh',
+                }}
+                onReady={(editor) => {
+                  console.log('Editor is ready to use!', editor)
+                }}
+                onChange={(e, editor) => {
+                  const data = editor.getData()
+                  handleSetForm(e, 'description', data)
+                }}
               />
             </Form.Group>
           </Modal.Body>

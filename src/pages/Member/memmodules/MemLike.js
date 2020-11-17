@@ -23,7 +23,7 @@ function MemLike() {
     const favoriteItem = JSON.parse(localStorage.getItem('state'))
       ? JSON.parse(localStorage.getItem('state'))
       : null
-    setfavoriteItems(favoriteItem.favorite)
+    if (favoriteItem) setfavoriteItems(favoriteItem.favorite)
   }, [])
 
   useEffect(() => {
@@ -48,7 +48,7 @@ function MemLike() {
         <p className="font-s">*****</p>
         <div className="d-flex justify-content-center">
           <p className="font-s">粉絲數量</p>
-          <p className="font-s">267</p>
+          <p className="font-s">{item.fans}</p>
         </div>
       </div>
     </div>
@@ -63,7 +63,7 @@ function MemLike() {
           alt="products"
         />
         <p className="font-s">{item.title}</p>
-        <p className="font-s">{item.price}</p>
+        <p className="font-s">NT ${item.price}</p>
       </div>
     </div>
   ))
@@ -83,18 +83,22 @@ function MemLike() {
 
           <div className="container">
             <div className="row justify-content-around align-self-center topside">
-              <div
-                className="m-auto selectLike"
-                onClick={() => setType('brands')}
-              >
-                關注商家
-              </div>
-              <div
-                className="m-auto selectLike"
-                onClick={() => setType('product')}
-              >
-                關注商品
-              </div>
+              <Link href="#" className="col-2 d-flex topsidebox">
+                <div
+                  className="m-auto selectLike"
+                  onClick={() => setType('brands')}
+                >
+                  關注商家
+                </div>
+              </Link>
+              <Link href="#" className="col-2 d-flex topsidebox">
+                <div
+                  className="m-auto selectLike"
+                  onClick={() => setType('product')}
+                >
+                  關注商品
+                </div>
+              </Link>
             </div>
           </div>
           <div className="d-flex flex-wrap">

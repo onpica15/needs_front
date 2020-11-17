@@ -57,9 +57,7 @@ const Chat = (props) => {
     const data = new FormData()
     data.append('file', files[0])
     const url = 'http://localhost:5000'
-    const res = await Axios.post(url, data).catch((err) =>
-      console.log('sendImg', err)
-    )
+    const res = await Axios.post(url, data)
   }
 
   return (

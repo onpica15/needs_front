@@ -13,8 +13,7 @@ const Messages = ({ messages, name, storeName }) => {
     const getHistoryMsg = async () => {
       const url = 'http://localhost:5000/chat'
       const res = await axios(url)
-      console.log(res.data)
-      setHistoryMessage(res.data)
+      if (res) setHistoryMessage(res.data)
     }
     getHistoryMsg()
   }, [])
@@ -22,12 +21,30 @@ const Messages = ({ messages, name, storeName }) => {
   return (
     <ScrollToBottom className="messages">
       {historyMessage.map((msg) => (
-        <div key={msg.id} className="messageContainer justifyStart">
-          <p className="sendText">{msg.to_name}</p>
-          <div className="messageBox merchantText">
+        <div
+          key={msg.id}
+          className={
+            name === msg.to_name
+              ? 'messageContainer justifyEnd'
+              : 'messageContainer justifyStart'
+          }
+        >
+          {name === msg.to_name ? (
+            <p className="timestamp">{msg.time}</p>
+          ) : null}
+          <p className="sendText">{name === msg.to_name ? '' : msg.to_name}</p>
+          <div
+            style={{
+              borderRadius:
+                name === msg.to_name ? '20px 20px 0 20px' : '20px 20px 20px 0',
+            }}
+            className="messageBox merchantText"
+          >
             <p className="messageText ">{msg.message}</p>
           </div>
-          <p className="timestamp">{msg.time}</p>
+          {name === msg.to_name ? null : (
+            <p className="timestamp">{msg.time}</p>
+          )}
         </div>
       ))}
       {messages.map((message, i) => (

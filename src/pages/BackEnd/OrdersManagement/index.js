@@ -32,7 +32,8 @@ const OrdersManagement = (props) => {
   const getData = (merchantId, type, searchType, searchInp) => {
     //跟server拿資料
     Axios.get(
-      `http://122.116.38.12:5050/bk-orders-api/list?id=${merchantId}&filter=${type}&page=${currentPage}&searchType=${searchType}&searchInp=${searchInp}`
+      `http://122.116.38.12:5050/bk-orders-api/list?id=${merchantId}&filter=${type}&page=${currentPage}
+      &searchType=${searchType}&searchInp=${searchInp}`
     )
       .then((res) => {
         const data = res.data.rows

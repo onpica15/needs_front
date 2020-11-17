@@ -180,7 +180,7 @@ const MemSidebar = (props) => {
               </div>
             </Link>
           </div>
-          <div className="font-s">
+          {/* <div className="font-s">
             <Link to="/member/QA">
               <div className="d-flex  wrapper">
                 <div className="icons">
@@ -189,7 +189,7 @@ const MemSidebar = (props) => {
                 常見問題
               </div>
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
