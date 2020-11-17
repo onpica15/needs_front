@@ -17,7 +17,7 @@ import Sec3ProductList from './component/Sec3ProductList'
 import Sec4Activities from './component/Sec4Activities'
 import Sec5Story from './component/Sec5Story'
 
-const Aiyabungu = (props) =>{
+const Pommedepin111 = (props) =>{
   const [error,setError] = useState(null)
   const [posts, setPosts] = useState([])
 
@@ -241,4 +241,4 @@ const Aiyabungu = (props) =>{
         </>
     )
 }
-export default Aiyabungu
+export default Pommedepin111

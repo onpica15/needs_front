@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import QueueAnim from 'rc-queue-anim';
 import {
   Col,
   Container,
@@ -31,6 +32,7 @@ function Sec1Info(props){
               ''
             )}
 
+            
             <div className="bg-text">
             <Texty 
             className="bg-font" 
@@ -41,6 +43,8 @@ function Sec1Info(props){
             >
             {merchantInfos.brand_name}</Texty>
             </div>
+           
+            
             
             <div className="background-color" style={{
               backgroundColor: bgColor,

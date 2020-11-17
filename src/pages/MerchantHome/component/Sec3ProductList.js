@@ -110,7 +110,8 @@ const Sec3ProductList = (props) => {
               categories={categories}
               setSelectCategory={setSelectCategory}
             />
-            <SideFilter setEcoin={setEcoin} ecoin={ecoin}               setFilterPrice={setFilterPrice}
+            <SideFilter setEcoin={setEcoin} ecoin={ecoin}               
+            setFilterPrice={setFilterPrice}
               filterprice={filterprice}/>
           </div>
           <div className="mainProductList">

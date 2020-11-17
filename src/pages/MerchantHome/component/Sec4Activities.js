@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ScrollParallax from 'rc-scroll-anim/lib/ScrollParallax';
 function Sec4Activities(props){
   const { mainActivitiesId , activities } = props
     return(
@@ -7,8 +8,15 @@ function Sec4Activities(props){
                   .map((activity, index) => {
                     return (
                       <>
+                      <ScrollParallax 
+                            animation={{ x: 0, opacity: 1, playScale: [0.1, 0.8] }}
+                            style={{ transform: 'translateY(-30px)', opacity: 0 }}
+                            always={false}
+                            duration={1000}
+                            > 
             <div className="activities-wrapper d-flex align-items-end m-auto">
-            <img className="activities-img" src={`http://localhost:5000/img/products/${activity.image_path.split(',')[0]}`} key={index}/>
+            <img className="activities-img d-flex align-items-center m-auto" src={`http://localhost:5000/img/products/${activity.image_path.split(',')[0]}`} key={index}/>
+           
               <div className="text d-flex flex-column justify-content-between my-auto">
                     <h2>{activity.title}</h2>
                     <h4>課程日期：</h4>
@@ -18,6 +26,7 @@ function Sec4Activities(props){
                     <button className="activity-btn rounded">立即報名</button>
                   </div>
             </div>
+            </ScrollParallax>
           </>
               )
           }
