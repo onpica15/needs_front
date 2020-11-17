@@ -36,6 +36,9 @@
         height: auto;
         background-color: #fff;
         box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
+        &:hover {
+            box-shadow: 0 8px 25px -8px #323232;
+          }
     }
     .btn-purple{
         width: 200px;
@@ -56,6 +59,9 @@
         height: auto;
         background-color:#7367f0;
         box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
+        &:hover {
+            box-shadow: 0 8px 25px -8px #323232
+          }
     }
     .btn-large {
         display: inline-block;
@@ -74,6 +80,11 @@
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         color: #7367f0;
         border-color: #7367f0;
+        &:hover {
+            box-shadow: 0 8px 25px -8px #323323;
+            background-color:#7367f0;
+            color:#fff
+          }
     }
     .main-adjust{
         padding: 180px 80px 60px 100px;

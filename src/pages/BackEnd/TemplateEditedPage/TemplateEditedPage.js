@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import swal from '@sweetalert/with-react';
 import { useSelector } from 'react-redux' //引入redux
 
 import {
@@ -37,13 +38,7 @@ const [show,setShow]= useState(true)
 const toggleShow = (e) => setShow(!show);
 const [show1,setShow1]= useState(true)
 const toggleShow1 = (e) => setShow1(!show1);
-// const toggleShow2 = (e) => setShow(!show1);
-// const [show2,setShow2]= useState(true)
-// const toggleShow3 = (e) => setShow(!show2);
-// const [show3,setShow3]= useState(true)
-// const toggleShow4 = (e) => setShow(!show3);
-// const [show4,setShow4]= useState(true)
-// const toggleShow5 = (e) => setShow(!show4);
+
 
 
 // fileuplaod
@@ -63,6 +58,7 @@ const [ selectedProduct,setSelectedProduct ] = useState(0)
 const [ selectedActivities,setSelectedActivities ] = useState(0) 
 
 const [error,setError] = useState(null)
+
 
 
 //以下包成form寫入
@@ -88,6 +84,23 @@ const sendDataToNode = (e) => {
     .catch((error) => {
       console.log('Error', error)
     })
+  
+    swal({
+      title: "確定要儲存嗎 ? ",
+      icon: "info",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willSave) => {
+      if (willSave) {
+        swal({
+          title:"儲存成功！", 
+          icon: "success",
+          
+        });
+      }
+    });
+    
 }
 
 const sendStoryImgToNode = async () => {
@@ -163,6 +176,28 @@ useEffect(() => {
   
 // }, [])
 
+// const  goSave = ()=>{
+
+// }
+//   swal({
+//     title: "Are you sure?",
+//     text: "Once deleted, you will not be able to recover this imaginary file!",
+//     icon: "warning",
+//     buttons: true,
+//     dangerMode: true,
+//   })
+//   .then((willDelete) => {
+//     if (willDelete) {
+//       swal("Poof! Your imaginary file has been deleted!", {
+//         icon: "success",
+//       });
+//     } else {
+//       swal("Your imaginary file is safe!");
+//     }
+//   });
+
+
+
   return(
     <>
     <div className="template-editPage">
@@ -172,12 +207,12 @@ useEffect(() => {
     {/* edit-bar */}
     <Col className="xs={10} p-0">
     <div className="d-flex justify-content-start align-items-center">
-    <Button className="mt-2 mr-2 btn-light">
-    預覽</Button>
-    <Button className="mt-2 btn-light" onClick = { (e) => { sendDataToNode(e)} }>
+    <Button className="mt-2 mr-2 btn-save" onClick = { (e) => { sendDataToNode(e)} }>
     儲存</Button>
+    <Button className="mt-2 btn-home" onClick={()=>{props.history.push('/customer-backend/template-home')}} >
+    首頁模板</Button>
     </div>
-    <hr />
+    {/* <hr /> */}
     <div className="d-flex">
     <div className="space">
     <div className="edit-bar">
@@ -328,7 +363,7 @@ useEffect(() => {
               <h6>上傳故事圖片</h6>
               <TemplateStoryUpload setStoryImg={setStoryImg} />
               <div className="mt-3">
-              <h6>輸入品牌故事</h6>
+              
               <TextEditor setText={setText}/>
               </div>
             </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter,useHistory} from 'react-router-dom'
-// import { useSelector } from 'react-redux'
+import swal from 'sweetalert';
+
 
 import { Col, Container, Card, CardDeck, Row , Modal ,Button } from 'react-bootstrap'
 
@@ -80,14 +81,14 @@ const updateFavToLocalStorage = function (item) {
         <Button variant="light" onClick={e=>UnFav(unItem)} >
         確定
         </Button>
-        <Button
+        {/* <Button
           variant="dark"
           onClick={() => {
             props.history.push('/customer-backend/template-home')
           }}
         >
           前往收藏清單
-        </Button>
+        </Button> */}
       </Modal.Footer>
     </Modal>
     </div>
@@ -98,7 +99,7 @@ const updateFavToLocalStorage = function (item) {
         <Col className="offset-2" xs={10}>
           <div className="container-fluid w-80">
             <h4 className="mt-4">主題</h4>
-            <Button className="mt-4 btn-light" onClick={()=>{props.history.push('/homepage')}}>
+            <Button className="mt-4 btn-light" onClick={()=>{props.history.push('/homepage/Pommedepin111')}}>
               <MdVisibility /> 查看目前主頁
             </Button>
             <hr />

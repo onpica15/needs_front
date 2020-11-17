@@ -93,7 +93,7 @@ function TemplateList(props) {
 const override = css`
   display: block;
   margin: 300px auto;
-  border-color:＃7367f0;
+  border-color:#7367f0;
 `;
 
 const loading = (
