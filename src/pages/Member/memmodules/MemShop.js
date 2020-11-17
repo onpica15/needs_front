@@ -55,52 +55,50 @@ function MemShop() {
                       <div>訂購編號</div>
                       <div>{item.order_number}</div>
                     </div>
-                    {item.skus.map((skus, index) => {
-                      return (
-                        <table className="table table-striped listhead">
-                          <thead>
+                    {/* {item.skus.map((skus, index) => { */}
+                    {/* return ( */}
+                    <table className="table table-striped listhead">
+                      <thead>
+                        <tr>
+                          <th className="">{item.brand_name}</th>
+                          <th className="">訂購日期</th>
+                          <th className="">單價</th>
+                          <th className="">數量</th>
+                          <th className="">小計</th>
+                          <th className="">狀態</th>
+                        </tr>
+                      </thead>
+                      {item.merchants.map((merchants, index) => {
+                        return (
+                          <tbody bgcolor="white">
                             <tr>
-                              <th className="">{skus.brand_name}</th>
-                              <th className="">訂購日期</th>
-                              <th className="">單價</th>
-                              <th className="">數量</th>
-                              <th className="">小計</th>
-                              <th className="">狀態</th>
+                              <td className="d-flex">
+                                <img
+                                  className="box"
+                                  src={`http://localhost:5000/img/products/${merchants.image_path}`}
+                                  alt="brands"
+                                />
+                                <div className="align-self-center">
+                                  <p className="font-s">{merchants.title}</p>
+                                  <p className="font-s">
+                                    規格：{merchants.specification}
+                                  </p>
+                                </div>
+                              </td>
+                              <td>{merchants.created_at}</td>
+                              <td>{merchants.unit_price}</td>
+                              <td>{merchants.quantity}</td>
+                              <td>
+                                {merchants.unit_price * merchants.quantity}
+                              </td>
+                              <td>Ｖ</td>
                             </tr>
-                          </thead>
-                          {skus.merchants.map((merchants, index) => {
-                            return (
-                              <tbody bgcolor="white">
-                                <tr>
-                                  <td className="d-flex">
-                                    <img
-                                      className="box"
-                                      src={`http://localhost:5000/img/products/${merchants.image_path}`}
-                                      alt="brands"
-                                    />
-                                    <div className="align-self-center">
-                                      <p className="font-s">
-                                        {merchants.title}
-                                      </p>
-                                      <p className="font-s">
-                                        規格：{merchants.specification}
-                                      </p>
-                                    </div>
-                                  </td>
-                                  <td>{merchants.created_at}</td>
-                                  <td>{merchants.unit_price}</td>
-                                  <td>{merchants.quantity}</td>
-                                  <td>
-                                    {merchants.unit_price * merchants.quantity}
-                                  </td>
-                                  <td>Ｖ</td>
-                                </tr>
-                              </tbody>
-                            )
-                          })}
-                        </table>
-                      )
-                    })}
+                          </tbody>
+                        )
+                      })}
+                    </table>
+                    {/* )
+                    })} */}
                   </div>
                 )
               })}

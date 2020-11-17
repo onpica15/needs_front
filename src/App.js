@@ -32,7 +32,7 @@ import Login from './pages/Login/Login'
 import SignUp from './pages/Login/SignUp'
 import Pommedepin111 from './pages/MerchantHome/Pommedepin111'
 import Annieeinna_hs from './pages/MerchantHome/annieeinna_hs'
-import Hermits from './pages/MerchantHome/Hermits'
+import ToolsLiveBy3 from './pages/MerchantHome/ToolsLiveBy3'
 import LittleMountain from './pages/MerchantHome/小山坡'
 
 //商家後台
@@ -224,7 +224,7 @@ function App(props) {
           /> */}
           <DynamicLayoutRoute
             // exact
-            path="/homepage/pommedepin111"
+            path="/homepage/pommedepin111/12"
             component={Pommedepin111}
             layout="FRONT_END_NAV"
           />
@@ -236,8 +236,8 @@ function App(props) {
           />
           <DynamicLayoutRoute
             // exact
-            path="/homepage/Hermits"
-            component={Hermits}
+            path="/homepage/ToolsLiveBy/3"
+            component={ToolsLiveBy3}
             layout="FRONT_END_NAV"
           />
           <DynamicLayoutRoute
