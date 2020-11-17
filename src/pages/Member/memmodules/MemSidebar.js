@@ -73,9 +73,12 @@ const MemSidebar = (props) => {
         />
 
         <div className="d-flex justify-content-end mr-3 mt-1">
-          <Button className="photoicon" variant="primary" onClick={handleShow}>
+          <Button
+            className="photoicon p-1"
+            variant="primary"
+            onClick={handleShow}
+          >
             <MdAddAPhoto />
-            更換頭貼
           </Button>
 
           <Modal show={show} onHide={handleClose} animation={false}>
@@ -100,7 +103,7 @@ const MemSidebar = (props) => {
                   type="file"
                   name="filename"
                   id="filename"
-                  variant="secondary"
+                  variant="primary"
                   onClick={(e) => updateAvatar(e)}
                 >
                   換美美頭貼
@@ -180,7 +183,7 @@ const MemSidebar = (props) => {
               </div>
             </Link>
           </div>
-          {/* <div className="font-s">
+          <div className="font-s">
             <Link to="/member/QA">
               <div className="d-flex  wrapper">
                 <div className="icons">
@@ -189,7 +192,7 @@ const MemSidebar = (props) => {
                 常見問題
               </div>
             </Link>
-          </div> */}
+          </div>
         </div>
       </div>
     </>
