@@ -128,6 +128,7 @@ const CreateArticle = (props) => {
   }
 
   const sendEmail = async () => {
+    setShowEmailInfo(false)
     const data = { __html: showHTML }
     // const email = 'deri19911010@gmail.com'
     await axios
