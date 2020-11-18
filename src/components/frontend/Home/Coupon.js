@@ -125,7 +125,7 @@ function Coupon() {
                   <img src={couponImgUrl2} alt="" />
                 </div>
                 <div className="promo-info">
-                  <div className="promo-title">{coupon1TitleArray[i]}</div>
+                  <div className="promo-title">{coupon3TitleArray[i]}</div>
                   <div className="promo-brand">小山坡</div>
                   <span className="promo-price">
                     NT$ {coupon2PriceArray[i]}
@@ -158,7 +158,7 @@ function Coupon() {
                   <img src={couponImgUrl3} alt="" />
                 </div>
                 <div className="promo-info">
-                  <div className="promo-title">{coupon1TitleArray[i]}</div>
+                  <div className="promo-title">{coupon3TitleArray[i]}</div>
                   <div className="promo-brand">小山坡</div>
                   <span className="promo-price">
                     NT$ {coupon3PriceArray[i]}
