@@ -168,6 +168,7 @@ async function getBrandInfo(){
 useEffect(() => {
   getMerchantProduct()
   getBrandInfo()
+  window.scrollTo(0, 0)
 }, [])
 
 // useEffect(() => {
