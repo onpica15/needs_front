@@ -146,7 +146,7 @@ const CreateArticle = (props) => {
   useEffect(() => {
     setTimeout(() => {
       setShowInfo(false)
-    }, 3000)
+    }, 4000)
   }, [handleSave])
 
   const closeHandler = () => setShowInfo(false)
